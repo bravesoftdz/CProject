@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>1899-12-30 00:00:00.000.713,=D:\00.dev\02.BI\BI_APP\uMain.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.888,=D:\00.dev\02.BI\BI_APP\uBLEDevices.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.577,D:\00.dev\04.CookPlay\02.CookPlay APP\02.CookPlayTest\CookPlayTest.dproj=D:\00.dev\04.CookPlay\02.CookPlay APP\02.CookPlayTest\CookPlay_Test.dproj</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.034,D:\00.dev\04.CookPlay\03.Test APP\BI_DeviceComponent.dproj=D:\00.dev\04.CookPlay\03.Test APP\CookPlay_Test.dproj</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.311,=D:\00.dev\04.CookPlay\02.CookPlay APP\00.Library\uCPScale.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.186,D:\Documents\Embarcadero\Studio\Projects\Project8.dproj=D:\00.dev\02.BI\BI_APP\BI_DeviceComponent.dproj</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.506,=D:\Documents\Embarcadero\Studio\Projects\Unit8.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.753,D:\00.dev\04.CookPlay\02.CookPlay APP\02.CookPlayTest\uBLEDevices.pas=</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.968,D:\00.dev\04.CookPlay\02.CookPlay APP\02.CookPlayTest\CookPlayScaleTest.dproj=D:\00.dev\04.CookPlay\02.CookPlay APP\02.CookPlayTest\CookPlayTest.dproj</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.057,=D:\Documents\Embarcadero\Studio\Projects\Unit8.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.294,=D:\Documents\Embarcadero\Studio\Projects\Unit8.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.778,=D:\Documents\Embarcadero\Studio\Projects\Unit8.pas</Transaction>
+  </Transactions>
+	<ActiveMobileDevice>
+		<NoProfile iOSSimulator="iPhone5" Android="03160228ea4901e9"/>
+		<PMacBookPro iOSSimulator="iPhone5" iOSDevice64="_iosdevice_87cb4c6ed6310b2fe264111a3ca525ac0346ed5a"/>
+	</ActiveMobileDevice>
+</BorlandProject>
