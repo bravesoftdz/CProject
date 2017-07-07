@@ -72,9 +72,9 @@ WelcomePageURL=bds:/default.htm
 [View1]
 CustomEditViewType=TEditView
 Module=D:\00.dev\04.CookPlay\02.CookPlay APP\00.Library\uCPScale.pas
-CursorX=17
-CursorY=389
-TopLine=374
+CursorX=1
+CursorY=1
+TopLine=193
 LeftCol=1
 Elisions=
 Bookmarks={1,812,1}{2,651,1}{3,394,1}
@@ -83,13 +83,13 @@ EditViewName=D:\00.dev\04.CookPlay\02.CookPlay APP\00.Library\uCPScale.pas
 [View2]
 CustomEditViewType=TEditView
 Module=D:\00.dev\04.CookPlay\02.CookPlay APP\02.CookPlayScaleTest\uMain.pas
-CursorX=28
-CursorY=116
-TopLine=88
+CursorX=1
+CursorY=1
+TopLine=46
 LeftCol=1
 Elisions=
 Bookmarks=
-EditViewName=Borland.FormDesignerView
+EditViewName=D:\00.dev\04.CookPlay\02.CookPlay APP\02.CookPlayScaleTest\uMain.pas
 
 [UndockedDesigner]
 Count=0
@@ -270,11 +270,6 @@ LRDockWidth=5807
 Dockable=1
 StayOnTop=0
 SplitPos=151
-
-[PropInspDesignerSelection]
-ArrangeBy=Name
-SelectedItem=Name,
-ExpandedItems=Anchors=0,LiveBindings=0,"LiveBindings Designer=0",Margins=0,Padding=0,Position=0,RotationCenter=0,Scale=0,Size=0,Touch=0,TouchTargetExpansion=0
 
 [frmDesignPreview]
 PercentageSizes=1
@@ -751,7 +746,7 @@ Dockable=1
 StayOnTop=0
 TabPosition=1
 ActiveTabID=ProjectManager
-TabDockClients=ProjectManager,ToolForm,ModelViewTool,DataExplorerContainer,frmDesignPreview,TemplateView,TFileExplorerForm
+TabDockClients=ProjectManager,ToolForm,ModelViewTool,DataExplorerContainer,frmDesignPreview,TFileExplorerForm,TemplateView
 
 [DockSite3]
 HostDockSite=DockLeftPanel
