@@ -10,3 +10,7 @@ __recovery
 *.exe
 *.dll
 *.elf
+Android
+iOSDevice64
+Win32
+Win64
