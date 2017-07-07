@@ -3,6 +3,7 @@
 *.dproj.local
 *.identcache
 __history
+__recovery
 *.drc
 *.map
 *.zip
