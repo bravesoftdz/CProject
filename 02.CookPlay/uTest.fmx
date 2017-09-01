@@ -1,0 +1,21 @@
+object frmTest: TfrmTest
+  Left = 0
+  Top = 0
+  Caption = 'Form1'
+  ClientHeight = 480
+  ClientWidth = 453
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnClose = FormClose
+  OnShow = FormShow
+  DesignerMasterStyle = 3
+  object Label1: TLabel
+    Align = Center
+    Size.Width = 149.000000000000000000
+    Size.Height = 23.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.HorzAlign = Center
+    Text = 'Label1'
+  end
+end

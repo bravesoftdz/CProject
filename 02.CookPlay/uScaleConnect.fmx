@@ -1,0 +1,33 @@
+object Frame1: TFrame1
+  Size.Width = 340.000000000000000000
+  Size.Height = 342.000000000000000000
+  Size.PlatformDefault = False
+  object RectBackground: TRectangle
+    Fill.Color = claBlack
+    Opacity = 0.600000023841857900
+    Position.X = 48.000000000000000000
+    Position.Y = 72.000000000000000000
+    Size.Width = 225.000000000000000000
+    Size.Height = 205.000000000000000000
+    Size.PlatformDefault = False
+    Stroke.Kind = None
+  end
+  object txtMessage: TText
+    Align = Center
+    Opacity = 0.899999976158142100
+    Size.Width = 306.000000000000000000
+    Size.Height = 141.000000000000000000
+    Size.PlatformDefault = False
+    Text = 'asdfsafd'
+    TextSettings.Font.Size = 16.000000000000000000
+    TextSettings.FontColor = claWhite
+    object FloatAni_Con: TFloatAnimation
+      AutoReverse = True
+      Duration = 0.500000000000000000
+      Loop = True
+      PropertyName = 'Opacity'
+      StartValue = 1.000000000000000000
+      StopValue = 0.300000011920929000
+    end
+  end
+end

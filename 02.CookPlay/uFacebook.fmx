@@ -1,0 +1,142 @@
+object frmFacebook: TfrmFacebook
+  Left = 0
+  Top = 0
+  Caption = 'Form1'
+  ClientHeight = 480
+  ClientWidth = 485
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnClose = FormClose
+  OnShow = FormShow
+  DesignerMasterStyle = 3
+  object Layout1: TLayout
+    Align = Client
+    Size.Width = 485.000000000000000000
+    Size.Height = 480.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 4
+    object TabControl1: TTabControl
+      Align = Client
+      Size.Width = 485.000000000000000000
+      Size.Height = 480.000000000000000000
+      Size.PlatformDefault = False
+      TabHeight = 49.000000000000000000
+      TabIndex = 1
+      TabOrder = 0
+      TabPosition = None
+      Sizes = (
+        485s
+        480s
+        485s
+        480s)
+      object TabItem1: TTabItem
+        CustomIcon = <
+          item
+          end>
+        IsSelected = False
+        Size.Width = 8.000000000000000000
+        Size.Height = 8.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = ''
+        TabOrder = 0
+        Text = 'TabItem1'
+        ExplicitSize.cx = 8.000000000000000000
+        ExplicitSize.cy = 8.000000000000000000
+        object WebBrowser: TWebBrowser
+          EnableCaching = False
+          Align = Client
+          Size.Width = 485.000000000000000000
+          Size.Height = 480.000000000000000000
+          Size.PlatformDefault = False
+          OnDidFinishLoad = WebBrowserDidFinishLoad
+          OnShouldStartLoadWithRequest = WebBrowserShouldStartLoadWithRequest
+        end
+      end
+      object TabItem2: TTabItem
+        CustomIcon = <
+          item
+          end>
+        IsSelected = True
+        Size.Width = 8.000000000000000000
+        Size.Height = 8.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = ''
+        TabOrder = 0
+        Text = 'TabItem2'
+        ExplicitSize.cx = 8.000000000000000000
+        ExplicitSize.cy = 8.000000000000000000
+        object recBackground: TRectangle
+          Fill.Color = claBlack
+          Opacity = 0.699999988079071000
+          Size.Width = 405.000000000000000000
+          Size.Height = 351.000000000000000000
+          Size.PlatformDefault = False
+          Stroke.Kind = None
+        end
+        object Panel1: TPanel
+          Align = Center
+          Size.Width = 285.000000000000000000
+          Size.Height = 51.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 1
+          object lblCaption: TLabel
+            Align = Right
+            AutoSize = True
+            Position.X = 43.000000000000000000
+            Size.Width = 242.000000000000000000
+            Size.Height = 51.000000000000000000
+            Size.PlatformDefault = False
+            Text = #45936#51060#53552#47484' '#44032#51256#50724#44256' '#51080#49845#45768#45796
+          end
+          object AniIndicator1: TAniIndicator
+            HitTest = False
+            Position.X = 16.000000000000000000
+            Position.Y = 14.000000000000000000
+            Size.Width = 23.000000000000000000
+            Size.Height = 25.000000000000000000
+            Size.PlatformDefault = False
+          end
+        end
+      end
+    end
+  end
+  object Timer1: TTimer
+    Enabled = False
+    Interval = 100
+    OnTimer = Timer1Timer
+    Left = 368
+    Top = 89
+  end
+  object RESTClient: TRESTClient
+    Authenticator = OAuth2_Facebook
+    Params = <>
+    HandleRedirects = True
+    Left = 188
+    Top = 100
+  end
+  object RESTResponse: TRESTResponse
+    Left = 278
+    Top = 102
+  end
+  object RESTRequest: TRESTRequest
+    Client = RESTClient
+    Params = <>
+    Resource = 'm?field=id,name,birthday,email,gender,picture'
+    Response = RESTResponse
+    OnAfterExecute = RESTRequestAfterExecute
+    SynchronizedEvents = False
+    OnHTTPProtocolError = RESTRequestHTTPProtocolError
+    Left = 98
+    Top = 96
+  end
+  object OAuth2_Facebook: TOAuth2Authenticator
+    AuthorizationEndpoint = 'https://www.facebook.com/v2.0/dialog/oauth'
+    ClientID = '342699346162649'
+    RedirectionEndpoint = 'https://www.facebook.com/connect/login_success.html'
+    ResponseType = rtTOKEN
+    Scope = 'user_about_me,user_birthday,email'
+    Left = 190
+    Top = 174
+  end
+end

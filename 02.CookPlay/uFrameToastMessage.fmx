@@ -1,0 +1,43 @@
+object frameToastMessage: TframeToastMessage
+  Size.Width = 249.000000000000000000
+  Size.Height = 45.000000000000000000
+  Size.PlatformDefault = False
+  object ToastLayout: TLayout
+    Align = Client
+    Size.Width = 249.000000000000000000
+    Size.Height = 45.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 3
+    object MessageRect: TRoundRect
+      Align = Client
+      Fill.Color = claBlack
+      HitTest = False
+      Opacity = 0.500000000000000000
+      Margins.Left = 30.000000000000000000
+      Margins.Right = 30.000000000000000000
+      Size.Width = 189.000000000000000000
+      Size.Height = 45.000000000000000000
+      Size.PlatformDefault = False
+      Stroke.Kind = None
+      object ShadowEffect1: TShadowEffect
+        Distance = 8.000000000000000000
+        Direction = 45.000000000000000000
+        Softness = 0.400000005960464500
+        Opacity = 0.800000011920929000
+        ShadowColor = claBlack
+        Enabled = False
+      end
+    end
+    object MsgText: TText
+      Align = Client
+      HitTest = False
+      Margins.Left = 40.000000000000000000
+      Margins.Right = 40.000000000000000000
+      Size.Width = 169.000000000000000000
+      Size.Height = 45.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Toast Information Message Toast Information Message'
+      TextSettings.FontColor = claWhite
+    end
+  end
+end

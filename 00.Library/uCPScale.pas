@@ -40,7 +40,7 @@ unit uCPScale;
 
 interface
 uses System.Bluetooth, System.SysUtils, System.Types, System.Classes,
-  FMX.Dialogs, FMX.Forms, FMX.Types, System.Diagnostics;
+  FMX.Dialogs, FMX.Forms, FMX.Types, System.Diagnostics, System.UITypes;
 
 type
 {$define V20}
@@ -64,6 +64,7 @@ type
   TReadEvent = procedure(const S: string) of Object;
   TWriteEvent = procedure(const S: string) of Object;
   TDiscoveryEndEvent = procedure(Sender: TObject; ADevices: TBluetoothLEDeviceList) of Object;
+  TResponseProc = procedure (AResult: TModalResult; AMessage: string) of object;
 
   TWeightMessage = record
   private
@@ -88,6 +89,19 @@ type
 
   TWeightEvent = procedure(const AWeight: TWeightMessage) of Object;
   TWeightChangeEvent = procedure(const Weight: Double) of object;
+
+  TBluetoothLEEvents = record
+    OnResultMessage: TResponseProc;
+    OnConnected: TNotifyEvent;
+    OnDisconnected: TNotifyEvent;
+    OnAuthorized: TNotifyEvent;
+    OnNotAuthorized: TNotifyEvent;
+    OnWrite: TWriteEvent;
+    OnRead: TReadEvent;
+    OnWeight: TWeightEvent;
+    OnWeightChanged: TWeightEvent;
+    OnNextButton: TWeightEvent;
+  end;
 
   TScaleConnectionInfo = record
     DeviceName: string;
@@ -162,9 +176,12 @@ type
 
   TScaleConnection = class(TComponent)
   private
-    FLastConnectedScale: TScaleInfo;
-
     oScaleLE: TScaleLE;
+
+    FLastConnectedScale: TScaleInfo;
+    FBluetoothLEEvents: TBluetoothLEEvents;
+
+    FOnResponse: TResponseProc;
 
     FOnConnected: TNotifyEvent;
     FOnDisconnected: TNotifyEvent;
@@ -201,9 +218,19 @@ type
     procedure SendtoDevice(Cmd: TScaleCommand);
     procedure SendtoDeviceString(str: string);
     procedure ClearEventHandler;
+
+    procedure EventsBackup;
+    procedure EventsRestore;
+
+    procedure ResponseContinue(AMsg: string);
+    procedure ResponseError(AMsg: string);
+
     property LastConnectedScale: TScaleInfo read FLastConnectedScale;
     property ScaleName: string read GetScaleName;
     property ScaleAddress: string read GetScaleAddress;
+
+    property OnResponse: TResponseProc read FOnResponse write FOnResponse;
+
     property OnConnected: TNotifyEvent read FOnConnected write FOnConnected;
     property OnDisconnected: TNotifyEvent read FOnDisconnected write FOnDisconnected;
     property OnAuthorized: TNotifyEvent read FOnAuthorized write FOnAuthorized;
@@ -337,7 +364,6 @@ begin
   if Assigned(oScaleLE) and Assigned(oScaleLE.oDevice) then
   begin
     oScaleLE.oDevice.Disconnect;
-//      oScaleLE.FOnDisconnected(self);
   end;
 end;
 
@@ -481,6 +507,18 @@ begin
     result := oScaleLE.oDevice.IsConnected;
 end;
 
+procedure TScaleConnection.ResponseContinue(AMsg: string);
+begin
+  if Assigned(FOnResponse) then
+    FOnResponse(mrContinue, AMsg);
+end;
+
+procedure TScaleConnection.ResponseError(AMsg: string);
+begin
+  if Assigned(FOnResponse) then
+    FOnResponse(mrAbort, AMsg);
+end;
+
 procedure TScaleConnection.SendtoDevice(Cmd: TScaleCommand);
 var
   str: string;
@@ -588,6 +626,45 @@ begin
   end;
 end;
 
+procedure TScaleConnection.EventsBackup;
+begin
+  FBluetoothLEEvents.OnResultMessage := FOnResponse;
+  FBluetoothLEEvents.OnConnected := FOnConnected;
+  FBluetoothLEEvents.OnDisconnected := FOnDisconnected;
+  FBluetoothLEEvents.OnAuthorized := FOnAuthorized;
+  FBluetoothLEEvents.OnNotAuthorized := FOnNotAuthorized;
+  FBluetoothLEEvents.OnWrite := FOnWrite;
+  FBluetoothLEEvents.OnRead := FOnRead;
+  FBluetoothLEEvents.OnWeight := FOnWeight;
+  FBluetoothLEEvents.OnWeightChanged := FOnWeightChanged;
+  FBluetoothLEEvents.OnNextButton := FOnNextButton;
+
+  FOnResponse := nil;
+  FOnConnected :=  nil;
+  FOnDisconnected :=  nil;
+  FOnAuthorized :=  nil;
+  FOnNotAuthorized :=  nil;
+  FOnWrite :=  nil;
+  FOnRead :=  nil;
+  FOnWeight :=  nil;
+  FOnWeightChanged :=  nil;
+  FOnNextButton :=  nil;
+end;
+
+procedure TScaleConnection.EventsRestore;
+begin
+  FOnResponse := FBluetoothLEEvents.OnResultMessage;
+  FOnConnected := FBluetoothLEEvents.OnConnected;
+  FOnDisconnected := FBluetoothLEEvents.OnDisconnected;
+  FOnAuthorized := FBluetoothLEEvents.OnAuthorized;
+  FOnNotAuthorized := FBluetoothLEEvents.OnNotAuthorized;
+  FOnWrite := FBluetoothLEEvents.OnWrite;
+  FOnRead := FBluetoothLEEvents.OnRead;
+  FOnWeight := FBluetoothLEEvents.OnWeight;
+  FOnWeightChanged := FBluetoothLEEvents.OnWeightChanged;
+  FOnNextButton := FBluetoothLEEvents.OnNextButton;
+end;
+
 procedure TScaleConnection.DoDisconnected(Sender: TObject);
 begin
   // 모든 Timer를 정지한다
@@ -654,31 +731,33 @@ function TScaleConnection.ConnectDevice(SelectedDevice: TBluetoothLEDevice): Boo
 begin
   if not Assigned(SelectedDevice) then
   begin
+    ResponseError('블루투스 장치를 초기화 하지 못했습니다');
     result := False;
     exit;
   end;
 
-  // 현재 작동중인 저울과 같은 저울이 들어 왔을 때는 동작하지 않는다
-  if Assigned(oScaleLE) and oScaleLE.IsAuthorized
-    and FLastConnectedScale.IsSame(SelectedDevice.DeviceName, SelectedDevice.Address) then
-  begin
-    result := True;
-    Exit;
-  end;
+//  // 현재 작동중인 저울과 같은 저울이 들어 왔을 때는 동작하지 않는다
+//  if Assigned(oScaleLE) and oScaleLE.IsAuthorized
+//    and FLastConnectedScale.IsSame(SelectedDevice.DeviceName, SelectedDevice.Address) then
+//  begin
+//    ReturnError('이미 연결되어 있습니다');
+//    result := True;
+//    Exit;
+//  end;
 
   // 현재 전자저울이 할당되어 있으면, 강제 해제 한다
   if Assigned(oScaleLE) then
+  begin
     DisconnectDevice;
+    oScaleLE.DisposeOf;
+  end;
 
   // 전자저울을 생성한다
-  if not Assigned(oScaleLE) then
-  begin
-    oScaleLE := TScaleLE.Create;
-    oScaleLE.FOnConnected := DoConnected;
-    oScaleLE.FOnDisconnected := DoDisconnected;
-    oScaleLE.FOnAuthorized := DoAuthorized;
-    oScaleLE.FOnNotAuthorized := DoNotAuthorized;
-  end;
+  oScaleLE := TScaleLE.Create;
+  oScaleLE.FOnConnected := DoConnected;
+  oScaleLE.FOnDisconnected := DoDisconnected;
+  oScaleLE.FOnAuthorized := DoAuthorized;
+  oScaleLE.FOnNotAuthorized := DoNotAuthorized;
 
   // 전자저울 연결정보를 세팅하고, 연결을 시도한다
   if SetConnectionInfo(SelectedDevice) and oScaleLE.SetScale(SelectedDevice) then
@@ -690,6 +769,8 @@ begin
   begin
     if Assigned(oScaleLE.oDevice) then
       oScaleLE.oDevice.Disconnect;
+
+    ResponseError('연결할 수 없습니다');
 
     result := False;
   end;

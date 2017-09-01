@@ -746,7 +746,7 @@ Dockable=1
 StayOnTop=0
 TabPosition=1
 ActiveTabID=ProjectManager
-TabDockClients=ProjectManager,ToolForm,ModelViewTool,DataExplorerContainer,frmDesignPreview,TemplateView,TFileExplorerForm
+TabDockClients=ProjectManager,ToolForm,ModelViewTool,DataExplorerContainer,frmDesignPreview,TFileExplorerForm,TemplateView
 
 [DockSite3]
 HostDockSite=DockLeftPanel
