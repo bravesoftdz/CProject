@@ -118,6 +118,30 @@
             <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
+        <DCCReference Include="uIngredient.pas">
+            <Form>frmIngredient</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="uExplain.pas">
+            <Form>frmExplain</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="uSelectRecipe.pas">
+            <Form>frmSelectRecipe</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="uAddTime.pas">
+            <Form>frmAddTime</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="uAddTemperature.pas">
+            <Form>frmAddTemperature</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="uLogin.pas">
+            <Form>frmLogin</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

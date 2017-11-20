@@ -48,43 +48,57 @@ procedure TfrmMian.DeletingImages;
 var
   s3: TAmazonStorageService;
   bucketname, objectname: string;
+  erasedatetime: string;
 begin
   try
     s3 := TAmazonStorageService.Create(AmazonConnectionInfo);
-
     tblDeleteImageQue.Open;
-    while not tblDeleteImageQue.Eof do
-    begin
-      bucketname := tblDeleteImageQue['BucketName'];
-      objectname := tblDeleteImageQue['ImageName'];
-      if s3.DeleteObject(bucketname, objectname) then
-      begin
-        if memo.Lines.Count > 500 then
-          memo.Lines.Clear;
 
-        try
-          tblDeleteImageQue.Delete;
-          memo.Lines.insert(0, tblDeleteImageQue['BucketName'] + ' : ' + tblDeleteImageQue['ImageName'] + '  ==> success');
-        except
-          tblDeleteImageQue.Cancel;
-          memo.Lines.insert(0, tblDeleteImageQue['BucketName'] + ' : ' + tblDeleteImageQue['ImageName'] + '  ==> error');
-        end;
-      end
-      else
+    try
+      erasedatetime := FormatDatetime('YYYY-MM-DD HH:NN:SS', now);
+      memo.Lines.insert(0, erasedatetime + ' ==> start');
+
+      while not tblDeleteImageQue.Eof do
       begin
-        memo.Lines.insert(0, tblDeleteImageQue['BucketName'] + ' : ' + tblDeleteImageQue['ImageName'] + '  == fail');
-        tblDeleteImageQue.Next;
+        erasedatetime := FormatDatetime('YYYY-MM-DD HH:NN:SS', now);
+
+        bucketname := tblDeleteImageQue.FieldByName('BucketName').AsString;
+        objectname := tblDeleteImageQue.FieldByName('ImageName').AsString;
+        if s3.DeleteObject(bucketname, objectname) then
+        begin
+          if memo.Lines.Count > 500 then
+            memo.Lines.Clear;
+
+          try
+            memo.Lines.insert(0, erasedatetime + ' <BUCKET> ' + tblDeleteImageQue['BucketName'] + ' <OBJECT> ' + tblDeleteImageQue['ImageName'] + '  ==> success');
+            tblDeleteImageQue.Delete;
+          except
+            memo.Lines.insert(0, erasedatetime + '<BUCKET> ' + tblDeleteImageQue['BucketName'] + ' <OBJECT> ' + tblDeleteImageQue['ImageName'] + '  ==> error');
+            tblDeleteImageQue.Cancel;
+          end;
+        end
+        else
+        begin
+            memo.Lines.insert(0, erasedatetime + '<BUCKET> ' + tblDeleteImageQue['BucketName'] + ' <OBJECT> ' + tblDeleteImageQue['ImageName'] + '  ==> fail');
+          tblDeleteImageQue.Next;
+        end;
       end;
+    except
+      on E:Exception do
+        ShowMessage(E.Message);
     end;
   finally
     tblDeleteImageQue.Close;
     s3.Free;
+
+    erasedatetime := FormatDatetime('YYYY-MM-DD HH:NN:SS', now);
+    memo.Lines.insert(0, erasedatetime + ' ==> end');
   end;
 end;
 
 procedure TfrmMian.FormShow(Sender: TObject);
 begin
-  AmazonConnectionInfo.StorageEndpoint := 's3.ap-northeast-2.amazonaws.com';
+//  AmazonConnectionInfo.StorageEndpoint := 's3.ap-northeast-2.amazonaws.com';
   memo.Lines.Clear;
   Timer1.Enabled := True;
 end;
@@ -102,7 +116,7 @@ begin
       ShowMessage(E.Message);
   end;
 
-  Timer1.Interval := 1000;// * 60 * 5; //5Ка
+  Timer1.Interval := 1000 * 60 * 30; //30Ка
   Timer1.Enabled := True;
 end;
 

@@ -1,6 +1,6 @@
 object dmDB: TdmDB
   OldCreateOrder = False
-  Height = 607
+  Height = 637
   Width = 814
   object FDConnection: TFDConnection
     Params.Strings = (
@@ -12,11 +12,10 @@ object dmDB: TdmDB
       'DriverID=MySQL')
     Connected = True
     LoginPrompt = False
-    Left = 42
+    Left = 44
     Top = 34
   end
   object tblCategory: TFDTable
-    BeforePost = tblCategoryBeforePost
     IndexFieldNames = 'CategoryType;CategoryCode'
     Connection = FDConnection
     UpdateOptions.UpdateTableName = 'Category'
@@ -44,10 +43,11 @@ object dmDB: TdmDB
   end
   object tblRecipe: TFDTable
     Active = True
+    Filter = 'Deleted=0'
     IndexFieldNames = 'Serial'
     Connection = FDConnection
-    UpdateOptions.UpdateTableName = 'cookplay.Recipe'
-    TableName = 'cookplay.Recipe'
+    UpdateOptions.UpdateTableName = 'Recipe'
+    TableName = 'Recipe'
     Left = 48
     Top = 260
   end
@@ -57,11 +57,12 @@ object dmDB: TdmDB
     Top = 314
   end
   object tblRecipeIngredient: TFDTable
-    IndexFieldNames = 'Serial'
+    Active = True
+    IndexFieldNames = 'RecipeMethod_Serial'
     Connection = FDConnection
     UpdateOptions.UpdateTableName = 'RecipeIngredient'
     TableName = 'RecipeIngredient'
-    Left = 134
+    Left = 136
     Top = 258
   end
   object dsRecipeIngredient: TDataSource
@@ -70,30 +71,18 @@ object dmDB: TdmDB
     Top = 312
   end
   object tblRecipeMethod: TFDTable
-    IndexFieldNames = 'Serial'
+    Active = True
+    IndexFieldNames = 'Recipe_Serial'
     Connection = FDConnection
     UpdateOptions.UpdateTableName = 'RecipeMethod'
     TableName = 'RecipeMethod'
-    Left = 236
+    Left = 238
     Top = 258
   end
   object dsRecipeMethod: TDataSource
     DataSet = tblRecipeMethod
     Left = 234
     Top = 312
-  end
-  object tblRecipeMethodItem: TFDTable
-    IndexFieldNames = 'Serial'
-    Connection = FDConnection
-    UpdateOptions.UpdateTableName = 'RecipeMethodItem'
-    TableName = 'RecipeMethodItem'
-    Left = 344
-    Top = 256
-  end
-  object dsRecipeMethodItem: TDataSource
-    DataSet = tblRecipeMethodItem
-    Left = 342
-    Top = 310
   end
   object tblUsers: TFDTable
     IndexFieldNames = 'Nickname'
@@ -135,7 +124,9 @@ object dmDB: TdmDB
   object sqlCategoryRecipe0: TFDQuery
     Connection = FDConnection
     SQL.Strings = (
-      'select * from Category where categorytype='#39'RECIPEA'#39' order by seq')
+      
+        'select * from Category where categorytype='#39'RECIPEC'#39' and category' +
+        'code<100 order by seq')
     Left = 148
     Top = 384
   end
@@ -147,7 +138,9 @@ object dmDB: TdmDB
   object sqlCategoryRecipe1: TFDQuery
     Connection = FDConnection
     SQL.Strings = (
-      'select * from Category where categorytype='#39'RECIPEB'#39' order by seq')
+      
+        'select * from Category where categorytype='#39'RECIPEC'#39' and category' +
+        'code>=100 and categorycode<200 order by seq')
     Left = 274
     Top = 382
   end
@@ -159,7 +152,9 @@ object dmDB: TdmDB
   object sqlCategoryRecipe2: TFDQuery
     Connection = FDConnection
     SQL.Strings = (
-      'select * from Category where categorytype='#39'RECIPEC'#39' order by seq')
+      
+        'select * from Category where categorytype='#39'RECIPEC'#39' and category' +
+        'code>=200 and categorycode<300 order by seq')
     Left = 396
     Top = 386
   end
@@ -171,7 +166,9 @@ object dmDB: TdmDB
   object sqlCategoryRecipe3: TFDQuery
     Connection = FDConnection
     SQL.Strings = (
-      'select * from Category where categorytype='#39'RECIPED'#39' order by seq')
+      
+        'select * from Category where categorytype='#39'RECIPEC'#39' and category' +
+        'code>=300 and categorycode<400 order by seq')
     Left = 506
     Top = 388
   end
@@ -179,5 +176,196 @@ object dmDB: TdmDB
     DataSet = sqlCategoryRecipe3
     Left = 506
     Top = 448
+  end
+  object tblDeleteImageQue: TFDTable
+    IndexFieldNames = 'ImageName'
+    Connection = FDConnection
+    UpdateOptions.UpdateTableName = 'DeleteImageQue'
+    TableName = 'DeleteImageQue'
+    Left = 662
+    Top = 278
+  end
+  object sqlTemp: TFDQuery
+    Connection = FDConnection
+    SQL.Strings = (
+      '')
+    Left = 666
+    Top = 346
+  end
+  object sqlMakingLevel: TFDQuery
+    Connection = FDConnection
+    SQL.Strings = (
+      
+        'select * from Category where categorytype='#39'MakingLevel'#39' and dele' +
+        'ted=0 order by seq')
+    Left = 44
+    Top = 502
+  end
+  object dsMakingLevel: TDataSource
+    DataSet = sqlMakingLevel
+    Left = 44
+    Top = 562
+  end
+  object sqlMakingTime: TFDQuery
+    Connection = FDConnection
+    SQL.Strings = (
+      
+        'select * from Category where categorytype='#39'MakingTime'#39' and delet' +
+        'ed=0 order by seq')
+    Left = 146
+    Top = 506
+  end
+  object dsMakingTime: TDataSource
+    DataSet = sqlMakingTime
+    Left = 146
+    Top = 566
+  end
+  object sqlPictureType: TFDQuery
+    Connection = FDConnection
+    SQL.Strings = (
+      
+        'select * from Category where categorytype='#39'PictureType'#39' and dele' +
+        'ted=0 order by seq')
+    Left = 272
+    Top = 506
+  end
+  object dsPictureType: TDataSource
+    DataSet = sqlPictureType
+    Left = 272
+    Top = 566
+  end
+  object sqlMyRecipe: TFDQuery
+    Connection = FDConnection
+    SQL.Strings = (
+      'select *'
+      '  from Recipe'
+      
+        ' where Deleted=0 and Users_Serial = :UserSerial and Serial <> :R' +
+        'ecipeSerial'
+      ' order by Title')
+    Left = 512
+    Top = 252
+    ParamData = <
+      item
+        Name = 'USERSERIAL'
+        DataType = ftWideString
+        ParamType = ptInput
+        Value = '-1'
+      end
+      item
+        Name = 'RECIPESERIAL'
+        DataType = ftWideString
+        ParamType = ptInput
+        Value = '-1'
+      end>
+  end
+  object dsMyRecipe: TDataSource
+    DataSet = sqlMyRecipe
+    Left = 512
+    Top = 312
+  end
+  object sqlMe: TFDQuery
+    Connection = FDConnection
+    SQL.Strings = (
+      'select *'
+      '  from Users'
+      ' where Serial = :UserSerial')
+    Left = 318
+    Top = 100
+    ParamData = <
+      item
+        Name = 'USERSERIAL'
+        DataType = ftWideString
+        ParamType = ptInput
+        Value = '1'
+      end>
+  end
+  object dsMe: TDataSource
+    DataSet = sqlMe
+    Left = 318
+    Top = 160
+  end
+  object sqlItemType: TFDQuery
+    Connection = FDConnection
+    SQL.Strings = (
+      
+        'select * from Category where categorytype='#39'ItemType'#39' and deleted' +
+        '=0 order by seq')
+    Left = 506
+    Top = 510
+  end
+  object dsItemType: TDataSource
+    DataSet = sqlItemType
+    Left = 506
+    Top = 570
+  end
+  object sqlItemUnit: TFDQuery
+    Connection = FDConnection
+    SQL.Strings = (
+      
+        'select * from Category where categorytype='#39'ItemUnit'#39' and deleted' +
+        '=0 order by seq')
+    Left = 612
+    Top = 508
+  end
+  object dsItemUnit: TDataSource
+    DataSet = sqlItemUnit
+    Left = 612
+    Top = 568
+  end
+  object sqlUser: TFDQuery
+    Connection = FDConnection
+    SQL.Strings = (
+      'SELECT *'
+      '  FROM Users'
+      ' WHERE ID = :ID AND PWD = :Password')
+    Left = 418
+    Top = 250
+    ParamData = <
+      item
+        Name = 'ID'
+        DataType = ftWideString
+        ParamType = ptInput
+        Value = '1'
+      end
+      item
+        Name = 'PASSWORD'
+        DataType = ftWideString
+        ParamType = ptInput
+        Value = '1'
+      end>
+  end
+  object dsUser: TDataSource
+    DataSet = sqlUser
+    Left = 418
+    Top = 310
+  end
+  object sqlMethodType: TFDQuery
+    Connection = FDConnection
+    SQL.Strings = (
+      
+        'select * from Category where categorytype='#39'MethodType'#39' and delet' +
+        'ed=0 order by seq')
+    Left = 688
+    Top = 508
+  end
+  object dsMethodType: TDataSource
+    DataSet = sqlMethodType
+    Left = 688
+    Top = 568
+  end
+  object sqlIngredientType: TFDQuery
+    Connection = FDConnection
+    SQL.Strings = (
+      
+        'select * from Category where categorytype='#39'ItemType'#39' and Categor' +
+        'yCode < 2 and deleted=0 order by seq')
+    Left = 398
+    Top = 504
+  end
+  object dsIngredientType: TDataSource
+    DataSet = sqlIngredientType
+    Left = 398
+    Top = 564
   end
 end

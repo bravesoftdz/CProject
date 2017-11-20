@@ -1,0 +1,76 @@
+object frmRecipeEditor: TfrmRecipeEditor
+  Left = 0
+  Top = 0
+  Caption = 'Form1'
+  ClientHeight = 480
+  ClientWidth = 534
+  Fill.Color = xFFFF7500
+  Fill.Kind = Solid
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnClose = FormClose
+  OnShow = FormShow
+  DesignerMasterStyle = 3
+  object Rectangle1: TRectangle
+    Align = Top
+    Fill.Color = xFFFF7500
+    Size.Width = 534.000000000000000000
+    Size.Height = 45.000000000000000000
+    Size.PlatformDefault = False
+    Stroke.Color = xFFFF7500
+    object layoutBackButton: TLayout
+      Align = Left
+      HitTest = True
+      Size.Width = 54.000000000000000000
+      Size.Height = 45.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      OnClick = layoutBackButtonClick
+      object Image1: TImage
+        MultiResBitmap.Height = 72
+        MultiResBitmap.Width = 72
+        MultiResBitmap.LoadSize = 2
+        MultiResBitmap = <
+          item
+            Width = 48
+            Height = 48
+            PNG = {
+              89504E470D0A1A0A0000000D49484452000000300000003008060000005702F9
+              87000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+              00C4494441546843EDD8CB0AC2301484E1E033797934375D882FAC6ED25512A7
+              3211A17423E8C939CC0722DA50FE11DD984444447EA5B576591E7CE90BE35F4A
+              2957BEED039ADFF15DAD75E2E5B1A175159F737E60C08947C68556C59B40ABE2
+              4DA055F126D0AA78136855BC09B4AEE2FF8509DFC33DCCE217CCD8B4E3736CF8
+              20FC7E853ADCCBEF8FB84373CC11708F32E2C823E343B0460C01C15B230E3C32
+              3E04C71C31CFF32DCA883D8F8C0FCD314760C099977D40F3E708D7FF50FB8C17
+              111107527A022BE91525B2B655070000000049454E44AE426082}
+            FileName = 'D:\GitHub\CProject\02.CookPlay\image\icBack@2x.png'
+          end>
+        Align = Center
+        HitTest = False
+        Size.Width = 24.000000000000000000
+        Size.Height = 24.000000000000000000
+        Size.PlatformDefault = False
+      end
+      object Button1: TButton
+        Position.X = 63.000000000000000000
+        Position.Y = 7.000000000000000000
+        Size.Width = 149.000000000000000000
+        Size.Height = 34.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 2
+        Text = 'Modal Result'
+        OnClick = Button1Click
+      end
+    end
+  end
+  object Rectangle2: TRectangle
+    Align = Client
+    Fill.Color = claWhite
+    Size.Width = 534.000000000000000000
+    Size.Height = 435.000000000000000000
+    Size.PlatformDefault = False
+    Stroke.Color = claWhite
+  end
+end

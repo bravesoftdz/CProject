@@ -1,0 +1,282 @@
+object frameSetup: TframeSetup
+  Size.Width = 584.000000000000000000
+  Size.Height = 753.000000000000000000
+  Size.PlatformDefault = False
+  object Layout1: TLayout
+    Align = Client
+    Size.Width = 584.000000000000000000
+    Size.Height = 753.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    object ListBox1: TListBox
+      Align = Client
+      Size.Width = 584.000000000000000000
+      Size.Height = 708.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      DisableFocusEffect = True
+      DefaultItemStyles.ItemStyle = ''
+      DefaultItemStyles.GroupHeaderStyle = ''
+      DefaultItemStyles.GroupFooterStyle = ''
+      Viewport.Width = 580.000000000000000000
+      Viewport.Height = 704.000000000000000000
+      object ListBoxItem1: TListBoxItem
+        TextSettings.Font.Size = 18.000000000000000000
+        HitTest = True
+        Size.Width = 580.000000000000000000
+        Size.Height = 60.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        OnClick = ListBoxItem1Click
+        object txtLoginLogout: TText
+          AutoSize = True
+          HitTest = False
+          Position.X = 26.000000000000000000
+          Position.Y = 19.000000000000000000
+          Size.Width = 148.875000000000000000
+          Size.Height = 24.108398437500000000
+          Size.PlatformDefault = False
+          Text = #47196#44536#51064' / '#47196#44536#50500#50883
+          TextSettings.Font.Size = 18.000000000000000000
+          TextSettings.WordWrap = False
+        end
+        object lineLoginTop: TLine
+          Align = Bottom
+          LineType = Top
+          Position.Y = 59.000000000000000000
+          Size.Width = 580.000000000000000000
+          Size.Height = 1.000000000000000000
+          Size.PlatformDefault = False
+          Stroke.Color = xFFD8D8D8
+        end
+      end
+      object ListBoxItem2: TListBoxItem
+        HitTest = True
+        Position.Y = 60.000000000000000000
+        Size.Width = 580.000000000000000000
+        Size.Height = 60.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        object Text2: TText
+          AutoSize = True
+          HitTest = False
+          Position.X = 28.000000000000000000
+          Position.Y = 19.000000000000000000
+          Size.Width = 100.930664062500000000
+          Size.Height = 24.108398437500000000
+          Size.PlatformDefault = False
+          Text = #54532#47196#54596' '#49444#51221
+          TextSettings.Font.Size = 18.000000000000000000
+          TextSettings.WordWrap = False
+        end
+        object Line1: TLine
+          Align = Bottom
+          LineType = Top
+          Position.Y = 59.000000000000000000
+          Size.Width = 580.000000000000000000
+          Size.Height = 1.000000000000000000
+          Size.PlatformDefault = False
+          Stroke.Color = xFFD8D8D8
+        end
+      end
+      object ListBoxItem3: TListBoxItem
+        HitTest = True
+        Position.Y = 120.000000000000000000
+        Size.Width = 580.000000000000000000
+        Size.Height = 60.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 2
+        object Text3: TText
+          AutoSize = True
+          HitTest = False
+          Position.X = 30.000000000000000000
+          Position.Y = 19.000000000000000000
+          Size.Width = 82.930664062500000000
+          Size.Height = 24.108398437500000000
+          Size.PlatformDefault = False
+          Text = #50508#46988' '#49444#51221
+          TextSettings.Font.Size = 18.000000000000000000
+          TextSettings.WordWrap = False
+        end
+        object Layout2: TLayout
+          Align = Right
+          Position.X = 476.000000000000000000
+          Size.Width = 104.000000000000000000
+          Size.Height = 59.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 1
+          object roundAlaram: TRoundRect
+            Align = Center
+            Fill.Color = xFFFF7500
+            Size.Width = 51.000000000000000000
+            Size.Height = 32.000000000000000000
+            Size.PlatformDefault = False
+            Stroke.Kind = None
+            OnClick = roundAlaramClick
+            object circleAlaram: TCircle
+              Fill.Color = claWhite
+              HitTest = False
+              Position.X = 21.000000000000000000
+              Position.Y = 2.000000000000000000
+              Size.Width = 28.000000000000000000
+              Size.Height = 28.000000000000000000
+              Size.PlatformDefault = False
+              Stroke.Color = claWhite
+              object ShadowEffect1: TShadowEffect
+                Distance = 1.000000000000000000
+                Direction = 45.000000000000000000
+                Softness = 0.100000001490116100
+                Opacity = 0.400000005960464500
+                ShadowColor = claBlack
+              end
+            end
+          end
+        end
+        object Line2: TLine
+          Align = Bottom
+          LineType = Top
+          Position.Y = 59.000000000000000000
+          Size.Width = 580.000000000000000000
+          Size.Height = 1.000000000000000000
+          Size.PlatformDefault = False
+          Stroke.Color = xFFD8D8D8
+        end
+      end
+      object ListBoxItem4: TListBoxItem
+        HitTest = True
+        Position.Y = 180.000000000000000000
+        Size.Width = 580.000000000000000000
+        Size.Height = 60.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 3
+        object Text4: TText
+          AutoSize = True
+          HitTest = False
+          Position.X = 32.000000000000000000
+          Position.Y = 19.000000000000000000
+          Size.Width = 159.861328125000000000
+          Size.Height = 24.108398437500000000
+          Size.PlatformDefault = False
+          Text = #54868#47732' '#44732#51664#48169#51648' '#49444#51221
+          TextSettings.Font.Size = 18.000000000000000000
+          TextSettings.WordWrap = False
+        end
+        object Line3: TLine
+          Align = Bottom
+          LineType = Top
+          Position.Y = 59.000000000000000000
+          Size.Width = 580.000000000000000000
+          Size.Height = 1.000000000000000000
+          Size.PlatformDefault = False
+          Stroke.Color = xFFD8D8D8
+        end
+        object Layout3: TLayout
+          Align = Right
+          Position.X = 476.000000000000000000
+          Size.Width = 104.000000000000000000
+          Size.Height = 59.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+          object roundScreenOn: TRoundRect
+            Align = Center
+            Fill.Color = xFFFF7500
+            Size.Width = 51.000000000000000000
+            Size.Height = 32.000000000000000000
+            Size.PlatformDefault = False
+            Stroke.Kind = None
+            OnClick = roundScreenOnClick
+            object circleScreen: TCircle
+              Fill.Color = claWhite
+              HitTest = False
+              Position.X = 21.000000000000000000
+              Position.Y = 2.000000000000000000
+              Size.Width = 28.000000000000000000
+              Size.Height = 28.000000000000000000
+              Size.PlatformDefault = False
+              Stroke.Color = claWhite
+              object ShadowEffect2: TShadowEffect
+                Distance = 1.000000000000000000
+                Direction = 45.000000000000000000
+                Softness = 0.100000001490116100
+                Opacity = 0.400000005960464500
+                ShadowColor = claBlack
+              end
+            end
+          end
+        end
+      end
+      object ListBoxItem5: TListBoxItem
+        HitTest = True
+        Position.Y = 240.000000000000000000
+        Size.Width = 580.000000000000000000
+        Size.Height = 60.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 4
+        object Text5: TText
+          AutoSize = True
+          HitTest = False
+          Position.X = 34.000000000000000000
+          Position.Y = 19.000000000000000000
+          Size.Width = 78.000000000000000000
+          Size.Height = 23.941406250000000000
+          Size.PlatformDefault = False
+          Text = #54924#50896#53448#53748
+          TextSettings.Font.Size = 18.000000000000000000
+          TextSettings.WordWrap = False
+        end
+        object Line4: TLine
+          Align = Bottom
+          LineType = Top
+          Position.Y = 59.000000000000000000
+          Size.Width = 580.000000000000000000
+          Size.Height = 1.000000000000000000
+          Size.PlatformDefault = False
+          Stroke.Color = xFFD8D8D8
+        end
+      end
+    end
+    object Rectangle1: TRectangle
+      Align = Top
+      Fill.Color = xFFFF7500
+      Size.Width = 584.000000000000000000
+      Size.Height = 45.000000000000000000
+      Size.PlatformDefault = False
+      Stroke.Color = xFFFF7500
+      object layoutBackButton: TLayout
+        Align = Left
+        HitTest = True
+        Size.Width = 54.000000000000000000
+        Size.Height = 45.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        OnClick = layoutBackButtonClick
+        object Image1: TImage
+          MultiResBitmap.Height = 72
+          MultiResBitmap.Width = 72
+          MultiResBitmap.LoadSize = 2
+          MultiResBitmap = <
+            item
+              Width = 48
+              Height = 48
+              PNG = {
+                89504E470D0A1A0A0000000D49484452000000300000003008060000005702F9
+                87000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+                00C4494441546843EDD8CB0AC2301484E1E033797934375D882FAC2E4257499C
+                CA4484D28DA027E7301F886843F9477463121111F995D6DA6579F0A52F8C7F29
+                A55CF9B60F687EC777B5D68997C786D6557CCEF98101271E19175A156F02AD8A
+                378156C59B40ABE24DA055F126D0BA8AFF17267C0FF7308B5F3063D38ECFB1E1
+                83F0FB15EA702FBF3FE20ECD3147C03DCA88238F8C0FC11A3104046F8D38F0C8
+                F8101C73C43CCFB72823F63C323E34C71C8101675EF601CD9F235CFF43ED335E
+                44441C48E909BA5E14FE00BABED00000000049454E44AE426082}
+              FileName = 'D:\GitHub\CProject\02.CookPlay\image\icBack@2x.png'
+            end>
+          Align = Center
+          HitTest = False
+          Size.Width = 24.000000000000000000
+          Size.Height = 24.000000000000000000
+          Size.PlatformDefault = False
+        end
+      end
+    end
+  end
+end

@@ -2,8 +2,8 @@ object frmRecipe: TfrmRecipe
   Left = 0
   Top = 0
   Caption = 'Recipe'
-  ClientHeight = 637
-  ClientWidth = 826
+  ClientHeight = 667
+  ClientWidth = 1083
   Color = clBtnFace
   Font.Charset = ANSI_CHARSET
   Font.Color = clWindowText
@@ -16,180 +16,77 @@ object frmRecipe: TfrmRecipe
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 17
-  object cxPageControl1: TcxPageControl
-    Left = 0
-    Top = 223
-    Width = 826
-    Height = 414
-    Align = alClient
-    TabOrder = 0
-    Properties.ActivePage = cxTabSheet1
-    Properties.CustomButtons.Buttons = <>
-    ClientRectBottom = 407
-    ClientRectLeft = 4
-    ClientRectRight = 819
-    ClientRectTop = 31
-    object cxTabSheet1: TcxTabSheet
-      Caption = #51116#47308
-      ImageIndex = 0
-    end
-    object cxTabSheet2: TcxTabSheet
-      Caption = #48169#48277
-      ImageIndex = 1
-    end
-  end
   object Panel1: TPanel
     Left = 0
     Top = 0
-    Width = 826
-    Height = 223
+    Width = 1083
+    Height = 306
     Align = alTop
     BevelOuter = bvNone
-    TabOrder = 1
-    object imgRecipeOrigin: TImage
-      Left = 557
-      Top = 53
-      Width = 56
-      Height = 46
-      Stretch = True
+    TabOrder = 0
+    object Bevel1: TBevel
+      Left = 422
+      Top = 90
+      Width = 101
+      Height = 107
     end
     object imgRecipeSquare: TImage
-      Left = 421
-      Top = 55
+      Left = 430
+      Top = 102
       Width = 85
       Height = 85
       Stretch = True
     end
-    object imgRecipeRectangle: TImage
-      Left = 619
-      Top = 53
-      Width = 80
-      Height = 60
-      Stretch = True
-    end
-    object cxDBTextEdit1: TcxDBTextEdit
-      Left = 96
-      Top = 24
-      DataBinding.DataField = 'Title'
-      DataBinding.DataSource = dsRecipe
-      TabOrder = 0
-      Width = 526
-    end
     object cxLabel1: TcxLabel
-      Left = 62
+      Left = 56
       Top = 25
-      Caption = 'Title'
+      Caption = '*Title'
+      ParentFont = False
+      Style.Font.Charset = ANSI_CHARSET
+      Style.Font.Color = clBlack
+      Style.Font.Height = -13
+      Style.Font.Name = #47569#51008' '#44256#46357
+      Style.Font.Style = []
+      Style.TextColor = 8388863
+      Style.IsFontAssigned = True
       Properties.Alignment.Horz = taRightJustify
       Transparent = True
       AnchorX = 90
     end
     object cxLabel2: TcxLabel
       Left = 19
-      Top = 56
+      Top = 90
       Caption = 'Description'
       Properties.Alignment.Horz = taRightJustify
       Transparent = True
       AnchorX = 90
     end
-    object cxDBMemo1: TcxDBMemo
-      Left = 96
-      Top = 55
-      DataBinding.DataField = 'Description'
-      DataBinding.DataSource = dsRecipe
-      TabOrder = 3
-      Height = 120
-      Width = 319
-    end
-    object Button1: TButton
-      Left = 547
-      Top = 115
+    object btnLoadImage: TButton
+      Left = 529
+      Top = 127
       Width = 75
       Height = 25
       Caption = 'Load'
-      TabOrder = 4
-      OnClick = Button1Click
-    end
-    object cxDBLookupComboBox2: TcxDBLookupComboBox
-      Left = 94
-      Top = 181
-      DataBinding.DataField = 'ItemCode0'
-      DataBinding.DataSource = dsRecipe
-      ParentShowHint = False
-      Properties.DropDownRows = 15
-      Properties.KeyFieldNames = 'ItemCode'
-      Properties.ListColumns = <
-        item
-          FieldName = 'ItemName'
-        end>
-      Properties.ListOptions.ShowHeader = False
-      Properties.ListSource = dmDB.dsCategoryRecipe0
-      ShowHint = False
-      TabOrder = 5
-      Width = 120
+      TabOrder = 2
+      OnClick = btnLoadImageClick
     end
     object cxLabel5: TcxLabel
       Left = 31
-      Top = 182
+      Top = 216
       Caption = 'Category'
+      Style.TextColor = clRed
       Properties.Alignment.Horz = taRightJustify
       Transparent = True
       AnchorX = 88
     end
-    object cxDBLookupComboBox3: TcxDBLookupComboBox
-      Left = 228
-      Top = 181
-      DataBinding.DataField = 'ItemCode1'
-      DataBinding.DataSource = dsRecipe
-      Properties.DropDownRows = 15
-      Properties.KeyFieldNames = 'ItemCode'
-      Properties.ListColumns = <
-        item
-          FieldName = 'ItemName'
-        end>
-      Properties.ListOptions.ShowHeader = False
-      Properties.ListSource = dmDB.dsCategoryRecipe1
-      TabOrder = 7
-      Width = 120
-    end
-    object cxDBLookupComboBox4: TcxDBLookupComboBox
-      Left = 368
-      Top = 181
-      DataBinding.DataField = 'ItemCode2'
-      DataBinding.DataSource = dsRecipe
-      Properties.DropDownRows = 15
-      Properties.KeyFieldNames = 'ItemCode'
-      Properties.ListColumns = <
-        item
-          FieldName = 'ItemName'
-        end>
-      Properties.ListOptions.ShowHeader = False
-      Properties.ListSource = dmDB.dsCategoryRecipe2
-      TabOrder = 8
-      Width = 120
-    end
-    object cxDBLookupComboBox5: TcxDBLookupComboBox
-      Left = 502
-      Top = 181
-      DataBinding.DataField = 'ItemCode3'
-      DataBinding.DataSource = dsRecipe
-      Properties.DropDownRows = 15
-      Properties.KeyFieldNames = 'ItemCode'
-      Properties.ListColumns = <
-        item
-          FieldName = 'ItemName'
-        end>
-      Properties.ListOptions.ShowHeader = False
-      Properties.ListSource = dmDB.dsCategoryRecipe3
-      TabOrder = 9
-      Width = 120
-    end
-    object Button2: TButton
-      Left = 547
-      Top = 150
+    object btnClearImage: TButton
+      Left = 529
+      Top = 162
       Width = 75
       Height = 25
       Caption = 'Clear'
-      TabOrder = 10
+      TabOrder = 4
+      OnClick = btnClearImageClick
     end
     object btnSave: TButton
       Left = 714
@@ -197,7 +94,7 @@ object frmRecipe: TfrmRecipe
       Width = 75
       Height = 25
       Caption = 'Save'
-      TabOrder = 11
+      TabOrder = 5
       OnClick = btnSaveClick
     end
     object btnCancel: TButton
@@ -206,61 +103,566 @@ object frmRecipe: TfrmRecipe
       Width = 75
       Height = 25
       Caption = 'Cancel'
-      TabOrder = 12
+      TabOrder = 6
       OnClick = btnCancelClick
     end
     object cxLabel3: TcxLabel
-      Left = 658
-      Top = 182
+      Left = 58
+      Top = 270
       Caption = #51064#48516
+      Style.TextColor = clRed
       Properties.Alignment.Horz = taRightJustify
       Transparent = True
-      AnchorX = 688
+      AnchorX = 88
     end
-    object cxDBSpinEdit1: TcxDBSpinEdit
-      Left = 694
-      Top = 181
-      DataBinding.DataField = 'Servings'
-      DataBinding.DataSource = dsRecipe
+    object cxLabel4: TcxLabel
+      Left = 251
+      Top = 272
+      Caption = #45212#51060#46020
+      Style.TextColor = clRed
+      Properties.Alignment.Horz = taRightJustify
+      Transparent = True
+      AnchorX = 294
+    end
+    object cxLabel6: TcxLabel
+      Left = 443
+      Top = 272
+      Caption = #50836#47532#49884#44036
+      Style.TextColor = clRed
+      Properties.Alignment.Horz = taRightJustify
+      Transparent = True
+      AnchorX = 499
+    end
+    object cxMemoDescription: TcxMemo
+      Left = 96
+      Top = 89
+      Lines.Strings = (
+        'cxMemoDescription')
+      Properties.MaxLength = 1000
+      TabOrder = 10
+      Height = 120
+      Width = 317
+    end
+    object cxSpinServings: TcxSpinEdit
+      Left = 96
+      Top = 269
       Properties.MaxValue = 100.000000000000000000
       Properties.MinValue = 1.000000000000000000
+      TabOrder = 11
+      Value = 1
+      Width = 120
+    end
+    object cxcboMakingLevel: TcxLookupComboBox
+      Left = 293
+      Top = 269
+      Properties.DropDownRows = 20
+      Properties.KeyFieldNames = 'CategoryCode'
+      Properties.ListColumns = <
+        item
+          FieldName = 'CategoryName'
+        end>
+      Properties.ListOptions.ShowHeader = False
+      Properties.ListSource = dmDB.dsMakingLevel
+      TabOrder = 12
+      Width = 120
+    end
+    object cxcboMakingTime: TcxLookupComboBox
+      Left = 502
+      Top = 269
+      Properties.DropDownRows = 20
+      Properties.KeyFieldNames = 'CategoryCode'
+      Properties.ListColumns = <
+        item
+          FieldName = 'CategoryName'
+        end>
+      Properties.ListOptions.ShowHeader = False
+      Properties.ListSource = dmDB.dsMakingTime
+      TabOrder = 13
+      Width = 120
+    end
+    object cxchkPublished: TcxCheckBox
+      Left = 714
+      Top = 46
+      Caption = 'Published'
       TabOrder = 14
-      Width = 95
+      Transparent = True
+    end
+    object cxTxtTitle: TcxTextEdit
+      Left = 96
+      Top = 24
+      Properties.MaxLength = 100
+      TabOrder = 15
+      Text = 'cxTxtTitle'
+      Width = 526
+    end
+    object cxLabel7: TcxLabel
+      Left = 20
+      Top = 56
+      Caption = 'Hash code'
+      ParentFont = False
+      Style.Font.Charset = ANSI_CHARSET
+      Style.Font.Color = clBlack
+      Style.Font.Height = -13
+      Style.Font.Name = #47569#51008' '#44256#46357
+      Style.Font.Style = []
+      Style.TextColor = clBlack
+      Style.IsFontAssigned = True
+      Properties.Alignment.Horz = taRightJustify
+      Transparent = True
+      AnchorX = 88
+    end
+    object cxtxtHashcode: TcxTextEdit
+      Left = 96
+      Top = 55
+      Properties.MaxLength = 200
+      TabOrder = 17
+      Text = 'cxTxtTitle'
+      Width = 526
+    end
+    object cxcbo0: TcxCheckComboBox
+      Left = 96
+      Top = 212
+      Properties.DropDownRows = 20
+      Properties.Items = <
+        item
+          Description = 'safdsadf'
+        end
+        item
+          Description = 'asdfa'
+        end
+        item
+          Description = '12341234'
+        end>
+      Properties.OnChange = cxcbo0PropertiesChange
+      Properties.OnClickCheck = cxcbo0PropertiesClickCheck
+      TabOrder = 18
+      Width = 155
+    end
+    object cxcbo1: TcxCheckComboBox
+      Left = 258
+      Top = 212
+      Properties.DropDownRows = 20
+      Properties.Items = <
+        item
+          Description = 'safdsadf'
+        end
+        item
+          Description = 'asdfa'
+        end
+        item
+          Description = '12341234'
+        end>
+      Properties.OnChange = cxcbo0PropertiesChange
+      Properties.OnClickCheck = cxcbo0PropertiesClickCheck
+      TabOrder = 19
+      Width = 155
+    end
+    object cxcbo2: TcxCheckComboBox
+      Left = 419
+      Top = 212
+      Properties.DropDownRows = 20
+      Properties.Items = <
+        item
+          Description = 'safdsadf'
+        end
+        item
+          Description = 'asdfa'
+        end
+        item
+          Description = '12341234'
+        end>
+      Properties.OnChange = cxcbo0PropertiesChange
+      Properties.OnClickCheck = cxcbo0PropertiesClickCheck
+      TabOrder = 20
+      Width = 155
+    end
+    object cxcbo3: TcxCheckComboBox
+      Left = 580
+      Top = 212
+      Properties.DropDownRows = 20
+      Properties.Items = <
+        item
+          Description = 'safdsadf'
+        end
+        item
+          Description = 'asdfa'
+        end
+        item
+          Description = '12341234'
+        end>
+      Properties.OnChange = cxcbo0PropertiesChange
+      Properties.OnClickCheck = cxcbo0PropertiesClickCheck
+      TabOrder = 21
+      Width = 155
+    end
+    object cxtxtCategory: TcxTextEdit
+      Left = 96
+      Top = 238
+      Properties.ReadOnly = True
+      Style.TextColor = clGrayText
+      TabOrder = 22
+      Text = 'cxtxtCategory'
+      Width = 639
+    end
+    object cxtxtCategoryTag: TcxTextEdit
+      Left = 270
+      Top = 243
+      Properties.ReadOnly = True
+      Style.TextColor = clGrayText
+      TabOrder = 23
+      Text = 'cxtxtCategoryTag'
+      Visible = False
+      Width = 639
+    end
+    object deleteRecipe: TButton
+      Left = 636
+      Top = 162
+      Width = 153
+      Height = 25
+      Caption = 'Real - Delete Recipe'
+      TabOrder = 24
+      OnClick = deleteRecipeClick
+    end
+    object cxchkDeleted: TcxCheckBox
+      Left = 714
+      Top = 19
+      Caption = 'Deleted'
+      TabOrder = 25
+      Transparent = True
+    end
+  end
+  object pnlBody: TPanel
+    Left = 0
+    Top = 306
+    Width = 1083
+    Height = 361
+    Align = alClient
+    BevelOuter = bvNone
+    Padding.Left = 3
+    Padding.Right = 3
+    TabOrder = 1
+    object cxGrid1: TcxGrid
+      AlignWithMargins = True
+      Left = 10
+      Top = 40
+      Width = 1063
+      Height = 314
+      Margins.Left = 7
+      Margins.Top = 7
+      Margins.Right = 7
+      Margins.Bottom = 7
+      Align = alClient
+      TabOrder = 0
+      object cxGMethod: TcxGridDBTableView
+        Navigator.Buttons.CustomButtons = <>
+        OnCustomDrawCell = cxGMethodCustomDrawCell
+        DataController.DataSource = dsMethod
+        DataController.KeyFieldNames = 'Serial'
+        DataController.Summary.DefaultGroupSummaryItems = <>
+        DataController.Summary.FooterSummaryItems = <>
+        DataController.Summary.SummaryGroups = <>
+        EditForm.DefaultColumnCount = 4
+        EditForm.DefaultStretch = fsHorizontal
+        OptionsBehavior.EditAutoHeight = eahRow
+        OptionsData.Deleting = False
+        OptionsData.Editing = False
+        OptionsData.Inserting = False
+        OptionsView.ColumnAutoWidth = True
+        OptionsView.ExpandButtonsForEmptyDetails = False
+        OptionsView.GroupByBox = False
+        OptionsView.HeaderAutoHeight = True
+        OptionsView.Indicator = True
+        object cxGMethodRecId: TcxGridDBColumn
+          DataBinding.FieldName = 'RecId'
+          Visible = False
+        end
+        object cxGMethodSerial: TcxGridDBColumn
+          DataBinding.FieldName = 'Serial'
+        end
+        object cxGMethodRecipe_Serial: TcxGridDBColumn
+          DataBinding.FieldName = 'Recipe_Serial'
+          Visible = False
+        end
+        object cxGMethodMethodType: TcxGridDBColumn
+          DataBinding.FieldName = 'MethodType'
+          PropertiesClassName = 'TcxLookupComboBoxProperties'
+          Properties.KeyFieldNames = 'CategoryCode'
+          Properties.ListColumns = <
+            item
+              FieldName = 'CategoryName'
+            end>
+          Properties.ListSource = dmDB.dsMethodType
+          Width = 130
+        end
+        object cxGMethodStepSeq: TcxGridDBColumn
+          DataBinding.FieldName = 'StepSeq'
+          Width = 76
+        end
+        object cxGMethodSeq: TcxGridDBColumn
+          DataBinding.FieldName = 'Seq'
+          Width = 70
+        end
+        object cxGMethodDescription: TcxGridDBColumn
+          DataBinding.FieldName = 'Description'
+          Width = 756
+        end
+        object cxGMethodPictureType: TcxGridDBColumn
+          DataBinding.FieldName = 'PictureType'
+          Visible = False
+        end
+        object cxGMethodPicture: TcxGridDBColumn
+          DataBinding.FieldName = 'Picture'
+          Visible = False
+        end
+        object cxGMethodPictureRectangle: TcxGridDBColumn
+          DataBinding.FieldName = 'PictureRectangle'
+          Visible = False
+        end
+        object cxGMethodPictureSquare: TcxGridDBColumn
+          DataBinding.FieldName = 'PictureSquare'
+          Visible = False
+        end
+        object cxGMethodNewPicture: TcxGridDBColumn
+          DataBinding.FieldName = 'NewPicture'
+          Visible = False
+        end
+        object cxGMethodPictureState: TcxGridDBColumn
+          DataBinding.FieldName = 'PictureState'
+          Visible = False
+        end
+        object cxGMethodStateBefore: TcxGridDBColumn
+          DataBinding.FieldName = 'StateBefore'
+          Visible = False
+          Width = 245
+        end
+        object cxGMethodStateCur: TcxGridDBColumn
+          DataBinding.FieldName = 'StateCur'
+          Visible = False
+          Width = 128
+        end
+      end
+      object cxGIngredient: TcxGridDBTableView
+        Navigator.Buttons.CustomButtons = <>
+        OnCustomDrawCell = cxGIngredientCustomDrawCell
+        DataController.DataSource = dsIngredient
+        DataController.DetailKeyFieldNames = 'RecipeMethod_Serial'
+        DataController.KeyFieldNames = 'Serial'
+        DataController.MasterKeyFieldNames = 'Serial'
+        DataController.Summary.DefaultGroupSummaryItems = <>
+        DataController.Summary.FooterSummaryItems = <>
+        DataController.Summary.SummaryGroups = <>
+        OptionsData.Deleting = False
+        OptionsData.Editing = False
+        OptionsData.Inserting = False
+        OptionsView.ColumnAutoWidth = True
+        OptionsView.GroupByBox = False
+        object cxGIngredientRecipeMethod_Serial: TcxGridDBColumn
+          DataBinding.FieldName = 'RecipeMethod_Serial'
+        end
+        object cxGIngredientItemType: TcxGridDBColumn
+          DataBinding.FieldName = 'ItemType'
+          PropertiesClassName = 'TcxLookupComboBoxProperties'
+          Properties.KeyFieldNames = 'CategoryCode'
+          Properties.ListColumns = <
+            item
+              FieldName = 'CategoryName'
+            end>
+          Properties.ListSource = dmDB.dsItemType
+        end
+        object cxGIngredientTitle: TcxGridDBColumn
+          DataBinding.FieldName = 'Title'
+          Width = 300
+        end
+        object cxGIngredientAmount: TcxGridDBColumn
+          DataBinding.FieldName = 'Amount'
+          Width = 50
+        end
+        object cxGIngredientUnit: TcxGridDBColumn
+          DataBinding.FieldName = 'Unit'
+          Width = 50
+        end
+        object cxGIngredientRecId: TcxGridDBColumn
+          DataBinding.FieldName = 'RecId'
+          Visible = False
+        end
+        object cxGIngredientSeq: TcxGridDBColumn
+          DataBinding.FieldName = 'Seq'
+          SortIndex = 0
+          SortOrder = soAscending
+        end
+        object cxGIngredientItemWeightValue: TcxGridDBColumn
+          DataBinding.FieldName = 'ItemWeightValue'
+        end
+        object cxGIngredientItemTimeValue: TcxGridDBColumn
+          DataBinding.FieldName = 'ItemTimeValue'
+        end
+        object cxGIngredientItemTemperatureValue: TcxGridDBColumn
+          DataBinding.FieldName = 'ItemTemperatureValue'
+        end
+        object cxGIngredientItemUnit: TcxGridDBColumn
+          DataBinding.FieldName = 'ItemUnit'
+          Visible = False
+        end
+        object cxGIngredientLinkedRecipe: TcxGridDBColumn
+          DataBinding.FieldName = 'LinkedRecipe'
+        end
+        object cxGIngredientSerial: TcxGridDBColumn
+          DataBinding.FieldName = 'Serial'
+          Visible = False
+        end
+        object cxGIngredientRecipe_Serial: TcxGridDBColumn
+          DataBinding.FieldName = 'Recipe_Serial'
+          Visible = False
+        end
+        object cxGIngredientNewPicture: TcxGridDBColumn
+          DataBinding.FieldName = 'NewPicture'
+          Visible = False
+        end
+        object cxGIngredientPictureState: TcxGridDBColumn
+          DataBinding.FieldName = 'PictureState'
+          Visible = False
+        end
+        object cxGIngredientStateBefore: TcxGridDBColumn
+          DataBinding.FieldName = 'StateBefore'
+          Visible = False
+        end
+        object cxGIngredientStateCur: TcxGridDBColumn
+          DataBinding.FieldName = 'StateCur'
+          Visible = False
+        end
+        object cxGIngredientUsed: TcxGridDBColumn
+          DataBinding.FieldName = 'Used'
+          Visible = False
+        end
+      end
+      object cxGridLevel2: TcxGridLevel
+        GridView = cxGMethod
+        Options.DetailTabsPosition = dtpTop
+        object cxGrid1Level1: TcxGridLevel
+          Caption = #51116#47308','#50728#46020','#49884#44036
+          GridView = cxGIngredient
+          Options.DetailTabsPosition = dtpTop
+        end
+      end
+    end
+    object Panel3: TPanel
+      Left = 3
+      Top = 0
+      Width = 1077
+      Height = 33
+      Align = alTop
+      BevelOuter = bvNone
+      TabOrder = 1
+      object btnEditStep: TButton
+        Left = 173
+        Top = 6
+        Width = 75
+        Height = 25
+        Caption = #49688#51221
+        TabOrder = 0
+        OnClick = btnEditStepClick
+      end
+      object btnDeleteStep: TButton
+        Left = 254
+        Top = 6
+        Width = 75
+        Height = 25
+        Caption = #49325#51228
+        TabOrder = 1
+        OnClick = btnDeleteStepClick
+      end
+      object btnAddStep: TButton
+        Left = 11
+        Top = 6
+        Width = 75
+        Height = 25
+        Caption = 'STEP '#52628#44032
+        TabOrder = 2
+        OnClick = btnAddStepClick
+      end
+      object btnAddIngredient: TButton
+        Left = 360
+        Top = 6
+        Width = 75
+        Height = 25
+        Caption = #51116#47308#52628#44032
+        TabOrder = 3
+        OnClick = btnAddIngredientClick
+      end
+      object btnAddTime: TButton
+        Left = 441
+        Top = 6
+        Width = 75
+        Height = 25
+        Caption = #49884#44036#52628#44032
+        TabOrder = 4
+        OnClick = btnAddIngredientClick
+      end
+      object btnAddTemperature: TButton
+        Left = 522
+        Top = 6
+        Width = 75
+        Height = 25
+        Caption = #50728#46020#52628#44032
+        TabOrder = 5
+        OnClick = btnAddIngredientClick
+      end
+      object btnEditIngredient: TButton
+        Left = 609
+        Top = 6
+        Width = 75
+        Height = 25
+        Caption = #49688#51221
+        TabOrder = 6
+        OnClick = btnEditIngredientClick
+      end
+      object btnDeleteIngredient: TButton
+        Left = 690
+        Top = 6
+        Width = 75
+        Height = 25
+        Caption = #49325#51228
+        TabOrder = 7
+        OnClick = btnDeleteIngredientClick
+      end
+      object btnAddPicture: TButton
+        Left = 92
+        Top = 6
+        Width = 75
+        Height = 25
+        Caption = #49324#51652#52628#44032
+        Enabled = False
+        TabOrder = 8
+        OnClick = btnAddStepClick
+      end
     end
   end
   object dsRecipe: TDataSource
     DataSet = memRecipe
-    Left = 132
-    Top = 292
+    Left = 236
+    Top = 382
   end
   object dsIngredient: TDataSource
     DataSet = memIngredient
-    Left = 134
-    Top = 354
+    Left = 240
+    Top = 494
   end
   object dsMethod: TDataSource
     DataSet = memMethod
-    OnDataChange = dsMethodDataChange
-    Left = 130
-    Top = 424
-  end
-  object DataSource1: TDataSource
-    DataSet = memMethodItem
-    Left = 132
-    Top = 490
+    Left = 238
+    Top = 438
   end
   object memRecipe: TdxMemData
-    Active = True
     Indexes = <>
     Persistent.Option = poNone
     SortOptions = []
-    Left = 56
-    Top = 292
+    Left = 158
+    Top = 382
     object memRecipeSerial: TLargeintField
       FieldName = 'Serial'
     end
-    object memRecipeUsers_Nickname: TWideStringField
-      FieldName = 'Users_Nickname'
+    object memRecipeUsers_Serial: TLargeintField
+      FieldName = 'Users_Serial'
     end
     object memRecipeTitle: TWideStringField
       FieldName = 'Title'
@@ -286,29 +688,17 @@ object frmRecipe: TfrmRecipe
       FieldName = 'PictureRectangle'
       Size = 200
     end
-    object memRecipeItemCode0: TWideStringField
-      FieldName = 'ItemCode0'
-      Size = 100
+    object memRecipeCategory: TWideStringField
+      FieldName = 'Category'
+      Size = 200
     end
-    object memRecipeItemCode1: TWideStringField
-      FieldName = 'ItemCode1'
-      Size = 100
-    end
-    object memRecipeItemCode2: TWideStringField
-      FieldName = 'ItemCode2'
-      Size = 100
-    end
-    object memRecipeItemCode3: TWideStringField
-      FieldName = 'ItemCode3'
-      Size = 100
-    end
-    object memRecipeMakingLevel: TShortintField
+    object memRecipeMakingLevel: TSmallintField
       FieldName = 'MakingLevel'
     end
-    object memRecipeMakingTime: TShortintField
+    object memRecipeMakingTime: TSmallintField
       FieldName = 'MakingTime'
     end
-    object memRecipeServings: TShortintField
+    object memRecipeServings: TSmallintField
       FieldName = 'Servings'
     end
     object memRecipeHashcode: TWideStringField
@@ -318,31 +708,66 @@ object frmRecipe: TfrmRecipe
     object memRecipeCreatedDate: TDateTimeField
       FieldName = 'CreatedDate'
     end
+    object memRecipeUpdatedDate: TDateTimeField
+      FieldName = 'UpdatedDate'
+    end
     object memRecipePublished: TBooleanField
       FieldName = 'Published'
     end
     object memRecipeDeleted: TBooleanField
       FieldName = 'Deleted'
     end
+    object memRecipeNewPicture: TStringField
+      FieldName = 'NewPicture'
+      Size = 200
+    end
+    object memRecipePictureState: TStringField
+      FieldName = 'PictureState'
+    end
+    object memRecipeStateCur: TStringField
+      FieldName = 'StateCur'
+    end
+    object memRecipeStateBefore: TStringField
+      FieldName = 'StateBefore'
+    end
   end
   object memIngredient: TdxMemData
-    Active = True
     Indexes = <>
     Persistent.Option = poNone
     SortOptions = []
-    Left = 58
-    Top = 352
+    SortedField = 'RecipeMethod_Serial'
+    Left = 160
+    Top = 502
     object memIngredientSerial: TLargeintField
       FieldName = 'Serial'
     end
     object memIngredientRecipe_Serial: TLargeintField
       FieldName = 'Recipe_Serial'
     end
+    object memIngredientRecipeMethod_Serial: TLargeintField
+      FieldName = 'RecipeMethod_Serial'
+    end
+    object memIngredientLinkedRecipe: TLargeintField
+      FieldName = 'LinkedRecipe'
+    end
     object memIngredientSeq: TIntegerField
       FieldName = 'Seq'
     end
-    object memIngredientIngredientType: TShortintField
-      FieldName = 'IngredientType'
+    object memIngredientItemType: TSmallintField
+      FieldName = 'ItemType'
+    end
+    object memIngredientItemWeightValue: TIntegerField
+      FieldName = 'ItemWeightValue'
+    end
+    object memIngredientItemTimeValue: TWideStringField
+      FieldName = 'ItemTimeValue'
+      Size = 8
+    end
+    object memIngredientItemTemperatureValue: TBCDField
+      FieldName = 'ItemTemperatureValue'
+    end
+    object memIngredientItemUnit: TSmallintField
+      FieldName = 'ItemUnit'
     end
     object memIngredientTitle: TWideStringField
       FieldName = 'Title'
@@ -352,66 +777,77 @@ object frmRecipe: TfrmRecipe
       FieldName = 'Amount'
       Size = 50
     end
-    object memIngredientPictureType: TShortintField
-      FieldName = 'PictureType'
+    object memIngredientUnit: TWideStringField
+      FieldName = 'Unit'
+      Size = 50
     end
-    object memIngredientPicture: TWideStringField
-      FieldName = 'Picture'
+    object memIngredientNewPicture: TStringField
+      FieldName = 'NewPicture'
       Size = 200
     end
-    object memIngredientContents: TWideStringField
-      FieldName = 'Contents'
-      Size = 1000
+    object memIngredientPictureState: TStringField
+      FieldName = 'PictureState'
+    end
+    object memIngredientStateCur: TStringField
+      FieldName = 'StateCur'
+    end
+    object memIngredientStateBefore: TStringField
+      FieldName = 'StateBefore'
     end
   end
   object memMethod: TdxMemData
     Indexes = <>
     Persistent.Option = poNone
     SortOptions = []
-    Left = 60
-    Top = 424
+    SortedField = 'Seq'
+    Left = 162
+    Top = 442
     object memMethodSerial: TLargeintField
       FieldName = 'Serial'
     end
     object memMethodRecipe_Serial: TLargeintField
       FieldName = 'Recipe_Serial'
     end
-    object memMethodSeq: TIntegerField
-      FieldName = 'Seq'
+    object memMethodMethodType: TSmallintField
+      FieldName = 'MethodType'
     end
-    object memMethodDescription: TWideStringField
-      FieldName = 'Description'
-      Size = 1000
-    end
-    object memMethodPictureType: TShortintField
+    object memMethodPictureType: TSmallintField
       FieldName = 'PictureType'
     end
     object memMethodPicture: TWideStringField
       FieldName = 'Picture'
       Size = 200
     end
-  end
-  object memMethodItem: TdxMemData
-    Active = True
-    Indexes = <>
-    Persistent.Option = poNone
-    SortOptions = []
-    Left = 60
-    Top = 486
-    object memMethodItemSerial: TLargeintField
-      FieldName = 'Serial'
+    object memMethodPictureRectangle: TWideStringField
+      FieldName = 'PictureRectangle'
+      Size = 200
     end
-    object memMethodItemRecipeMethod_Serial: TLargeintField
-      FieldName = 'RecipeMethod_Serial'
+    object memMethodPictureSquare: TWideStringField
+      FieldName = 'PictureSquare'
+      Size = 200
     end
-    object memMethodItemSeq: TIntegerField
+    object memMethodDescription: TWideStringField
+      FieldName = 'Description'
+      Size = 1000
+    end
+    object memMethodSeq: TSmallintField
       FieldName = 'Seq'
     end
-    object memMethodItemMethodType: TShortintField
-      FieldName = 'MethodType'
+    object memMethodStepSeq: TSmallintField
+      FieldName = 'StepSeq'
     end
-    object memMethodItemItemCode: TShortintField
-      FieldName = 'ItemCode'
+    object memMethodNewPicture: TStringField
+      FieldName = 'NewPicture'
+      Size = 200
+    end
+    object memMethodPictureState: TStringField
+      FieldName = 'PictureState'
+    end
+    object memMethodStateCur: TStringField
+      FieldName = 'StateCur'
+    end
+    object memMethodStateBefore: TStringField
+      FieldName = 'StateBefore'
     end
   end
   object sqlTemp: TFDQuery
@@ -420,8 +856,8 @@ object frmRecipe: TfrmRecipe
       
         'SELECT * FROM RecipeIngredient WHERE Recipe_Serial = :RecipeSeri' +
         'al ORDER BY Seq')
-    Left = 58
-    Top = 560
+    Left = 156
+    Top = 588
     ParamData = <
       item
         Name = 'RecipeSerial'

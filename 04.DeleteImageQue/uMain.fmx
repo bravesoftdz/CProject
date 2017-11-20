@@ -68,7 +68,8 @@ object frmMian: TfrmMian
     Protocol = 'https'
     TableEndpoint = 'sdb.amazonaws.com'
     QueueEndpoint = 'queue.amazonaws.com'
-    StorageEndpoint = 's3.amazonaws.com'
+    StorageEndpoint = 's3.ap-northeast-2.amazonaws.com'
+    UseDefaultEndpoints = False
     Left = 296
     Top = 168
   end

@@ -9,7 +9,13 @@ uses
   uDB in 'uDB.pas' {dmDB: TDataModule},
   uUser in 'uUser.pas' {frmUser},
   uRecipe in 'uRecipe.pas' {frmRecipe},
-  CookPlay.S3 in 'CookPlay.S3.pas' {dmS3: TDataModule};
+  CookPlay.S3 in 'CookPlay.S3.pas' {dmS3: TDataModule},
+  uIngredient in 'uIngredient.pas' {frmIngredient},
+  uExplain in 'uExplain.pas' {frmExplain},
+  uSelectRecipe in 'uSelectRecipe.pas' {frmSelectRecipe},
+  uAddTime in 'uAddTime.pas' {frmAddTime},
+  uAddTemperature in 'uAddTemperature.pas' {frmAddTemperature},
+  uLogin in 'uLogin.pas' {frmLogin};
 
 {$R *.res}
 
@@ -22,5 +28,11 @@ begin
   Application.CreateForm(TfrmUser, frmUser);
   Application.CreateForm(TfrmRecipe, frmRecipe);
   Application.CreateForm(TdmS3, dmS3);
+  Application.CreateForm(TfrmIngredient, frmIngredient);
+  Application.CreateForm(TfrmExplain, frmExplain);
+  Application.CreateForm(TfrmSelectRecipe, frmSelectRecipe);
+  Application.CreateForm(TfrmAddTime, frmAddTime);
+  Application.CreateForm(TfrmAddTemperature, frmAddTemperature);
+  Application.CreateForm(TfrmLogin, frmLogin);
   Application.Run;
 end.

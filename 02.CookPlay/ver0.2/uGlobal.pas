@@ -1,0 +1,367 @@
+﻿unit uGlobal;
+
+interface
+
+uses System.UITypes, System.SysUtils, System.IOUtils, iniFiles, FMX.Dialogs,
+    System.Classes, Data.DB, FMX.WebBrowser, FMX.Types, FMX.Layouts,
+    FMX.Objects, FMX.Ani;
+
+type
+  TCallbackFunc = procedure(AResultList: TStringList=nil) of Object;
+
+  TListType = (ltMyRecipe=0);
+  TBottomMenu = (bmNone=-1, bmHome, bmNewsFeed, bmRecipe, bmCookbook, bmMyhome);
+  TMyhomeMenu = (mhNone=-1, mhNewsfeed, mhRecipe, mhCookbook, mhBookmark);
+  TPicturetype = (ptPicture=0, ptVideo);
+  TRecipeState = (rsNone=0, rsNew, rsEdit, rsDeleted);
+  TIngredientType = (itIngredient=0, itSeasoning, itTemperature, itTime, itRecipeLink);
+  TIngredientUnit = (wuMg=0, wuG, wuKg, wuPound, wuOunce, wuCentigrade, wuFahrenheit, wuSec, wuMinute, wuHour);
+  TPictureVisibleState = (pvInvisible=0, pvVisible);
+  TRecipeViewType = (rvRecent, rvBest);
+  TPictureState = (psNotLoaded, psLoaded);
+
+  TSetupInfo = record
+    AlaramOn: Boolean;
+    ScreenOn: Boolean;
+  end;
+
+  TUserInfo = record
+    Alaram: integer;
+    Follower: integer;
+    Follow: integer;
+    Recipe: integer;
+    Cookbook: integer;
+    Notice: integer;
+    MyFeed: integer;
+    procedure Clear;
+    procedure SetInfo(aAlaram, aFollower, aFollow, aRecipe, aCookbook, aNotice, aMyFeed: integer);
+  end;
+
+  TLoginInfo = class
+  private
+  public
+    setup: TSetupInfo;
+    autoLogin: Boolean;
+    email: string;
+    password: string;
+
+    procedure LoadInfo;
+    procedure SaveInfo;
+  end;
+
+  TMyRecipeList = record
+    Serial: TStringList;
+    Title: TStringList;
+    PictureName: TStringList;
+  end;
+
+  TInfo = class
+  private
+    FLogin: TLoginInfo;
+    FUser: TUserInfo;
+    function GetLogined: Boolean;
+    function GetUserSerial: LargeInt;
+  public
+    constructor Create;
+  published
+    property login: TLoginInfo read FLogin;
+    property Logined: Boolean read GetLogined;
+    property UserSerial: LargeInt read GetUserSerial;
+    property user: TUserInfo read FUser;
+  end;
+
+  TRecipeListItem = class
+    RecipeSerial: LargeInt;
+    PictureName: string;
+    Title: string;
+    RecommendationCount: integer;
+    CommentCount: integer;
+    BodyLayout: TLayout;
+    AniColor: TColorAnimation;
+  end;
+
+  TRecipeChangeWeightItem = class
+    IngredientType: TIngredientType;
+    Title: string;
+    Weight: Single;
+    recBody: TRectangle;
+  end;
+
+  TRecipeChangeWeight = class
+    Servings: integer;
+    Ratio: Single;
+    Ingredients: TStringList;
+  public
+    procedure Clear;
+    function IngredientItem(aIndex: integer): TRecipeChangeWeightItem;
+  end;
+
+function IsBackKey(var Key: Word): Boolean;
+function GetColor(color: TAlphaColor): TAlphaColor;
+function GetCountString(cnt: integer): string;
+procedure HideVirtualKeyboard;
+procedure ShowVirtualKeyboard(const AControl: TFmxObject);
+procedure ShowMessage1(msg: string);
+
+const
+  DEFAULT_WIDTH = 375;
+  COLOR_BACKGROUND = $FFFF7500;
+  COLOR_ACTIVE_SWITCH = $FFFF7500;
+  COLOR_INACTIVE_SWITCH = $FFB0B0B0;
+  COLOR_INACTIVE_TEXT = $FFB0B0B0;
+  COLOR_ACTIVE_TEXT = $FFFF7500;
+  COLOR_BACKGROUND_IMAGE = $FFFFEDDD;
+  COLOR_BOX_ROUND = $FFD8D8D8;
+  COLOR_RECIPE_BACKGROUND = $FFEEEEEE;
+  COLOR_UNDERBAR = $FFE6E6E6;
+  STR_WEBBROWSER_NAME = 'WebBrowser';
+
+  COLOR_GRAY_BACKGROUND = $FFF5F5F5;
+  COLOR_GRAY_LINE = $FFD8D8D8;
+  COLOR_GRAY_PLACEHOLDER = $FFBDBDBD;
+  COLOR_GRAY_UNSELECTED1 = $FFB2B2B2;
+  COLOR_GRAY_UNSELECTED2 = $FF888888;
+  COLOR_GRAY_BUTTONTEXT = $FF585858;
+  COLOR_GRAY_TEXT = $FF5E5E5E;
+
+  COLOR_ORANGE_BACKGROUND = $FFFFEDDD;
+  COLOR_ORANGE_LINE = $FFFFBB81;
+  COLOR_ORANGE_PLACEHOLDER = $FFFF9000;
+  COLOR_ORANGE_UNSELECTED1 = $FFFF7500;
+  COLOR_ORANGE_UNSELECTED2 = $FFFF5F00;
+  COLOR_ORANGE_BUTTONTEXT = $FFFF6322;
+
+  COLOR_GREEN_UNSELECTED1 = $FFBDC000;
+  COLOR_GREEN_UNSELECTED2 = $FF85AC1B;
+
+  TITLE_Login = '로그인';
+  TITLE_Registration = '회원가입';
+
+  URL_LOGIN = 'http://test.cookplay.net/test/login.php';
+  URL_RECIPE = 'http://test.cookplay.net/test/recipe.php';
+  URL_RECIPE_VIEW = 'http://test.cookplay.net/test/recipe_view.php';
+
+  DELIMETER_CATEGORY = ';';
+
+  NEW_RECIPE = -1;
+  NEW_STEP = -1;
+  NEW_INGREDIENT = -1;
+  NEW_PICTURE = '';
+  INIT_TIME_STR = '00:00:00';
+
+  CATEGORY0: array[0..11] of string = ('전체','메인반찬','밑반찬','국/찌게',
+    '밥/죽/떡','김치','젓갈/장','퓨전','차/음료/술','양념/소스','베이커리',
+    '디저트');
+
+var
+  _info: TInfo;
+
+implementation
+uses FMX.VirtualKeyboard, FMX.Platform, ClientModuleUnit;
+
+procedure HideVirtualKeyboard;
+var
+  FService: IFMXVirtualKeyboardService;
+begin
+  TPlatformServices.Current.SupportsPlatformService(IFMXVirtualKeyboardService, IInterface(FService));
+  if (FService <> nil) then
+    FService.HideVirtualKeyboard;
+end;
+
+procedure ShowVirtualKeyboard(const AControl: TFmxObject);
+var
+  FService: IFMXVirtualKeyboardService;
+begin
+  TPlatformServices.Current.SupportsPlatformService(IFMXVirtualKeyboardService, IInterface(FService));
+  if (FService <> nil) then
+    FService.ShowVirtualKeyboard(AControl);
+end;
+
+procedure ShowMessage1(msg: string);
+begin
+
+end;
+
+{ TInfo }
+
+constructor TInfo.Create;
+begin
+  inherited;
+
+  FLogin := TLoginInfo.Create;
+  FLogin.LoadInfo;
+
+  FUser.Clear;
+end;
+
+function TInfo.GetLogined: Boolean;
+begin
+  result := not CM.memUser.IsEmpty;
+end;
+
+function TInfo.GetUserSerial: LargeInt;
+begin
+  if Logined then
+    result := CM.memUser.FieldByName('Serial').AsLargeInt
+  else
+    result := -1;
+end;
+
+{ TLoginInfo }
+
+procedure TLoginInfo.LoadInfo;
+var
+  iniFile: TIniFile;
+begin
+  autoLogin := False;
+  setup.ScreenOn := True;
+  setup.AlaramOn := True;
+
+  IniFile := TIniFile.Create(System.IOUtils.TPath.Combine(System.IOUtils.TPath.GetDocumentsPath, 'loginInfo.ini'));
+  try
+    autoLogin := IniFile.ReadBool('Login', 'AutoLogin', False);
+    email := IniFile.ReadString('Login', 'Email', '');
+    password := IniFile.ReadString('Login', 'Password', '');
+    setup.ScreenOn := IniFile.ReadBool('Setup', 'ScreenOn', True);
+    setup.AlaramOn := IniFile.ReadBool('Setup', 'AlaramOn', True);
+  finally
+    IniFile.Free;
+  end;
+
+  if _info.Logined then
+    CM.GetSetup(_info.UserSerial, setup.AlaramOn)
+end;
+
+procedure TLoginInfo.SaveInfo;
+var
+  iniFile: TIniFile;
+begin
+  IniFile := TIniFile.Create(System.IOUtils.TPath.Combine(System.IOUtils.TPath.GetDocumentsPath, 'loginInfo.ini'));
+  try
+    IniFile.WriteBool('Login', 'AutoLogin', autoLogin);
+    IniFile.WriteString('Login', 'Email', email);
+    IniFile.WriteString('Login', 'Password', password);
+    IniFile.ReadBool('Setup', 'ScreenOn', setup.ScreenOn);
+    IniFile.ReadBool('Setup', 'AlaramOn', setup.AlaramOn);
+  finally
+    IniFile.Free;
+  end;
+
+  if _info.Logined then
+    CM.SetSetup(_info.UserSerial, setup.AlaramOn);
+end;
+
+function IsBackKey(var Key: Word): Boolean;
+var
+  FService : IFMXVirtualKeyboardService;  // FMX.Platform, FMX.VirtualKeyboard;
+begin
+  result := False;
+
+  if Key = vkHardwareBack Then
+  begin
+    TPlatformServices.Current.SupportsPlatformService(IFMXVirtualKeyboardService, IInterface(FService));
+
+    // 키보드 뜬상태가 아닐때 : 키보드 뜬상태면 키보드 자체종료 시킴.
+    if not ( (FService <> nil) and (TVirtualKeyboardState.Visible in FService.VirtualKeyBoardState) ) then
+    begin
+      Key :=  0 ;  // 기본액션인 앱 종료를 방지함.
+
+      result := True;
+    end;
+  end;
+end;
+
+function GetColor(color: TAlphaColor): TAlphaColor;
+begin
+  TAlphaColorRec(Result).R := TAlphaColorRec(color).R;
+  TAlphaColorRec(Result).G := TAlphaColorRec(color).G;
+  TAlphaColorRec(Result).B := TAlphaColorRec(color).B;
+  TAlphaColorRec(Result).A := 0;
+end;
+
+function GetCountString(cnt: integer): string;
+var
+  m, n: integer;
+begin
+  if cnt < 10000 then //만
+    result := FormatFloat('0,', cnt)
+  else if cnt < 100000 then //십만
+  begin
+    m := cnt div 10000; //만
+    n := (cnt mod 10000) div 1000; // 천
+    result := m.ToString + '.' + n.ToString + '만';
+  end
+  else if cnt < 1000000 then //백만
+  begin
+    m := cnt div 100000; //십만
+    n := (cnt mod 100000) div 10000; //만
+    result := m.ToString + '.' + n.ToString + '십만';
+  end
+  else if cnt < 100000000 then //천만
+  begin
+    m := cnt div 1000000; //백만
+    n := (cnt mod 1000000) div 100000; //십만
+    result := m.ToString + '.' + n.ToString + '백만';
+  end
+  else if cnt < 100000000 then // 억
+  begin
+    m := cnt div 10000000; //천만
+    n := (cnt mod 10000000) div 1000000; //백만
+    result := FormatFloat('#,', m) + '.' + n.ToString + '천만';
+  end
+  else // 억이상
+  begin
+    m := cnt div 100000000; // 억
+    n := (cnt - 100000000) div 10000000; //천만
+    result := FormatFloat('#,', m) + '.' + n.ToString + '억';
+  end;
+end;
+
+{ TUserInfo }
+
+procedure TUserInfo.Clear;
+begin
+  Alaram := 0;
+  Follower := 0;
+  Follow := 0;
+  Recipe := 0;
+  Cookbook := 0;
+end;
+
+procedure TUserInfo.SetInfo(aAlaram, aFollower, aFollow, aRecipe,
+  aCookbook, aNotice, aMyFeed: integer);
+begin
+  Alaram := aAlaram;
+  Follower := aFollower;
+  Follow := aFollow;
+  Recipe := aRecipe;
+  Cookbook := aCookbook;
+  Notice := aNotice;
+  MyFeed := aMyFeed;
+end;
+
+{ TRecipeChangeWeight }
+
+procedure TRecipeChangeWeight.Clear;
+var
+  i: integer;
+begin
+  Servings := 1;
+  Ratio := 1;
+
+  if Assigned(Ingredients) then
+    while Ingredients.Count > 0 do
+    begin
+      IngredientItem(0).recBody.DisposeOf;
+      Ingredients.Delete(0);
+    end;
+end;
+
+function TRecipeChangeWeight.IngredientItem(
+  aIndex: integer): TRecipeChangeWeightItem;
+begin
+  if Assigned(Ingredients) and (aIndex < Ingredients.Count) then
+    result := TRecipeChangeWeightItem(Ingredients.Objects[aIndex]);
+end;
+
+end.

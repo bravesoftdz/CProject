@@ -1,0 +1,2202 @@
+object frmMain: TfrmMain
+  Left = 0
+  Top = 0
+  Caption = 'Form29'
+  ClientHeight = 801
+  ClientWidth = 783
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
+  OnClose = FormClose
+  OnKeyUp = FormKeyUp
+  OnResize = FormResize
+  DesignerMasterStyle = 3
+  object Layout4: TLayout
+    Align = Top
+    Size.Width = 783.000000000000000000
+    Size.Height = 45.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    object layoutHitMenuButton: TLayout
+      Align = Left
+      HitTest = True
+      Size.Width = 54.000000000000000000
+      Size.Height = 45.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      OnMouseDown = layoutHitMenuButtonMouseDown
+      object Image3: TImage
+        MultiResBitmap.Height = 72
+        MultiResBitmap.Width = 72
+        MultiResBitmap = <
+          item
+            Width = 72
+            Height = 72
+            PNG = {
+              89504E470D0A1A0A0000000D494844520000004800000048080600000055EDB3
+              47000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+              006449444154785EEDD82112C030084541D2FBDFB98DC026BF93A9EAEC1AD0CF
+              410100000000BC367A6EDD53AFBF32A65E97AE9E2C0814081408140804000027
+              BC3B02A746205020502050201000009CF0EE089C1A8140814081408140000000
+              00001FA97A0033A10C22999313DE0000000049454E44AE426082}
+            FileName = 'D:\GitHub\CProject\02.CookPlay\image\icMenu@3x.png'
+          end>
+        Align = Center
+        HitTest = False
+        Size.Width = 24.000000000000000000
+        Size.Height = 24.000000000000000000
+        Size.PlatformDefault = False
+      end
+    end
+    object Text2: TText
+      Align = Client
+      Size.Width = 675.000000000000000000
+      Size.Height = 45.000000000000000000
+      Size.PlatformDefault = False
+      Text = #53217#54540#47112#51060
+      TextSettings.Font.Size = 18.000000000000000000
+      TextSettings.Font.StyleExt = {00070000000000000004000000}
+      TextSettings.FontColor = claWhite
+      object Layout3D1: TLayout3D
+        Height = 4.000000000000000000
+        Width = 5.000000000000000000
+      end
+    end
+    object layoutHitSearchButton: TLayout
+      Align = Right
+      HitTest = True
+      Position.X = 729.000000000000000000
+      Size.Width = 54.000000000000000000
+      Size.Height = 45.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      OnClick = layoutHitSearchButtonClick
+      object imgSearch: TImage
+        MultiResBitmap.Height = 72
+        MultiResBitmap.Width = 72
+        MultiResBitmap = <
+          item
+            Width = 72
+            Height = 72
+            PNG = {
+              89504E470D0A1A0A0000000D494844520000004800000048080600000055EDB3
+              47000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+              006449444154785EEDD82112C030084541D2FBDFB98DC026BF93A9EAEC1AD0CF
+              410100000000BC367A6EDD53AFBF32A65E97AE9E2C0814081408140804000027
+              BC3B02A746205020502050201000009CF0EE089C1A8140814081408140000000
+              00001FA97A0033A10C22999313DE0000000049454E44AE426082}
+            FileName = 'D:\GitHub\CProject\02.CookPlay\image\icMenu@3x.png'
+          end>
+        Align = Center
+        HitTest = False
+        Size.Width = 24.000000000000000000
+        Size.Height = 24.000000000000000000
+        Size.PlatformDefault = False
+      end
+    end
+  end
+  object Rectangle1: TRectangle
+    Align = Client
+    Fill.Color = xFFEEEEEE
+    Size.Width = 783.000000000000000000
+    Size.Height = 706.000000000000000000
+    Size.PlatformDefault = False
+    Stroke.Color = claWhite
+    object tabcontrolMain: TTabControl
+      Align = Client
+      Size.Width = 783.000000000000000000
+      Size.Height = 706.000000000000000000
+      Size.PlatformDefault = False
+      TabHeight = 49.000000000000000000
+      TabIndex = 2
+      TabOrder = 0
+      TabPosition = None
+      Sizes = (
+        783s
+        706s
+        783s
+        706s
+        783s
+        706s
+        783s
+        706s
+        783s
+        706s)
+      object tabHome: TTabItem
+        CustomIcon = <
+          item
+          end>
+        IsSelected = False
+        Size.Width = 8.000000000000000000
+        Size.Height = 8.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = ''
+        TabOrder = 0
+        Text = 'tabHome'
+        ExplicitSize.cx = 349.000000000000000000
+        ExplicitSize.cy = 49.000000000000000000
+        object Button1: TButton
+          Position.X = 22.000000000000000000
+          Position.Y = 60.000000000000000000
+          Size.Width = 177.000000000000000000
+          Size.Height = 44.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+          Text = 'Recipe '#47564#46308#44592
+          OnClick = Button1Click
+        end
+        object Label1: TLabel
+          Position.X = 28.000000000000000000
+          Position.Y = 34.000000000000000000
+          Text = 'Home'
+        end
+      end
+      object tabNewsFeed: TTabItem
+        CustomIcon = <
+          item
+          end>
+        IsSelected = False
+        Size.Width = 8.000000000000000000
+        Size.Height = 8.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = ''
+        TabOrder = 0
+        Text = 'tabNewsFeed'
+        ExplicitSize.cx = 349.000000000000000000
+        ExplicitSize.cy = 49.000000000000000000
+        object Label2: TLabel
+          Position.X = 30.000000000000000000
+          Position.Y = 36.000000000000000000
+          Size.Width = 115.000000000000000000
+          Size.Height = 23.000000000000000000
+          Size.PlatformDefault = False
+          Text = 'NewsFeed'
+        end
+      end
+      object tabRecipe: TTabItem
+        CustomIcon = <
+          item
+          end>
+        IsSelected = True
+        Size.Width = 8.000000000000000000
+        Size.Height = 8.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = ''
+        TabOrder = 0
+        Text = 'tabRecipe'
+        ExplicitSize.cx = 8.000000000000000000
+        ExplicitSize.cy = 8.000000000000000000
+        object wbRecipeList: TWebBrowser
+          EnableCaching = False
+          Align = Client
+          Size.Width = 783.000000000000000000
+          Size.Height = 706.000000000000000000
+          Size.PlatformDefault = False
+          OnDidStartLoad = wbRecipeListDidStartLoad
+        end
+      end
+      object tabCookbook: TTabItem
+        CustomIcon = <
+          item
+          end>
+        IsSelected = False
+        Size.Width = 8.000000000000000000
+        Size.Height = 8.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = ''
+        TabOrder = 0
+        Text = 'tabCookbook'
+        ExplicitSize.cx = 8.000000000000000000
+        ExplicitSize.cy = 8.000000000000000000
+        object wbCookbookList: TWebBrowser
+          EnableCaching = False
+          Align = Client
+          Size.Width = 783.000000000000000000
+          Size.Height = 706.000000000000000000
+          Size.PlatformDefault = False
+        end
+      end
+      object tabMyhome: TTabItem
+        CustomIcon = <
+          item
+          end>
+        IsSelected = False
+        Size.Width = 8.000000000000000000
+        Size.Height = 8.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = ''
+        TabOrder = 0
+        Text = 'tabMyhome'
+        ExplicitSize.cx = 8.000000000000000000
+        ExplicitSize.cy = 8.000000000000000000
+        object Label5: TLabel
+          Position.X = 36.000000000000000000
+          Position.Y = 42.000000000000000000
+          Text = 'MyHome'
+        end
+        object Rectangle3: TRectangle
+          Fill.Color = xFFE4E4E4
+          Position.X = 218.000000000000000000
+          Position.Y = 48.000000000000000000
+          Size.Width = 287.000000000000000000
+          Size.Height = 195.000000000000000000
+          Size.PlatformDefault = False
+          Stroke.Color = xFFE4E4E4
+        end
+      end
+    end
+  end
+  object Timer1: TTimer
+    Left = 650
+    Top = 63
+  end
+  object Rectangle2: TRectangle
+    Align = Bottom
+    Fill.Color = claWhite
+    Position.Y = 751.000000000000000000
+    Size.Width = 783.000000000000000000
+    Size.Height = 50.000000000000000000
+    Size.PlatformDefault = False
+    Stroke.Color = claWhite
+    object GridPanelLayout2: TGridPanelLayout
+      Align = Client
+      Size.Width = 783.000000000000000000
+      Size.Height = 50.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      ColumnCollection = <
+        item
+          Value = 19.999995538421270000
+        end
+        item
+          Value = 20.000003059142180000
+        end
+        item
+          Value = 20.000003349918290000
+        end
+        item
+          Value = 19.999999545778590000
+        end
+        item
+          Value = 19.999998506739680000
+        end>
+      ControlCollection = <
+        item
+          Column = 1
+          Control = layoutNewsfeed
+          Row = 0
+        end
+        item
+          Column = 2
+          Control = layoutRecipe
+          Row = 0
+        end
+        item
+          Column = 3
+          Control = layoutCookbook
+          Row = 0
+        end
+        item
+          Column = 4
+          Control = layoutMyhome
+          Row = 0
+        end
+        item
+          Column = 0
+          Control = layoutHome
+          Row = 0
+        end>
+      RowCollection = <
+        item
+          Value = 100.000000000000000000
+        end
+        item
+          SizeStyle = Auto
+        end>
+      object layoutNewsfeed: TLayout
+        Align = Client
+        HitTest = True
+        Size.Width = 156.600021362304700000
+        Size.Height = 50.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        OnClick = layoutHomeClick
+        object imgNewsfeed: TImage
+          MultiResBitmap = <
+            item
+            end>
+          Align = Center
+          HitTest = False
+          Size.Width = 30.000000000000000000
+          Size.Height = 30.000000000000000000
+          Size.PlatformDefault = False
+        end
+      end
+      object layoutRecipe: TLayout
+        Align = Client
+        HitTest = True
+        Size.Width = 156.600006103515600000
+        Size.Height = 50.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 2
+        OnClick = layoutHomeClick
+        object imgRecipe: TImage
+          MultiResBitmap = <
+            item
+            end>
+          Align = Center
+          HitTest = False
+          Size.Width = 30.000000000000000000
+          Size.Height = 30.000000000000000000
+          Size.PlatformDefault = False
+        end
+      end
+      object layoutCookbook: TLayout
+        Align = Client
+        HitTest = True
+        Size.Width = 156.599975585937500000
+        Size.Height = 50.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 3
+        OnClick = layoutHomeClick
+        object imgCookbook: TImage
+          MultiResBitmap = <
+            item
+            end>
+          Align = Center
+          HitTest = False
+          Size.Width = 30.000000000000000000
+          Size.Height = 30.000000000000000000
+          Size.PlatformDefault = False
+        end
+      end
+      object layoutMyhome: TLayout
+        Align = Client
+        HitTest = True
+        Size.Width = 156.599975585937500000
+        Size.Height = 50.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 4
+        OnClick = layoutHomeClick
+        object imgMyhome: TImage
+          MultiResBitmap = <
+            item
+            end>
+          Align = Center
+          HitTest = False
+          Size.Width = 30.000000000000000000
+          Size.Height = 30.000000000000000000
+          Size.PlatformDefault = False
+        end
+      end
+      object layoutHome: TLayout
+        Align = Client
+        HitTest = True
+        Size.Width = 156.599960327148400000
+        Size.Height = 50.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        OnClick = layoutHomeClick
+        object imgHome: TImage
+          MultiResBitmap = <
+            item
+            end>
+          Align = Center
+          HitTest = False
+          Size.Width = 30.000000000000000000
+          Size.Height = 30.000000000000000000
+          Size.PlatformDefault = False
+        end
+      end
+    end
+  end
+  object tabControlLeftMenu: TTabControl
+    Position.X = 454.000000000000000000
+    Position.Y = 308.000000000000000000
+    Size.Width = 376.000000000000000000
+    Size.Height = 599.000000000000000000
+    Size.PlatformDefault = False
+    TabHeight = 49.000000000000000000
+    TabIndex = 1
+    TabOrder = 2
+    TabPosition = PlatformDefault
+    Sizes = (
+      376s
+      550s
+      376s
+      550s)
+    object tabLeftMen: TTabItem
+      CustomIcon = <
+        item
+        end>
+      IsSelected = False
+      Size.Width = 188.000000000000000000
+      Size.Height = 49.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = ''
+      TabOrder = 0
+      Text = 'Left Menu'
+      ExplicitSize.cx = 215.000000000000000000
+      ExplicitSize.cy = 49.000000000000000000
+      object MenuRightRect: TRectangle
+        Align = Client
+        Fill.Color = claBlack
+        Opacity = 0.600000023841857900
+        Size.Width = 376.000000000000000000
+        Size.Height = 550.000000000000000000
+        Size.PlatformDefault = False
+        Stroke.Kind = None
+        OnClick = MenuRightRectClick
+      end
+      object MenuLeftRect: TRectangle
+        Fill.Color = claWhite
+        Size.Width = 300.000000000000000000
+        Size.Height = 597.000000000000000000
+        Size.PlatformDefault = False
+        Stroke.Color = xFFFF7500
+        object layoutUser: TLayout
+          Align = Top
+          Size.Width = 300.000000000000000000
+          Size.Height = 151.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+          object Layout9: TLayout
+            Align = Top
+            Size.Width = 300.000000000000000000
+            Size.Height = 56.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 1
+            object Text6: TText
+              AutoSize = True
+              Position.X = 186.000000000000000000
+              Position.Y = 22.000000000000000000
+              Size.Width = 53.333332061767580000
+              Size.Height = 21.281250000000000000
+              Size.PlatformDefault = False
+              Text = #50508#47532#48120
+              TextSettings.Font.Size = 16.000000000000000000
+            end
+            object Image7: TImage
+              MultiResBitmap.Height = 24
+              MultiResBitmap.Width = 19
+              MultiResBitmap.LoadSize = 2
+              MultiResBitmap = <
+                item
+                  Width = 60
+                  Height = 60
+                  PNG = {
+                    89504E470D0A1A0A0000000D494844520000003C0000003C08060000003AFCD9
+                    72000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+                    0405494441546843ED9A5188156514C7CFF9E6AE77778B306657655F7C116445
+                    7AA81029F2357C50DA82BDD7940C2454F2A10285F461D9D782D6A70C42282BBA
+                    DE40235F0CDF2442F04D225FEC2192653307DD05EF55EF9DEFF49DE938B1DEE9
+                    36F79B99BBDBEDFBC130E77FE6CCF7CDD933DFDCF9BE5970381C0EC72A06655F
+                    387AEFA6A7A87DF783B00DBB587B25B880A5B5C7D4573796A2803EA1645F2834
+                    33A374FBCEF78AE8E0904713BCB1CD3E3E26617DA12F15D6D57553A8C373221F
+                    670AEBC1B762174E7F2AACC3E7C4EC40033C2F665FE8D7EDF4A4EC93E8762C77
+                    0A4D9866B6ACD1557F3711ED1057077C2C8A31B1E22A9442C630EDDF384CF7EF
+                    1D7D40F4DE30C05A7177E53EC0DD32E21C4C0C7FA8E66E36C59D3BB927AC2B63
+                    2FB589BE1802D828AE9E6801FC5A027C43D56F5F1657AEE47A4BEBEAD89E26E9
+                    4BB6C9327C6E13E892AEF8AF8B2B5772AB304DFBAF3400CE8D7669B3D1045D1A
+                    69FFCE76BB595A3F3AF2CF7F70D3168D28EF3555BB755E5CB9904B857565C364
+                    03F04C52B28D162C999F9E8F0860DBE8B35BCBE5FAE2046F6CB38F8F718C84C7
+                    705B4DAD3FE7B6C5950BB954B85DF17FF0085E1419A301BF434587552D981757
+                    22E6293D411A4F29A0DDE28A09097E2C7D1374B46D4BE60AEBCAF8ABC9C9C267
+                    6AF2EDA97F4B96E1188EE573C415E321BCC07D88CC4CE68491E8B8983121D265
+                    3579E400CECE9A1CD2C1B17C0E9F2BAE180DED13626626D32DCDE30BA9F5B3C8
+                    8806D0839135DE56F5E51F37C4D5137ADFF8A6E6C3F0A751C0B2B8220887B6A8
+                    B30BD7455A93A9C244ADAA9831C3805FDB26CBF0B9DC86C898A4BE6CC8764B9B
+                    F125560CAAD227625A93D846425F36644AF8212D9FE9F0EB216E3E7455A435DC
+                    06B72532E2F1BE6CB11EC3668EBBDECC711744469827D445AF1EEC149989B0E2
+                    5F54042F8B8C20E56D302F22D18B8B2DD615460C9F16F36F106E8A9507BFC93E
+                    26B1CF1EB14E98C0EBE85C1106626626A92D0ABD5433AF6ED8575887CB7E3622
+                    90CCD0CB8984B64C85CD6C331BD99ED2FF415CC2838E4B78D071090F3A2EE141
+                    C7253CE85827AC01739906F6421E7D5A25ACA7C7DF5744C744F60DEE93FB1669
+                    45CF0B007A7AEC1D049A13B90C8D5443EC5C8FB28188F6982962E23A1601BEAB
+                    EAB74F8AEC899E12D655FF106A382572452105BCC0DFF3FA59EA5B9A2AE36F36
+                    357C2C72C5E16BE16B12999AD415BEB7CB0FBB7DFC5A09F8E3DC1317024F642A
+                    5227B0DA92656CAE297585C369FFB498AB0AAF1E1C10D3E130582FC4A725ACF8
+                    9FB608A64426328470DE3B1BBC25B2500A7F10990E7E2903F8DD368E91F0C229
+                    3C61423863768B7FA9441625A62F145FE15A304F8807F9BBB1B862D8C7C7D2FC
+                    97405E143E861FA1ABEB9EA1309C09356E67ED29BA829E37AB6AB7AE45010E87
+                    C3E1F8DF03F027B96C5CBC3FDB37BD0000000049454E44AE426082}
+                  FileName = 
+                    'D:\Google '#46300#46972#51060#48652'\cookplay\03.'#44060#48156'\05.Cookplay'#44060#48156'\01.Iteration 1\03.De' +
+                    'sign\design_icon\mainpage_ic\menu\ic_notification@2x.png'
+                end>
+              Position.X = 240.000000000000000000
+              Position.Y = 18.000000000000000000
+              Size.Width = 30.000000000000000000
+              Size.Height = 30.000000000000000000
+              Size.PlatformDefault = False
+            end
+            object cirNotice: TCircle
+              Fill.Color = claRed
+              Position.X = 262.000000000000000000
+              Position.Y = 22.000000000000000000
+              Size.Width = 5.000000000000000000
+              Size.Height = 5.000000000000000000
+              Size.PlatformDefault = False
+              Stroke.Color = claRed
+            end
+          end
+          object Layout10: TLayout
+            Align = Left
+            Position.Y = 56.000000000000000000
+            Size.Width = 97.000000000000000000
+            Size.Height = 94.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 2
+            object Circle1: TCircle
+              Align = Top
+              Fill.Bitmap.Bitmap.PNG = {
+                89504E470D0A1A0A0000000D494844520000008C0000008C0806000000AEC041
+                3E000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+                0D0749444154785EED9D099055C51586FF6191457619874551D0C14109030444
+                0171192808A818055C8846A329CB2D2696A68CA52631895A266569A9654CCCE2
+                8211A58C527149194414B5DC412D83603018A312886C2A6E40FAA74F8A9979DB
+                EDF7EE7BF7DC37E7ABEA9ADB3D5373FBBDF3DFEEBEDDA74FD7EC70C03022D24E
+                7E1A46244C304610D625FD9F6D5B812FB6F8F4A54BA46377603749EDBBF8B236
+                4EDB10CC8EAF804DAB810D2B5C7A6B57DABCC60964B313C8C7C0F66DF2C73968
+                D7DE09A89B134F0FA0C73E40EF039AA506A0E710F76D76903FAE5EAA53309F6F
+                00DE7BD2A5C53E7DE484B2DD89A69CB47362E9E384B3D791928E003AF5965F56
+                0FD52198ED5F02FF5A24E90960DD32D7AA6C975F26448D1B1ED68E04F63ECAA5
+                269FDA75945FA697740B66ED8BC08A3B81B7EE05B6AE9742A574E90B1C7012D0
+                701A5037560AD347FA04B3E55D2792BB81BF3BA1701C924638EE19E684D3F02D
+                A0FB20294C07E911CCFAE5C08B5703AB1624DFDDC405BBADFA59C0D8CB80BE8D
+                52A81BFD8259FB3CF0C2CF81D57F91822A65C8D1C0C197BBEE6A9C14E844AF60
+                DE7F0A78FE2AE05D37906D4B0C7283E3715702032649812EF409E6D30F80A72E
+                F203D9B60C07C893AE07BAF697021DE811CC8E6DC0F29B80E7DCD3C5D956C3CF
+                301FEA5AD9C60B9CA5DA4B61B2E810CC07CF028BCF01D6BD2605460B6A470047
+                DE0AF41F2F05C991AC6038E1F6EC8F80575CD3AB7428A5869A1A60B4EBAAC75F
+                93E804607282D9B20678E444E043F7166444A79F7B8B9A3E1FE8BE8F14549664
+                04B3FA21E0F13380CF3648811144E7DEC0943FB857F1995250392A2B1876414B
+                7F08BC7A8314182531EAFBC0C4EB2ADA45554E30742178F87860CDE35260C4C2
+                3E5380190F78D78B0A5019C16C5D073C341D58FB921418B152370698F908D0A5
+                560ACA47F905B3E59FC09FA7021B564A8122761FE07D57FA1DEC17047BEE0F74
+                EAE5E73F08E7833EDF086C7ADB2F747EF882F7AFF9E47DFF7B4DF41E0A7CF3AF
+                6E30BCAF149487F20AE6BFAF030F4E033E56F40573E6B461AE5F29AE2D72C16F
+                DD72BF62BE629E9F99D64237F7001CF718B0C7D7A4207ECA27188AE5FE49FE09
+                D5005B8F31977AB782F6310D12B7B9413CDD2C5EBAD6B7421AE01BD4AC256513
+                4D7904C36EE8BE093A5A160E06C7FDD8BF51D08DB21CD0FD936F7ECFFFD40FEE
+                93862DCD9C67CAD23DC52F180E70EF9FA863CCD2DF8976DA3D408F0A39296D7E
+                1778EC14E00367ACA4E19866F6D2D807C2F1EE4BE2D3C5B7210D62197DB16B9A
+                9FAC9C5808EFC57BF2DE49431BD01631B778F1B5309C945B3843C13C4B0D70F8
+                8DC0C80B249F10CB6E02965CE82ECAF74E1109CED31CFB706C937BF1B5309CC1
+                D5302937F9F6E4C5425887A6DF4A26416813DA2626E2110CD786344CF78FBF1A
+                38E83B9251C0F0337D9D9286B6A18D62A0F42E89ABCEF78C4A7E21B1FE4460BA
+                522FBD474E0256CD974C42F075FB94574B5EE52EAD85E1B8852E0A498B85732C
+                931534FFB960DD58C724A18D682BDAAC044A130C9D9F34F8B334DDB66B3A5F23
+                AC1BEB9834B4156D5602C50B866E95F4944B9AA1AEB9E77654EDB08EAC6BD2D0
+                66B45D911427183A6CD307B74CAB0A91A163F4A13F934C0A605D9376E6A6CD76
+                DAAE40B48A1C1427187AF76B70D81EEAFAE45E098F0D42605DEBE7482641683B
+                DAB008C205C3D5596E05D1C088F3E42245349E2F1709431B16B1D21E2E186E32
+                D3B06FA8E77EC080E4B75D04C33AB3EE49431BD29681840986DB57B5EC48AC9F
+                2D1729444BDD694BDA348030C170AFB316F64AC19B512E34D53DD0A6D105C328
+                0A5A36C63396DC8009924921ACBB92ADAF3B6D4ADB4624BA601872430B3D0703
+                1DBB4A2685B0EE0CA2A88500DB46130C83F9688ACF4287EDB4A3E933D0B6B471
+                04A20986919F34416FFFB4A3ED3344B47161C130A61CC3846942F3BA5154B47D
+                06DA98B62E4061C1703B85B69872D510955BDB67A08D69EB0214160CB7516883
+                61DED38EC6CF10C1D6F905B3F605BFE34F1BD510A14AE367A0AD69F33CE417CC
+                8ABBE442191AB7AA86A2F53314B0796EC1D0334B6B60C2B406746E8ED6CF409B
+                E7F1CACB2D18C6EDD71A8E7DD33BC0979F4A2685B0EE3C5D4523B4396D9F83FC
+                82D10A8FB3795FC1EEC26261DD8B7460AA08C509E609B950CA7BCAEB970FED75
+                CF63FBEC82E179433C424633ABEE978B14A2BDEEB43D359085EC82E1E154DA0F
+                80D8F40FD7B417EFCC9C18AC33EBAE19DA9E1AC8420EC12C960BE5BC768B5CA4
+                88E537CB8572726820DD8259391FD8A824904F1458D755F74946399105C33710
+                9E919806F8A6F1DC15924901ACABE6B7A3E65003D4422B3205C3FEB5DC076AC6
+                C9CA7BF5BFD111D691754D0BD44096B156A660D2388BBAE86CDDEB4BAC1BEB98
+                36B268A13A04C380847FFBAE6414C2BA69099A1842D50A86309CC68BD7484611
+                AC53D2A13E8AA5AA05439EBD0C78E377925100EBC23AA5954882D9BC462E52CA
+                22D7FC33BE5CD2B00EAC4B9AC9A2854CC17CB1592ED2CA0E60C9F780A72F49E6
+                6D8FF7E4BD5987A40322964A162D640A464360E23878E557C082237CECDC4AC1
+                7BF19EBC773590450B2D05F3D5A7EE0949C9C452141860F9EE8380979D01CBD9
+                DAF07FF31EBC9786A0CE71412D5013CD6829986AF0956D0D9F92A5AE8BB87398
+                1F84F27C80B8E0FFE2FFE4FFE63DAAA5756E4E2B4DB48CA2C9B9823FD64BA64A
+                A9E6D34CCAC1E9AB5A04746C2998F5CB8079A324D306A8A6F392CAC5DC5781BE
+                2325D3D6056314A695605A8E613A56C11654235E5A69A2A560AA61CFB2112FAD
+                34618231F2935730DC20DE4E4964242379A8855641035A0A8654E8FC63230564
+                D142A66076EB2117469B278B16328FBF597018F0EFA592A926DCB3C148DC3D06
+                03DDF702BA354BBBF7F35F0E5387AEEE4F3BB8C413CCDC57C3D95CEE35E62C2E
+                17E33EDFE4E7613E7E6F57DAE2D2C695D5373F33702230EB69C9783205B3E82C
+                5D3E25C54063EF39C6A55140DF463FA3CB6379CB1D4891FB92390BCC7871FCF9
+                9F97808FDE945FA6101E10D674BB643C998279E597C0D3F11DF956196ABC3006
+                35F918B80327B9D642C958EC930FBD0338F72B33F140B2B470D875C0E84B24E3
+                C914CC3B0B81853325A319D7C50C704DE6012701FB9F0074DD53CA95C3ED1BDC
+                4FC51D041B946FE739F62160F0B192F1640A66E35BC01D0D925148ED68BF7038
+                748E1B7F0C94C294C26E8BC2E14226C742DAF8B6D342AFA192F1640A869B976E
+                76EFDE4978ABE58291BFF73F1E1879613A0FA42804BFEBB71F0096DD58D2E157
+                B1C281FFF95BFD77DF8C4CC190796E80B8FE0DC92408DF5A469CEB53F7BDA5B0
+                CA59EB06CA3C05962D4F92BB24FB0E07E6BE2E995D64CEC3102EF92749FB4EC0
+                A81F00A7AF06265CD376C442EADCDBDD34D745CD7D0D1892E0583287069409C6
+                5567D8E9C0692B8149D7035DF690F236C81E0702C73C08CC715DD400F7D65769
+                7268207B97C46032B7F5754D620563C4709E64CAEFFD136664B2E21E60891BC3
+                7D5681B88335EEC13DDBDDA7536F29D845F616867F58BBCB69A6ACB4DB0D38E4
+                2AE0E4974D2CF968380538F5CDCA9C4C4BDB67110BC92E185289A37D6B47F9D3
+                DAC75DE1C62D9C8A37F2D2B516F8C69F5C57B510E8EC7A807291C7F67904D324
+                1765A2E134D73F3FE3FB6A238C21C7F81699CB1FE5208FEDF30BA64B1954CC75
+                9E236E01A6DE0174A882432692A2C72060F652E0A033A5202668F3A20443C372
+                DA3D4E3AF5014E580C349E2B05464974E8044CBEDD3D808C9B97DB9441D0E63B
+                57EAB393FF2E0DA7CA450CD08D608E7B22D27C56A3561ACF03A6CF77D6742F10
+                A5C2A1421EF20BA64EF6EB944AB7BD81594B803EC3A4C0889DFA59C0D10F9426
+                1ADABA6EAC64B253B81D1B965F7105E95AE7BB214D8762562B8367B896E63E14
+                7D626D045B17160C57863991530CDCD332F351A0978293E0DB0AFBCD048EFAB5
+                6402A08D69EB0214564277371A6773174C0D306D9EF77A332ACBF0B380D1174B
+                2622B4316D5D80684DC7D822C26E1DF2133F5F6024C3846BDDEBF164C94420A2
+                8DA30986EE8F438E964C04061E0E1C7CB9648C44E09EA2A977015D6AA5200FB4
+                2D6D1C81E88393A802E0B885152D76DC63C407774334FD4632790878B8A35BB5
+                6E9C77B22EC4F85FB42DFF15EDEC779C4BC74B260BB4296D1B91B06660DC9572
+                9103BA287012C9D0C5E13700ED3B4BA615856CDA8A30C1D09127DF72C1C4EBAC
+                2BD2085B7CFA43B786B60C74CE0AB72E3DE1B24579E87708B0EF34C918EAF8FA
+                254087DD25E3A00D69CB40C205C31871875E2599668CB9542E0C95D0DD7578B3
+                40D3B4216D194871FD47E30540ED08C938B85664732EFA19718EFF49DBD18645
+                509C60B85671E4ADEE678DCF1F78868D5DD240EFA17E8E6CA7ED8A5B6F2ADECA
+                FDC703A32FF2D7F5B3FD4F433F9CF6A0ED8A24FBAE81A8300CC6A32703331648
+                8151ED942618F2D94740E73E9231AA9DD20563B4296CA46A046182318230C118
+                4198608C204C30461026182308138C118409C608C20463046182318230C11841
+                98608C204C30461026182308138C118409C608C20463046182318230C1184198
+                608C204C30461026182308138C118409C608C20463046182318230C118419860
+                8C204C304600C0FF00276C0C2712C57DE80000000049454E44AE426082}
+              Fill.Bitmap.WrapMode = TileStretch
+              Fill.Kind = Bitmap
+              Size.Width = 97.000000000000000000
+              Size.Height = 70.000000000000000000
+              Size.PlatformDefault = False
+              Stroke.Kind = None
+              object ShadowEffect1: TShadowEffect
+                Distance = 4.000000000000000000
+                Direction = 45.000000000000000000
+                Softness = 0.300000011920929000
+                Opacity = 0.200000002980232200
+                ShadowColor = claBlack
+              end
+            end
+          end
+          object Layout11: TLayout
+            Align = Client
+            Size.Width = 203.000000000000000000
+            Size.Height = 94.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 3
+            object txtNickname: TText
+              Align = Top
+              Margins.Left = 3.000000000000000000
+              Position.X = 3.000000000000000000
+              Size.Width = 200.000000000000000000
+              Size.Height = 24.000000000000000000
+              Size.PlatformDefault = False
+              Text = #53217#54540#47112#51060#51697
+              TextSettings.Font.Size = 18.000000000000000000
+              TextSettings.HorzAlign = Leading
+              TextSettings.VertAlign = Trailing
+            end
+            object Layout1: TLayout
+              Align = Top
+              Position.Y = 24.000000000000000000
+              Size.Width = 203.000000000000000000
+              Size.Height = 30.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 1
+              object Image4: TImage
+                MultiResBitmap.Height = 34
+                MultiResBitmap.Width = 34
+                MultiResBitmap = <
+                  item
+                    Width = 34
+                    Height = 34
+                    PNG = {
+                      89504E470D0A1A0A0000000D49484452000000220000002208060000003A470B
+                      C2000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+                      02F3494441545847ED954D4854511480CF39EFF94650984D2B7F368D44B830DA
+                      4441E422D0A8B095E1465AA42E142BA865202E5A85940C114DBAA876B5280C23
+                      0D02D3AD41DA224C337268D30FF463CC7BCDDCD33D77AED6386F5E511208F3C1
+                      E39EBFB9E7CC7BE79E0B65CA94D9AAA05D4BC2B7DB1D9E9CED67E0634A713DA1
+                      33870E5DA6D4CB2736A400D5DDD0CC8A4F2BCE3511E10A22DEC39ACE240E0E2A
+                      1B124A642152849A783A41C007ADC9E06B9707DC47A3CB57ADC9A0BA127D0173
+                      32B6615F85F0886A3B0F4515135988EADA7E06192E59B5005D4CC643B7914616
+                      9645D76F221128F55C1751690236C088A768642969D522C8AEA1C8E7B0621126
+                      21675BAC2AB4962A426086927B099185484F58311406ACB3A24E948D8C55C0EB
+                      B1614416228D69C5500870DD8F40D1B10CF3560C25B210241C96C6B46A0159CC
+                      2D82131FB72A40BC7A2CCB6AC96A05F801287261D8AAA144BF91EB8B531E62BF
+                      34A6351924A10B5E3BA666BF5913D0D0DCAAE3B9ED1B8B314D5D49FD987A3563
+                      4DA1FC768E087222F4D2CAACEAF40FE6E5DF4BE2BCB71075B6A90A3E7D6D6350
+                      4D88EE8A364DE83F14FAA6CA44113DD0CC6B5EDD0FC83B99B1469BF4EC80CF7A
+                      6CBF0652CFF0DAD2AC968B9A59F524F6B1820E2D66B4FBAD9E662F205E3553EA
+                      730A458570CF8E6D9C539DFA1B1FFE0EC18118789E7515E143F65D05B80F1169
+                      0C5B76DFC5E3777262675DB53A994812429F09D4F841E05778DEB43EE60FF45D
+                      750B530BEFADCBB05E080F34BB904E9FF781CFE9095965CD7F8C9C16C7717B75
+                      634E8A2EFBE5DEAC4C3B047B4DC02FE893B4EA215CC4DAFA0B383895159B2984
+                      070648A56F8C11D011D1FF1699391E52378D2C8E8AAEBA1A8E22ABFBC6198202
+                      354E7527DAE432347384D3373BFEB508416EDDC0CF5CE1DEC66AD191E28F8DA3
+                      04925372E7650D03ED91753388795E8CFDCC2E9165E0F9081F8DA3046BB9ED64
+                      E58AFCBA3920E0CFFD386B1AB834F9DC9123FE7F620AD1B7E817398A9BF53041
+                      6076D738EC7E088B597B24B70D2D53A6CC5604E0075E9260C4D4E8BBAD000000
+                      0049454E44AE426082}
+                    FileName = 'D:\GitHub\CProject\02.CookPlay\image\icFollowFollowing@2x.png'
+                  end>
+                Position.X = 2.000000000000000000
+                Position.Y = 10.000000000000000000
+                Size.Width = 17.000000000000000000
+                Size.Height = 17.000000000000000000
+                Size.PlatformDefault = False
+              end
+              object Text8: TText
+                Position.X = 22.000000000000000000
+                Position.Y = 10.000000000000000000
+                Size.Width = 38.000000000000000000
+                Size.Height = 19.000000000000000000
+                Size.PlatformDefault = False
+                Text = #54036#47196#50892
+                TextSettings.FontColor = xFF898989
+                TextSettings.HorzAlign = Leading
+              end
+              object txtFollower: TText
+                Position.X = 62.000000000000000000
+                Position.Y = 10.000000000000000000
+                Size.Width = 46.000000000000000000
+                Size.Height = 19.000000000000000000
+                Size.PlatformDefault = False
+                Text = '9.1'#48177#47564
+                TextSettings.FontColor = xFF898989
+                TextSettings.HorzAlign = Leading
+              end
+              object Text10: TText
+                Position.X = 110.000000000000000000
+                Position.Y = 10.000000000000000000
+                Size.Width = 38.000000000000000000
+                Size.Height = 19.000000000000000000
+                Size.PlatformDefault = False
+                Text = #54036#47196#51081
+                TextSettings.FontColor = xFF898989
+                TextSettings.HorzAlign = Leading
+              end
+              object txtFollowing: TText
+                Position.X = 150.000000000000000000
+                Position.Y = 10.000000000000000000
+                Size.Width = 46.000000000000000000
+                Size.Height = 19.000000000000000000
+                Size.PlatformDefault = False
+                Text = '1'#48177#47564'...'
+                TextSettings.FontColor = xFF898989
+                TextSettings.HorzAlign = Leading
+              end
+            end
+            object Layout5: TLayout
+              Align = Top
+              Position.Y = 54.000000000000000000
+              Size.Width = 203.000000000000000000
+              Size.Height = 30.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 0
+              object Image9: TImage
+                MultiResBitmap.Height = 34
+                MultiResBitmap.Width = 34
+                MultiResBitmap = <
+                  item
+                    Width = 34
+                    Height = 34
+                    PNG = {
+                      89504E470D0A1A0A0000000D49484452000000220000002208060000003A470B
+                      C2000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+                      0699494441545847ED967F6C55E519C79FE779DF734EEB8AB5BDF7B6A53A40A9
+                      8AAB2C339B11130517FF19D9881A94189C2151A0226325882093C9EC84EAD46C
+                      0DACA3A0417159B4F14722EA1F53816A1C33D932A0B0825301A978E9FD21223F
+                      EE39E77DDFC7F75CCF2A35BDBD65D99F7C929B73EF7D9FE7BCDFF3FC7A0F9CE3
+                      1C65C0F83A22A6A3E97CA0FC4C00710402EF1DBAAFFF74BCF47F6374423AEBA6
+                      282EBC4420D284F407385DF9E2D98A31CFD987F9F2D85DC0E821D10BB8E0E8C1
+                      78A908C5D7919178948C9357403FD01A1F04AF70B38D9217AF96857915F1179F
+                      B7056C56DACF32C36A2E6FAABE205E2E523222E685299590FBF006F0E43F704C
+                      3ACFF9FAA95AA9751A619230F089906209D2775FC3967F86B1CBB070F76DC20C
+                      6CEB0831B8CB03A732FA4F69E813C8ADB428FF66D1C8523A22D9FF2C0CB8D01D
+                      1482BD7CAC7122B61CDD6E37FFA500F581249810B0EA623E38955795BE471409
+                      93DDFE24212F04DF7143C07EABBA5F0BB8DC7A4DE26E10B1E948A9A18F09E8B8
+                      0798D27EF02A778DBD0A71E01D21E4320DD00B3ED66AADD6C184F175B1C310B8
+                      3B55653AD7AE0E0BA7E7F936C08E87EF4A74660BE09D36A78480091848152314
+                      3144087756D7988D75DF374F251A518EDB22D97DC207CE68E24B8D2E744198BA
+                      06BDAA3709718D907058829CC4A74EDD16BB0F629E6D4C40CE2C0D19E783E7B9
+                      9EE177A9CA998322C8B0151009638493ACAB07D33A28240A13839CAEFDF0450E
+                      6035EBFECB31D3BCD605F15BD2F059B15041AF811327A6D836DE4A643E2AFA19
+                      3DA9788318F374430A4E060B02A35A2084310EF05FB9D29D03E33E3B029A262B
+                      F42723A8013074805A3FB49ABEE69B88ECFDBA700D9BAAB000773098955CDB7B
+                      190EDCFB4729608D35FC54215E6BC03C64CBED4E36541FD9A3A423D135829FA8
+                      4A422198AB14DFC3BE4C380EBE8E04F7D3DCF421DE93BCC4764B0BB0779E447A
+                      1F5CDE1DBB151914820F8342435B5D921BD0D3F990CD4C267A94C7765E0CC9CA
+                      4D92A1DDE6F77018D27501C30AA554535478D6F3B5C8DF74D49ECF95DEDD4AE3
+                      4223A0DEF6C7AB64EF8A89FCFE284A4CF0500834CD6E78D8D6C72BC8D903C58D
+                      63BE8988057F914933CA4E09B801188E87C4D359F1063CA6C7A3639E17404F03
+                      2A6D8B2DE1B9B2C2FEDE0CE3ABF7D9CE71EDAC991F825A6C14343888AF13633B
+                      64327B385B9FE042D81982B9D56E71C2E6FF2F70FABC2D1825EE0C869D23D1B0
+                      31A7E49210FC25005EA544E84386BD86E1CA688E44551FD969837BA8C2CC8280
+                      A607BE59091E563B06DEB24FBC02B3D9DD5CDB50C34EB8DEA67A06786C1C80CD
+                      A8DC07A9359D296E740625071A777FCFE5ECC0F2C0E7873D17D0F7C1766D51C0
+                      31E9C13E05DC645B388915EA28B3A8B1DF5DE9C00E92742FA633BDD038B6D6A8
+                      607DC830C343700DE19F2951B70067FDFB4471836F51F6AC31EB935359F36206
+                      BEC41AF7A1804D58DBB09D73E9FBD0C7E5E0407564A70CEE9788B7DBF4EE346B
+                      1B1388FE933EF2EDF66C110EC2CB74CD849FE38F4A4FE1B242868357A5AAB8DE
+                      CC0914FCC61390B4D162E9F24EE1D13CE86FDEC5C9DD371AA2C795F1277858F1
+                      3238E3E7953B0A0647EC68E1476BAAB906662B860738840694BC9B99C928BA18
+                      819BF1825C1F847418882B04C91DB6E3DA68CEFE93B17B49CE2A22DC65458462
+                      9646BD4C073451BAF01E113D600F95AB9509EE378193725CE841C2364CD6BD6F
+                      EB21885DCB32A47D4782D7D974683153A35AAA7D9AE8B8D86347FDAF6C61EE80
+                      30FB27095E3B094887014CB311FA357F91B99AB7818CDDCB322A21D1BB870DFE
+                      2D9AF50A09E232C7333D360D6D28B27FB783D0502BF850619E950E3D5614E3F3
+                      0DECAB36FE207115F3E8F6185D44DCDC4DCAC02312A8C9CE91BF113AAB3155FF
+                      DE994389E6E6BE8431FA39E9D2EF48E24018D0F576B8FD9E37D65C119B8C48F9
+                      F6ED4CFE2C607E269AA69AF95F826019887CCFB727E37F319BEBBF03C7F5FC10
+                      D572F645524ADE4B15953FA5F99FDAE3A034230A31EB523F09D06CB122A462FE
+                      48486CA17B726FC7CB2589DECA38B37569E0C372CF831AABF890742AAE1B49CC
+                      B042B8EB870EEB83D3C3C06C741DAA539A3F160E2DA205D9376293B2F0B66936
+                      16BD2B028456FB7215457317097736A6D3FBA2BA8ACD0619B646581F9AA20DB4
+                      DBF190B2B57150085C7C362222F0C73D0A9B27B7BB481D76E07DAE02BC9275D8
+                      C1175ED8189B0C61F862D5D804685C3B2D7759118B68616E4BBC725614C55CD1
+                      DCEE7AFCB8F0E013266D8F83F0A2787908255233761C2B75231A730017E5B6C7
+                      7FFFCF446982BEDE5B6C270B08CD1BD49A3F1E2F9DE31CA304E02B392C0ABFAE
+                      9A84E00000000049454E44AE426082}
+                    FileName = 'D:\GitHub\CProject\02.CookPlay\image\icRecipeMark@2x.png'
+                  end>
+                Position.Y = 3.000000000000000000
+                Size.Width = 19.000000000000000000
+                Size.Height = 19.000000000000000000
+                Size.PlatformDefault = False
+              end
+              object txtRecipe: TText
+                Position.X = 22.000000000000000000
+                Position.Y = 3.000000000000000000
+                Size.Width = 58.000000000000000000
+                Size.Height = 19.000000000000000000
+                Size.PlatformDefault = False
+                Text = '9,999'
+                TextSettings.FontColor = xFF898989
+                TextSettings.HorzAlign = Leading
+              end
+              object Image10: TImage
+                MultiResBitmap.Height = 34
+                MultiResBitmap.Width = 34
+                MultiResBitmap = <
+                  item
+                    Width = 34
+                    Height = 34
+                    PNG = {
+                      89504E470D0A1A0A0000000D49484452000000220000002208060000003A470B
+                      C2000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+                      03ED494441545847ED974D681D5514C7FFE7DC9937AFD1049B3441B4A698AA45
+                      51102A228856372E84222864270815C4A490958A2B7125EDCAC6E6D58505C195
+                      01DDF851145DD885D4622182B57ED06A6DECC27C41D246E7EB1ECF7D737DE565
+                      5E48DE7B825DE407C39B7BCE9933FF77E7DE336708EB606BDBEF15E151267A32
+                      16B93302FABC6BD3C4C07244F48B15F994C84EF3D8D2F7DE55A2A5103B35B05F
+                      042F6699DD2B61DE8B24AC441518EFDE3471821C9534A1D4AC04019F21C2311E
+                      5FF8C8BB9B280991E3432376359B4C991ED1610F219B27099290305C4414C488
+                      AF0652F99988E6BDA984E8F516D8A5C7CD3A5C0D2127B91A4CD0813F2F1411D7
+                      2809D1D97825B5D984703018927C46C45FEAECDCC122633EA44E0A5C54716F6B
+                      8653DE54422C57C0F67611D99FC6F40457D2B900E1A4CECA211FD2A024249BEA
+                      FF2A43B2D720F8438FC388E404123C45829A0FA993E538670CBDC4E3F39F7853
+                      4BEC3B03BD88693447F6B21EB706A89C09C617F7797703F6BF0D72D83D401431
+                      CC5930FDA8A695C2D319FCFCC28ACB53CFA7798BFC654A42243143BA43023D5D
+                      82C86A61ED9222CF92CBEBF217C6664A427477148F8B2064F581FC07D4F3683E
+                      77DEC8BF869290FF8B2D216BD95848EFB64C574BA2E55AEBD23528C0B2D688C4
+                      0FBB66432144B30959391F029F67821FACE08B9CF00D834EC0F0451FD6351B0B
+                      19452E3DE1592DE59386F096FEBEA92FC2235A36A7B152BDE4C3BAA6FCAE991A
+                      A86F334B38CE968FD2C1B999BAA30BE4E8E0FD96ED41161C70631A5F28DD776B
+                      D7AC654BC85AAE1B21EBEF1AD07BC4F8584FAFE8561DD4A2B6CDD93B41083BB5
+                      B97A4C7BCD87DDB8D5AE5957480E99D177E6AC56B4483BAC1D62A95A0FE80423
+                      D51CB45DDB809BDCB02D21710C89229036C0828AEA82E8D121A26D730AF36F03
+                      DE9610472C580C18B3DA4FCC6B53F1B737B78D36237D96685728729B1BB73723
+                      2249C89826638ED15DF79CA6C7B595ED90AE2A6B60F93BCAF97D7E61EEEB6E44
+                      6C9692107DDD676E5D90915F61ECBADF2CED2081B8FB1897D7E52FACCD948418
+                      B2BF21D4A5257687CEDF8DDEDC15646D3FAC1D7679EBF95B5012C2C2335186BF
+                      52A2FBACD03EA90D8D785747B8EB5D1E97CFE575F9BDAB89D2A2B1B5C167729B
+                      BD9183770784735A4B4E11D3055837AB6DC25A83AC8C68417B489BAABB0DEC79
+                      C3C1AB3C36F7818F68501672A4BF4F427ACDE6783A67ECD44523FAB5B59A8479
+                      DBDBB7929A6A6CD103AD47C662960D3EA45E799D9F5D5CF6210D4A421CB636B0
+                      47ABE9735A4D1FD5BD7C4BCE72837E36BA8FAEF688243396AEEA4D2E13CB49ED
+                      EEDEE5B1859FBCB78996421C6E6610D2031AF0A03EE3612DFA1D2C5C7385497E
+                      D73F731AA97CCB13E599B8CE00FE01E3679B1718E239CA0000000049454E44AE
+                      426082}
+                    FileName = 'D:\GitHub\CProject\02.CookPlay\image\icCookbook@2x.png'
+                  end>
+                Position.X = 88.000000000000000000
+                Position.Y = 3.000000000000000000
+                Size.Width = 19.000000000000000000
+                Size.Height = 19.000000000000000000
+                Size.PlatformDefault = False
+              end
+              object txtCookbook: TText
+                Position.X = 110.000000000000000000
+                Position.Y = 3.000000000000000000
+                Size.Width = 58.000000000000000000
+                Size.Height = 19.000000000000000000
+                Size.PlatformDefault = False
+                Text = '9,999'
+                TextSettings.FontColor = xFF898989
+                TextSettings.HorzAlign = Leading
+              end
+            end
+          end
+          object Line6: TLine
+            Align = Bottom
+            LineType = Top
+            Position.Y = 150.000000000000000000
+            Size.Width = 300.000000000000000000
+            Size.Height = 1.000000000000000000
+            Size.PlatformDefault = False
+            Stroke.Color = xFFE6E6E6
+          end
+        end
+        object layoutLogin: TLayout
+          Align = Top
+          Position.Y = 151.000000000000000000
+          Size.Width = 300.000000000000000000
+          Size.Height = 152.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 1
+          object layoutLoginTop: TLayout
+            Align = Top
+            Size.Width = 300.000000000000000000
+            Size.Height = 100.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 10
+          end
+          object lineLoginTop: TLine
+            Align = Top
+            LineType = Top
+            Position.Y = 100.000000000000000000
+            Size.Width = 300.000000000000000000
+            Size.Height = 1.000000000000000000
+            Size.PlatformDefault = False
+            Stroke.Color = xFFE6E6E6
+          end
+          object layoutCallLogin: TLayout
+            Align = Top
+            HitTest = True
+            Padding.Left = 15.000000000000000000
+            Padding.Top = 15.000000000000000000
+            Padding.Right = 15.000000000000000000
+            Padding.Bottom = 15.000000000000000000
+            Position.Y = 101.000000000000000000
+            Size.Width = 300.000000000000000000
+            Size.Height = 50.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 8
+            OnClick = layoutCallLoginClick
+            object Text7: TText
+              Align = Client
+              HitTest = False
+              Margins.Left = 10.000000000000000000
+              Size.Width = 240.000000000000000000
+              Size.Height = 20.000000000000000000
+              Size.PlatformDefault = False
+              Text = #47196#44536#51064'/'#54924#50896#44032#51077
+              TextSettings.Font.Size = 18.000000000000000000
+              TextSettings.HorzAlign = Leading
+            end
+            object Image6: TImage
+              MultiResBitmap.LoadSize = 2
+              MultiResBitmap = <
+                item
+                  Width = 40
+                  Height = 40
+                  PNG = {
+                    89504E470D0A1A0A0000000D49484452000000280000002808060000008CFEB8
+                    6D000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+                    0476494441545847ED97DF6B1C5514C7CFB9339B6C76DA42B369B7F1C1E26F02
+                    56908A95BEB4FA50D1F8D03C7413A3505AB0A8B1E23F2025F8072895A2F86029
+                    68EC6E107D296A41DABE080A2258116CB55291B6B15D5BEAFEC86667EEF19EE9
+                    997537D3CDCC24D9D8877C60D97BCEFDF5E5FE38F70CACB24450FE170D8DDFBD
+                    9E746598081E37E65DB7BC700911BE43E59CC0A93FAE8B6F512C5AA0DEB76903
+                    551B6FD62AF0B2938194B8DBA854A1D1E7C0FB9849BDA58E5EB92AEE442C4AA0
+                    1ECB6D6BE8D9CF7BC0DE24AE059903F74A4AA577ABE333DF8A2B368905B2B86A
+                    6DF6B4D36BA7C5E5530728D900E7B8EC023CD80B90F52B844ADD9DCDF4A57726
+                    15A9E43F16BCADBC72ADE21A00170970B877E8B58D76B1B49D7F5C2685CF719D
+                    3403EEC37D790C71C522D10A7AA3D9C38AE0A098A0013EC335B0577D58FA475C
+                    6DE8FDD9B5548663661546C4051AE15DAB507A5DCC48620BE4DB5AB95999092E
+                    04AF8EBD06B6741217C022DD329C359D36B3CD17C759E7E4E2DEEED85BCCA1A4
+                    F5B6DA80AF468963B88DAD70424CE031782C3123492010B649D1BF103834F1A5
+                    9891E043135F701F314162662CE25F1284412999D583733839698E603CB86D70
+                    C38520A04792E816FF1F24117849FEFD3847870EC53F1EA62DF71193698E1545
+                    EC49F86D95227010A65F8E3C236624DCB63570B78E15457C81E6E1E7102126B8
+                    9A8E700811B3237E98316DC5F4C30C8F256624F1059AB8C50FBF981C6F367310
+                    5E486410A88318C8F8C943820C27C91904CE4AF8E117933B8F7010D6F981675B
+                    CF2497F5D8C030D7711B71FB49038F21662C92270BF98D4F54EBF553F393850A
+                    50DD02AC70D903721C4073ECFE63659285B1EC63087A778F9D0AE5762CC828EE
+                    E7DF7C710CF741ED8DF018E28A45AC15D4F9EC936836CE34DF21AE2542674C06
+                    34A98AA553E2E8C88202F50BF7AFA3C6F50FCC328F8A2B84B995DAEEA1BFCDF3
+                    62E61427999F0BE8CE61BF797B3BEE92798A0A985A7F407DFCEB4D7185E82850
+                    8F6EB8CF23EFA4490AEE15970F0BEA73F00C129D401B4F532EFDB37AFBCF9A54
+                    B741070633506E0C914B3B0971B856A11DF305BB40172CB476A9C2D5DFC4D5C6
+                    6D05D2F38303AE37FB8D0DEA0171DDFABEC8C07BD863BFA33E9AF95DDC89D02F
+                    E6EEA139F78D5A155E69CD8C5CD0E76D2BBD1D3FB97C4D5C4D6E2F70345B34DB
+                    B4474C732B395CD8E3AA38F393B89684CEE71ED6E04E59005BC4C54AA6B150CA
+                    8BD52424903B57C1FDD1913A8FE8072BB3F6293C76F186DF6099E004D86B94BF
+                    B6101F65DBC427CA80FDC8FC45081D60226F3C10C7E74DA5ECBDCB2D8EE1D784
+                    C7E639D8E639796EBFB28590408D5E736BAD0CDC50537F9D1573D9E1B1790E31
+                    DBE60E08AF20A8E60B61CE48558A5DA3758ED6B90342022DADCF4BB1ADDC2DA2
+                    E60B0934795533A56A2B778B88F9C202EF304261C6DB93FD4A21ECE2327F89A5
+                    08BEF72BBA4403616B906D6B8293D674E969BF42080BCCF79BB7175F127345D1
+                    0847AD4269BF983EA12D46481DE6DC4ECC1505113F956293D00A32343EB0155C
+                    3A6896BCF92DDC65CA46DCB42A5E3B2EF62AABDC2100FC0B6BB2B8DAF46E08F4
+                    0000000049454E44AE426082}
+                  FileName = 
+                    'D:\Google '#46300#46972#51060#48652'\cookplay\03.'#44060#48156'\05.Cookplay'#44060#48156'\01.Iteration 1\03.De' +
+                    'sign\design_icon\mainpage_ic\menu\ic_menu_login@2x.png'
+                end>
+              Align = Left
+              HitTest = False
+              Position.X = 15.000000000000000000
+              Position.Y = 15.000000000000000000
+              Size.Width = 20.000000000000000000
+              Size.Height = 20.000000000000000000
+              Size.PlatformDefault = False
+            end
+          end
+          object Line3: TLine
+            Align = Bottom
+            LineType = Top
+            Position.Y = 151.000000000000000000
+            Size.Width = 300.000000000000000000
+            Size.Height = 1.000000000000000000
+            Size.PlatformDefault = False
+            Stroke.Color = xFFE6E6E6
+          end
+        end
+        object layoutOther: TLayout
+          Align = Top
+          Position.Y = 303.000000000000000000
+          Size.Width = 300.000000000000000000
+          Size.Height = 258.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 2
+          object Layout8: TLayout
+            Align = Top
+            HitTest = True
+            Padding.Left = 15.000000000000000000
+            Padding.Top = 15.000000000000000000
+            Padding.Right = 15.000000000000000000
+            Padding.Bottom = 15.000000000000000000
+            Size.Width = 300.000000000000000000
+            Size.Height = 50.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 6
+            object Text1: TText
+              Align = Client
+              HitTest = False
+              Margins.Left = 10.000000000000000000
+              Size.Width = 240.000000000000000000
+              Size.Height = 20.000000000000000000
+              Size.PlatformDefault = False
+              Text = #53216#53433#51200#50872
+              TextSettings.Font.Size = 18.000000000000000000
+              TextSettings.HorzAlign = Leading
+            end
+            object Image8: TImage
+              MultiResBitmap.Height = 40
+              MultiResBitmap.Width = 40
+              MultiResBitmap.LoadSize = 2
+              MultiResBitmap = <
+                item
+                  Width = 40
+                  Height = 40
+                  PNG = {
+                    89504E470D0A1A0A0000000D49484452000000280000002808060000008CFEB8
+                    6D000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+                    0406494441545847ED975D885B4514C7CF99B9B937D92C149A54AD5DB5F80152
+                    C122BEE922088AADF8528AD92D557C28DA27459F164459F559115B68FD42D056
+                    E8668B0FBE2F3E1414B11656A4156C29C27635EEC65A4CB289F7CE1CE7DE3DBD
+                    9B98B9F9D8A6A1CAFE60B9E77F263B39F7CC9C3313D8E0FF0EF2B3059AC815D9
+                    04423C294E2CC77A90E889DC9409E0C1C806BC286796A7A28126043F5B2178FA
+                    EA1F69BA8FBD03C7CC3D1E7F0FA8C7D8DD823DC01B08FB121772C42668C40F90
+                    F028CB81A2511D92848F84B6427DC699B91C2D77335D031C1649015A97B80AFE
+                    0A9B434458BFD39A413D997FDED7FE9B3EA84DECEA4A16BC1136A15A334539D2
+                    A8B3EC8A07A94B12C441512C7FC5AE186B80EBA15218AD5E0D52119D7266FF88
+                    F6D6B572C357F17FB3CD34434448FBF2FB49E313807A33BBDB58A9E2AEECC8EA
+                    0BD703B8ECA6E89B68C006610D11BEC54DEE11FCF0D71A7BAD740D5015F29F09
+                    A067590E1485342F73721C8F2C55D8D546C725D6135B1EBA5EC1859826BD9396
+                    F54196563A665015726F9937789D25541B413DED3AF320A8C1AE3E41B74EFECE
+                    2CA432EC004D38276797ADE77048B700BF3001EE096D5FE1A29391E3E278E962
+                    34B84EF4FE6D63AA5E3FE548D81EEABF21F8CD2B5ED91A0D5AE8BCC44AC53719
+                    33E1D16B0D2E447C7E6941A6F0104B70C1B9451F184B2CBEC400F58B777B0D29
+                    EF626972DDA12AFB458B96B9B0D6D8C1661BC9192C5DB9376BF6312BC0F4E8F7
+                    6CF6044DEF70F564EE19D305E6C227BB57D9E6CE57010256404A27DE39930314
+                    14BF55A0E8027EFACB9F2C3B42D3D3424FE40FF8E74A3FA386632B408F02B566
+                    4CBCBBB0920638C7D2B445E83FC0E69BB490D853F6F4E44DF7ABB3874F23D1C7
+                    2980DB435F86F04B31B37421FA4013A6519F66338C701D19C4B57F6A992C015D
+                    D8B2B7A6D57712F10176996B9BE9C5285F63D98299337EE94005FD07A869AD82
+                    4D33EA9AC100F43B66CFBA2C2332088745B1F423CB56B48CE774A5BC39A992AD
+                    01D27377A41B20EE0C6D9305426FF44C34D001534D736C4628821FF0D6CCAB2C
+                    DB592D14C50AA052B766D19E41BF1657B007BAA70241D7794903BCE7032C98E0
+                    BE16127687C5C0C36D70A19C656926B0FF7AB46730582B7B01A2A702314DBC2A
+                    8BE597DD62F93667B6FCB038515EE4A144CC3116CF4DDA5EC9F6005BCBBEC4CF
+                    C183F83B5BA1DDC7123795BD06FD24BDB035FEBD3128F42B63194DF4144B0882
+                    C07A9A582F0BFEDECDE71D89F1311700FE24904E9A0F27DEDBFA033DADA920FF
+                    D5A0C9F3F2E2D86299658435C0CA9E6C259B4A9B3A192EE48A7BC4F1A5F32C23
+                    AC4B9C76336BD53524AAD0A881ABDBF6BB354041F0069B432303DEDBE293F25F
+                    2C63122FACE65C7DDCDC32A602F4CDE6355DED3A61F6E18240F191694BEFB36B
+                    830D36E81D807F0046816B332F4894F20000000049454E44AE426082}
+                  FileName = 
+                    'D:\Google '#46300#46972#51060#48652'\cookplay\03.'#44060#48156'\05.Cookplay'#44060#48156'\01.Iteration 1\03.De' +
+                    'sign\design_icon\mainpage_ic\menu\ic_menu_scale@2x.png'
+                end>
+              Align = Left
+              HitTest = False
+              Position.X = 15.000000000000000000
+              Position.Y = 15.000000000000000000
+              Size.Width = 20.000000000000000000
+              Size.Height = 20.000000000000000000
+              Size.PlatformDefault = False
+            end
+          end
+          object Line4: TLine
+            Align = Top
+            LineType = Top
+            Position.Y = 50.000000000000000000
+            Size.Width = 300.000000000000000000
+            Size.Height = 1.000000000000000000
+            Size.PlatformDefault = False
+            Stroke.Color = xFFE6E6E6
+          end
+          object Layout7: TLayout
+            Align = Top
+            HitTest = True
+            Padding.Left = 15.000000000000000000
+            Padding.Top = 15.000000000000000000
+            Padding.Right = 15.000000000000000000
+            Padding.Bottom = 15.000000000000000000
+            Position.Y = 51.000000000000000000
+            Size.Width = 300.000000000000000000
+            Size.Height = 50.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 5
+            object Text3: TText
+              Align = Client
+              HitTest = False
+              Margins.Left = 10.000000000000000000
+              Size.Width = 240.000000000000000000
+              Size.Height = 20.000000000000000000
+              Size.PlatformDefault = False
+              Text = #53216#53433#51200#50872' '#44396#47588
+              TextSettings.Font.Size = 18.000000000000000000
+              TextSettings.HorzAlign = Leading
+            end
+            object Image1: TImage
+              MultiResBitmap.LoadSize = 2
+              MultiResBitmap = <
+                item
+                  Width = 40
+                  Height = 40
+                  PNG = {
+                    89504E470D0A1A0A0000000D49484452000000280000002808060000008CFEB8
+                    6D000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+                    03F3494441545847ED984D881C451480DFABE95D77A677F3C3EC269083D1A010
+                    CD1284F82F24E42824824966366E1051C4838847D1435C04F1E7E8C5934603C6
+                    EC76B24602FE1DD54B129240246A14313F881077C6E8BADDB33BD355CF7A45CD
+                    6666A77B7666D21911E6BBF47BF5AADF7B5DF5AAABBAA1478FFF18B4D78E507B
+                    D76C564A7E8408BF8B8DA33BF0B5AF436EA7896D8EBA70FE0B52B046A0B34F78
+                    57CF9B1B3AA0E304D593EBB2325838EDA4E036D609708BF00A678D3C3EBC0542
+                    3ACD7208F46B6A28739F78FFB73F596F1761AF6D415E2E45E585C96A72A1841F
+                    71CFF673C6C8DCB9E95C08788145077003CD960ED3C44447B13A1A413936FCB6
+                    207A89E5A002B3E90CDC2F0E157F32460B3D91DD18483C95011A625D01BE95F2
+                    0AAF18631BB49D208D8DE48094C7B2AF551760177AC54F8D7109BA461F0F949C
+                    D67D4C1C12222726678E1A638BB435EC6AEFDA4D3EF907AC0A698037E29263C4
+                    E41FC7749F37AD0A81F23F601F566D899613A4E736AC94AA7CCC85F420EB0AE0
+                    4B71D70BAF1A6313749FFD0AE12B96F95EF6414FAD5F658C2DD0D2141311AA7C
+                    F6B840DCC13AAF4CC719BC173FBE72CD7458061ABF757518FA671C80DB595740
+                    9F89A9E24E4424D3A1099109AA7D77AC40E5F75B15942CBFA8877A3FCB7E0095
+                    8C0B8FA2E8BFBE6A5B41CA7BFC407EEE66A08F553DAAAF0BD1FF8EB16948B865
+                    71E89759AB2ED290A0CC67DF2B013C532DEC6EC10B4ED7EB8194577CD636191A
+                    6AB014C0D3DD4E8EE1981CDBAA8B342442F9ACA90B1F4A730398EE788B6A8779
+                    2A8D56179F7E2BD4E5149BA02438E91C293E681A6F32612E7B2285F000CB4B13
+                    EC68FBE926B123A8F95BAFB41356BEA908029EA9952C2F3BC573F915810B7D7A
+                    41751F1F2AA5416F36635543C314A7A1FFA015BB8E8EFDA1151769184146E5D7
+                    8E06107EC74B5F9F407F48A178CC9A1245923AAE7797BBF91D98016773D4C136
+                    3241A692CF7E6F6F0EDD61B11ADF9D99B3A644A0E74706FD82BAA607C1E141E8
+                    F38A918788D855ACF7DD6FF9CA0EA8080F9BC604A1023CC2BE59AEC68A223641
+                    04FAC68AFAB0A0B659313108D4562BD6C55A4AFC7BD019B89E20C0A2B3A4A8F3
+                    59136B29B135C85476672FF277870FB4E0A68756E1C1CBF3D67443E8F3E0805F
+                    FAE72F17F016FD3D73A96FBA688E615134DD498403E6C9D811957DB3152501FB
+                    629F2C5763C4D13441A49AE255094E738DAFBA1811344D5017404D1D526209D6
+                    F9AA891145F3299E2AFC5C96F22ACBA5F2FC43FCC7C0186E00F6C1BE5866DF1C
+                    C3186268BA48187DC23EA29F620FCB5CD09052E6F746C748E1543FF8F587D751
+                    7D82CE99F618964D508D8DEC4252D3564D1442B15B4CCD7C62D5489AD7A0861D
+                    10C2CBD5A94E02F6C53E974BAE478F1EFF7F00FE056FD670B8AA2658E4000000
+                    0049454E44AE426082}
+                  FileName = 
+                    'D:\Google '#46300#46972#51060#48652'\cookplay\03.'#44060#48156'\05.Cookplay'#44060#48156'\01.Iteration 1\03.De' +
+                    'sign\design_icon\mainpage_ic\menu\ic_menu_buy@2x.png'
+                end>
+              Align = Left
+              HitTest = False
+              Position.X = 15.000000000000000000
+              Position.Y = 15.000000000000000000
+              Size.Width = 20.000000000000000000
+              Size.Height = 20.000000000000000000
+              Size.PlatformDefault = False
+            end
+          end
+          object Line2: TLine
+            Align = Top
+            LineType = Top
+            Position.Y = 101.000000000000000000
+            Size.Width = 300.000000000000000000
+            Size.Height = 1.000000000000000000
+            Size.PlatformDefault = False
+            Stroke.Color = xFFE6E6E6
+          end
+          object Layout3: TLayout
+            Align = Top
+            HitTest = True
+            Padding.Left = 15.000000000000000000
+            Padding.Top = 15.000000000000000000
+            Padding.Right = 15.000000000000000000
+            Padding.Bottom = 14.000000000000000000
+            Position.Y = 102.000000000000000000
+            Size.Width = 300.000000000000000000
+            Size.Height = 50.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 3
+            object Text4: TText
+              Align = Client
+              HitTest = False
+              Margins.Left = 10.000000000000000000
+              Size.Width = 240.000000000000000000
+              Size.Height = 21.000000000000000000
+              Size.PlatformDefault = False
+              Text = #47928#51032#54616#44592
+              TextSettings.Font.Size = 18.000000000000000000
+              TextSettings.HorzAlign = Leading
+            end
+            object Image2: TImage
+              MultiResBitmap.Height = 20
+              MultiResBitmap.LoadSize = 2
+              MultiResBitmap = <
+                item
+                  Width = 40
+                  Height = 40
+                  PNG = {
+                    89504E470D0A1A0A0000000D49484452000000280000002808060000008CFEB8
+                    6D000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+                    04DF494441545847ED985D685C4514C7CFCCFDC8265B6D6BB24959B0AD22A8D5
+                    22585B68F141C5A7A0042A6C1AA8883E142C147CF045508352F0A53E0955EA83
+                    148B247DA8044110C4FAD2084A056BA979904AD2B234D99634259BFDBC33CE7F
+                    3213AE7BF7DEBDAB0553C80FC29E3BE7EEFC4FE6CEDC73CED2061BFCCF30F3D9
+                    35F2C81E4F2ECD3D2F498E90A05D4234F335A79E87AF27F08B9CBB45E2748511
+                    9B629BB79F67A72E36F417BBA4EB00C5A1C12129C5FBD5BA3CDCE7D1FD663891
+                    9506DDC9F8EC0C63FC433EB1306F8653913A4071EC911EB6B0F84EB95E7D3BEB
+                    65B266788D2AD16D97A808BB4994CF106DD18E1065AA2C6759EFC77270EB47FC
+                    933F6B663891540162D58408BE7688F69BA1D555F1E81C279AA201FE3D3B595A
+                    362E8D3C9ADB4437C58B8268A4DAA083E1D50E244D73C7399866353B06280A43
+                    4F3683E6B79E430FE2BA4C54EF657492F93DC7F997C55BFAA60E8857F3FDB25E
+                    7BB722E9A85A7A1F638D80AEB98E3BCCCFCE5FD637C590182056AED9087EB1C1
+                    A95D3EEB121FE1674BBFE91BBA4414724F35494C79443B70AD83F49CBD492BA9
+                    9E507BB0E7F0586D7001D1CF6ED6DB9B149C7C6D472628F44F340A0333E2D0C0
+                    98195E03DF757D771FE6C235E61641700E5AFA8636C406880361F71C568E67BD
+                    97F817374ADA1983ACAD8CAA09475D928F566AF23333FC0FF899F905EEBB2F63
+                    4E5C3B8C0E404B3BDBD036403C5A9C56D8D873FAB176086E1571CD18E47B74DD
+                    98111024E6C4DCB8861634B5B385B601E23D675F25381069F71C9FB8F58364FC
+                    15C1E8B8E37AC366B82D98B397E853D8D082A676B4103924727C97BF7269BE84
+                    D7025E25BD9B7A1E4E7B5ABB05A7BBB25CBB6AB5FA723B075A334E6405E54CE9
+                    39FBCED2EFB97F119C1C1F8FDDDB61303734604313A9533B424403446E3528E7
+                    943153214673079A85FEE9F2A51377E458EE59339C485823AC6D89FEA72AF11B
+                    8B90218C95881C1DDAA95E2F934C8A0B38F97A4F05F219E34E26AC11D6364402
+                    4455824FE4D6D6F4D50EA4B4BAACFEA4262A98A15598FCDD588940035AB0AD76
+                    984880B664B289BF23E53E551B902CAF50A3496C667550093BD95F8DD911AB65
+                    B5C3441F7197B0D3B3557F4BFFE3D9FCE61C277901632AE2BFD857738BFA86FF
+                    482440149BF844C9A40752C04E5D5DC29FDAE47B70CD19A55E3D60B5AC769848
+                    80BA1256A09ED325534A904FAB2BEC09D84CF28B7A3005D0B0B5A3D50E137DC4
+                    AA4C3716A19E3356674A8BBBB37DA40A154DFA150C6B84B50D9100D14318539D
+                    7A8ABC97E260923D6D4C95BB9CD4018635C2DA9668808FE57E44DA818D4A18E9
+                    483B3AA0847480A8F1D8F60796C4D8E07EF146FF7DDA1903E686066C68A2B9D2
+                    8E10D1003FB8524783035BA71F55096B4707A4207D40842333F5CBC5391604D3
+                    72994E6B670CB2567B6F2DADA2A96AD3F945F7A002DD57B95155D51011CA7454
+                    C2DA11035AD02A13BB61F710CBF98E634BA7B5F2AB15CC59217A1336B4A0A91D
+                    2DB40D102578D6CF9C808D1E0265BA787D5B4E3BDB20CBB3035962BA2A56FF95
+                    54E5D67792B1613E79F32D7D430B980B73DAFE045A71657F6C4FA24BFEF9C5F3
+                    B6AA46999E5455AB153926493CC498F7399FBCF187198E200E0F0D8A7AF31B35
+                    EF3E5CEB0E6FDBD617E2DAD075DF34DDDB6DA7655D37EE96BBF2D3873AAD3810
+                    77FDA78F3058CD75F9E3512B68AED0BFA4FAF94D65272400FDC50D36B8A720FA
+                    1B2D966865AF40F1F20000000049454E44AE426082}
+                  FileName = 
+                    'D:\Google '#46300#46972#51060#48652'\cookplay\03.'#44060#48156'\05.Cookplay'#44060#48156'\01.Iteration 1\03.De' +
+                    'sign\design_icon\mainpage_ic\menu\ic_menu_info@2x.png'
+                end>
+              Align = Left
+              HitTest = False
+              Position.X = 15.000000000000000000
+              Position.Y = 15.000000000000000000
+              Size.Width = 20.000000000000000000
+              Size.Height = 21.000000000000000000
+              Size.PlatformDefault = False
+            end
+          end
+          object Layout2: TLayout
+            Align = Top
+            HitTest = True
+            Padding.Left = 15.000000000000000000
+            Padding.Top = 15.000000000000000000
+            Padding.Right = 15.000000000000000000
+            Padding.Bottom = 15.000000000000000000
+            Position.Y = 153.000000000000000000
+            Size.Width = 300.000000000000000000
+            Size.Height = 50.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 2
+            OnClick = Layout2Click
+            object Text5: TText
+              Align = Client
+              HitTest = False
+              Margins.Left = 10.000000000000000000
+              Size.Width = 240.000000000000000000
+              Size.Height = 20.000000000000000000
+              Size.PlatformDefault = False
+              Text = #49444#51221
+              TextSettings.Font.Size = 18.000000000000000000
+              TextSettings.HorzAlign = Leading
+            end
+            object Image5: TImage
+              MultiResBitmap.LoadSize = 2
+              MultiResBitmap = <
+                item
+                  Width = 40
+                  Height = 40
+                  PNG = {
+                    89504E470D0A1A0A0000000D49484452000000280000002808060000008CFEB8
+                    6D000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+                    0741494441545847ED987F8C5C5515C7CFB9F7CDECEC4C11E8CCB6F4071A42F9
+                    E58F968AC1624824FE414C2421A1746677315488369156AB7FF82398F097BFFF
+                    6A8B34A12612496D77A73F3491F887FF6813120A89A5252A42159556CAB6336D
+                    C09D999D37EFDEEBF9DEDED9CCF6CDCE96C5C498F4D3BCBCFBCE39FBE6BC7BCF
+                    39F7DCD215AEF03F86C37DD1B8B1152532ED833309AF35312DA13C29EE506328
+                    EBFEAE9CDEACAAE74E04D345A1C27DD1381397E53B3F9D8BE8DA429E3205229D
+                    CFD007B4E3758ECCD660B6682EDB41FB95354376AC7453789CC511DD8C7BB343
+                    EF3AE6EF38528F27C6BC7E51A952F6784F185E1697E5A07DA8788B99BAF02A1B
+                    F7BAA92CDDEF1E1B59023996D739DA80F15044AFAAC9DAF765497FA0B43A0259
+                    C29D5BED23D78D600C6C65645BF3F4997AA75CFC53BF8FEDC7823168474BEBE3
+                    D8FD561C28051125C4AFC997FDA145766381D8CF88657A564FD637FB71A5F80D
+                    76F4638C1BE4DAC3A4AAC42EAF1C6D840CC464CF6694FEAC9AA8BD1C447D19E8
+                    20BEB263CCF35952CB1A326139A2A39AE8AEA09E054BAA7534A6AAB56378B695
+                    95D75BDB7E4E33ADF5063D7488FE1513AD9458E57642B5EC30DDAD7E517F2DA8
+                    53CCBBC4CE3936C6FDAAEB5C5EA947A26AFD5312675F93E7582E63897EE994BE
+                    373A78E1D6AE73404DBE752A3A505F27BA7596F9E946137E89E34493D112BAAD
+                    C0EA51BC13AB623AEE3783E272DE19749B3F946BBC5BAB1532B902BE1A2F563F
+                    ABFFFBA26EE43A1ABAAAC57BDE78C71B2F801D2DAE248AAE5713532F06112595
+                    E20B3AC4AFD37CB3DA5F3BE91597307889478B5BD9D24FFC58BE5E57EBA35EF1
+                    3EB195D276766E871F93DBAFABE7C7BDA20F0B2689D9543CA4981EC0D891BE4B
+                    55CF1EF58A1E6C79446A9E151B1732934F32A9C3FD8A3466B3394DFF40CD44B2
+                    4525FE04EF3E371DD429162E33CC4DDC107394C99CF6B280DBB2226F2AC55D4D
+                    B22FCB8B9E50C463172F7A0232532EEE844D300F6823BB8D944FFCB83D36C839
+                    3078893FBF7C59334E4E49C6659110B2C47E268177EE42FC9264EA478248B2D9
+                    FD0DF748F38D5E2018A63FEAABB39FE43D67FC8702535EFAB47CC81694A0821E
+                    5ACDFBCFD4822A456A06DDF8C8EDF2823D6653E9779D78E6049C839C999EF206
+                    01FB4EFCC3AE73E2FC411A562B3287CEAFC1E532BCD2CB0449848FC216E32E4C
+                    992771470D3549FC9CCCF40E5B2E3EE6F7F54B48CD6052597A1CFB6878F41847
+                    AFA06C8447FF118DC41E432D937F0778B22EFB711A572956653137F932456A7D
+                    6F4C76CAA5BF44E46E098F017784ABE7EF090F9ED40CB663BE0177145FC9B03D
+                    8EE99B2A9BFB9C57066C621F8073F861CAA9AF06719AA083AD24D1EC2E02A4E0
+                    8F63F79110388A7D1C3274445E3988E9723171E5A293AFFF7610A5F0FBB1D874
+                    CAD7F6AD5DBDC006B6F89B204A2165E771D84CDF57944D662EE92C96F4C3CD11
+                    A7755D643B09A3FF0E4E2618481CF87B0F2981CE924FFB56ECBE856A2F65E4E7
+                    B65CFAB8577661F233D72675A31D5DB6DCCBFA001D6CFC83E339B36D1F5EBD0A
+                    4D0532DA98CE172043A3EB953DA41CCC45EE15DC2F369DB4413A9087654FDEEB
+                    9501663E8CF8F3B165CDCE204E21BA5DDD5855913A1CC41EDB6AFE1A1D0FCA4D
+                    A4B5EF29D1857B650FE965D4430FCA7C6F9575DE29D9EBF7CE48D36DB2037CC6
+                    EB05B448C3C4BBFD98A82265620235D32B058C21139DCF6ED8F2BE73C7BD52B0
+                    E3CB3EA699D7631C53F2B675FC7B49C89FE288E00D7A185CA8A5D96C363AA765
+                    16B2927187A4DF7B30A8E044C1C4C94B11D187F18C591A32E624C92FCBB2AEC1
+                    CC419E10FD5967A33BD5DEA9D9E533E5D26E45EECB2288F3596922F64E9D0DAA
+                    14E919EC413DF3F6B961767E695A8EEEEF76D2003F881FB6C44F75971B4B1591
+                    BAA9BBACD05DEA1C62AFD5745FC45866B63AC83930D041382435AF9B20D6B5F4
+                    70187BBC93D5DAB6BCE23B2424BE2757D55F4CDF850CBA5EE73C7167351A053F
+                    7652BF1760E012A37629C7BEC5728AB74BECEDF28AF7C9DCF7D23635519FB38D
+                    F632EF0CA2DDEFBEC410BDD0EB9C1D5B7EA76F5A2F13697EAFE9B5E7026F4113
+                    8C71B33DF3A3411DF5FC4B5CBAE64D09709FF633441BECE8C866FB68F12A6427
+                    9BE4C546CB9EC25E2BD79CBDB317A9836BD17834EAD3671B75FB261A55C8B9A1
+                    36E25C82F15026F74FF5E45FDB18F7637016CB71336ED1F3383B20E8A5AD794B
+                    82675550CF62C81D57B9FC7DEAD9D37E56DC78E98EA49DECEBD6B75EB01AF860
+                    24923FD9697DF77CED3E189CC572DACA66F95EBC082FEC3A671D1D960CDD274E
+                    FBBD5313DF4EEDD618C6C026B4BDEB1C7A3ED8A27BC6334E8578174E74FED839
+                    C03930D04180A28CAF443D6B74661A086A7DA0BE5132F4A1BCD21F8C8D99829D
+                    9C02670FE232F6CEA153C90FE556C116ADBD6537017942EE0D7FDC5CE04C0CDE
+                    D3A68F60BE345ED0D82A76F7A03D8B22FD0C9A0CECE3D82AA5DCEC90E2FEF560
+                    EAF1FFA320F13D28EE7A794F0EF6034920FBE997C2E31CB065AA6ADD6F898B65
+                    C1255E0815E9DD86DD09349D12930687F499842E887B475867ABC1EC0A57F83F
+                    85E83FD9DA3251FB6AB9860000000049454E44AE426082}
+                  FileName = 
+                    'D:\Google '#46300#46972#51060#48652'\cookplay\03.'#44060#48156'\05.Cookplay'#44060#48156'\01.Iteration 1\03.De' +
+                    'sign\design_icon\mainpage_ic\menu\ic_menu_setting@2x.png'
+                end>
+              Align = Left
+              HitTest = False
+              Position.X = 15.000000000000000000
+              Position.Y = 15.000000000000000000
+              Size.Width = 20.000000000000000000
+              Size.Height = 20.000000000000000000
+              Size.PlatformDefault = False
+            end
+          end
+          object Line1: TLine
+            Align = Top
+            LineType = Top
+            Position.Y = 203.000000000000000000
+            Size.Width = 300.000000000000000000
+            Size.Height = 1.000000000000000000
+            Size.PlatformDefault = False
+            Stroke.Color = xFFE6E6E6
+          end
+          object Line7: TLine
+            Align = Top
+            LineType = Top
+            Position.Y = 152.000000000000000000
+            Size.Width = 300.000000000000000000
+            Size.Height = 1.000000000000000000
+            Size.PlatformDefault = False
+            Stroke.Color = xFFE6E6E6
+          end
+        end
+      end
+    end
+    object TabItem3: TTabItem
+      CustomIcon = <
+        item
+        end>
+      IsSelected = True
+      Size.Width = 188.000000000000000000
+      Size.Height = 49.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = ''
+      TabOrder = 0
+      Text = 'TabItem2'
+      ExplicitSize.cx = 216.000000000000000000
+      ExplicitSize.cy = 49.000000000000000000
+    end
+  end
+  object BottomImageList: TImageList
+    Source = <
+      item
+        MultiResBitmap.Height = 60
+        MultiResBitmap.Width = 60
+        MultiResBitmap.LoadSize = 2
+        MultiResBitmap = <
+          item
+            Width = 60
+            Height = 60
+            PNG = {
+              89504E470D0A1A0A0000000D494844520000003C0000003C08060000003AFCD9
+              72000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+              0650494441546843ED9A7B6C14451CC77FBFD9BBF65A29025A08161F7DD81050
+              1379241A438D26244683A26911944ACCD136A82844FFF1152012E21F462418B1
+              3D8E0421829480513431C41891F8002BC62021D0878FB606505A01DB5E6F777E
+              CE0CBF96DEA3B0D7DE1D15EF936C6EE7BBB3B3F3DD9DC76F760F3264C8902143
+              860C970DE4DFB4209796645317BD16B6ED27C123D00B6213E6E2AB627D6388B3
+              A49CB419968B4B0B119C7A209ACED279101B08AC0AB1F1580B2B2945F06F4A91
+              55C50F86C8FE21C6AC4669FA98CEC34A4A49A961DA516191BFF8F536491FFA00
+              C6B01C833EA6F3E8BCFA1C965342CA9AB4AC9A3C51CADEEDAAF6652C19FEEAE9
+              0C8DCB19BB54EF9FEEEE587F8D6F4CB639C03800FB84C89A2F0247FF6029A9A4
+              C4B06A9EF78489B665114C60C91006F8D56341B9A86BFE5EA76575D10CDB819D
+              5E801B4D06A617E18417718108347DC152D2486A93262294FEE21755F3DC1B6D
+              56127CE6F1654DEF33ABD1FB5AD3C75832E8737519BA2C5D26CB4921698549FF
+              947184A12D82E87E960CADEA3E5C87B85A142C5C89AB56499623A0152B846CDB
+              BAB29DE89549517592889F2265578AE091D32C0D8BA4189655A5336D69D74737
+              CD1E091DD91EAA1481964F58BA28B2AAF081908D5B7C02C6B264305D41782A44
+              E0D8419686CCB09BB45C5CFCF429D9B13FDAAC43F0A3CF67CD706B56A3F3EA73
+              F4B92C1974D9FA1AFA5A2C0D99213F617A6ACA28190A0504D07C962E80B899F2
+              F29788B5DF76B3921072F91D3978F6D40635282C62A91F09B85D646757E13B47
+              CEB194104332ACEEF45447D24E0FC264960C27E16C6F3EE43D2B82CDB52C0D0B
+              E92FAA39DDD3B92E7AEAB2098E5A02CBC5C6A69F59724DC286A5BF64E1B92E59
+              9B970BB92C19C232FC9BC793539E8C7E3610333ED8DD3BBDC27B034B86B35DD0
+              352A57D48860E356965CE1DAB009FCBB699D1A856B58EA4722EC15C2F318D61D
+              FB93A5A442D5A5D74A69BF2F0866B3D48F1AC56B31079F73BB00713568D1929B
+              8B6497F375B4593DE5A879668D28A8BC2F556635BA6C7D0D7D2D7D4D960DBA4E
+              BA6EBA8E2C5D944B3E6113F84BDA1C1D0BF700746683784235A98F594A0BAA4B
+              CD09817C2F6E7D042E52D1D9472CC56550C3B4E26E8F6C6D5DD30EF4427430E0
+              20FC24503C22028D4D2CA5155955522C49EEB2086E63C960821CC037C4A4492F
+              E1AA2F6D9623886BD804FE4EEF0716C22C96FA51CD6A0B8E1E5F33D4292759E8
+              A98BCE9CAC557DB292A57ED43CFE95B0B21E8DB70089312CAB8BEF0C4BDA1D1D
+              0B9F9F72462D13C1960D2C8D08A4BF70C92938F7D678C8CB62C9601620021F16
+              754DDFB0648819B4EC90BD236695633BADF9624CD94833ABD175D275D37564C9
+              A03D682F9CEC27C6B01056C4892AB2F9DC33DA3B4D048E7FC7D28843D74DD751
+              D7952543B4174D4C93D6731E38CE33EAC84D84B80F67DFBE19E7D5AB75F905D4
+              80E6A3D6B65960C98E81CBBD74A01618B702613E165CBF2F7A60326F58F61E5A
+              8444656AF2FA052CEBEDE8E972D0517A30A8BAE86A3B0C073C024A755A0D62EF
+              58C1E66107F56E701617AD56C1C7CB2681D800AA29635D439749BB24E1D51239
+              A2ACCFACA6A3A7D3CFBB29E70CC1F3BCAB2A42D349FE7D2FA75C93B061D524D4
+              9C7F81E8C03E95A84823E2DA4890C3BBAE49D8F07F9DFF9DE1C4072D7F49851A
+              AA22E6370C360F5A8E8A7D97AB307001215DC5525C90F01F15AE6E53B1F95A96
+              62207F51C4C2413DAF79186CACE7842B52FA84F5CD41906FAA1075A60770CAC5
+              369D47E73D7F4353478A9B344DE59D0418CA39EE496B1F6E3FD11DB6818E0CDC
+              3ACDCA2E7DA4D5F0F809BEDFBDC196A903B73CC0C37C382DA47794268A1A7400
+              54DF4D78E01C0EE9352C620DA79BF41A8E8343F20A7EC2E489F784AF60C3324E
+              93566B50DE4B0B69EEC391AF582F0797BD0FAB067D25F7E1384F38CD8613BE98
+              AC2A9E86921A386988FE1AD047CCC76D823DD6A6E6399C3438FEC2DD02702E27
+              0D6ECB23AF9826DE6D3CC4495724FC84B1AEF1900318F11E4B5724DEC6870DDA
+              045A18E0643F885630DA60BCB2F4C6870D0EC201DC703CE23BB21B12378C48C2
+              E779C8BC537289FEE74E8180E5F13E83888D8D7B0A0096E93C2C5D1287E0A0C0
+              ACB9BA2E2CB926E126DD87FE5F06B56D2D5757BC4B055013598E4002F4AA3B7A
+              18B2AC1DEA6934B31C17F331ACD799A7CEB9459D13F152BD0F09D8AE4CEEC782
+              C7770DF67F910C193264C89021C34805E05F2568859C0504F997000000004945
+              4E44AE426082}
+            FileName = 
+              'D:\Google '#46300#46972#51060#48652'\cookplay\03.'#44060#48156'\05.Cookplay'#44060#48156'\01.Iteration 1\03.De' +
+              'sign\design_icon\mainpage_ic\bottom_ic\ic_home_selected@2x.png'
+          end>
+        Name = 'Item 0'
+      end
+      item
+        MultiResBitmap.Height = 60
+        MultiResBitmap.Width = 60
+        MultiResBitmap.LoadSize = 2
+        MultiResBitmap = <
+          item
+            Width = 60
+            Height = 60
+            PNG = {
+              89504E470D0A1A0A0000000D494844520000003C0000003C08060000003AFCD9
+              72000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+              05DB494441546843ED9A6B4C1C5514C7792C2C0D52AAD612F8E22B3146D498D6
+              265A85041322450AA8A5B62A12634CD3F86AD50FBE9A3469A3FD60AA8D8FA631
+              31C1465BDBDAD295470D6948AAC148A51A538D5F7C54CD12885A5B406061C1DF
+              9D39BB656607985976A648E7974CEEBD67EECCBDFFB9E79E7B6767D37C7C7C7C
+              7C7C7C2E18E9927A426B6B6B707474742BC7A38140201DDECFCACADA5C595939
+              22555CC733C1478E1CB97A6262E200D965BA254E37C2EB6A6A6A7E91B2AB6448
+              EA2A4D4D4DD5883D49D62C56B14C9D5375A4EC2AAE0A46482642B6F7F4F43451
+              5CA45B2D59A4EAA8BAEA1AB1B9826B2EDDD6D656188944F621A0544C1AFDFDFD
+              237979794F49FE2DF241ED84807B1FCFCECE5EBB72E5CA1E31A5145704335265
+              04A6BD04A40231C538CDB1BAB6B6F66B55A0DEAD240739AE54E5185CDBCBB5EB
+              A8D721A6949152C18C667A28147A81742B45B36B7E969B9BFB507979F95F52D6
+              686F6FBF7C7070F043B277EB963851467B737575F576D209B1CD9A94093E7AF4
+              E865C3C3C37BC856EA161DE6E6446161E136A2F0163A3E2E66033CA00CA2F816
+              EABE425D739F5A737272EA2B2A2AFE96F2AC4889604675F9F8F8B85A720CAE39
+              36367686F5B61ED76C11D3B4E0E2F770CD1EAEB9544C314E676464D431DA27A4
+              9C34B3164C279F20D9C191AD19CEF32D1DBFBFAAAAEA6729DBA2B9B9F91A447F
+              42F616DD1227C2F12C0FEF1DBD981C490BEEE8E8B8E4DCB973EFE18E6BC51407
+              5B634141C186152B560C89C9119D9D9D0B7A7B7B7731051AC41407DBBE850B17
+              3E5E565636202647242598F9568C0B1FA4F1EBC5142382EB3D8DEBED96F2AC60
+              AAAC3F7BF6EC4EF3D2C503FD9176561317BE17936D1C6F3C10FBF0C0C0409759
+              2C0FE0373A7167AAC42AD4BDF2F3F34BD4BDC5A4A1DA567D507D11936D6C8FB0
+              DAF8B391D84976BD6E390F4FBC3D3333F3413AF8A798520A23BD381A8D7E84D0
+              72314D66371B9567ECBE80D812AC02099B810334B8544C1AB2E4BC866B6DE69C
+              E592932A64E9DA4A9B2F9A972ECE9D64A352672740CE289828AC36F58D1CE6BD
+              F03FB8F0238CEAA752F604467B152EFE01D984FE703410C5437AD19A29051385
+              0344E157C3E1F0F3E6274A83DFB119B80F37FA494C9EC2F4BA964DCE211EF8CD
+              62D2501E575454F43A51FC25A2F898980D580A561BFF9191918FC996E816037B
+              962C59B23ED9252755A8A5ABAFAF4F05C87ADD62E0F36030F880D50B4882605C
+              E676C41EB6D8F84798A71B99AFBBA43C27605E6F600EBF49D6B0F1512F2088BE
+              9729F7A59834129625DC75BF85D83F384AE79A5885F449BD82AA3EC6511A9416
+              29C64910CCD3325C08C708FB4B09065F4979CEA1FAA6FA48F6986ED1B1D062E9
+              D28BA9F8244FE72A5CF8384FB091342AA73508683904B412EA9DA131EDDDD62B
+              5A5A5A6E62AF7D0581E9B83930D19F4C5CBC81B49480F62BFD7EDBBC3798324A
+              4F05EFAFF9BCBF7691BD4EB7A4BD8B68F502E13A88D9869897A5D88DA85204FD
+              2B655B38DE5A0E0D0DA9F91213AB7EA6794CB2AE83D73D275985FAF1EF2EC9DB
+              C6B1601AC991AC867963EF26B8A8A16D5820A96D1C0BFEBF73D109761CB4081C
+              75B8B5617D23684D791FF6E29BA8BF8E00932B264B989F83B8EC5EEEF5869812
+              E05E861FF3A8BF865544FDB4641B5747583D1C921D746C39A26F98EE5075545D
+              B9C635DC76E962499D90CC35B6F17A0E8F32923F4C3E18DD6139E7095E0BFE9D
+              39573CF9606E9F92739EE0B5E0842F088CB0E3C0391B3C151C8D4653F6C92459
+              BC1EE104E6F508335F134618DBFC154C54BEB8E6B09560AFB9E07318E6EF08B3
+              5F4E18616C9E0A76DC5828145A4A27BBA5A8A17E0F96AC018B8FDBCDBC1CAC92
+              BC062F0487496AF5928E83FBA9DFDABE91BC2D1C0B564106D15DA4EAFF19B691
+              CF32F4CFF865809785AA70381CB21033135DECD46E731A171CBBB46A006AC81A
+              46793AD43F7710B4C92C5641A79B39B751D511D38CD0FE896030589B4C10743C
+              C231683483915E4DF60E8E42CD9848847AA70281C0FE993E74C997FF3588B891
+              A2F9DF0431C2DCEF0B1ED221EAB9FAF1CEC7C7C7C7C7C727D5A4A5FD073F3297
+              D55F1354AA0000000049454E44AE426082}
+            FileName = 
+              'D:\Google '#46300#46972#51060#48652'\cookplay\03.'#44060#48156'\05.Cookplay'#44060#48156'\01.Iteration 1\03.De' +
+              'sign\design_icon\mainpage_ic\bottom_ic\ic_home@2x.png'
+          end>
+        Name = 'Item 1'
+      end
+      item
+        MultiResBitmap.Height = 60
+        MultiResBitmap.Width = 60
+        MultiResBitmap.LoadSize = 2
+        MultiResBitmap = <
+          item
+            Width = 60
+            Height = 60
+            PNG = {
+              89504E470D0A1A0A0000000D494844520000003C0000003C08060000003AFCD9
+              72000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+              029F494441546843ED9ABF6B144114C7E7CD6D2E825DBAC4D81C29C4268DAD90
+              D6427B8B8070D1FFC01482862036F13F500F040B7B2D6C03B63669C422A4F148
+              BA7482B9ECCD78DFE16D20B73B7BB3B99C37BBBC4FB3FB7DECC1FB326F7EF06E
+              9420088220087383F85988D95A5BB5C6EEA5C66EB45B6A99C3513218AA9344D3
+              3E69DAD61F0EFB1CCEE1350CB367CA1CDCB06A8943B5E02FA9D345A5D77DA635
+              3F736064EB66162067E4CE3287D730CA985F6B4759EEDE92B6DD8EE5D74B0CAD
+              FAAE49BF553AF9E10226BD67AC79DE2275DFE9318CA26F44F4AC6C5E4D835B67
+              AC7DA7957DC02107F58E0ABD55326C48BDD1B7365FD1EEAEE190C3EEEC68D3FF
+              F47A542E2F387481257D7B566633609AACF9CDD2E133EC2DE971DCC816980588
+              E9D5CD97F88643D1126C18655C6436C39946A98F8172C308B0BC76B292663991
+              E092B6BABDA2DFFF3A615988797A6799CCE098E55C99BAA49B42F8082BFD48F7
+              0EBFB22CC474D71E92325F583AAEBA4AFB56DF50A61E616C3D588D59E6702BF5
+              E81B96175C754BC26FF05B96D746B061ECB3D87A8A4C67DB926F2F8E89E092CE
+              F85F078F59957465C375415669460C379D4A73F83C1DF69385D6B6A2F6FEA453
+              D7ACC1A94ED9C1467A3EDC5B485AB9A3EBD48B96339BDC5CD7BD9FA71C8A02D3
+              BDBB94A67F0EC64D4FBD68616463330B9093ABBA40C2E7F0A88CF92D3E2AE416
+              6C78DE73B68C2AB9C9B6D474C470D311C34D470C371D31DC74C470D311C33E5C
+              872152AAE4163EC27610EF8D800AB9051B46EF08ED1496D1E05A3CA3DC584E24
+              D8307A46E81D99ADCEE318CA1B392097A27E5619DE26DED993CE71EC77B37CE0
+              CED6E2C7A3159697F08E302E79F16BED28CBDD6B1837DA70C98B656D40CEC89D
+              650EAF61FCDB871B6DC6D267940887A3053922D7B25B788220088220CC13A5FE
+              01C28D3A5D4B6EACDA0000000049454E44AE426082}
+            FileName = 
+              'D:\Google '#46300#46972#51060#48652'\cookplay\03.'#44060#48156'\05.Cookplay'#44060#48156'\01.Iteration 1\03.De' +
+              'sign\design_icon\mainpage_ic\bottom_ic\ic_newsfeed_selected@2x.p' +
+              'ng'
+          end>
+        Name = 'Item 2'
+      end
+      item
+        MultiResBitmap.Height = 60
+        MultiResBitmap.Width = 60
+        MultiResBitmap.LoadSize = 2
+        MultiResBitmap = <
+          item
+            Width = 60
+            Height = 60
+            PNG = {
+              89504E470D0A1A0A0000000D494844520000003C0000003C08060000003AFCD9
+              72000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+              0273494441546843ED9ABD4E024110C7E1120E6A3A0D3E038DAD09259008D7FA
+              02BE811426DA181B7D035FC096C304284D686D7C068974D47C24E0FCB9414176
+              CF3D3E64B9CC2FB9DCCCC225F3CFCEEE2C73240441100441D81B49BE2B69369B
+              B9D168F4406681AEA3D9A0BDF4E87A755DB7562E97BBC1D02A5AC12CF69DCC6C
+              307230F449745E27DAE1FB0A3CB3872616643976255AC104D2F850D1C6AE4DE9
+              7ABD3E65F3371DC7711E53A9D41B9CF1787C3A994CAEC83C83AFA045297619B6
+              AE368197DE1399A56024C0F33CA5B6488293C9E47DA552B9A5FB8487664CA753
+              C7F7FD3B32AF83911F48ECC9AEC4CE61D11FECCED0090E4BE9DF74546201C6AA
+              D5EA0D999D60C45E8C05238D5562E7E0337C87DD6F906E980176B7CE424A1B61
+              9CD2E974FAB8542AA1D66969B55A47C3E1F093DDBDB28D948E05C6334CE94A4B
+              B8F2C2AE9246A3714E3B7683DD396BEDD2BADDD7948D6718A507BB31BB2BE033
+              2E4F4BAC5B92F00C9E65776B4449E933941E95E885B2A4ABC5D6609CD20BFCCB
+              C1635729BD8EE0834076694604C79DA86BB84B47C81A6D42AF7F9DBA760D4E75
+              B4A915A842E0B7EFCAD1751B9B563793C9E48BC5629F7D2B68B7DBD9C16080CE
+              CC92E88D372DCCAC6D620162426CECFE89B160A4319BD611253663C1FB5EB361
+              44894DCA52DC11C1714704C71D111C774470DC11C1714704EB4087814DEB8812
+              9BB160B453D8B48E28B1190B46EF08ED1476AD0131715FCB88286B3887DE91EF
+              FB1736A43762402CAA7E5618614D3CBCE7B5FDBF593A7A9EE71DB3BD44D80C5B
+              DBC332401BBB56B0EBBAE8045AD7A534007F4CD37631B582F9FD6C9ECC67BAAC
+              6DE02D80189F11F33AEFA30541100441D83589C4177CB2127BF65B3264000000
+              0049454E44AE426082}
+            FileName = 
+              'D:\Google '#46300#46972#51060#48652'\cookplay\03.'#44060#48156'\05.Cookplay'#44060#48156'\01.Iteration 1\03.De' +
+              'sign\design_icon\mainpage_ic\bottom_ic\ic_newsfeed@2x.png'
+          end>
+        Name = 'Item 3'
+      end
+      item
+        MultiResBitmap.Height = 60
+        MultiResBitmap.Width = 60
+        MultiResBitmap.LoadSize = 2
+        MultiResBitmap = <
+          item
+            Width = 60
+            Height = 60
+            PNG = {
+              89504E470D0A1A0A0000000D494844520000003C0000003C08060000003AFCD9
+              72000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+              0A33494441546843ED9A797454D51DC77FF7BE37D9045966EC22A19424C081B6
+              7A38D42E76015ACB66375BC1D342449949D85BA9505AAD46B4ADB6885A40241B
+              8B8882A850ED0656046A2BB6B5E7B4C7529064EAF1605B35934280C932EFDDDB
+              DFFDCD8F24332FCB4C26B1FE319F7338B9BFEF0B33EFFBEEBDBFFBBBF705B264
+              C992254B962CFF3704FFCC08152ABAC6D1B011C0716DB06F92B5E1A7F8D2BB8E
+              8C0DEB8AC976F454B8B1007C834DDC1001E5F7CBF9B2B6EE11FA85014697177D
+              5A29314D803E246BC20759EE16C93FFB8C6E6AF5451D99CF2104FC202311B55D
+              951597B23460E8507179830B47A4D6B7090DCFA5F29D191B96F71F6D1EEEB3EF
+              E69020D36FEB6D2A58349FA57E073FFBC606AD37073A8DD2334A57A9F2A28F72
+              D825191B365835F5B72B100F7048C47B1AB6E850D10D2CF51BA627F1B36B3A9B
+              350C05C8530A1EE4B04BD29EC3F404CD9C91FA88A80ABFC032E1868AEE931A56
+              7048C4E7348430916D65292330417E23A261079AB558F2A041CC94B5F5BFE130
+              81B47A5805C77C2CE2C251A1F58FCCDC51A1E2E57C89B06AC2DF5102D6714870
+              4FD7A8B292052CF5191D2C99DD95D9D3002DDC2434E86BB9E9212DC302D4AC0B
+              5F6686131A5FAF82C5CBE82283A6572A807B3924C8B45268BAEF890CE7ECD71A
+              9CD8A3C966F101DF7F31C07D1C124AC3A7B8E9212DC35A8A3F70B31D5C0E3660
+              4F2FE590B06AC3AB704EAFE590300F28A29A6A30B34E622965F0417D391269DE
+              15B02D9B2542E1779B51258438C21261C7E0FDDCF4909661595D774003DCCE61
+              3BD8D31B71C82EE190B06AEBBFAB84F82987440006E780D60943BE3754D9E8AB
+              F141ED09F8F37D2C11F840375BB5FFFC160502DAE827D382DFC24D0F3D1AD65A
+              0BFDF8EC842184C9E72EFCB40A0EDBC121BB5105472FE690C0ECBD1A875772D6
+              9CAC42634773BB4770E44C6F8C9E79921E54277018D7C89ABA8E07ACF5386E11
+              380CDEE4A6876E0DABB2A299ADA1516F9EDDFB7213CED39B5926D0F49D5AC01D
+              1C123464413C885974114B841C3972652BE808877174EC93DCEA165D36E6AA33
+              5AEFF3E70DCD6589C09EDD26ABEBCB7118B7F7A256F0556E1212C48BDCF4D0AD
+              61C7896DCE05FB92C1055080F3F45E37547C275F22B08C5B831EF15F07645AC3
+              264C300B59C2DF38DC620B799CC33842FAB9D5253A583CE58C729F36EB2A4B04
+              F6EC23B2705EB0B359B570CCE58D02A6714860727D969B1EBA35ACA52F611899
+              F2CD0D16DFC521216AEBEFC0799AF020E23D0D0F99B2CFC46A7949AE13731286
+              1CFE4A23373CA8D098CF9C03FD8B2100EDE5AA017B76979C36E906B1660D2E02
+              71744585548EBBDE7C274B6632FF4714E63FC1A1876E0DFB8458DD809FC92121
+              41FF008B8B1F7248E03CAD40D3090FC2DC8029FB700E96E9A8FE49AE6DA1D481
+              F0753DE4301B5F198DB5FD6A10C0452C1198079E908585A562CE1E9725429FDA
+              712B2698CF7248F840AC176B8E2524B1CEF4586999F9688668E72768C0A17537
+              2E07B7704898DE370F84C36E7135FCCEDE124EB849832A1BF3F166153D5000B9
+              B8AC76804BCF3E59F881D938351C9608152A991BD1CA1421EDF7E608F887952F
+              27CA0D75AD2C79E8314BE33CDD8C936DB1A7A7357CDF0D7D3061C380CBD06D38
+              D67ECC619734449A6352582B396CC794ABA2C5DDEF312BE019690D9FE3355BFC
+              9548C3F9AD9DCD9A12D69222D89359438F860D98912B03422CF29A96DFC3E472
+              0F8704161CB79ADEE73001F3FFFDFEFC85B2F6E41F5922D4A29289AD31380039
+              80D3B6039CB3BF9623F2AE15552FC75822A808D14D8F27AFCBFE80B84956D577
+              9B9D2FD0AB6183A8A9AFF20BB130D93486ABDD05451B4D62A2A87C92B9898464
+              D7132A38F6B2B698FB6C9E84612C1138520E8802714DF25CC461FC452A42BCEB
+              F23A5953BF81C31EE9710E2783EB712802BA2A794EB782F3B64F587F77408CCF
+              D1F05E963D986117084050D484B7E1B0FC509B8E3D6F963EBE4C60CF3E272EBE
+              E44B669FCD1211AFB8CE3DE5352BB6620598B054F5445A860DF89483982CAA93
+              4DA70A6D17035081E37459170FE73058C366E1308E724CE0BA3E2B0267F7269B
+              C5EDCB7618316F41E7A5AA37FA74D3B401C78D80E7063AD1E0B84EC0672FC525
+              A504B3F72A96BBC505F7053974C80CB9EE6FE759224CC5D7183DBDD75B71E987
+              65E1F537A663D6D027C306B33756E03C6081F094892E883F5B965E71E180C00D
+              16ADC564E1C9CE177041BF2887E74C976B4F9C6589C02934A3B1E5BF5D9497B0
+              431696261421A9D267C31740E3E371BB7425B602A0B1C8F2E9A37273F815BEDC
+              0E9AAE42D3651CB6E32878D51A24AFC0E5A48925824AC67391973C664D7939A2
+              747E5FCC1A32369C0A6AC9F8514E6BEB614CE1A3586AA7BB63DDAE8E8BD0E14E
+              397DD2FCE48A2B1D525A9632412D2E1EE9B6B61CECCAAC814E434061D62E99CB
+              122184ACE326A1847A3453B3860135AC968EBBD48D39076D10452C112D021236
+              0F98F12DCCFCDB713FFD4D96405C3AA20A4DDE83EE5E325B5139ED8AEB33356B
+              18B021AD974C789FD3DA720837E3093B2507F431CB27A6EA98B805B3F7B75926
+              B0B071FD024AB1A47D8CA57E67400CAB4545EF711D38646B18CF12E168386E89
+              8229B2F6153A91C03DF6CF70DB193FA661C8B48479B23ABC8BA57EA5DF0DEBF2
+              B101D7759FB7407F982502ABB09396F44D96D5C7FFCD12E10647AF9720128E7B
+              C93488B9B2B67E374BFD46BFCE61159C30DC759DDF7ACC6A556FD9726AB25983
+              3988C3A566238704CD69D03BB1FC9CC352BFD16F86F5E28F0C53D08C66E17296
+              08DCD7BD66DBF273B2F2E41B2C79C0BDF5F2E4C33E321D73769AC37796FA857E
+              31ACCB8B86B86DD10358754D648988A9D8EBB6ED9B8A15D7EB2C758BB525BC0C
+              D7D94D1C12E61CDA1CBEE392D5ED9B8474C9D8B05A356EB0EBC27E1CC6096FED
+              628E7BCA97973755549E788DA55EC12DDE325C8A1EE29030A623B1D863AAACE4
+              EB2C654446490B979E416E4B74BF252496961DE04EE85FB60D536465F8244B29
+              63CEC2B14737E1929570DC6B36237EDBBA2ED3BF2EE8730FAB9B2FBB082BA85F
+              269B35A786B6CF8773367DB306B3AF3587ECB8CFAD6489A09E76DCDDE61D134B
+              7DA24F86D58A4FE4EBD3679F493E316CD3E22D9F2D3F2F379F38C1529F20D3D5
+              758B95D6552C11643AD2BCCBFC4D094B6993B6615D31394F37BDF534AE9D5359
+              225A1DB7C167A9AB6465DD319632824CD786176122AB66893067599186E6DDBA
+              BC38E16D43AAA43587CDD9956E76F7492D66B04498DA38D7B2CCD2F35796FA0D
+              9AD365C555B8730AB1449813507FA0603626BA9FB3941229F7B0AE9890A3A3CE
+              931EB300A77385F8C2409835C487777D39F6742D4B44BCA7A37BCC29264B2991
+              B261F546F3C312E4D51CC6698333B9D29E8637F4175606847822AB2F43D35B58
+              22C8B46A42D3259359EA95940CAB852513B067AFE3908842ECACCE953364F5AB
+              7F62694021D385A565E6949225C29CAB69A57A7DE37181940C0BADCE9993090E
+              E1BCE39ECB07DF4C5C3E8EB2F48E608E75E4887921F3CA94A53842241C0FF544
+              6A86B134F4FB6185494EE6FD4D418E3D1D33E8EFF9F23B0A992E9C1744D36BCD
+              9432078642C36ABE9C254B962C59B26479D702F03F31BB2B5CE2E5D18D000000
+              0049454E44AE426082}
+            FileName = 
+              'D:\Google '#46300#46972#51060#48652'\cookplay\03.'#44060#48156'\05.Cookplay'#44060#48156'\01.Iteration 1\03.De' +
+              'sign\design_icon\mainpage_ic\bottom_ic\ic_recipe_selected@2x.png'
+          end>
+        Name = 'Item 4'
+      end
+      item
+        MultiResBitmap.Height = 60
+        MultiResBitmap.Width = 60
+        MultiResBitmap.LoadSize = 2
+        MultiResBitmap = <
+          item
+            Width = 60
+            Height = 60
+            PNG = {
+              89504E470D0A1A0A0000000D494844520000003C0000003C08060000003AFCD9
+              72000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+              091E494441546843ED9A796C55551EC7DBBEAED6D294222E616286904C9C211A
+              22A3B12E58E2505AA05023E0481095CD5D1C17DC501C9DD1710F54AD9D8EA068
+              87119742B1163A4ED551446D4C8CB80E3331C61D5B682B5A785DE6F33BE7F72E
+              EFDEB7F0B6AA7FBC4FF272CEEFF7EEBBE77CCFEF77CE3DF7B41969D2A4499326
+              4D9A9F8C4C2D93A2A9A9A9263333B3766868688072D9CC99339FD5AF7E76242D
+              B8BDBD3DBBA7A7A70BB145EA1A44F402443FA1F6B0B269D3A653060707A7D0E6
+              4BB4F92F7547244BCB84C9CBCBCBE9EAEA2A5053C842FC637464BEDAC3C6C68D
+              1B97747676BE4275056DBE184B9B490B2E2B2BFBA1A4A4E40E35036431EA6BE9
+              D002B5530ED3E87C06BA8EB69D2C1D1818A8C73F51CDB0242D5898356BD6CD14
+              0F58CB4122FD28A2CF533B6568241B82C50AA4753EC583D60A4FDC735846901B
+              CB9C79A5BABAFA55751B10771F22AF5433C0209F450CCA1A6B26076DFC9E36D6
+              51F5594F28F4AD92F9DCAAA68BB822DCDCDC7C02C5761AFC93CC1D1ABFCC7E63
+              A1913F50DC6B2D0769A38181BAC09A89437BB3C389C5D7A75503F6595A0D212E
+              C1CCCB2A0AD398A413375E45272E153B0091BC9AE21E6B3964EDDEBDBB219985
+              8C76CE64CE36527589259AF7F3B94F4D03FD3A59AB21C425981B6FD3AA03375F
+              4DF42E51D380E86BB8F66E350D32400C58C3E6CD9B8F5757CC70FF6ADA59CF3D
+              B2D51560B56495CFE79395DA81B68FD46A08710966CE6EE566B24079A9257A17
+              6BDD4047AEA5B8CB5A0EB9FDFDFDDE948F0A62A7516CE093631C0AFDA863602F
+              973AABF37EE33CC09096214415CCA84ADABA520821B751DC62AD0330A76B49BB
+              8BD434D0A1E574CCBB6A4EE2BA5F6A3D2AAC1915BDBDBDCF50CDB51E8706063F
+              78807FA5A58136BFD66A08110513B14A3AF6756363630FE555EA3620E48F142B
+              AD659194658E3D48442E549761C4881132A73BAD65A14327693522DCE70CB2A1
+              A9A8A8284F5D01D632E84BB84770146769692048AF6B3584888269AC8EE2B0C2
+              C2C243B8C13D7440443A20FA561ABD554D838866717A88C15AAAAE8CF2F2F23E
+              7EFFA19A06EC52AD8685C89E4EB189FBCB7335982710BB30582CD71E479B53D4
+              34646565B56935848882B9A9378D5610694967071A5FC975AE8110D1A4F7C35C
+              BB44EC9696963CE6982BE510DCA5D5101070EAFEFDFB37530DDEAE4A7FD6D3DE
+              7994F25C37701FD9D1AD9236D525BEAFC68E1DFBB49A214413BC9C91734D7E6E
+              7613426E57D34027643EBB0642D3BB8EAC58ECF7FBFF929D9D3D4ABF3260874D
+              3956F03206A78555B7505D06FAF23453633EE580BA0C64D28DF4E934350D4477
+              D5F8F1E3BD8B9843D49D96CC4749D1E0111468E48E9A9A9A1BD43448F46540D4
+              8CC6BF990EAE4E0AB4752262B7227684BA0234151717CF666AF4AB6DE0FA79F4
+              6D9DA76F1FE4E6E64EA8AAAADAA776085157693A56575A5A7A9137D28CF4F508
+              74BD3010E915147FB65644FC089245CC059D970DFF9630629BC78C1933C72B96
+              B66752ACF1881D24BA0BA38915A20A1658FE1F193972A444DA9BDED7D1D13BD5
+              3430409262DE372783FE7EE98C1933DEB41E0BF798C002B9956AB1F538BC306E
+              DCB8B3264E9CE857DBC0F5B209798AAAF7B9BC8CBE465C9D031C54B040F4EA19
+              CDA55ED1B09CD1AE9585498C8E8E8E1C1AF62E7611E1B7C752B431A74BACC761
+              2BA959E39D8B5C3F9D423621DE36EEA58FABB51E95A873D80B8BC422566011EF
+              FDDD2E3EEFB1401D93939373B87585454E4316D2397957FE0D916AC77798FDCA
+              E1C5D1A347CF90F76CB50D4456765C7274E412CBFDD61059D7A32A1A710916E8
+              E84256E0BF86111D2BF258B985C1B934CCE0BCCC3CAC42C0F76A1B785455B1A0
+              3D47D52596017B8C697401629D47D5C148A8D3447ABEBC08508D98BEA47F3F73
+              5F5E2AC6D1B16BAC372AAF1614144CADA8A8D8ABB641767CDDDDDDCF79775C88
+              7C9C81393F1EB142A25192513F815197538E906D229DE8E073251D320704A4A3
+              BC3985ACCE41C8625341B47AAD69219BA6F6F4F484DB5EAE635AB83621B192B0
+              E0006C168E417819D55174A093CF7656E21DF6DB03D0F97A22BD58CD603E6681
+              FA2D8F931EB50DB265DCB367CF1B61C4CAF67241226285A405C7028372348F9E
+              97A91E6D3D2EC21EEB324021C7455CF7245923625D3BAE7888E9B1940CADADAD
+              BF40AC9C1787132BC861DF5AD27E9EDA0644EDD46A80C664C50AC32A181147ED
+              DDBB57C48EB51E07EFCB83BC73CB59F639D6CCC82095EB1177279F3730579201
+              E7262B5618B694268D8F606EBF44F4BC2FE7EFE7E7E797F7F5F5DDC07757A83B
+              80FCA9663EE2FEAE76CA1996086FD9B265B4A4B1572CB6BC174FE6D1F30DA296
+              216E95FDC6C1C735EBC88CB3D54E39298F3069398A67B4ECA0C65B8F0521FF21
+              B2932A2B2BBF5497017122DA75DC0B036C40E63167FFA176CA48698459A04622
+              F69F545D62E1BFEC97CBBD62059EBD973318B56A06F0719F2759A9E7A89D3252
+              2698395BB26FDF3E117B9CF5387C42B426F36CFE5CED1078B7BE8CF4F61EF6F9
+              D8C28AE8D96AA78494086E6B6B2B9697772235415D06A2F4695E5E5E39A9F9A9
+              BA22C29C9603FD87AC6561BF9E2D87EFA47DC4BF24C44BD27398CE14119D36C4
+              9EA8AE009F91C693A64F9FFE3FB50F0AF7C824A21269D771AFECCB4B4B4BCF66
+              E0E4C83629928A707B7BFBA114AD5EB10CC0173E9F6F723C62057E3744A42FA1
+              941353078934AFA5EB198C33D59530094798474F21CFD216C4BACEA7B0BFA2C3
+              A7B3187DA4AEB8D1483F4CD539EE15F40D6C2E8392F0BF54242478DBB66D05BB
+              76ED7A9E8E95AB2BC0377CCA11FBBE351347454BA4CD716F1072E4339736E4FD
+              386EE2164C1AE7F3CAD64C87CE5097818DC6B7BCCF4E9E366DDABBEA4A1A11CD
+              73FD114AEF5B969F957F0E73BA49ED98894BB09C5DF1E8692265A7AA2B4097CC
+              591E3DEFA89D3234D2F55417598F839F7ECC26BD37AA1D13312F5A3B76ECC8F5
+              FBFDCF8411BB87D1FEDD708815684F163249EBBF598F430E83B181A744B5DA31
+              11B3E09D3B773E4E037290164C3762A7905A6FAB3D2CA8E8C5948FAA2B801CD5
+              6E20ED2759F3E0C4249851FC35C55C6B5968BC57A28DD8B7D435AC8868DA12D1
+              DEFF15C92510B1FCC5C3109360A2F81D45F0918AD8F28F23DBADF9E380D84144
+              CB5C5E6B3D167674AEE3A168C4249846646B28C72DF2E2FE013BA80AC4BE26DF
+              FDD88868DA9673683918ECA6EC2020CBEDB769D2A44993264D9A9F2F1919FF07
+              5650F8D58979B3D00000000049454E44AE426082}
+            FileName = 
+              'D:\Google '#46300#46972#51060#48652'\cookplay\03.'#44060#48156'\05.Cookplay'#44060#48156'\01.Iteration 1\03.De' +
+              'sign\design_icon\mainpage_ic\bottom_ic\ic_recipe@2x.png'
+          end>
+        Name = 'Item 5'
+      end
+      item
+        MultiResBitmap.Height = 60
+        MultiResBitmap.Width = 60
+        MultiResBitmap.LoadSize = 2
+        MultiResBitmap = <
+          item
+            Width = 60
+            Height = 60
+            PNG = {
+              89504E470D0A1A0A0000000D494844520000003C0000003C08060000003AFCD9
+              72000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+              0394494441546843EDDA4D6854571407F073CE7B93493213A3225A4BFDCC18B1
+              96429520AED25DEBB66E5C899044A3B546EC5A24E2B29B5ADA4A98A885D6AE5C
+              75513742BBA985D28A868809C90B4214FC9E2432CECC7BEF9EDE991C07E54DE3
+              7C075EEF6FF3EE3933C3CCFFCDBDF306EE03C3300CC330960DCA31400D263E02
+              977703725C5A15C26748EC7024E2D0B7130FA4B9243ED36BF3ECEC66FDDA2D88
+              BC8581DBE5A1CA108CD188735DAA37940CECF76FFD8A18BE94B2663EC26D021C
+              C158FC27FCFA564ADA456AA0BB879577288770A09561B5B46BA200CF59A3D3A7
+              A52C0A04564712EFA3A7C6A5ACAB34B80B6D1019A251E752BE5603892E663F49
+              8C1F179E50470B6948AFF8D9894959140CDCDFF509325F93B22114C05504BCF1
+              22CD673BDAA1BA695B8EE434A15E1B52150403F7757D8AC0BF4A091905CF5B10
+              AB3801BC5A91DF65B395904659F47CCF74204CA2E219BD18D3D27E3B8228317F
+              26D5A26A02FBC037EDD1995D52564C0D6EDFCE9E7B643EF5F2F8CACEB688B403
+              F4FBFCA3D7F9798CB65EC5EFEEBC9076D9F870F71AF0BDC7522E2A1198E4D830
+              746162C24A3AA73AD7C4F678E84F49BB28050B39FD8986ACF70EF6E8B5FD4335
+              612BD1F0C0AFD085A99B16B70C4959A0A72F7772FCA80E7A1E8787F5D26EBCA6
+              055E84B33228D0EB294317672E4A59138EAAC0F22C2518582F6019355C1BC2BC
+              0C6B8659FDCFA10C4DFE86979F091C762670D899C0616702879D091C762670D8
+              99C0616702879D091C762670D899C061670287DD5BF787738C8F6C842B525680
+              3D047AA0DF60162C1AC391C9BBAAAFFB4304EF963C0172080FA349E79DFC9899
+              91FBBB7B00791BB2DAA010D6026359DB27A295800765BCA8ACEDD281442F2AF5
+              9B9475E32B358E44BFEB29754C5A85C0113BD2CB6EEE731F707F04E05D79A866
+              29047F55D2B1A52C0A4C69C4CEBF5CE0FB52D68D45B4F3F5B0793980F8DC93F9
+              3102FCA29E610B5CBFE45E5330F0C8DF69DBB6F7643DFF89B41A229599CBC619
+              624B6D92D762856DFF22C337FCE71A517D1FAC034C1F6450D5DD55C3949F4EEB
+              1978870558D61D04A9B997AE3E017F284487181E292CFD2D2D8DF48F01DC8376
+              BA4CDF4C65A55954C98F42D5D4B11D9B389B3D3E0F0B275642478BB48BB2C04F
+              5B908631D2FE237E3FF65CDA0DD194C0AFE82BC0CEB4EBFD19B3ADE2CD6E9E82
+              498B5AF7D2E89D67D26AA8A65E8729393D1E8B5AFB52995461AAE55C786851AE
+              6961974DFE9AAB4E6E5C2FA56118866118FF0B00FF02BB843E01633590E10000
+              000049454E44AE426082}
+            FileName = 
+              'D:\Google '#46300#46972#51060#48652'\cookplay\03.'#44060#48156'\05.Cookplay'#44060#48156'\01.Iteration 1\03.De' +
+              'sign\design_icon\mainpage_ic\bottom_ic\ic_cookbook_selected@2x.p' +
+              'ng'
+          end>
+        Name = 'Item 6'
+      end
+      item
+        MultiResBitmap.Height = 60
+        MultiResBitmap.Width = 60
+        MultiResBitmap.LoadSize = 2
+        MultiResBitmap = <
+          item
+            Width = 60
+            Height = 60
+            PNG = {
+              89504E470D0A1A0A0000000D494844520000003C0000003C08060000003AFCD9
+              72000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+              035F494441546843ED9A4D68134114C777379B184C48A1885A4154AA880A824A
+              299E6A4FC650DAA014848278F3DB829E3D281E3DF528E207A8B7409394EA45A2
+              1715048B9682168908B560D55676D3D2269B5DFFB3FB1A8C9BEAE6635359E707
+              C3BCF7766677FEF3B5871981C3E170381CCEAA21526E637878789F2449070CC3
+              0853A82A506F16F5B3BAAE67E3F1F83485FF482693911545D90A731BA5B52C5E
+              2DA2288EF7F6F63E21B78C8A8221F606B2CB96573F10FD16E26FB6B4B43CE8EE
+              EEFE41E112A954AA03654EC23C8ED46A06EB04A2AFF7F5F55D21B7844D30C4EE
+              463661798D058D5031F28318F13BCC1F1D1D6DCFE7F3B7601E627E23999F9F5F
+              18181808915BC226389D4E1F2E168B8FC9758B04C4BFC8E572D742A1504DD3D6
+              09186109DF31C835B1094E2693518CC22372054DD3E66459AEA5035AD171ED3E
+              9F6F3BF98EC0B7179126D1D08F480B14FE2BA8B306E58F926B529360541843C5
+              FDE4560D96C84EBCE314DE791EAEDF8ADAC1F3D758E74391482481759EA3B063
+              B00FACC33EF0955C934A8225CA5D03EBF53D3E7C09662746FC83152D238FC4D6
+              7507CADDAB456C35B82E7819081A0B040283E49AA8AACA7AFF0C9E0D6124742B
+              EA2E4D13CCC0949B22D304D37711626F935B17D8672AFE627FC72618EBA86CCE
+              BB097E490A997583CDD551BB9B3AC2FF025CB0D7E182BD0E17EC75B860AFC305
+              7B1D2ED8EB70C15E870BF63A5CB0D7E182BD0E17EC75B860AFE3E47C7806E9A1
+              65568586342D8AE21412BB82F02E994CEE350CE38DF558100A85C297FEFEFE8D
+              CC465C1C1919E9C0B777C0DD8C3AEB598C3D7302CA0751FE34B9268E8E4B53A9
+              5497AEEB4FC96D1878E7842449CF609EB5229660BFDFDF05F31C1A760C0DDE64
+              3D6908C5783C2E935DA2D2947E85C67D26BB6140EC1E6425B10CC4D8859971A4
+              0B0D162B288A52F1ACC92618536F01BDDEA969DA370AB982AAAA4B3E9F8FDDC1
+              58F190BC1EC2E1709ACC32565C23586F1BD0EB2730D56ABA5583BA32EAB661B6
+              EC42EEF4064101E939CA67517F0679D52799F89E818EFC24CBF2DD582CB644E1
+              128E37857AC066B40533865D79B888143083E57C87B8AB68E8FD9E9E9E398AB9
+              4253042F8359C3D6F14B8CDEAF97DD2683C1E0C168343A4BBEAB34F53F8CDFC4
+              04F687236CFD329FEDD2CD14BB6A6084C54422D1462E87C3E170389CFF0241F8
+              0995DE401DC94916A10000000049454E44AE426082}
+            FileName = 
+              'D:\Google '#46300#46972#51060#48652'\cookplay\03.'#44060#48156'\05.Cookplay'#44060#48156'\01.Iteration 1\03.De' +
+              'sign\design_icon\mainpage_ic\bottom_ic\ic_cookbook@2x.png'
+          end>
+        Name = 'Item 7'
+      end
+      item
+        MultiResBitmap.Height = 60
+        MultiResBitmap.Width = 60
+        MultiResBitmap.LoadSize = 2
+        MultiResBitmap = <
+          item
+            Width = 60
+            Height = 60
+            PNG = {
+              89504E470D0A1A0A0000000D494844520000003C0000003C08060000003AFCD9
+              72000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+              0697494441546843ED9A6B6C145514C7CFB933DBD72E0114B19082D242291840
+              45C5482209517C206A45148D2686B64021A83C355181C644BF009A1840FAD0F8
+              C19094978A88D10F4AC00706A312D306CB16C5F2500218E9EEB6BB33F7786772
+              9C76BBA53BBB3B058CFBFBB2E77F7667A7FFDED7B97716B264C992254B962B07
+              E4D74B022D1A5F4846471148510820C3A0FB4E40FEE0E3E28D6F23FC917EA7DF
+              0DCB05C563C894F32489721D602CA71DDA013A0A103E47C0ED28066DC5DAEF63
+              FC56BFD06F86E5E2B2AB2912AD099BE68280AE29AFC931005B34A417447DEB2E
+              4E794EBF189655A326181277FB00AEE3544A48A0B7C43DB72CC5C7B6999CF20C
+              CF0DCB8AE2A961C3FCD4AF6B014EA58524F858DC3BF961AF4D7B6A5856978C88
+              75C2A11CA4A19C72680F45620581FC2F91701F083CA51C1510C85209384BF5F7
+              EBF96371A8F7DED41A824B597A82A7868DCA92031AD154960E12A01173735789
+              4DCDBF71CA818890AA4AE61A04EBD41018CE690712F890A80B7EC432633C332C
+              2B8BCB9160274B07425C2EEA831B585E14B978EC701989EDD1106EE4948D81D0
+              ACCF983CC1ABAE2DF835632499351C3AA8965DE7C6AC85D878E4A4C8F7CD8C02
+              9CE6948D4E308E3EFB612ECB8CF1C4B0AC2C2BD5409BC0D2C600F85514E5BDC4
+              D21596699FC0552C1D88CC4739CC186F5A18630F72E4A001AEC79A26D560A981
+              C39F7A3F2663C759DA84C33883D64CCB6399119E182629E35AD726073EE42825
+              B0A6466AE8DBCDD22650000574FA4431CB8CF0680C63DCEC1A32CC76B139F83B
+              CB94414D3471D805C9611C6584278605E2600E6D72743ACF617A904CB81E4D71
+              158719E1CDA405F20C87369DA00FE1303D08AEE1A81B14778F74F1A84B8B531C
+              D8A89A325F2E1C9BB033728B5ABBE3D6620BF2E971F748174F0C23E2210EBB30
+              8CD91CA5845C323A3746B10758DA7448388FD71606596684372D4C9050FA4563
+              C652B972EC0096EE89C8EA5CD0E3BA748E804FB0669F5ADA33C79B49ABFE689B
+              09E6019636B9BA3684CE1A5B58BA425696DC108E99AFB27440415B39CC188FC6
+              B0FA222D27A1AA12484F9815C51BA9718EC6A98B222B4A271A14DBDB735B6902
+              7D23EA8EED6199319EEE96CC8A929D02A89CA583AAFA0F0AD4568AFA96FD9C72
+              A045E30314ED783E44F0A272EAE7B44DBBBAD42FF04EB55BFA9A5319E3A9617A
+              6ED220E3EF0B077501A59C8A234AD13F5515155437ED50BB425D75818111BA50
+              1680400E7F240EB73BAD54F0D4B085AC1A33A5D330F7E609882B465245EDB476
+              28B373D40A409CF2044F0C5B4B0944E87122981B368CBBDD1EDA252366986D9A
+              AE3522E8EF89865F0E733A2332326C4D466AAFFA8C41D1353ED04770DA73D458
+              B6CE8376608EEF65F1F691239C4E8BB40DCBAA923B4C49EFF476D6DC5F589358
+              01CA5A1C50B83CDDC3FBB40CCB8AE26743A1C8BA803FDFC7A95EE904E38C6AF9
+              9F547818D1DA01C973208401D2CC55B7569337C55499A626672C224913096152
+              A43D322ED9F79A043F6AB9DA6CDCDCD2CA29D7A46C58ADAB0D6AF19EC73201EB
+              305D2D4DDB50E81F60ED9143A94E3A34BF7820993453CDE2E5E1CED0AC409E5F
+              FD7312B1CA4D55DCDC27EA5A0E72CA152919562DBB5A5D9070766561021E5246
+              5FC7FAE02EAF66565955368C647459C43017F676CE1D45F843959DB7616D6BDC
+              09495FB836ACCC3E1202D86EF53F4ED9B48721EC0F8895A2EEE8264E798EAC1C
+              5D4424DF553DEB2E4E39980887C580A1B7BB1DD3AE4A4B5A334D5795FB869E66
+              AD65C33FD077737F9AB5B06A75B526CF50B74FE85D1AC144B870A6926552DC19
+              3ED1F664CFE7445677D2F3B4E9992E136EB186093604D7AA82E4354E39186674
+              05CD9FDCE744F72FAE0C4B920B3974F0112D135B5A5B585E3244D1D3AF58B334
+              4B1B9FF08D24F9D7FD2CFBC495E108889B38B431809AB0BED5B32D5B2A58A79A
+              02C56A960E64E2140EFB24A961593D665C0028EE4C5820B6795DE3A646CE571C
+              38489409BBB4DE48DEC2B1681947DDA030079705D1D074AEBD9DD470EE4202BA
+              3AD54C6E1873DB38EAC2D49A39BA7C0430EEA9864614F74CEA62B81AC33D4141
+              1738BC6C04A2AA72ED86FA9BCE72D8276919FE2FF3BF339CB4B49455A5B7A234
+              BE6369A3D6C1FD889052D1EE35E18ED092EE1B0B09F485D6706C3ACB8BE2C2F0
+              A80928D193D386FE44CDD27BB58660D2E2236997C6E1239BADA7812CAF647EE6
+              D73E496EB8669F51A0EB6B595E9158BF10428D1A59F689AB494B3404D713E00A
+              6BD3CDA92B06D5F542FE80BF5AD4B6263EDFEA05D7FB610BFB27468BC78F4432
+              923E49B8244821A1503B99CE4F2BB264C992254B96CB0EC03FFDEB579C44D6D2
+              FA0000000049454E44AE426082}
+            FileName = 
+              'D:\Google '#46300#46972#51060#48652'\cookplay\03.'#44060#48156'\05.Cookplay'#44060#48156'\01.Iteration 1\03.De' +
+              'sign\design_icon\mainpage_ic\bottom_ic\ic_myhome_selected@2x.png'
+          end>
+        Name = 'Item 8'
+      end
+      item
+        MultiResBitmap.Height = 60
+        MultiResBitmap.Width = 60
+        MultiResBitmap.LoadSize = 2
+        MultiResBitmap = <
+          item
+            Width = 60
+            Height = 60
+            PNG = {
+              89504E470D0A1A0A0000000D494844520000003C0000003C08060000003AFCD9
+              72000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+              0602494441546843ED9A59685C5518C733D9C64C22711D5249AA485C82495588
+              56521052AAC498D52A569FC417ED83C5745370A945D0975484A2A0A0E283146A
+              9B653259601EA258954A1E6A9114A915AD4DAB165B8275B24FFC9DB95F26B933
+              9399BB9C4922CE0F2EE7FBCE2CF7FECFF29DEF9C999C2C59B264C99265EDE091
+              724508068365B3B3B3E51E8FA70C373C3F3F3FE6F7FBCFD6D5D54D18EFC83C19
+              17DCD7D7775B24127916B31D817718B58B5037490384308F9497971FAAADAD9D
+              315EC90C19131C0A85AE0F87C3FBB99E2B2A2ACA97EA9420FE34E25F6A6B6BEB
+              962AED6444707F7F7FCDCCCC4C1FE6CD468D6D0EB6B6B676207E4E7C6D6817DC
+              DBDBBB899E1AC22C316A1C1344749B6ED15A050F0D0D554C4E4E8E60FA8D1A13
+              3334C41708F812FB02A50FFF76EC66AE5BD41B92F02EC3BB436C2D6815DCDDDD
+              7D0C219BC45DCAE1FCFCFCBD4D4D4DBF8A1F03D19E4020B00DB313FB26A3D644
+              2BA20362BB469BE09E9E9E768A2EC333B18B077E47EC65E1F34A6C3FD73DD18A
+              454E31B46B740DED5C2975B05FCAA5745A11ABE07DE7291EA5977F376A625411
+              17D408D08216C1446535176B0C2FC62F959595AF886D09253A2F2F6FAFB84B79
+              5C4AD768113C3737D722660C86E081EAEAEA69712DD3DCDCFC1989CA5971A34C
+              4C4C3C3C3C3C7C95B8AED022986118DFBB395EAFB7574C5BD050117A59ADE131
+              485C7CE3E3E3B78AEB0A5D73383EBA5E696868F84D6CDB207A54CC18B9B9B9EB
+              C47485AE1EBE56CC052E4BE908BE2FE1F3D45D27A62B7409BE28E6023748E908
+              BEEF463163D0C3F1F7708416C13CCC05311728625D4DD8195985211DBF16ABC0
+              187F0F476811CC03AA74D204755BC5B4C5C0C080971E6E12370A7BE8CBA5A5A5
+              67C4758516C1A48D09A91FBBA50E7AF96A712DC3E7B6539886744141C1407D7D
+              FDACB8AED022B8B1B1F11CC531C333A011D43CFEC0F0AC41467517BDFBA6B831
+              A83B24A66BB408169265554FD1CBEFF1C079E22F0B6237F0BE41CCF86DE5B764
+              602AC7D682D6DD120FDDC543AB4D8409E6F37102DB1EB2A8AFA42A0619540949
+              C58B04A59749388AA57A813946CA83ECB2BE11DF355A05F3F0D7F0F0C731556E
+              9D8C3FB9CED00093344C3E2964290D71277585D15713B1B4D3B28356C10A86F0
+              46A2EA203D139F8CD8E528DBC227689C79F1B5A045B05A4AA6A7A79FC4DC46A2
+              FF90D5433B0B9C43F061CA4F117FD2A872872BC12A180502816728F7E15618B5
+              FAA111E77D3EDF51EEF32A43FC47A9768463C1C160B08E40F3310FE138A37280
+              3AF5F8D0EFF7EF727A78EF4830F3740745275741B462792E3224BFA754C37194
+              C6B9545858384B4379F1E70858E419332594E504B00D5C776357F15ABAEF3D41
+              8CD84AF4FE597CCBD816CCD2F3110FAE7E49480AAFA9C3F4CF79F01E96A111BB
+              4127140A953284D5514F7B381C6E261EA8C64940A59B887E8421AE5605CBD812
+              4CCFBE4E91ECEC6A219F7EBBA5A5A5DBAEC8E5181C1C5C373535B513F379AE84
+              736E46C71F5EAFF77EEE693A21498565C1F4EC63B4F8115ADCF4197A235C5C5C
+              BC879BBE2F55DA61152847DC27F4FA16A98AC13438595656F680D5396D493009
+              453E09C54F98F13F9DA81C7A8BDBC86905C4AAF3EB7D946A4530C188DAC1B275
+              50DC9458CAA511FB348549AC1A4EA4829B5742AC424D1344BD81F99651B30841
+              70F7C8C848BA4017C5EAE641CD2113CC9D9D04A5D3E2AE18887E8DE284E11910
+              20D78F8D8D358A9B124B821946F78A1985D61E45ACB62D9B1DB87704812A789A
+              602E6F1433256905777575557113D399300DA0523EAD39AE1D58CBBF16732909
+              BBB464A4154C6BAADD4C3C612957858686864B347A44DC283CA7A5534D2B8255
+              2436C1CD4E89B99A987ED52070C5FF269514AB41CB048DF0B798AB06536A4ACC
+              28AC187F8999124782FFCBFCEF04A7CDB4C86EEE23E47F27EE02EA6CCA56D2AE
+              1B52DA17966E2C18E2C3ACD19BC55D96B482E51F395A4E1B32CC20595FDAE423
+              ED90F6F97C2A225F31BCB50B3DFC839829492B589DF8F3652A875DCBA87F08A9
+              B3AFB4580A5ACC8D0388DEAD36DD52B56660FDFD8767DBCE704EF87D2B1996F7
+              C30A5AD1C39C5E8F99F697849580B53752515171DEC95F2BB264C992254B9655
+              2727E75F64BD3839E583FAD80000000049454E44AE426082}
+            FileName = 
+              'D:\Google '#46300#46972#51060#48652'\cookplay\03.'#44060#48156'\05.Cookplay'#44060#48156'\01.Iteration 1\03.De' +
+              'sign\design_icon\mainpage_ic\bottom_ic\ic_myhome@2x.png'
+          end>
+        Name = 'Item 9'
+      end>
+    Destination = <
+      item
+        Layers = <
+          item
+            Name = 'Item 0'
+            SourceRect.Right = 60.000000000000000000
+            SourceRect.Bottom = 60.000000000000000000
+          end>
+      end
+      item
+        Layers = <
+          item
+            Name = 'Item 1'
+            SourceRect.Right = 60.000000000000000000
+            SourceRect.Bottom = 60.000000000000000000
+          end>
+      end
+      item
+        Layers = <
+          item
+            Name = 'Item 2'
+            SourceRect.Right = 60.000000000000000000
+            SourceRect.Bottom = 60.000000000000000000
+          end>
+      end
+      item
+        Layers = <
+          item
+            Name = 'Item 3'
+            SourceRect.Right = 60.000000000000000000
+            SourceRect.Bottom = 60.000000000000000000
+          end>
+      end
+      item
+        Layers = <
+          item
+            Name = 'Item 4'
+            SourceRect.Right = 60.000000000000000000
+            SourceRect.Bottom = 60.000000000000000000
+          end>
+      end
+      item
+        Layers = <
+          item
+            Name = 'Item 5'
+            SourceRect.Right = 60.000000000000000000
+            SourceRect.Bottom = 60.000000000000000000
+          end>
+      end
+      item
+        Layers = <
+          item
+            Name = 'Item 6'
+            SourceRect.Right = 60.000000000000000000
+            SourceRect.Bottom = 60.000000000000000000
+          end>
+      end
+      item
+        Layers = <
+          item
+            Name = 'Item 7'
+            SourceRect.Right = 60.000000000000000000
+            SourceRect.Bottom = 60.000000000000000000
+          end>
+      end
+      item
+        Layers = <
+          item
+            Name = 'Item 8'
+            SourceRect.Right = 60.000000000000000000
+            SourceRect.Bottom = 60.000000000000000000
+          end>
+      end
+      item
+        Layers = <
+          item
+            Name = 'Item 9'
+            SourceRect.Right = 60.000000000000000000
+            SourceRect.Bottom = 60.000000000000000000
+          end>
+      end>
+    Left = 100
+    Top = 10
+  end
+  object ActionList1: TActionList
+    Left = 76
+    Top = 205
+    object actLogin: TAction
+      Text = 'Login'
+      OnExecute = actLoginExecute
+    end
+    object actLogout: TAction
+      Text = 'Logout'
+      OnExecute = actLogoutExecute
+    end
+  end
+end

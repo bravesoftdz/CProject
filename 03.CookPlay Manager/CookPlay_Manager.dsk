@@ -1,70 +1,65 @@
 ﻿[Closed Files]
-File_0=TSourceModule,'c:\program files (x86)\embarcadero\studio\18.0\source\rtl\common\System.Classes.pas',0,1,5494,1,5520,0,0,,
-File_1=TSourceModule,'c:\program files (x86)\embarcadero\studio\18.0\SOURCE\VCL\Vcl.Graphics.pas',0,1,929,63,933,0,0,,
-File_2=TSourceModule,'c:\program files (x86)\embarcadero\studio\18.0\SOURCE\RTL\SYS\System.pas',0,1,16503,1,16529,0,0,,
-File_3=TSourceModule,'c:\program files (x86)\embarcadero\studio\18.0\source\data\Data.DB.pas',0,1,3245,31,3262,0,0,,
-File_4=TSourceModule,'c:\program files (x86)\embarcadero\studio\18.0\SOURCE\RTL\SYS\System.Variants.pas',0,1,737,30,751,0,0,,
-File_5=TSourceModule,'c:\program files (x86)\embarcadero\studio\18.0\SOURCE\VCL\Vcl.Forms.pas',0,1,7254,1,7275,0,0,{{1740,4}
-File_6=TSourceModule,'c:\program files (x86)\embarcadero\studio\18.0\source\data\firedac\FireDAC.Stan.Error.pas',0,1,163,1,189,0,0,,
-File_7=TSourceModule,'c:\program files (x86)\embarcadero\studio\18.0\source\data\firedac\FireDAC.Phys.pas',0,1,3952,1,3978,0,0,,
-File_8=TSourceModule,'D:\Documents\Embarcadero\Studio\Projects\Unit23.pas',0,1,69,39,90,0,0,,
-File_9=TSourceModule,'D:\00.dev\04.CookPlay\02.CookPlay APP\03.CookApp_2017.04.12\CookApp\MUnit.pas',0,1,1,32,12,0,0,{{351,0}
-File_10=TSourceModule,'c:\program files (x86)\embarcadero\studio\18.0\source\rtl\net\System.Bluetooth.Components.pas',0,1,801,1,827,0,0,,
-File_11=TSourceModule,'c:\program files (x86)\embarcadero\studio\18.0\source\fmx\FMX.Ani.pas',0,1,1830,1,1856,0,0,,
-File_12=TSourceModule,'D:\99.Test\02.Delphi\RoundImage\uMain.pas',0,1,1,1,1,0,0,,
-File_13=TSourceModule,'c:\program files (x86)\embarcadero\studio\18.0\source\fmx\FMX.Types.pas',0,1,5028,1,5049,0,0,{{4164,0}
-File_14=TSourceModule,'D:\00.dev\04.CookPlay\02.CookPlay APP\03.CookApp_2017.04.12\CookApp\uGlobal_old2.pas',0,1,1,1,22,0,0,,
+File_0=TSourceModule,'D:\GitHub\CProject\02.CookPlay\ver0.2\__history\ClientModuleUnit.pas.~143~',0,1,298,16,323,0,0,,
+File_1=TSourceModule,'D:\GitHub\CProject\02.CookPlay\ver0.2\__history\ClientClassesUnit.pas.~2~',0,1,1,1,1,0,0,,
+File_2=TSourceModule,'c:\program files (x86)\embarcadero\studio\18.0\SOURCE\VCL\Vcl.Controls.pas',0,1,7404,1,7430,0,0,,
+File_3=TSourceModule,'c:\program files (x86)\embarcadero\studio\18.0\source\data\firedac\FireDAC.Stan.Error.pas',0,1,168,1,189,0,0,,
+File_4=TSourceModule,'c:\program files (x86)\embarcadero\studio\18.0\source\data\Data.DB.pas',0,1,6020,1,6053,0,0,,
+File_5=TSourceModule,'D:\GitHub\CProject\03.CookPlay Manager\uSelectIngredient.pas',0,1,55,23,76,0,0,,
+File_6=TSourceModule,'D:\GitHub\CProject\03.CookPlay Manager\backup 2017.10.06\uRecipe.pas',0,1,527,1,531,0,0,,
+File_7=TSourceModule,'D:\Documents\Embarcadero\Studio\Projects\Unit27.pas',0,1,1,15,23,0,0,,
+File_8=TSourceModule,'D:\GitHub\CProject\03.CookPlay Manager\uMethodItem.pas',0,1,1,1,1,0,0,,
+File_9=TSourceModule,'c:\program files (x86)\embarcadero\studio\18.0\SOURCE\RTL\SYS\System.Variants.pas',0,1,659,1,685,0,0,,
+File_10=TSourceModule,'c:\program files (x86)\embarcadero\studio\18.0\source\data\firedac\FireDAC.Comp.DataSet.pas',0,1,5093,1,5119,0,0,,
+File_11=TSourceModule,'c:\program files (x86)\embarcadero\studio\18.0\source\rtl\common\System.Classes.pas',0,1,5494,1,5520,0,0,,
+File_12=TSourceModule,'c:\program files (x86)\embarcadero\studio\18.0\SOURCE\VCL\Vcl.Graphics.pas',0,1,929,63,933,0,0,,
+File_13=TSourceModule,'c:\program files (x86)\embarcadero\studio\18.0\SOURCE\RTL\SYS\System.pas',0,1,16503,1,16529,0,0,,
 
 [Modules]
 Module0=D:\GitHub\CProject\03.CookPlay Manager\uRecipe.pas
-Module1=D:\GitHub\CProject\03.CookPlay Manager\CookPlay.S3.pas
-Module2=D:\GitHub\CProject\03.CookPlay Manager\uDB.pas
-Module3=D:\GitHub\CProject\03.CookPlay Manager\uUser.pas
-Module4=D:\GitHub\CProject\03.CookPlay Manager\CookPlay.Global.pas
-Module5=D:\GitHub\CProject\03.CookPlay Manager\uMain.pas
-Module6=c:\program files (x86)\embarcadero\studio\18.0\SOURCE\VCL\Vcl.ExtCtrls.pas
-Module7=default.htm
-Module8=D:\GitHub\CProject\03.CookPlay Manager\CookPlay_Manager.dproj
-Module9=D:\GitHub\CProject\03.CookPlay Manager\uSetup.pas
-Module10=D:\GitHub\CProject\03.CookPlay Manager\uEncryption.pas
-Count=11
+Module1=c:\program files (x86)\embarcadero\studio\18.0\SOURCE\RTL\SYS\System.SysUtils.pas
+Module2=D:\GitHub\CProject\03.CookPlay Manager\uMain.pas
+Module3=D:\GitHub\CProject\03.CookPlay Manager\uDB.pas
+Module4=D:\GitHub\CProject\03.CookPlay Manager\uAddTemperature.pas
+Module5=D:\GitHub\CProject\03.CookPlay Manager\CookPlay.S3.pas
+Module6=D:\GitHub\CProject\03.CookPlay Manager\CookPlay.Global.pas
+Module7=D:\GitHub\CProject\03.CookPlay Manager\uIngredient.pas
+Module8=D:\GitHub\CProject\03.CookPlay Manager\uAddTime.pas
+Module9=D:\GitHub\CProject\03.CookPlay Manager\uExplain.pas
+Count=10
 EditWindowCount=1
 
 [D:\GitHub\CProject\03.CookPlay Manager\uRecipe.pas]
 ModuleType=TSourceModule
 
-[D:\GitHub\CProject\03.CookPlay Manager\CookPlay.S3.pas]
-ModuleType=TSourceModule
-
-[D:\GitHub\CProject\03.CookPlay Manager\uDB.pas]
-ModuleType=TSourceModule
-
-[D:\GitHub\CProject\03.CookPlay Manager\uUser.pas]
-ModuleType=TSourceModule
-
-[D:\GitHub\CProject\03.CookPlay Manager\CookPlay.Global.pas]
+[c:\program files (x86)\embarcadero\studio\18.0\SOURCE\RTL\SYS\System.SysUtils.pas]
 ModuleType=TSourceModule
 
 [D:\GitHub\CProject\03.CookPlay Manager\uMain.pas]
 ModuleType=TSourceModule
 
-[c:\program files (x86)\embarcadero\studio\18.0\SOURCE\VCL\Vcl.ExtCtrls.pas]
+[D:\GitHub\CProject\03.CookPlay Manager\uDB.pas]
 ModuleType=TSourceModule
 
-[default.htm]
-ModuleType=TURLModule
-
-[D:\GitHub\CProject\03.CookPlay Manager\CookPlay_Manager.dproj]
-ModuleType=TBaseProject
-
-[D:\GitHub\CProject\03.CookPlay Manager\uSetup.pas]
+[D:\GitHub\CProject\03.CookPlay Manager\uAddTemperature.pas]
 ModuleType=TSourceModule
 
-[D:\GitHub\CProject\03.CookPlay Manager\uEncryption.pas]
+[D:\GitHub\CProject\03.CookPlay Manager\CookPlay.S3.pas]
+ModuleType=TSourceModule
+
+[D:\GitHub\CProject\03.CookPlay Manager\CookPlay.Global.pas]
+ModuleType=TSourceModule
+
+[D:\GitHub\CProject\03.CookPlay Manager\uIngredient.pas]
+ModuleType=TSourceModule
+
+[D:\GitHub\CProject\03.CookPlay Manager\uAddTime.pas]
+ModuleType=TSourceModule
+
+[D:\GitHub\CProject\03.CookPlay Manager\uExplain.pas]
 ModuleType=TSourceModule
 
 [EditWindow0]
-ViewCount=11
+ViewCount=10
 CurrentEditView=D:\GitHub\CProject\03.CookPlay Manager\uRecipe.pas
 View0=0
 View1=1
@@ -76,7 +71,6 @@ View6=6
 View7=7
 View8=8
 View9=9
-View10=10
 PercentageSizes=1
 Create=1
 Visible=1
@@ -104,130 +98,131 @@ BottomPanelClients=DockSite1,MessageView
 BottomPanelData=0000080001020100000009000000446F636B5369746531724500000000000002EF050000000000000100000000724500000F0000004D65737361676556696577466F726DFFFFFFFF
 BottomMiddlePanelSize=0
 BottomMiddlePanelClients=DockSite0,GraphDrawingModel
-BottomMiddelPanelData=0000080001020200000009000000446F636B536974653010000000477261706844726177696E6756696577E22900000000000002EF05000000000000FFFFFFFF
+BottomMiddelPanelData=0000080001020200000009000000446F636B536974653010000000477261706844726177696E67566965779F1D00000000000002F206000000000000FFFFFFFF
 
 [View0]
-CustomEditViewType=TWelcomePageView
-WelcomePageURL=bds:/default.htm
-
-[View1]
 CustomEditViewType=TEditView
 Module=D:\GitHub\CProject\03.CookPlay Manager\uMain.pas
-CursorX=17
-CursorY=6
-TopLine=1
+CursorX=1
+CursorY=201
+TopLine=199
 LeftCol=1
 Elisions=
 Bookmarks=
 EditViewName=D:\GitHub\CProject\03.CookPlay Manager\uMain.pas
 
-[View2]
+[View1]
 CustomEditViewType=TEditView
 Module=D:\GitHub\CProject\03.CookPlay Manager\uRecipe.pas
-CursorX=60
-CursorY=161
-TopLine=145
+CursorX=27
+CursorY=1517
+TopLine=1497
+LeftCol=1
+Elisions=
+Bookmarks={1,1358,1}{2,342,1}{3,558,1}{4,556,1}
+EditViewName=D:\GitHub\CProject\03.CookPlay Manager\uRecipe.pas
+
+[View2]
+CustomEditViewType=TEditView
+Module=c:\program files (x86)\embarcadero\studio\18.0\SOURCE\RTL\SYS\System.SysUtils.pas
+CursorX=78
+CursorY=5531
+TopLine=1
 LeftCol=1
 Elisions=
 Bookmarks=
-EditViewName=D:\GitHub\CProject\03.CookPlay Manager\uRecipe.pas
+EditViewName=c:\program files (x86)\embarcadero\studio\18.0\SOURCE\RTL\SYS\System.SysUtils.pas
 
 [View3]
 CustomEditViewType=TEditView
-Module=D:\GitHub\CProject\03.CookPlay Manager\uUser.pas
-CursorX=1
-CursorY=187
-TopLine=169
-LeftCol=1
-Elisions=
-Bookmarks={1,118,43}{2,258,1}
-EditViewName=D:\GitHub\CProject\03.CookPlay Manager\uUser.pas
-
-[View4]
-CustomEditViewType=TEditView
-Module=D:\GitHub\CProject\03.CookPlay Manager\CookPlay_Manager.dpr
-CursorX=38
-CursorY=11
-TopLine=1
-LeftCol=1
-Elisions=
-Bookmarks=
-EditViewName=D:\GitHub\CProject\03.CookPlay Manager\CookPlay_Manager.dpr
-
-[View5]
-CustomEditViewType=TEditView
-Module=D:\GitHub\CProject\03.CookPlay Manager\CookPlay.Global.pas
-CursorX=40
-CursorY=31
-TopLine=1
-LeftCol=1
-Elisions=
-Bookmarks=
-EditViewName=D:\GitHub\CProject\03.CookPlay Manager\CookPlay.Global.pas
-
-[View6]
-CustomEditViewType=TEditView
-Module=D:\GitHub\CProject\03.CookPlay Manager\CookPlay.S3.pas
-CursorX=65
-CursorY=254
-TopLine=234
-LeftCol=1
-Elisions=
-Bookmarks={1,210,7}{2,256,1}
-EditViewName=D:\GitHub\CProject\03.CookPlay Manager\CookPlay.S3.pas
-
-[View7]
-CustomEditViewType=TEditView
-Module=c:\program files (x86)\embarcadero\studio\18.0\SOURCE\VCL\Vcl.ExtCtrls.pas
-CursorX=1
-CursorY=121
-TopLine=100
-LeftCol=1
-Elisions=
-Bookmarks=
-EditViewName=c:\program files (x86)\embarcadero\studio\18.0\SOURCE\VCL\Vcl.ExtCtrls.pas
-
-[View8]
-CustomEditViewType=TEditView
-Module=D:\GitHub\CProject\03.CookPlay Manager\uEncryption.pas
+Module=D:\GitHub\CProject\03.CookPlay Manager\uAddTemperature.pas
 CursorX=1
 CursorY=1
-TopLine=22
-LeftCol=1
-Elisions=
-Bookmarks=
-EditViewName=D:\GitHub\CProject\03.CookPlay Manager\uEncryption.pas
-
-[View9]
-CustomEditViewType=TEditView
-Module=D:\GitHub\CProject\03.CookPlay Manager\uSetup.pas
-CursorX=15
-CursorY=49
-TopLine=28
-LeftCol=1
-Elisions=
-Bookmarks=
-EditViewName=D:\GitHub\CProject\03.CookPlay Manager\uSetup.pas
-
-[View10]
-CustomEditViewType=TEditView
-Module=D:\GitHub\CProject\03.CookPlay Manager\uDB.pas
-CursorX=29
-CursorY=42
-TopLine=33
+TopLine=1
 LeftCol=1
 Elisions=
 Bookmarks=
 EditViewName=Borland.FormDesignerView
 
+[View4]
+CustomEditViewType=TEditView
+Module=D:\GitHub\CProject\03.CookPlay Manager\uAddTime.pas
+CursorX=1
+CursorY=70
+TopLine=34
+LeftCol=1
+Elisions=
+Bookmarks=
+EditViewName=Borland.FormDesignerView
+
+[View5]
+CustomEditViewType=TEditView
+Module=D:\GitHub\CProject\03.CookPlay Manager\uIngredient.pas
+CursorX=43
+CursorY=72
+TopLine=56
+LeftCol=1
+Elisions=
+Bookmarks=
+EditViewName=Borland.FormDesignerView
+
+[View6]
+CustomEditViewType=TEditView
+Module=D:\GitHub\CProject\03.CookPlay Manager\uExplain.pas
+CursorX=90
+CursorY=136
+TopLine=124
+LeftCol=1
+Elisions=
+Bookmarks={1,140,1}
+EditViewName=Borland.FormDesignerView
+
+[View7]
+CustomEditViewType=TEditView
+Module=D:\GitHub\CProject\03.CookPlay Manager\CookPlay.Global.pas
+CursorX=27
+CursorY=55
+TopLine=40
+LeftCol=1
+Elisions=
+Bookmarks=
+EditViewName=D:\GitHub\CProject\03.CookPlay Manager\CookPlay.Global.pas
+
+[View8]
+CustomEditViewType=TEditView
+Module=D:\GitHub\CProject\03.CookPlay Manager\uDB.pas
+CursorX=45
+CursorY=98
+TopLine=73
+LeftCol=1
+Elisions=
+Bookmarks={1,120,7}
+EditViewName=D:\GitHub\CProject\03.CookPlay Manager\uDB.pas
+
+[View9]
+CustomEditViewType=TEditView
+Module=D:\GitHub\CProject\03.CookPlay Manager\CookPlay.S3.pas
+CursorX=3
+CursorY=63
+TopLine=37
+LeftCol=1
+Elisions=
+Bookmarks=
+EditViewName=D:\GitHub\CProject\03.CookPlay Manager\CookPlay.S3.pas
+
 [UndockedDesigner]
 Count=0
 
 [Watches]
-Count=0
+Count=5
+Watch0='nOldLastID',256,0,18,1,0,'Watches',1
+Watch1='nNewLastID',256,0,18,1,0,'Watches',1
+Watch2='dmDB.tblRecipeIngredient.Fields[2].value',256,0,18,1,0,'Watches',1
+Watch3='memMethod.recordcount',256,0,18,1,0,'Watches',1
+Watch4='memMethodSerial.value',256,0,18,1,0,'Watches',1
 
 [WatchWindow]
-WatchColumnWidth=120
+WatchColumnWidth=266
 WatchShowColumnHeaders=1
 PercentageSizes=1
 Create=1
@@ -248,7 +243,8 @@ Dockable=1
 StayOnTop=0
 
 [Breakpoints]
-Count=0
+Count=1
+Breakpoint0='D:\GitHub\CProject\03.CookPlay Manager\uMain.pas',201,'',0,1,'',1,0,0,'',1,'','','',0,''
 
 [EmbarcaderoWin32Debugger_AddressBreakpoints]
 Count=0
@@ -271,8 +267,8 @@ Create=1
 Visible=1
 Docked=0
 State=2
-Left=146
-Top=269
+Left=11453
+Top=0
 Width=8932
 Height=8519
 MaxLeft=-5
@@ -294,11 +290,11 @@ State=0
 Left=0
 Top=0
 Width=2000
-Height=8788
+Height=7154
 MaxLeft=-1
 MaxTop=-1
 ClientWidth=2000
-ClientHeight=8788
+ClientHeight=7154
 TBDockHeight=5904
 LRDockWidth=2349
 Dockable=1
@@ -332,11 +328,11 @@ State=0
 Left=0
 Top=0
 Width=2000
-Height=7154
+Height=8788
 MaxLeft=-1
 MaxTop=-1
 ClientWidth=2000
-ClientHeight=7154
+ClientHeight=8788
 TBDockHeight=7154
 LRDockWidth=2000
 Dockable=1
@@ -402,8 +398,8 @@ SplitPos=151
 
 [PropInspDesignerSelection]
 ArrangeBy=Name
-SelectedItem=Name,LookupDataSet
-ExpandedItems=Border=0,BorderIcons=0,Fill=0,FormFactor=0,"LiveBindings Designer=0",Padding=0,Touch=0,ActiveStoredUsage=0,FetchOptions=0,FieldOptions=0,FilterChanges=0,FilterOptions=0,FormatOptions=0,ResourceOptions=0,UpdateOptions=0,Anchors=0,Constraints=0,Font=0,GlassFrame=0,HorzScrollBar=0,LiveBindings=0,DataController=1,Navigator=0,DataSet=0,Persistent=1,SortOptions=0,"LiveBindings Designer.Element Layers=0",FormatOptions.AssignedValues=0,Margins=0,Connection=0,BackgroundBitmaps=0,DateTimeHandling=0,EditForm=0,FilterBox=0,Filtering=0,FilterRow=0,FindPanel=0,NewItemRow=0,OptionsBehavior=0,OptionsCustomize=0,OptionsData=1,OptionsSelection=0,OptionsView=0,Preview=0,Styles=0,DataController.DataModeController=0,DataController.DataSource=0,DataController.Filter=0,DataController.MultiThreadedOptions=0,DataController.Options=0,DataController.Summary=0,Value=0,DataBinding=1,Options=0,Summary=0,ImageMargins=0,DataBinding.DataSource=0,Properties=1,Style=0,StyleDisabled=0,StyleFocused=0,StyleHot=0,Properties.Alignment=0,Properties.AssignedValues=0,Properties.ListOptions=0,Properties.ListSource=0,Properties.ValidationOptions=0,Menu=0,OptionsEx=0,StyleElements=0,AnimationOptions=0,ProviderFlags=0,LookAndFeel=0,BevelEdges=0,Properties.LineOptions=0,Properties.SpinButtons=0,Properties.DateButtons=0,Properties.PopupMenuLayout=0,ZoomingOptions=0,ConnectedStoredUsage=0,Params=0,TxOptions=0
+SelectedItem=Caption,OnMouseDown
+ExpandedItems=Anchors=0,LiveBindings=0,"LiveBindings Designer=0",Margins=0,Padding=0,Position=0,RotationCenter=0,Scale=0,Size=0,Touch=0,TouchTargetExpansion=0,StyledSettings=0,TextSettings=0,Constraints=0,EditValue=0,Properties=0,Style=0,StyleDisabled=0,StyleFocused=0,StyleHot=0,ActiveStoredUsage=0,Connection=0,FetchOptions=0,FieldOptions=0,FilterChanges=0,FilterOptions=0,FormatOptions=0,ResourceOptions=0,UpdateOptions=0,DataSet=0,Options=0,ConnectedStoredUsage=0,Params=0,TxOptions=0,BorderIcons=0,Font=0,GlassFrame=0,HorzScrollBar=0,ActiveTab=0,BitmapMargins=0,Caret=0,DataDetectorTypes=0,ImageMargins=0,StyleElements=0
 
 [frmDesignPreview]
 PercentageSizes=1
@@ -573,11 +569,11 @@ State=0
 Left=0
 Top=0
 Width=2339
-Height=1163
+Height=1240
 MaxLeft=-1
 MaxTop=-1
 ClientWidth=2339
-ClientHeight=1163
+ClientHeight=1240
 TBDockHeight=2317
 LRDockWidth=2823
 Dockable=1
@@ -592,11 +588,11 @@ State=0
 Left=0
 Top=0
 Width=2339
-Height=1163
+Height=1240
 MaxLeft=-1
 MaxTop=-1
 ClientWidth=2339
-ClientHeight=1163
+ClientHeight=1240
 TBDockHeight=3212
 LRDockWidth=2823
 Dockable=1
@@ -611,11 +607,11 @@ State=0
 Left=0
 Top=0
 Width=2339
-Height=1163
+Height=1240
 MaxLeft=-1
 MaxTop=-1
 ClientWidth=2339
-ClientHeight=1163
+ClientHeight=1240
 TBDockHeight=1154
 LRDockWidth=3677
 Dockable=1
@@ -673,8 +669,8 @@ Create=1
 Visible=0
 Docked=1
 State=0
-Left=-32536
-Top=-32492
+Left=-34688
+Top=123
 Width=1849
 Height=3144
 MaxLeft=-1
@@ -695,11 +691,11 @@ State=0
 Left=0
 Top=0
 Width=2339
-Height=1163
+Height=1240
 MaxLeft=-1
 MaxTop=-1
 ClientWidth=2339
-ClientHeight=1163
+ClientHeight=1240
 TBDockHeight=4837
 LRDockWidth=3562
 Dockable=1
@@ -714,11 +710,11 @@ State=0
 Left=0
 Top=0
 Width=2339
-Height=1163
+Height=1240
 MaxLeft=-1
 MaxTop=-1
 ClientWidth=2339
-ClientHeight=1163
+ClientHeight=1240
 TBDockHeight=4837
 LRDockWidth=3562
 Dockable=1
@@ -818,15 +814,15 @@ Create=1
 Visible=0
 Docked=1
 State=0
-Left=0
-Top=18
+Left=8
+Top=8
 Width=2339
-Height=1404
+Height=1481
 MaxLeft=-1
 MaxTop=-1
 ClientWidth=2339
-ClientHeight=1404
-TBDockHeight=1404
+ClientHeight=1481
+TBDockHeight=1481
 LRDockWidth=2339
 Dockable=1
 StayOnTop=0
@@ -879,8 +875,8 @@ LRDockWidth=2000
 Dockable=1
 StayOnTop=0
 TabPosition=1
-ActiveTabID=ToolForm
-TabDockClients=ProjectManager,ToolForm,ModelViewTool,DataExplorerContainer,frmDesignPreview,TemplateView,TFileExplorerForm
+ActiveTabID=ProjectManager
+TabDockClients=ProjectManager,ToolForm,ModelViewTool,DataExplorerContainer,frmDesignPreview,TFileExplorerForm,TemplateView
 
 [DockSite3]
 HostDockSite=DockLeftPanel

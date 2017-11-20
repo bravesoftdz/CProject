@@ -47,7 +47,9 @@ object frmMain: TfrmMain
         TabOrder = 0
         object cxgRecipe: TcxGridDBTableView
           Navigator.Buttons.CustomButtons = <>
+          OnCustomDrawCell = cxgRecipeCustomDrawCell
           DataController.DataSource = dmDB.dsRecipe
+          DataController.KeyFieldNames = 'Serial'
           DataController.Summary.DefaultGroupSummaryItems = <>
           DataController.Summary.FooterSummaryItems = <>
           DataController.Summary.SummaryGroups = <>
@@ -59,6 +61,7 @@ object frmMain: TfrmMain
           OptionsData.Editing = False
           OptionsData.Inserting = False
           OptionsView.ColumnAutoWidth = True
+          OptionsView.ExpandButtonsForEmptyDetails = False
           OptionsView.GroupByBox = False
           OptionsView.HeaderAutoHeight = True
           OptionsView.Indicator = True
@@ -68,27 +71,32 @@ object frmMain: TfrmMain
             HeaderAlignmentHorz = taCenter
           end
           object cxgRecipeUsers_Serial: TcxGridDBColumn
+            Caption = 'Nickname'
             DataBinding.FieldName = 'Users_Serial'
-            Visible = False
+            PropertiesClassName = 'TcxLookupComboBoxProperties'
+            Properties.KeyFieldNames = 'Serial'
+            Properties.ListColumns = <
+              item
+                FieldName = 'Nickname'
+              end>
+            Properties.ListSource = dmDB.dsUsers
             HeaderAlignmentHorz = taCenter
+            Width = 106
           end
           object cxgRecipeUserName: TcxGridDBColumn
             DataBinding.FieldName = 'UserName'
             Visible = False
             HeaderAlignmentHorz = taCenter
           end
-          object cxgRecipeNickname: TcxGridDBColumn
-            DataBinding.FieldName = 'Nickname'
-            HeaderAlignmentHorz = taCenter
-          end
           object cxgRecipeTitle: TcxGridDBColumn
             DataBinding.FieldName = 'Title'
             HeaderAlignmentHorz = taCenter
+            Width = 286
           end
           object cxgRecipeDescription: TcxGridDBColumn
             DataBinding.FieldName = 'Description'
-            Visible = False
             HeaderAlignmentHorz = taCenter
+            Width = 300
           end
           object cxgRecipePictureType: TcxGridDBColumn
             DataBinding.FieldName = 'PictureType'
@@ -120,26 +128,6 @@ object frmMain: TfrmMain
             Visible = False
             HeaderAlignmentHorz = taCenter
           end
-          object cxgRecipeItemName0: TcxGridDBColumn
-            DataBinding.FieldName = 'ItemName0'
-            Visible = False
-            HeaderAlignmentHorz = taCenter
-          end
-          object cxgRecipeItemName1: TcxGridDBColumn
-            DataBinding.FieldName = 'ItemName1'
-            Visible = False
-            HeaderAlignmentHorz = taCenter
-          end
-          object cxgRecipeItemName2: TcxGridDBColumn
-            DataBinding.FieldName = 'ItemName2'
-            Visible = False
-            HeaderAlignmentHorz = taCenter
-          end
-          object cxgRecipeItemName3: TcxGridDBColumn
-            DataBinding.FieldName = 'ItemName3'
-            Visible = False
-            HeaderAlignmentHorz = taCenter
-          end
           object cxgRecipeMakingLevel: TcxGridDBColumn
             DataBinding.FieldName = 'MakingLevel'
             Visible = False
@@ -163,98 +151,40 @@ object frmMain: TfrmMain
           object cxgRecipeCreatedDate: TcxGridDBColumn
             DataBinding.FieldName = 'CreatedDate'
             HeaderAlignmentHorz = taCenter
+            Width = 99
           end
           object cxgRecipePublished: TcxGridDBColumn
             DataBinding.FieldName = 'Published'
             HeaderAlignmentHorz = taCenter
-            Width = 90
+            Width = 87
           end
           object cxgRecipeDeleted: TcxGridDBColumn
             DataBinding.FieldName = 'Deleted'
             HeaderAlignmentHorz = taCenter
-            Width = 80
+            Width = 60
           end
-        end
-        object cxgRecipeIngredient: TcxGridDBTableView
-          Navigator.Buttons.CustomButtons = <>
-          DataController.DataSource = dmDB.dsRecipeIngredient
-          DataController.DetailKeyFieldNames = 'Recipe_Serial'
-          DataController.MasterKeyFieldNames = 'Serial'
-          DataController.Summary.DefaultGroupSummaryItems = <>
-          DataController.Summary.FooterSummaryItems = <>
-          DataController.Summary.SummaryGroups = <>
-          OptionsData.Deleting = False
-          OptionsData.Editing = False
-          OptionsData.Inserting = False
-          object cxgRecipeIngredientSerial: TcxGridDBColumn
-            DataBinding.FieldName = 'Serial'
+          object cxgRecipePictureSquare: TcxGridDBColumn
+            DataBinding.FieldName = 'PictureSquare'
+            Visible = False
           end
-          object cxgRecipeIngredientRecipe_Serial: TcxGridDBColumn
-            DataBinding.FieldName = 'Recipe_Serial'
+          object cxgRecipePictureRectangle: TcxGridDBColumn
+            DataBinding.FieldName = 'PictureRectangle'
+            Visible = False
           end
-          object cxgRecipeIngredientSeq: TcxGridDBColumn
-            DataBinding.FieldName = 'Seq'
+          object cxgRecipeCategory: TcxGridDBColumn
+            DataBinding.FieldName = 'Category'
+            Visible = False
           end
-          object cxgRecipeIngredientIngredientType: TcxGridDBColumn
-            DataBinding.FieldName = 'IngredientType'
+          object cxgRecipeUpdatedDate: TcxGridDBColumn
+            DataBinding.FieldName = 'UpdatedDate'
+            Visible = False
           end
-          object cxgRecipeIngredientTitle: TcxGridDBColumn
-            DataBinding.FieldName = 'Title'
-          end
-          object cxgRecipeIngredientAmount: TcxGridDBColumn
-            DataBinding.FieldName = 'Amount'
-          end
-          object cxgRecipeIngredientUnit: TcxGridDBColumn
-            DataBinding.FieldName = 'Unit'
-          end
-          object cxgRecipeIngredientWeight: TcxGridDBColumn
-            DataBinding.FieldName = 'Weight'
-          end
-          object cxgRecipeIngredientPictureType: TcxGridDBColumn
-            DataBinding.FieldName = 'PictureType'
-          end
-          object cxgRecipeIngredientPicture: TcxGridDBColumn
-            DataBinding.FieldName = 'Picture'
-          end
-          object cxgRecipeIngredientContents: TcxGridDBColumn
-            DataBinding.FieldName = 'Contents'
-          end
-        end
-        object cxGrid2DBTableView2: TcxGridDBTableView
-          Navigator.Buttons.CustomButtons = <>
-          DataController.DataSource = dmDB.dsRecipeMethod
-          DataController.Summary.DefaultGroupSummaryItems = <>
-          DataController.Summary.FooterSummaryItems = <>
-          DataController.Summary.SummaryGroups = <>
-          object cxGrid2DBTableView2Serial: TcxGridDBColumn
-            DataBinding.FieldName = 'Serial'
-          end
-          object cxGrid2DBTableView2Recipe_Serial: TcxGridDBColumn
-            DataBinding.FieldName = 'Recipe_Serial'
-          end
-          object cxGrid2DBTableView2Seq: TcxGridDBColumn
-            DataBinding.FieldName = 'Seq'
-          end
-          object cxGrid2DBTableView2Description: TcxGridDBColumn
-            DataBinding.FieldName = 'Description'
-          end
-          object cxGrid2DBTableView2PictureType: TcxGridDBColumn
-            DataBinding.FieldName = 'PictureType'
-          end
-          object cxGrid2DBTableView2Picture: TcxGridDBColumn
-            DataBinding.FieldName = 'Picture'
-          end
-        end
-        object cxGrid2DBTableView3: TcxGridDBTableView
-          Navigator.Buttons.CustomButtons = <>
-          DataController.Summary.DefaultGroupSummaryItems = <>
-          DataController.Summary.FooterSummaryItems = <>
-          DataController.Summary.SummaryGroups = <>
         end
         object cxgRecipeMethod: TcxGridDBTableView
           Navigator.Buttons.CustomButtons = <>
           DataController.DataSource = dmDB.dsRecipeMethod
           DataController.DetailKeyFieldNames = 'Recipe_Serial'
+          DataController.KeyFieldNames = 'Serial'
           DataController.MasterKeyFieldNames = 'Serial'
           DataController.Summary.DefaultGroupSummaryItems = <>
           DataController.Summary.FooterSummaryItems = <>
@@ -262,28 +192,59 @@ object frmMain: TfrmMain
           OptionsData.Deleting = False
           OptionsData.Editing = False
           OptionsData.Inserting = False
+          OptionsView.ColumnAutoWidth = True
+          OptionsView.ExpandButtonsForEmptyDetails = False
+          OptionsView.GroupByBox = False
+          OptionsView.Indicator = True
           object cxgRecipeMethodSerial: TcxGridDBColumn
             DataBinding.FieldName = 'Serial'
+            Visible = False
           end
           object cxgRecipeMethodRecipe_Serial: TcxGridDBColumn
             DataBinding.FieldName = 'Recipe_Serial'
+            Visible = False
+            Width = 64
+          end
+          object cxgRecipeMethodMethodType: TcxGridDBColumn
+            DataBinding.FieldName = 'MethodType'
+            PropertiesClassName = 'TcxLookupComboBoxProperties'
+            Properties.KeyFieldNames = 'CategoryCode'
+            Properties.ListColumns = <
+              item
+                FieldName = 'CategoryName'
+              end>
+            Properties.ListSource = dmDB.dsMethodType
+            Width = 64
+          end
+          object cxgRecipeMethodStepSeq: TcxGridDBColumn
+            DataBinding.FieldName = 'StepSeq'
           end
           object cxgRecipeMethodSeq: TcxGridDBColumn
             DataBinding.FieldName = 'Seq'
           end
           object cxgRecipeMethodDescription: TcxGridDBColumn
             DataBinding.FieldName = 'Description'
+            Width = 200
           end
           object cxgRecipeMethodPictureType: TcxGridDBColumn
             DataBinding.FieldName = 'PictureType'
+            Visible = False
           end
           object cxgRecipeMethodPicture: TcxGridDBColumn
             DataBinding.FieldName = 'Picture'
+            Width = 150
+          end
+          object cxgRecipeMethodPictureRectangle: TcxGridDBColumn
+            DataBinding.FieldName = 'PictureRectangle'
+            Visible = False
+          end
+          object cxgRecipeMethodPictureSquare: TcxGridDBColumn
+            DataBinding.FieldName = 'PictureSquare'
+            Visible = False
           end
         end
         object cxgRecipeMethodItem: TcxGridDBTableView
           Navigator.Buttons.CustomButtons = <>
-          DataController.DataSource = dmDB.dsRecipeMethodItem
           DataController.DetailKeyFieldNames = 'RecipeMethod_Serial'
           DataController.MasterKeyFieldNames = 'Serial'
           DataController.Summary.DefaultGroupSummaryItems = <>
@@ -292,11 +253,15 @@ object frmMain: TfrmMain
           OptionsData.Deleting = False
           OptionsData.Editing = False
           OptionsData.Inserting = False
+          OptionsView.GroupByBox = False
           object cxgRecipeMethodItemSerial: TcxGridDBColumn
             DataBinding.FieldName = 'Serial'
           end
           object cxgRecipeMethodItemRecipeMethod_Serial: TcxGridDBColumn
             DataBinding.FieldName = 'RecipeMethod_Serial'
+          end
+          object cxgRecipeMethodItemRecipeIngredient_Serial: TcxGridDBColumn
+            DataBinding.FieldName = 'RecipeIngredient_Serial'
           end
           object cxgRecipeMethodItemSeq: TcxGridDBColumn
             DataBinding.FieldName = 'Seq'
@@ -311,15 +276,90 @@ object frmMain: TfrmMain
             DataBinding.FieldName = 'ItemValue'
           end
         end
-        object cxGridLevel1: TcxGridLevel
-          GridView = cxgRecipe
-          object cxGrid2Level1: TcxGridLevel
-            GridView = cxgRecipeIngredient
+        object cxgRecipeIngredient: TcxGridDBTableView
+          Navigator.Buttons.CustomButtons = <>
+          DataController.DataSource = dmDB.dsRecipeIngredient
+          DataController.DetailKeyFieldNames = 'RecipeMethod_Serial'
+          DataController.KeyFieldNames = 'Serial'
+          DataController.MasterKeyFieldNames = 'Serial'
+          DataController.Summary.DefaultGroupSummaryItems = <>
+          DataController.Summary.FooterSummaryItems = <>
+          DataController.Summary.SummaryGroups = <>
+          OptionsData.Deleting = False
+          OptionsData.Editing = False
+          OptionsData.Inserting = False
+          OptionsView.ColumnAutoWidth = True
+          OptionsView.ExpandButtonsForEmptyDetails = False
+          OptionsView.GroupByBox = False
+          object cxgRecipeIngredientItemType: TcxGridDBColumn
+            DataBinding.FieldName = 'ItemType'
+            PropertiesClassName = 'TcxLookupComboBoxProperties'
+            Properties.KeyFieldNames = 'CategoryCode'
+            Properties.ListColumns = <
+              item
+                FieldName = 'CategoryName'
+              end>
+            Properties.ListSource = dmDB.dsItemType
           end
+          object cxgRecipeIngredientTitle: TcxGridDBColumn
+            DataBinding.FieldName = 'Title'
+            Width = 250
+          end
+          object cxgRecipeIngredientAmount: TcxGridDBColumn
+            DataBinding.FieldName = 'Amount'
+            Width = 50
+          end
+          object cxgRecipeIngredientSerial: TcxGridDBColumn
+            DataBinding.FieldName = 'Serial'
+            Visible = False
+          end
+          object cxgRecipeIngredientUnit: TcxGridDBColumn
+            DataBinding.FieldName = 'Unit'
+            Width = 50
+          end
+          object cxgRecipeIngredientSeq: TcxGridDBColumn
+            DataBinding.FieldName = 'Seq'
+            SortIndex = 0
+            SortOrder = soAscending
+            Width = 50
+          end
+          object cxgRecipeIngredientLinkedRecipe: TcxGridDBColumn
+            DataBinding.FieldName = 'LinkedRecipe'
+          end
+          object cxgRecipeIngredientItemWeightValue: TcxGridDBColumn
+            DataBinding.FieldName = 'ItemWeightValue'
+          end
+          object cxgRecipeIngredientItemTimeValue: TcxGridDBColumn
+            DataBinding.FieldName = 'ItemTimeValue'
+          end
+          object cxgRecipeIngredientItemTemperatureValue: TcxGridDBColumn
+            DataBinding.FieldName = 'ItemTemperatureValue'
+          end
+          object cxgRecipeIngredientRecipe_Serial: TcxGridDBColumn
+            DataBinding.FieldName = 'Recipe_Serial'
+            Visible = False
+          end
+          object cxgRecipeIngredientRecipeMethod_Serial: TcxGridDBColumn
+            DataBinding.FieldName = 'RecipeMethod_Serial'
+            Visible = False
+          end
+          object cxgRecipeIngredientItemUnit: TcxGridDBColumn
+            DataBinding.FieldName = 'ItemUnit'
+            Visible = False
+          end
+        end
+        object cxGridLevel1: TcxGridLevel
+          Caption = 'Recipe'
+          GridView = cxgRecipe
+          Options.DetailTabsPosition = dtpTop
           object cxGrid2Level4: TcxGridLevel
+            Caption = 'STEP'
             GridView = cxgRecipeMethod
+            Options.DetailTabsPosition = dtpTop
             object cxGrid2Level2: TcxGridLevel
-              GridView = cxgRecipeMethodItem
+              Caption = #51116#47308','#49884#44036','#50728#46020
+              GridView = cxgRecipeIngredient
+              Options.DetailTabsPosition = dtpTop
             end
           end
         end
@@ -350,11 +390,29 @@ object frmMain: TfrmMain
           TabOrder = 1
           OnClick = btnRecipeUpdateClick
         end
+        object chkShowDeleted: TcxCheckBox
+          Left = 862
+          Top = 17
+          Caption = 'Show Deleted'
+          TabOrder = 2
+          Transparent = True
+          OnClick = chkShowDeletedClick
+        end
+        object cxLabel1: TcxLabel
+          Left = 451
+          Top = 17
+          Caption = #49325#51228#54616#47732' '#54868#47732#50640#49436' '#48372#51060#51648' '#50506#44172' '#46121#45768#45796'. '#45796#49884' '#48372#51060#44172' '#54616#47140#47732' Click ->'
+          Transparent = True
+        end
       end
     end
     object cxTabSheet7: TcxTabSheet
       Caption = 'Category'
       ImageIndex = 4
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object cxGrid3: TcxGrid
         AlignWithMargins = True
         Left = 7
@@ -390,6 +448,7 @@ object frmMain: TfrmMain
           object cxgCategoryCategoryType: TcxGridDBColumn
             DataBinding.FieldName = 'CategoryType'
             PropertiesClassName = 'TcxLookupComboBoxProperties'
+            Properties.DropDownRows = 20
             Properties.KeyFieldNames = 'CategoryType'
             Properties.ListColumns = <
               item
@@ -413,13 +472,8 @@ object frmMain: TfrmMain
             SortOrder = soAscending
             Width = 150
           end
-          object cxgCategoryItemCode: TcxGridDBColumn
-            DataBinding.FieldName = 'ItemCode'
-            HeaderAlignmentHorz = taCenter
-            Options.Editing = False
-          end
-          object cxgCategoryItemName: TcxGridDBColumn
-            DataBinding.FieldName = 'ItemName'
+          object cxgCategoryCategoryName: TcxGridDBColumn
+            DataBinding.FieldName = 'CategoryName'
             HeaderAlignmentHorz = taCenter
           end
           object cxgCategoryComment: TcxGridDBColumn
@@ -491,6 +545,10 @@ object frmMain: TfrmMain
     object cxTabSheet1: TcxTabSheet
       Caption = 'Users'
       ImageIndex = 2
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object cxGrid1: TcxGrid
         AlignWithMargins = True
         Left = 7
@@ -519,6 +577,10 @@ object frmMain: TfrmMain
           OptionsView.GroupByBox = False
           OptionsView.HeaderAutoHeight = True
           OptionsView.Indicator = True
+          object cxGUserSerial: TcxGridDBColumn
+            DataBinding.FieldName = 'Serial'
+            Visible = False
+          end
           object cxGUserNickname: TcxGridDBColumn
             DataBinding.FieldName = 'Nickname'
             HeaderAlignmentHorz = taCenter
@@ -602,14 +664,17 @@ object frmMain: TfrmMain
           object cxGUserLevel: TcxGridDBColumn
             DataBinding.FieldName = 'Level'
             PropertiesClassName = 'TcxLookupComboBoxProperties'
-            Properties.KeyFieldNames = 'ItemCode'
+            Properties.KeyFieldNames = 'CategoryCode'
             Properties.ListColumns = <
               item
-                FieldName = 'ItemName'
+                FieldName = 'CategoryName'
               end>
-            Properties.ListSource = dmDB.dsCategory
+            Properties.ListSource = dmDB.dsCategoryUserlevel
             HeaderAlignmentHorz = taCenter
             Width = 55
+          end
+          object cxGUserWithdrawal: TcxGridDBColumn
+            DataBinding.FieldName = 'Withdrawal'
           end
         end
         object cxGridDBTableView2: TcxGridDBTableView

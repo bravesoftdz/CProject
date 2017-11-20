@@ -1,0 +1,327 @@
+object frmRecipeCategory: TfrmRecipeCategory
+  Left = 0
+  Top = 0
+  Caption = 'Form1'
+  ClientHeight = 902
+  ClientWidth = 456
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
+  OnClose = FormClose
+  OnShow = FormShow
+  DesignerMasterStyle = 3
+  object recTitle: TRectangle
+    Align = Top
+    Fill.Color = xFFFF7500
+    Size.Width = 456.000000000000000000
+    Size.Height = 45.000000000000000000
+    Size.PlatformDefault = False
+    Stroke.Color = xFFFF7500
+    object layoutBackButton: TLayout
+      Align = Left
+      HitTest = True
+      Size.Width = 54.000000000000000000
+      Size.Height = 45.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      OnClick = layoutBackButtonClick
+      object imgBack: TImage
+        MultiResBitmap.Height = 72
+        MultiResBitmap.Width = 72
+        MultiResBitmap.LoadSize = 2
+        MultiResBitmap = <
+          item
+            Width = 48
+            Height = 48
+            PNG = {
+              89504E470D0A1A0A0000000D49484452000000300000003008060000005702F9
+              87000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+              00C4494441546843EDD8CB0AC2301484E1E033797934375D882FAC2E4257499C
+              CA4484D28DA027E7301F886843F9477463121111F995D6DA6579F0A52F8C7F29
+              A55CF9B60F687EC777B5D68997C786D6557CCEF98101271E19175A156F02AD8A
+              378156C59B40ABE24DA055F126D0BA8AFF17267C0FF7308B5F3063D38ECFB1E1
+              83F0FB15EA702FBF3FE20ECD3147C03DCA88238F8C0FC11A3104046F8D38F0C8
+              F8101C73C43CCFB72823F63C323E34C71C8101675EF601CD9F235CFF43ED335E
+              44441C48E909BA5E14FE00BABED00000000049454E44AE426082}
+            FileName = 'D:\GitHub\CProject\02.CookPlay\image\icBack@2x.png'
+          end>
+        Align = Center
+        HitTest = False
+        Size.Width = 24.000000000000000000
+        Size.Height = 24.000000000000000000
+        Size.PlatformDefault = False
+      end
+    end
+    object Layout12: TLayout
+      Align = Right
+      HitTest = True
+      Position.X = 402.000000000000000000
+      Size.Width = 54.000000000000000000
+      Size.Height = 45.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+    end
+    object Text8: TText
+      Align = Client
+      Size.Width = 348.000000000000000000
+      Size.Height = 45.000000000000000000
+      Size.PlatformDefault = False
+      Text = #52852#53580#44256#47532
+      TextSettings.Font.Size = 18.000000000000000000
+      TextSettings.Font.StyleExt = {00070000000000000004000000}
+      TextSettings.FontColor = claWhite
+    end
+  end
+  object recBody: TRectangle
+    Align = Client
+    Fill.Color = claWhitesmoke
+    Size.Width = 456.000000000000000000
+    Size.Height = 857.000000000000000000
+    Size.PlatformDefault = False
+    Stroke.Color = claWhitesmoke
+  end
+  object VertScrollBox1: TVertScrollBox
+    Align = Client
+    Size.Width = 456.000000000000000000
+    Size.Height = 857.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 2
+    Viewport.Width = 456.000000000000000000
+    Viewport.Height = 857.000000000000000000
+    object Layout1: TLayout
+      Align = Top
+      Size.Width = 456.000000000000000000
+      Size.Height = 35.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      object Text1: TText
+        Align = Center
+        AutoSize = True
+        Size.Width = 279.970367431640600000
+        Size.Height = 18.750976562500000000
+        Size.PlatformDefault = False
+        Text = #52852#53580#44256#47532#45716' '#52572#45824' 10'#44060' '#44620#51648' '#49440#53469' '#44032#45733#54633#45768#45796'.'
+        TextSettings.Font.Size = 14.000000000000000000
+        TextSettings.FontColor = claRed
+        TextSettings.WordWrap = False
+      end
+    end
+    object Layout2: TLayout
+      Align = Top
+      Padding.Left = 20.000000000000000000
+      Position.Y = 35.000000000000000000
+      Size.Width = 456.000000000000000000
+      Size.Height = 38.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 4
+      object Text2: TText
+        Align = Client
+        Size.Width = 436.000000000000000000
+        Size.Height = 38.000000000000000000
+        Size.PlatformDefault = False
+        Text = #51333#47448#48324
+        TextSettings.Font.Size = 16.000000000000000000
+        TextSettings.HorzAlign = Leading
+      end
+    end
+    object recCategory0: TRectangle
+      Align = Top
+      Fill.Color = claWhite
+      Padding.Left = 20.000000000000000000
+      Padding.Right = 20.000000000000000000
+      Position.Y = 73.000000000000000000
+      Size.Width = 456.000000000000000000
+      Size.Height = 74.000000000000000000
+      Size.PlatformDefault = False
+      Stroke.Color = claWhite
+      object gCategory0: TGridPanelLayout
+        Align = Client
+        Size.Width = 416.000000000000000000
+        Size.Height = 74.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        ColumnCollection = <
+          item
+            Value = 50.012510221364600000
+          end
+          item
+            Value = 49.987489778635400000
+          end>
+        ControlCollection = <>
+        RowCollection = <
+          item
+            Value = 100.000000000000000000
+          end>
+        object Layout3D1: TLayout3D
+          Height = 4.000000000000000000
+          Width = 5.000000000000000000
+        end
+      end
+    end
+    object Layout3: TLayout
+      Align = Top
+      Padding.Left = 20.000000000000000000
+      Position.Y = 147.000000000000000000
+      Size.Width = 456.000000000000000000
+      Size.Height = 38.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 3
+      object Text15: TText
+        Align = Client
+        Size.Width = 436.000000000000000000
+        Size.Height = 38.000000000000000000
+        Size.PlatformDefault = False
+        Text = #51116#47308#48324
+        TextSettings.Font.Size = 16.000000000000000000
+        TextSettings.HorzAlign = Leading
+      end
+    end
+    object recCategory1: TRectangle
+      Align = Top
+      Fill.Color = claWhite
+      Padding.Left = 20.000000000000000000
+      Padding.Right = 20.000000000000000000
+      Position.Y = 185.000000000000000000
+      Size.Width = 456.000000000000000000
+      Size.Height = 78.000000000000000000
+      Size.PlatformDefault = False
+      Stroke.Color = claWhite
+      object gCategory1: TGridPanelLayout
+        Align = Client
+        Size.Width = 416.000000000000000000
+        Size.Height = 78.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        ColumnCollection = <
+          item
+            Value = 50.012510221364600000
+          end
+          item
+            Value = 49.987489778635400000
+          end>
+        ControlCollection = <>
+        RowCollection = <
+          item
+            Value = 100.000000000000000000
+          end>
+        object Layout3D2: TLayout3D
+          Height = 4.000000000000000000
+          Width = 5.000000000000000000
+        end
+      end
+    end
+    object Layout4: TLayout
+      Align = Top
+      Padding.Left = 20.000000000000000000
+      Position.Y = 263.000000000000000000
+      Size.Width = 456.000000000000000000
+      Size.Height = 38.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      object Text28: TText
+        Align = Client
+        Size.Width = 436.000000000000000000
+        Size.Height = 38.000000000000000000
+        Size.PlatformDefault = False
+        Text = #49345#54889#48324
+        TextSettings.Font.Size = 16.000000000000000000
+        TextSettings.HorzAlign = Leading
+      end
+    end
+    object recCategory2: TRectangle
+      Align = Top
+      Fill.Color = claWhite
+      Padding.Left = 20.000000000000000000
+      Padding.Right = 20.000000000000000000
+      Position.Y = 301.000000000000000000
+      Size.Width = 456.000000000000000000
+      Size.Height = 90.000000000000000000
+      Size.PlatformDefault = False
+      Stroke.Color = claWhite
+      object gCategory2: TGridPanelLayout
+        Align = Client
+        Size.Width = 416.000000000000000000
+        Size.Height = 90.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        ColumnCollection = <
+          item
+            Value = 50.012510221364600000
+          end
+          item
+            Value = 49.987489778635400000
+          end>
+        ControlCollection = <>
+        RowCollection = <
+          item
+            Value = 100.000000000000000000
+          end>
+        object Layout3D3: TLayout3D
+          Height = 4.000000000000000000
+          Width = 5.000000000000000000
+        end
+      end
+    end
+    object Layout5: TLayout
+      Align = Top
+      Padding.Left = 20.000000000000000000
+      Position.Y = 391.000000000000000000
+      Size.Width = 456.000000000000000000
+      Size.Height = 38.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      object Text41: TText
+        Align = Client
+        Size.Width = 436.000000000000000000
+        Size.Height = 38.000000000000000000
+        Size.PlatformDefault = False
+        Text = #48169#48277#48324
+        TextSettings.Font.Size = 16.000000000000000000
+        TextSettings.HorzAlign = Leading
+      end
+    end
+    object recCategory3: TRectangle
+      Align = Top
+      Fill.Color = claWhite
+      Padding.Left = 20.000000000000000000
+      Padding.Right = 20.000000000000000000
+      Position.Y = 429.000000000000000000
+      Size.Width = 456.000000000000000000
+      Size.Height = 86.000000000000000000
+      Size.PlatformDefault = False
+      Stroke.Color = claWhite
+      object gCategory3: TGridPanelLayout
+        Align = Client
+        Size.Width = 416.000000000000000000
+        Size.Height = 86.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        ColumnCollection = <
+          item
+            Value = 50.012510221364600000
+          end
+          item
+            Value = 49.987489778635400000
+          end>
+        ControlCollection = <>
+        RowCollection = <
+          item
+            Value = 100.000000000000000000
+          end>
+        object Layout3D4: TLayout3D
+          Height = 4.000000000000000000
+          Width = 5.000000000000000000
+        end
+      end
+    end
+    object Layout6: TLayout
+      Align = Top
+      Position.Y = 515.000000000000000000
+      Size.Width = 456.000000000000000000
+      Size.Height = 20.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 9
+    end
+  end
+end

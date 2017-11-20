@@ -1,0 +1,12 @@
+object Frame1: TFrame1
+  Size.Width = 518.000000000000000000
+  Size.Height = 588.000000000000000000
+  Size.PlatformDefault = False
+  object WebBrowser1: TWebBrowser
+    Align = Client
+    Size.Width = 518.000000000000000000
+    Size.Height = 588.000000000000000000
+    Size.PlatformDefault = False
+    URL = 'www.daum.net'
+  end
+end

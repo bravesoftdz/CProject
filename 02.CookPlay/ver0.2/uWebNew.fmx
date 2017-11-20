@@ -1,0 +1,61 @@
+object frmWebNew: TfrmWebNew
+  Left = 0
+  Top = 0
+  Caption = 'Form1'
+  ClientHeight = 480
+  ClientWidth = 498
+  Fill.Color = xFFFF7500
+  Fill.Kind = Solid
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  DesignerMasterStyle = 3
+  object Rectangle1: TRectangle
+    Align = Top
+    Fill.Color = xFFFF7500
+    Size.Width = 498.000000000000000000
+    Size.Height = 45.000000000000000000
+    Size.PlatformDefault = False
+    Stroke.Color = xFFFF7500
+    object layoutBackButton: TLayout
+      Align = Left
+      HitTest = True
+      Size.Width = 54.000000000000000000
+      Size.Height = 45.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      object Image1: TImage
+        MultiResBitmap.Height = 72
+        MultiResBitmap.Width = 72
+        MultiResBitmap.LoadSize = 2
+        MultiResBitmap = <
+          item
+            Width = 48
+            Height = 48
+            PNG = {
+              89504E470D0A1A0A0000000D49484452000000300000003008060000005702F9
+              87000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+              00C3494441546843EDD8BB0A02311484E1C567F2F268365B882FAC56A992382B
+              1311966D043D17E60311352CFF885A38898888FC4AEFFDB2DCF83016C6BFD45A
+              AF7C3A0634BFE387D6DACC977D43EB2ABE94F2C080138FF88556C59B40ABE24D
+              A055F126D0AA78136855BC09B4AEE2FF8509DFC335CCE217CCD8B4E37D6E7823
+              E27E84065C2BEE97784073CE1170CF32E2C823FE2158235C40F0D688038FF887
+              E09C23F0137BCB3262CF23FEA139E7080C38F3E518D0FC3922F43FD431E34544
+              2480697A029D65154C33B631C30000000049454E44AE426082}
+            FileName = 'D:\GitHub\CProject\02.CookPlay\image\icBack@2x.png'
+          end>
+        Align = Center
+        HitTest = False
+        Size.Width = 24.000000000000000000
+        Size.Height = 24.000000000000000000
+        Size.PlatformDefault = False
+      end
+    end
+  end
+  object WebBrowser: TWebBrowser
+    Align = Client
+    Size.Width = 498.000000000000000000
+    Size.Height = 435.000000000000000000
+    Size.PlatformDefault = False
+  end
+end

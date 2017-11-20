@@ -25,16 +25,82 @@ type
     function SaveSystemInformation: Boolean;
   end;
 
+  TPictureType = record
+  const
+    still = 0;
+    movie = 1;
+  end;
+
+  TMakingLevelType = record
+  const
+    level0 = 0;
+    level1 = 1;
+    level2 = 2;
+  end;
+
+  TMakingTimeType = record
+  const
+    level0 = 0;
+    level1 = 1;
+    level2 = 2;
+    level3 = 3;
+    level4 = 4;
+  end;
+
+  TRecipeType = record
+  const
+    etc = 999;
+    unPublished = 0;
+    publish = 1;
+    unDeleted = 0;
+    deleted = 1;
+    weight_mg = 0;
+    weight_g = 1;
+    weight_kg = 2;
+    weight_lbs = 3;
+    weight_oz = 4;
+    temperature_C = 20;
+    time_sec = 10;
+    notSeq = -1;
+    notLinked = -1;
+    ingredient = 0;
+    ingredient_source = 1;
+    ingredient_temperature=2;
+    ingredient_time=3;
+    firstSeq = 0;
+    item0 = 0;
+    methodExplain = 0;
+    methodIngredient = 1;
+    methodTime = 2;
+    methodTemperature = 3;
+    methodLinked = 9;
+    feedStory = 0;
+    feedRecipe = 1;
+    feedCookbook = 2;
+    methodStep = 0;
+    methodPicture = 1;
+  public
+    Picture: TPictureType;
+    MakingLevel: TMakingLevelType;
+    MakingTime: TMakingTimeType;
+  end;
+
 const
   cKEY_NAME = '\Software\EastSeaSoftware\CookPlay\';
-  BUCKET_USER_NAME = 'cookplay-users';
-  BUCKET_RECIPE_NAME = 'cookplay-recipe';
+  BUCKET_USER = 'cookplay-users';
+  BUCKET_RECIPE = 'cookplay-recipe';
 
   BUCKET_NAME = 'delphitest1';
   CompressionQuality = 70;
 
+  DS_NONE = 'none';
+  DS_INSERT = 'insert';
+  DS_EDIT = 'update';
+  DS_DELETE = 'delete';
+
 var
-  oSysInfo: TSysInfo;
+  _SysInfo: TSysInfo;
+  _type: TRecipeType;
 
 implementation
 uses uEncryption;
