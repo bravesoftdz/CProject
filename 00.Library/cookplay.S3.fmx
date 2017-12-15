@@ -8,13 +8,6 @@ object frmS3: TfrmS3
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
   DesignerMasterStyle = 0
-  object Image1: TImage
-    MultiResBitmap = <
-      item
-      end>
-    Position.X = 178.000000000000000000
-    Position.Y = 90.000000000000000000
-  end
   object AmazonConnectionInfo: TAmazonConnectionInfo
     AccountName = 'AKIAJWOBLS6AE22TOJ5Q'
     AccountKey = 'eAH5RV/Uiptek941wGhJTPU9RXoTbcc3CengOOIT'
@@ -24,15 +17,5 @@ object frmS3: TfrmS3
     StorageEndpoint = 's3.amazonaws.com'
     Left = 62
     Top = 24
-  end
-  object NetHTTPClient: TNetHTTPClient
-    Asynchronous = False
-    ConnectionTimeout = 60000
-    ResponseTimeout = 60000
-    AllowCookies = True
-    HandleRedirects = True
-    UserAgent = 'Embarcadero URI Client/1.0'
-    Left = 183
-    Top = 23
   end
 end

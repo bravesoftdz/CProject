@@ -49,8 +49,8 @@ type
       Shift: TShiftState);
     procedure FormShow(Sender: TObject);
     procedure timerCloseTimer(Sender: TObject);
-    procedure imgRecommendationClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
     FRecipeBarList: TStringList;
@@ -84,7 +84,7 @@ var
 
 implementation
 uses cookplay.StatusBar, system.NetEncoding, ClientModuleUnit, uMain,
-  uChangeWeight;
+  uChangeWeight, uComment;
 {$R *.fmx}
 
 procedure TfrmWeb.AddTab(ATabControl: TTabControl);
@@ -114,13 +114,16 @@ var
   web: TWebBrowser;
   index: integer;
 begin
-  if not Assigned(aResultList) then
+  if Assigned(aResultList) then
   begin
     index := tabWeb.TabCount - 1;
     web := TWebBrowser(tabWeb.Tabs[index].FindComponent(STR_WEBBROWSER_NAME + index.ToString));
 
     if Assigned(web) then
-      web.EvaluateJavaScript('infoRecipe(' + AResultList[0] + ', 0.5);')
+    begin
+//      showmessage('infoRecipe(' + AResultList[0] + ', 0.5);');
+      web.EvaluateJavaScript('infoRecipe(' + AResultList[0] + ', 0.5);');
+    end
     else
       ShowMessage('바뀐 무게를 적용할 수 없습니다!');
   end;
@@ -213,8 +216,8 @@ begin
       web.EvaluateJavaScript('change_email(''' + AParameters[0].AsString + ''')');
     end;
 
-      timerClose.Tag := 1;
-      timerClose.Enabled := True;
+    timerClose.Tag := 1;
+    timerClose.Enabled := True;
   end
   else if AMethodName = 'changeweight' then
   begin
@@ -315,6 +318,12 @@ begin
   FRecipeBarList.AddObject('', rv);
 end;
 
+procedure TfrmWeb.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  timerClose.Enabled := False;
+  Action := TCloseAction.caFree;
+end;
+
 procedure TfrmWeb.FormCreate(Sender: TObject);
 begin
   FRecipeBarList := TStringList.Create;
@@ -355,7 +364,7 @@ begin
   wb := TWebBrowser(tabWeb.Tabs[index].FindComponent(wbName));
   wb.Navigate(url);
   tabWeb.TabIndex := index;
-
+//
   wb.SetFocus;
 end;
 
@@ -370,18 +379,34 @@ var
   aIndex: integer;
   rv: TRecipeViewInfo;
 begin
-  aIndex := RecipeMenuBarCount - 1;
-  rv := RecipeMenuBar(aIndex);
+  if CM.memUser.IsEmpty then
+    ShowMessage('로그인 하셔야 북마크를 사용하실 수 있습니다!')
+  else
+  begin
+    aIndex := RecipeMenuBarCount - 1;
+    rv := RecipeMenuBar(aIndex);
 
-  CM.UpdateRecipeBookmark(rv.RecipeSerial, rv.UserSerial, (TImage(Sender).Tag = 0));
-  SetBookmarkImage(aIndex, TImage(Sender).Tag = 0);
+    CM.UpdateRecipeBookmark(rv.RecipeSerial, rv.UserSerial, (TImage(Sender).Tag = 0));
+    SetBookmarkImage(aIndex, TImage(Sender).Tag = 0);
 
-  SetRecipeView(aIndex);
+    SetRecipeView(aIndex);
+  end;
 end;
 
 procedure TfrmWeb.OnCommentImageClick(Sender: TObject);
+var
+  aIndex: integer;
 begin
-  // Comment 화면을 Display 한다
+  if CM.memUser.IsEmpty then
+    ShowMessage('로그인 하셔야 댓글을 입력하실 수 있습니다!')
+  else
+  begin
+    // Comment 화면을 Display 한다
+    aIndex := RecipeMenuBarCount - 1;
+
+    frmComment.Init(RecipeMenuBar(aIndex).RecipeSerial);
+    frmComment.Show;
+  end;
 end;
 
 procedure TfrmWeb.OnPlayRecipeImageClick(Sender: TObject);
@@ -394,13 +419,18 @@ var
   aIndex: integer;
   rv: TRecipeViewInfo;
 begin
-  aIndex := RecipeMenuBarCount - 1;
-  rv := RecipeMenuBar(aIndex);
+  if CM.memUser.IsEmpty then
+    ShowMessage('로그인 하셔야 추천하실 수 있습니다!')
+  else
+  begin
+    aIndex := RecipeMenuBarCount - 1;
+    rv := RecipeMenuBar(aIndex);
 
-  CM.UpdateRecipeRecommendation(rv.RecipeSerial, rv.UserSerial, (TImage(Sender).Tag = 0));
-  SetRecommendationImage(aIndex, TImage(Sender).Tag = 0);
+    CM.UpdateRecipeRecommendation(rv.RecipeSerial, rv.UserSerial, (TImage(Sender).Tag = 0));
+    SetRecommendationImage(aIndex, TImage(Sender).Tag = 0);
 
-  SetRecipeView(aIndex);
+    SetRecipeView(aIndex);
+  end;
 end;
 
 procedure TfrmWeb.OnShouldStartLoadWithRequest(ASender: TObject;
@@ -409,6 +439,7 @@ var
   MethodName: string;
   sRecipeSerial: string;
   p: integer;
+  p2: integer;
   rv: TRecipeViewInfo;
   aIndex: integer;
   Params: TArray<TValue>;
@@ -417,11 +448,14 @@ begin
   begin
     try
       p := URL.IndexOf('=');
+      p2 := URL.IndexOf('&');
 
       if p > -1 then
       begin
-        p := P + 2;
-        sRecipeSerial := copy(URL, p, URL.Length - p + 1);
+        if p2 = -1 then
+          sRecipeSerial := copy(URL, p+2, URL.Length - p + 1)
+        else
+          sRecipeSerial := copy(URL, p+2, (p2-p-1));
 
         aIndex := RecipeMenuBarCount - 1;
 
@@ -429,10 +463,7 @@ begin
 
         rv.RecipeSerial := sRecipeSerial.ToInt64;
 
-        if CM.memUser.IsEmpty then
-          rv.UserSerial := -1
-        else
-          rv.UserSerial := CM.memUserSerial.AsLargeInt;
+        rv.UserSerial := _info.UserSerial;
 
         if rv.UserSerial > -1 then
           SetRecipeView(aIndex);
@@ -554,13 +585,16 @@ end;
 procedure TfrmWeb.timerCloseTimer(Sender: TObject);
   procedure CloseWebbrowser(cnt: integer);
   var
-    index, i: integer;
+    web: TWebBrowser;
+    aindex, i: integer;
   begin
     for i := 0 to cnt-1 do
       if tabWeb.TabCount > 0 then
       begin
-        index := tabWeb.TabCount - 1;
-        tabWeb.Tabs[index].DisposeOf;
+        aindex := tabWeb.TabCount - 1;
+        web := TWebBrowser(tabWeb.Tabs[aindex].FindComponent(STR_WEBBROWSER_NAME + aindex.ToString));
+        web.DisposeOf;
+        tabWeb.Delete(aindex);
       end;
 
     if tabWeb.TabCount = 0 then
@@ -574,14 +608,6 @@ begin
   CloseWebbrowser(timerClose.Tag);
 
   timerClose.Tag := 0;
-end;
-
-procedure TfrmWeb.imgRecommendationClick(Sender: TObject);
-begin
-  if CM.UpdateRecipeRecommendation(87, 4, True) then
-    showmessage('true')
-  else
-    showmessage('false');
 end;
 
 end.

@@ -12,7 +12,7 @@ uses
   FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf,
   FireDAC.DApt.Intf, FireDAC.Comp.DataSet, FireDAC.Comp.Client,
   FMX.DateTimeCtrls, FMX.Gestures, System.ImageList, FMX.ImgList, FMX.Ani,
-  FMX.EditBox, FMX.NumberBox, uGlobal, FMX.Effects;
+  FMX.EditBox, FMX.NumberBox, uGlobal, FMX.Effects, cookplay.scale;
 
 type
   TPictureInfo = record
@@ -271,6 +271,8 @@ type
     GlowEffect1: TGlowEffect;
     layoutScrollBottom: TLayout;
     imgRecipeRectangle: TImage;
+    Rectangle8: TRectangle;
+    Edit1: TEdit;
     procedure FormShow(Sender: TObject);
     procedure layoutBackButtonClick(Sender: TObject);
     procedure cboPersonChange(Sender: TObject);
@@ -638,6 +640,20 @@ begin
                     ErrMessage('단위를 선택해 주십시오', AIngredient.edtQuantity, False, result);
                   break;
                 end;
+              end;
+            end
+            else if AIngredient.IngredientType = itTime then
+            begin
+              // 시간 설명을 체크한다
+              if AIngredient.edtName.Text.Trim = '' then
+              begin
+                ErrMessage('시간에 대한 설명을 입력해 주세요!', AIngredient.edtName, true, result);
+                break;
+              end
+              else if (AIngredient.edtName.Text.Trim <> '') and (AIngredient.txtTimer.Text.Trim = INIT_TIME_STR) then
+              begin
+                ErrMessage('시간을 설정해 주십시오!', AIngredient.edtName, true, result);
+                break;
               end;
             end;
           end;
@@ -1542,13 +1558,40 @@ begin
 
           imgLeft.Bitmap := ImageList.Bitmap(TSizeF.Create(60,60), 4);
 
+          recNameBody := TRectangle.Create(layoutIngredientBody);
+          recNameBody.Parent := layoutIngredientBody;
+          recNameBody.Align := TAlignLayout.Client;
+          recNameBody.Fill.Color := TAlphaColorRec.Whitesmoke;
+          recNameBody.Stroke.Color := COLOR_BOX_ROUND;
+          recNameBody.Margins := TBounds.Create(TRectF.Create(5,0,10,0));
+          recNameBody.Padding := TBounds.Create(TRectF.Create(3,0,3,0));
+          begin
+            edtName := TEdit.Create(recNameBody);
+            edtName.Parent := recNameBody;
+            edtName.StyleLookup := 'Edit2Style1';
+            edtName.TextPrompt := '예)굽기';
+
+            if aIngredientTable <> nil then
+              edtname.Text := aIngredientTable.FieldByName('Title').AsWideString;
+
+            edtName.Align := TAlignLayout.VertCenter;
+            edtName.TextSettings.Font.Size := 14;
+            edtName.MaxLength := 100;
+            edtName.StyledSettings := [TStyledSetting.Family,TStyledSetting.Style,TStyledSetting.FontColor,TStyledSetting.Other];
+
+            edtName.CanFocus := False;
+            edtName.OnExit := OnEditExit;
+            edtName.OnClick := OnEditClick;
+          end;
+
           recTimerBody := TRectangle.Create(layoutIngredientBody);
           recTimerBody.Parent := layoutIngredientBody;
-          recTimerBody.Align := TAlignLayout.Client;
+          recTimerBody.Width := 140 + 40;
+          recTimerBody.Align := TAlignLayout.Right;
           recTimerBody.Fill.Color := TAlphaColorRec.Whitesmoke;
           recTimerBody.Stroke.Color := COLOR_BOX_ROUND;
-          recTimerBody.Margins := TBounds.Create(TRectF.Create(5,0,5,0));
-          recTimerBody.Padding := TBounds.Create(TRectF.Create(3,0,3,0));
+          recTimerBody.Margins := TBounds.Create(TRectF.Create(0,0,5,0));
+          recTimerBody.Padding := TBounds.Create(TRectF.Create(5,0,3,0));
           begin
             txtTimer := TText.Create(recTimerBody);
             txtTimer.Parent := recTimerBody;
@@ -1567,6 +1610,7 @@ begin
 
           imgScale := TImage.Create(layoutIngredientBody);
           imgScale.Parent := layoutIngredientBody;
+          imgScale.Position.X := ClientWidth;
           imgScale.Width := 40;
           imgScale.Align := TAlignLayout.Right;
           imgScale.Visible := False;
@@ -2200,7 +2244,7 @@ begin
         aTitle := aIngredient.edtName.Text.Trim;
 
         // 재료/시간이 입력되지 않으면 저장하지 않는다
-        if ((aIngredient.IngredientType = itTime) and (aIngredient.txtTimer.Text.Trim <> INIT_TIME_STR)) or (aTitle.Trim <> '') then
+        if (aTitle.Trim <> '') then // or ((aIngredient.IngredientType = itTime) and (aIngredient.txtTimer.Text.Trim <> INIT_TIME_STR)) then
         begin
           // 새로운 Ingredient 이면
           if aIngredient.Serial = NEW_INGREDIENT then
@@ -2881,6 +2925,9 @@ begin
       AIngredient.txtScale.Visible := False;
       AIngredient.imgScale.Bitmap := frmRecipeEditor.ImageList.Bitmap(TSizeF.Create(60,60), 1);
       AIngredient.imgScale.Visible := True;
+
+      if AIngredient.IngredientType = TIngredientType.itTime then
+        AIngredient.recTimerBody.Width := 140;
     end
     else
     begin
@@ -2897,6 +2944,8 @@ begin
       begin
         AIngredient.txtScale.Visible := False;
         AIngredient.imgScale.Visible := False;
+
+        AIngredient.recTimerBody.Width := 140 + 40;
       end
       else
       begin

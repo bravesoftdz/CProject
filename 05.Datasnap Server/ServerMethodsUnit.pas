@@ -43,6 +43,12 @@ type
     dsRecipe: TDataSetProvider;
     sqlvIngredientGroup: TFDQuery;
     dsvIngredientGroup: TDataSetProvider;
+    sqlvRecipeComment: TFDQuery;
+    dsRecipeComment: TDataSetProvider;
+    sqlStep: TFDQuery;
+    dsStep: TDataSetProvider;
+    sqlIngredient: TFDQuery;
+    dsIngredient: TDataSetProvider;
   private
     { Private declarations }
   public
@@ -53,6 +59,7 @@ type
     function GetQueryString(AQuery, AFieldName: string): string;
     function UpdateQuery(aQuery: string): Boolean;
     function GetCount(aQuery: string): integer;
+    function LastInsertID: LargeInt;
   end;
 
 implementation
@@ -130,6 +137,30 @@ begin
       result := ''
     else
       result := sqlQuery.FieldByName(AFieldName).AsString;
+
+    sqlQuery.Close;
+  end;
+
+  FDConnection1.Connected := BeforeActive;
+end;
+
+function TServerMethods1.LastInsertID: LargeInt;
+var
+  BeforeActive: Boolean;
+begin
+  BeforeActive := FDConnection1.Connected;
+
+  if not BeforeActive then
+    FDConnection1.Connected := True;
+
+  try
+    sqlQuery.Close;
+    sqlQuery.Open('SELECT LAST_INSERT_ID() AS LASTID');
+  finally
+    if sqlQuery.IsEmpty then
+      result := -1
+    else
+      result := sqlQuery.FieldByName('LASTID').AsLargeInt;
 
     sqlQuery.Close;
   end;

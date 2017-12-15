@@ -244,6 +244,7 @@ begin
   if Assigned(FCallbackFunc) then
   begin
     sList := TStringList.Create;
+    sList.Add(FServings.ToString);
     sList.Add(FRatio.ToString);
     FCallbackFunc(sList);
   end

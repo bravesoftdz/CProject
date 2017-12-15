@@ -25,6 +25,7 @@ type
     procedure ClearControls;
     procedure Init(aRecipeViewType: TRecipeViewType;
       aScrollBox: TVertScrollBox; aTopPosition: integer);
+    procedure OnAniColorFinish(Sender: TObject);
   published
     property DisplayedCount: integer read FDisplayedCount;
   end;
@@ -33,7 +34,7 @@ const
   RECIPE_LIST_NO = 20;
 
 implementation
-uses ClientModuleUnit, cookplay.S3, uWeb;
+uses ClientModuleUnit, cookplay.S3, uWeb, uMain;
 { TRecipeScrollList }
 
 procedure TRecipeScrollList.ClearControls;
@@ -137,7 +138,14 @@ begin
       aLayoutBody.Padding := TBounds.Create(TRectF.Create(5,10,10,10));
 
     aLayoutBody.Tag := aIndex; // 레시피 리스트의 item index
-    aLayoutBody.TagString := URL_RECIPE_VIEW + '?recipeserial=' + TRecipeListItem(FList.Objects[aIndex]).RecipeSerial.ToString;
+
+    if _info.UserSerial = -1 then
+      aLayoutBody.TagString := URL_RECIPE_VIEW + '?recipeserial=' + TRecipeListItem(FList.Objects[aIndex]).RecipeSerial.ToString +
+        '&userserial='
+    else
+      aLayoutBody.TagString := URL_RECIPE_VIEW + '?recipeserial=' + TRecipeListItem(FList.Objects[aIndex]).RecipeSerial.ToString +
+        '&userserial=' + _info.UserSerial.ToString;
+
     aLayoutBody.OnTap := OnRecipeItemTap;
     aLayoutBody.HitTest := True;
     begin
@@ -237,8 +245,9 @@ begin
     TRecipeListItem(FList.Objects[aIndex]).AniColor.StartValue := TAlphaColorRec.White;
     TRecipeListItem(FList.Objects[aIndex]).AniColor.StopValue := TAlphaColorRec.Silver;
     TRecipeListItem(FList.Objects[aIndex]).AniColor.Inverse := True;
-    TRecipeListItem(FList.Objects[aIndex]).AniColor.Duration := 0.5;
+    TRecipeListItem(FList.Objects[aIndex]).AniColor.Duration := 0.2;
     TRecipeListItem(FList.Objects[aIndex]).AniColor.Enabled := False;
+    TRecipeListItem(FList.Objects[aIndex]).AniColor.OnFinish := OnAniColorFinish;
 
     result := True;
   end
@@ -246,15 +255,23 @@ begin
     result := False;
 end;
 
+procedure TRecipeScrollList.OnAniColorFinish(Sender: TObject);
+var
+  aForm: TfrmWeb;
+begin
+  aForm := TfrmWeb.Create(Application);
+  aForm.goURL(TColorAnimation(Sender).TagString);
+  aForm.Show;
+
+//  frmWeb.goURL(TColorAnimation(Sender).TagString);
+//  frmWeb.Show;
+end;
+
 procedure TRecipeScrollList.OnRecipeItemTap(Sender: TObject;
   const Point: TPointF);
 begin
+  TRecipeListItem(FList.Objects[TLayout(Sender).Tag]).AniColor.TagString := TLayout(Sender).TagString;
   TRecipeListItem(FList.Objects[TLayout(Sender).Tag]).AniColor.Start;
-  Application.ProcessMessages;
-//  frmS3.DoAnimation(TRecipeListItem(FList.Objects[TLayout(Sender).Tag]).AniColor);
-
-  frmWeb.goURL(TLayout(Sender).TagString);
-  frmWeb.Show;
 end;
 
 end.

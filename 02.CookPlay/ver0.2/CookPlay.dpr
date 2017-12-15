@@ -18,12 +18,17 @@ uses
   AnonThread in 'AnonThread.pas',
   uListScroll in 'uListScroll.pas',
   ClientClassesUnit in 'ClientClassesUnit.pas',
-  uChangeWeight in 'uChangeWeight.pas' {frmChangeWeight};
+  uChangeWeight in 'uChangeWeight.pas' {frmChangeWeight},
+  uComment in 'uComment.pas' {frmComment},
+  uScaleFrame in 'uScaleFrame.pas' {frameScale: TFrame},
+  uTemp in 'uTemp.pas' {frmTemp},
+  uTemp2 in 'uTemp2.pas' {frmTemp2};
 
 {$R *.res}
 
 begin
   Application.Initialize;
+  Application.FormFactor.Orientations := [TFormOrientation.Portrait];
   Application.CreateForm(TfrmMain, frmMain);
   Application.CreateForm(TCM, CM);
   Application.CreateForm(TfrmRecipeEditor, frmRecipeEditor);
@@ -31,8 +36,10 @@ begin
   Application.CreateForm(TfrmRecipeCategory, frmRecipeCategory);
   Application.CreateForm(TfrmList, frmList);
   Application.CreateForm(TfrmS3, frmS3);
-  Application.CreateForm(TfrmWeb, frmWeb);
   Application.CreateForm(TfrmListDragNDrop, frmListDragNDrop);
   Application.CreateForm(TfrmChangeWeight, frmChangeWeight);
+  Application.CreateForm(TfrmComment, frmComment);
+  Application.CreateForm(TfrmTemp, frmTemp);
+  Application.CreateForm(TfrmTemp2, frmTemp2);
   Application.Run;
 end.

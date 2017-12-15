@@ -118,6 +118,7 @@ type
     imagelistGlobal: TImageList;
     DSRecipeCount: TClientDataSet;
     DSvIngredientGroup: TClientDataSet;
+    DSvRecipeComment: TClientDataSet;
   private
     FInstanceOwner: Boolean;
     FServerMethods1Client: TServerMethods1Client;
@@ -157,6 +158,12 @@ type
       var aRecommended, aBookmarked, aRecommendationCount, aCommentCount: integer);
 
     function GetIngredientGroup(aRecipeSerial: LargeInt): TStringList;
+
+    function GetRecipeComment(aRecipeSerial: LargeInt): TStringList;
+
+    function InsertRecipeComment(aRecipeSerial, aUserSerial: LargeInt; aComment: string): Boolean;
+    function UpdateRecipeComment(aSerial: LargeInt; aComment: string): Boolean;
+    function DeleteRecipeComment(aSerial: LargeInt): Boolean;
 end;
 
 var
@@ -192,6 +199,20 @@ constructor TCM.Create(AOwner: TComponent);
 begin
   inherited;
   FInstanceOwner := True;
+end;
+
+function TCM.DeleteRecipeComment(aSerial: LargeInt): Boolean;
+var
+  sql: string;
+begin
+  try
+    sql := 'Delete from RecipeComment' +
+           ' Where Serial = ' + aSerial.ToString;
+
+    result := ServerMethods1Client.UpdateQuery(sql);
+  finally
+    SQLConnection.Close;
+  end;
 end;
 
 destructor TCM.Destroy;
@@ -256,40 +277,32 @@ var
   oItem: TRecipeChangeWeightItem;
 begin
   SQLConnection.Open;
+  oList := TStringList.Create;
 
   try
-    try
-      DSvIngredientGroup.Close;
-      DSvIngredientGroup.ParamByName('RecipeSerial').Value := aRecipeSerial;
-      DSvIngredientGroup.Open;
+    DSvIngredientGroup.Close;
+    DSvIngredientGroup.ParamByName('RecipeSerial').Value := aRecipeSerial;
+    DSvIngredientGroup.Open;
 
-      if not DSvIngredientGroup.IsEmpty then
+    if not DSvIngredientGroup.IsEmpty then
+    begin
+      DSvIngredientGroup.First;
+      while not DSvIngredientGroup.Eof do
       begin
-        oList := TStringList.Create;
+        oItem := TRecipeChangeWeightItem.Create;
+        oItem.IngredientType := TIngredientType(DSvIngredientGroup.FieldByName('ItemType').AsInteger);
+        oItem.Title := DSvIngredientGroup.FieldByName('Title').AsWideString;
+        oItem.Weight := DSvIngredientGroup.FieldByName('ItemWeightValue').AsFloat;
 
-        DSvIngredientGroup.First;
-        while not DSvIngredientGroup.Eof do
-        begin
-          oItem := TRecipeChangeWeightItem.Create;
-          oItem.IngredientType := TIngredientType(DSvIngredientGroup.FieldByName('ItemType').AsInteger);
-          oItem.Title := DSvIngredientGroup.FieldByName('Title').AsWideString;
-          oItem.Weight := DSvIngredientGroup.FieldByName('ItemWeightValue').AsFloat;
+        if oItem.IngredientType in [itIngredient, itSeasoning, itRecipeLink]  then
+          oList.AddObject('', oItem);
 
-          if oItem.IngredientType in [itIngredient, itSeasoning, itRecipeLink]  then
-            oList.AddObject('', oItem);
-
-          DSvIngredientGroup.Next;
-        end;
-
-        result := oList;
-      end
-      else
-        result := nil;
-    except
-      result := nil;
+        DSvIngredientGroup.Next;
+      end;
     end;
   finally
     SQLConnection.Close;
+    result := oList;
   end;
 end;
 
@@ -339,6 +352,28 @@ begin
 
   finally
     DSSetup.Close;
+    SQLConnection.Close;
+  end;
+end;
+
+function TCM.InsertRecipeComment(aRecipeSerial, aUserSerial: LargeInt;
+  aComment: string): Boolean;
+var
+  sql: string;
+begin
+  try
+    try
+      sql := 'Insert into RecipeComment' +
+             '       (Recipe_Serial, Users_Serial, Contents, CreatedDate)' +
+             '       VALUES' +
+             '       (' + aRecipeSerial.ToString + ', ' + aUserSerial.ToString + ', ''' + aComment.Trim + ''', ''' + FormatDatetime('YYYY-MM-DD HH:NN:SS', now) + ''')';
+
+      result := ServerMethods1Client.UpdateQuery(sql);
+    except
+      on E:Exception do
+        Showmessage(E.Message);
+    end;
+  finally
     SQLConnection.Close;
   end;
 end;
@@ -525,6 +560,47 @@ begin
   finally
     DSRecipeRecent.Close;
     SQLConnection.Close;
+  end;
+end;
+
+function TCM.GetRecipeComment(aRecipeSerial: LargeInt): TStringList;
+// 레시피의 댓글을 찾아서 보낸다
+var
+  oList: TStringList;
+  aCommentItem: TRecipeCommentInfo;
+begin
+  SQLConnection.Open;
+  oList := TStringList.Create;
+
+  try
+    DSvRecipeComment.Close;
+    DSvRecipeComment.ParamByName('RecipeSerial').Value := aRecipeSerial;
+    DSvRecipeComment.Open;
+
+    if not DSvRecipeComment.IsEmpty then
+    begin
+      DSvRecipeComment.First;
+      while not DSvRecipeComment.Eof do
+      begin
+        aCommentItem := TRecipeCommentInfo.Create;
+        aCommentItem.Serial := DSvRecipeComment.FieldByName('Serial').AsLargeInt;
+        aCommentItem.Recipe_Serial := DSvRecipeComment.FieldByName('Recipe_Serial').AsLargeInt;
+        aCommentItem.Users_Serial := DSvRecipeComment.FieldByName('Users_Serial').AsLargeInt;
+        aCommentItem.Contents := DSvRecipeComment.FieldByName('Contents').AsWideString;
+        aCommentItem.PictureType := DSvRecipeComment.FieldByName('PictureType').AsInteger;
+        aCommentItem.Picture := DSvRecipeComment.FieldByName('Picture').AsWideString;
+        aCommentItem.UserPicture := DSvRecipeComment.FieldByName('UserPicture').AsWideString;
+        aCommentItem.Nickname := DSvRecipeComment.FieldByName('Nickname').AsWideString;
+        aCommentItem.CreatedDatetime := DSvRecipeComment.FieldByName('CreatedDate').AsWideString;
+
+        oList.AddObject('', aCommentItem);
+
+        DSvRecipeComment.Next;
+      end;
+    end;
+  finally
+    SQLConnection.Close;
+    result := oList;
   end;
 end;
 
@@ -740,6 +816,26 @@ begin
         result := ServerMethods1Client.UpdateQuery(sQuery);
     except
       result := False;
+    end;
+  finally
+    SQLConnection.Close;
+  end;
+end;
+
+function TCM.UpdateRecipeComment(aSerial: LargeInt; aComment: string): Boolean;
+var
+  sql: string;
+begin
+  try
+    try
+      sql := 'Update RecipeComment' +
+             '   Set Contents=''' + aComment + '''' +
+             ' Where Serial=' + aSerial.ToString;
+
+      result := ServerMethods1Client.UpdateQuery(sql);
+    except
+      on E:Exception do
+        Showmessage(E.Message);
     end;
   finally
     SQLConnection.Close;

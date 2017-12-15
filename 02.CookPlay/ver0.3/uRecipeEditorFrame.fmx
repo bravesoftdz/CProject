@@ -1,0 +1,101 @@
+object frameRecipeEditor: TframeRecipeEditor
+  Size.Width = 614.000000000000000000
+  Size.Height = 671.000000000000000000
+  Size.PlatformDefault = False
+  object recTitle: TRectangle
+    Align = Top
+    Fill.Color = xFFFF7500
+    Size.Width = 614.000000000000000000
+    Size.Height = 45.000000000000000000
+    Size.PlatformDefault = False
+    Stroke.Color = xFFFF7500
+    object layoutBackButton: TLayout
+      Align = Left
+      HitTest = True
+      Size.Width = 54.000000000000000000
+      Size.Height = 45.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      object Image1: TImage
+        MultiResBitmap.Height = 72
+        MultiResBitmap.Width = 72
+        MultiResBitmap.LoadSize = 2
+        MultiResBitmap = <
+          item
+            Width = 48
+            Height = 48
+            PNG = {
+              89504E470D0A1A0A0000000D49484452000000300000003008060000005702F9
+              87000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+              00C4494441546843EDD8CB0AC2301484E1E033797934375D882FAC2E4257499C
+              CA4484D28DA027E7301F886843F9477463121111F995D6DA6579F0A52F8C7F29
+              A55CF9B60F687EC777B5D68997C786D6557CCEF98101271E19175A156F02AD8A
+              378156C59B40ABE24DA055F126D0BA8AFF17267C0FF7308B5F3063D38ECFB1E1
+              83F0FB15EA702FBF3FE20ECD3147C03DCA88238F8C0FC11A3104046F8D38F0C8
+              F8101C73C43CCFB72823F63C323E34C71C8101675EF601CD9F235CFF43ED335E
+              44441C48E909BA5E14FE00BABED00000000049454E44AE426082}
+            FileName = 'D:\GitHub\CProject\02.CookPlay\image\icBack@2x.png'
+          end>
+        Align = Center
+        HitTest = False
+        Size.Width = 24.000000000000000000
+        Size.Height = 24.000000000000000000
+        Size.PlatformDefault = False
+      end
+    end
+    object Text2: TText
+      Align = Client
+      Margins.Right = 64.000000000000000000
+      Size.Width = 496.000000000000000000
+      Size.Height = 45.000000000000000000
+      Size.PlatformDefault = False
+      Text = #47112#49884#54588' '#46321#47197
+      TextSettings.Font.Size = 18.000000000000000000
+      TextSettings.Font.StyleExt = {00070000000000000004000000}
+      TextSettings.FontColor = claWhite
+    end
+  end
+  object Rectangle2: TRectangle
+    Align = Client
+    Fill.Color = claWhitesmoke
+    Size.Width = 614.000000000000000000
+    Size.Height = 626.000000000000000000
+    Size.PlatformDefault = False
+    Stroke.Color = claWhite
+    object Text1: TText
+      Align = Top
+      Margins.Left = 20.000000000000000000
+      Position.X = 20.000000000000000000
+      Size.Width = 594.000000000000000000
+      Size.Height = 40.000000000000000000
+      Size.PlatformDefault = False
+      Text = #51228#47785
+      TextSettings.Font.Size = 16.000000000000000000
+      TextSettings.HorzAlign = Leading
+    end
+    object Rectangle4: TRectangle
+      Align = Top
+      Fill.Color = claWhite
+      Padding.Left = 20.000000000000000000
+      Padding.Right = 20.000000000000000000
+      Position.Y = 40.000000000000000000
+      Size.Width = 614.000000000000000000
+      Size.Height = 50.000000000000000000
+      Size.PlatformDefault = False
+      Stroke.Kind = None
+      object Edit2: TEdit
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        Align = VertCenter
+        StyleLookup = 'Edit2Style1'
+        TabOrder = 0
+        MaxLength = 100
+        Position.X = 20.000000000000000000
+        Position.Y = 9.000000000000000000
+        Size.Width = 574.000000000000000000
+        Size.Height = 32.000000000000000000
+        Size.PlatformDefault = False
+        TextPrompt = #47112#49884#54588' '#51228#47785' ('#46168#51060' '#47673#45796#44032' '#46168#45796' '#51453#50612#46020' '#47784#47484' '#54889#44552' '#47112#49884#54588')'
+      end
+    end
+  end
+end

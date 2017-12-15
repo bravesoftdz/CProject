@@ -1,0 +1,97 @@
+unit uRecipePlay;
+
+interface
+
+uses
+  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
+  FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Objects,
+  uScaleFrame, FMX.Layouts, FMX.Controls.Presentation, FMX.StdCtrls,
+  System.Actions, FMX.ActnList;
+
+type
+  TRecipeViewIngredient = record
+    a: TStringList;
+
+  end;
+
+  TRecipeViewStep = record
+    StepSerial: LargeInt;
+
+    Ingredients: TRecipeViewIngredient;
+  end;
+
+  TRecipeView = record
+    RecipeSerial: LargeInt;
+
+
+    Steps: TRecipeViewStep;
+  end;
+
+  TfrmRecipePlay = class(TForm)
+    Layout1: TLayout;
+    Rectangle1: TRectangle;
+    Line1: TLine;
+    Rectangle2: TRectangle;
+    Line2: TLine;
+    Image1: TImage;
+    Image2: TImage;
+    Image3: TImage;
+    Image4: TImage;
+    Text1: TText;
+    imgActiveImage: TImage;
+    Rectangle3: TRectangle;
+    VertScrollBox1: TVertScrollBox;
+    frameScale1: TframeScale;
+    Layout2: TLayout;
+    imgInactiveImage: TImage;
+    Button1: TButton;
+    Button2: TButton;
+    ActionList1: TActionList;
+    actPriorStep: TAction;
+    actNextStep: TAction;
+    actPriorIngredient: TAction;
+    actNextIngredient: TAction;
+    Action6: TAction;
+    Action1: TAction;
+    Action2: TAction;
+    Action3: TAction;
+    Action4: TAction;
+    procedure FormShow(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
+  private
+    { Private declarations }
+//    procedure MakeStep(aStepNo: integer);
+  public
+    { Public declarations }
+  end;
+
+var
+  frmRecipePlay: TfrmRecipePlay;
+
+implementation
+uses uGlobal, cookplay.scale, cookplay.StatusBar;
+{$R *.fmx}
+
+procedure TfrmRecipePlay.Button1Click(Sender: TObject);
+begin
+  frameScale1.ScaleNext('양파1개 100.3g', 100.3, TIngredientUnit.wuG);
+
+end;
+
+procedure TfrmRecipePlay.Button2Click(Sender: TObject);
+begin
+  frameScale1.ScaleNext('마늘3개 50g', 50, TIngredientUnit.wuG);
+
+end;
+
+procedure TfrmRecipePlay.FormShow(Sender: TObject);
+begin
+  frameScale1.OpenScale(TScaleMeasureType.smPlay, 'abc', 50, TIngredientUnit.wuG);
+
+  // Status Bar 색을 바꾼다
+  Fill.Color := $FFFFDF77;
+  StatusBarSetColor(Fill.Color);
+end;
+
+end.

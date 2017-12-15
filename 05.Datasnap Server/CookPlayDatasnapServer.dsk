@@ -82,7 +82,7 @@ CustomEditViewType=TEditView
 Module=D:\GitHub\CProject\05.Datasnap Server\ServerContainerUnit.pas
 CursorX=17
 CursorY=18
-TopLine=22
+TopLine=1
 LeftCol=1
 Elisions=
 Bookmarks=
@@ -91,13 +91,13 @@ EditViewName=D:\GitHub\CProject\05.Datasnap Server\ServerContainerUnit.pas
 [View2]
 CustomEditViewType=TEditView
 Module=D:\GitHub\CProject\05.Datasnap Server\ServerMethodsUnit.pas
-CursorX=7
-CursorY=135
-TopLine=123
+CursorX=41
+CursorY=173
+TopLine=147
 LeftCol=1
 Elisions=
-Bookmarks={1,167,43}
-EditViewName=Borland.FormDesignerView
+Bookmarks={1,198,43}
+EditViewName=D:\GitHub\CProject\05.Datasnap Server\ServerMethodsUnit.pas
 
 [UndockedDesigner]
 Count=0
@@ -150,7 +150,7 @@ Create=1
 Visible=1
 Docked=0
 State=2
-Left=12406
+Left=12417
 Top=0
 Width=8932
 Height=8519
@@ -281,8 +281,8 @@ SplitPos=151
 
 [PropInspDesignerSelection]
 ArrangeBy=Name
-SelectedItem=Active,AfterApplyUpdates
-ExpandedItems="LiveBindings Designer=0",Server=0,Connection=0,ActiveStoredUsage=0,FetchOptions=0,FieldOptions=0,FilterChanges=0,FilterOptions=0,FormatOptions=0,ResourceOptions=0,UpdateOptions=0,LiveBindings=0,DataSet=0,Options=0,Value=0,Anchors=0,Margins=0,Padding=0,Position=0,RotationCenter=0,Scale=0,Size=0,StyledSettings=0,TextSettings=0,Touch=0,TouchTargetExpansion=0
+SelectedItem=Name,
+ExpandedItems=Border=0,BorderIcons=0,Fill=0,FormFactor=0,"LiveBindings Designer=0",Padding=0,Touch=0
 
 [frmDesignPreview]
 PercentageSizes=1
@@ -552,8 +552,8 @@ Create=1
 Visible=0
 Docked=1
 State=0
-Left=-34688
-Top=-31952
+Left=-3860
+Top=-111
 Width=1849
 Height=3144
 MaxLeft=-1
@@ -759,7 +759,7 @@ Dockable=1
 StayOnTop=0
 TabPosition=1
 ActiveTabID=ProjectManager
-TabDockClients=ProjectManager,ToolForm,ModelViewTool,DataExplorerContainer,frmDesignPreview,TemplateView,TFileExplorerForm
+TabDockClients=ProjectManager,ToolForm,ModelViewTool,DataExplorerContainer,frmDesignPreview,TFileExplorerForm,TemplateView
 
 [DockSite3]
 HostDockSite=DockLeftPanel

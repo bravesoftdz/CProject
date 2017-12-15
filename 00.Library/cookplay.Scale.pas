@@ -2,6 +2,8 @@ unit cookplay.Scale;
 //------------------------------------------------------------------------------
 //  Created by GreenScale Co, Inc.
 //  Created Date: 2016.02.05
+//  Updated Date: 2017.11.24
+//    - 저울에서 최대무게값, 최소무게값, 무게단위를 받아올 수 있도록 한다
 //
 //  역할
 //  1. 전자저울과 연결하여 저울에 명령을 전달함
@@ -14,6 +16,8 @@ unit cookplay.Scale;
 //      6) OnWeight       : 저울에서 오늘 무게값을 알려 줌
 //      7) OnWeightChanged: 저울의 무게값이 변경되었을 경우 알려줌
 //                          정의된 interval 시간안에 변경이 없을 경우 이벤트 발생
+//      8) OnNextButton   : 저울에서 'Next' 버턴을 눌려짐
+//      9) OnInfoChanged  : 전자저울 최대무게, 최소무게, 무게단위가 변경됨
 //  구조
 //  1. TScaleConnection   : TComponent
 //      1) 다른 Class 에서 저울을 사용하려고 할 경우 이용함
@@ -57,7 +61,7 @@ type
   // TR : 전자저울 인식표 내용확인
   // TW : 전자저울 인식표 내용입력
   //---
-  TScaleCommand = (cmdAU, cmdRW, cmdMZ, cmdMT, cmdCT, cmdMG, cmdMN, cmdRT, cmdTM, cmdTR, cmdTW, cmdST, cmdNT);
+  TScaleCommand = (cmdAU, cmdRW, cmdMZ, cmdMT, cmdCT, cmdMG, cmdMN, cmdRT, cmdTM, cmdTR, cmdTW, cmdST, cmdNT, cmdIF);
   TWeightStatus = (wsStable, wsUnStable, wsOverLoad, wsError);
   TTMCode = (tmEvent=0, tmNormal, tmRepeat);
 
@@ -101,6 +105,7 @@ type
     OnWeight: TWeightEvent;
     OnWeightChanged: TWeightEvent;
     OnNextButton: TWeightEvent;
+    OnInfoChanged: TNotifyEvent;
   end;
 
   TScaleConnectionInfo = record
@@ -111,8 +116,12 @@ type
     SendAU: Boolean;  // Authorize Mode
     SendTM: Boolean;  // Transfer Mode
     SendST: Boolean;  // 전송시작 명령
+    SendIF: Boolean;  // 전자저울 최대무게, 최소무게, 무게단위 알아내기
     UseEncryption: Boolean;
   end;
+
+  TIngredientUnit = (wuNone=-1, wu01G, wuG, wuKg, wuPound, wuOunce, wuCentigrade, wuFahrenheit, wuSec, wuMinute, wuHour);
+//  TScaleWeightUnit = (swtG, swtKG, swtOZ, swtLB);
 
   TScaleInfo = record
     DeviceName: string;
@@ -128,6 +137,11 @@ type
     oDevice: TBluetoothLEDevice;
     FScaleConnectionInfo: TScaleConnectionInfo;
 
+    FMaxWeight: Single;
+    FSmallWeight: Single;
+    FWeightUnit: TIngredientUnit;
+//    FWeightUnit: TScaleWeightUnit;
+
     FMacString: string;
     FKey: BYTE;
     FKeyString: string;
@@ -141,6 +155,7 @@ type
     FConnectedService: Boolean;
     FAuthorized: Boolean;
     FEventMode: Boolean;
+    FGattaScaleInfo: Boolean;
 
     FWeightGattService: TBluetoothGattService;
     FWeightReadCharacteristic: TBluetoothGattCharacteristic;
@@ -157,6 +172,7 @@ type
       const ACharacteristic: TBluetoothGattCharacteristic;
       AGattStatus: TBluetoothGattStatus);
     function GetConnectedCharacteristic: Boolean;
+    procedure SetScaleWeightInfo(str: string);
   public
     function SetScale(Value: TBluetoothLEDevice): Boolean;
     function GetService: Boolean;
@@ -166,6 +182,7 @@ type
     property IsConnectedCharacteristic: Boolean read GetConnectedCharacteristic;
     property IsAuthorized: Boolean read FAuthorized;
     property IsEventMode: Boolean read FEventMode;
+    property IsGattaScaleInfo: Boolean read FGattaScaleInfo;
     property MacString: string read FMacString write FMacString;
     property KeyString: string read FKeyString;
     property OnConnected: TNotifyEvent read FOnConnected write FOnConnected;
@@ -179,7 +196,7 @@ type
     oScaleLE: TScaleLE;
 
     FLastConnectedScale: TScaleInfo;
-    FBluetoothLEEvents: TBluetoothLEEvents;
+//    FBluetoothLEEvents: TBluetoothLEEvents;
 
     FOnResponse: TResponseProc;
 
@@ -192,10 +209,14 @@ type
     FOnWeight: TWeightEvent;
     FOnWeightChanged: TWeightEvent;
     FOnNextButton: TWeightEvent;
+    FOnInfoChanged: TNotifyEvent;
 
     oReadTimer: TTimer;
     oWeightChangeTimer: TTimer;
     oAuthorityTimer: TTimer;
+    oReadIFTimer: TTimer;
+
+    FReadIFTimerCouter: integer;
 
     function SetConnectionInfo(SelectedDevice: TBluetoothLEDevice): Boolean;
     procedure SetProtocol;
@@ -204,10 +225,14 @@ type
     procedure DoAuthorized(Sender: TObject);
     procedure DoNotAuthorized(Sender: TObject);
     procedure DoReadTimer(Sender: TObject);
+    procedure DoReadIFTimer(Sender: TObject);
     procedure DoWeightChangeTimer(Sender: TObject);
     procedure DoAuthorityTimer(Sender: TObject);
     function GetScaleAddress: string;
     function GetScaleName: string;
+    function GetMaxWeight: Single;
+    function GetSmallWeight: Single;
+    function GetScaleUnit: TIngredientUnit;//TScaleWeightUnit;
   public
     constructor Create(AOwner: TComponent); override;
     function IsCertifiedScale(sDeviceName: string): Boolean;
@@ -217,10 +242,10 @@ type
     procedure GetWeight;
     procedure SendtoDevice(Cmd: TScaleCommand);
     procedure SendtoDeviceString(str: string);
-    procedure ClearEventHandler;
 
-    procedure EventsBackup;
-    procedure EventsRestore;
+    procedure EventsClear;
+    procedure EventsBackup(aEvents: TBluetoothLEEvents);
+    procedure EventsRestore(aEvents: TBluetoothLEEvents);
 
     procedure ResponseContinue(AMsg: string);
     procedure ResponseError(AMsg: string);
@@ -228,6 +253,10 @@ type
     property LastConnectedScale: TScaleInfo read FLastConnectedScale;
     property ScaleName: string read GetScaleName;
     property ScaleAddress: string read GetScaleAddress;
+
+    property SmallWeight: Single read GetSmallWeight;
+    property MaxWeight: Single read GetMaxWeight;
+    property WeightUnit: TIngredientUnit read GetScaleUnit;// TScaleWeightUnit read GetScaleUnit;
 
     property OnResponse: TResponseProc read FOnResponse write FOnResponse;
 
@@ -240,6 +269,7 @@ type
     property OnWeight: TWeightEvent read FOnWeight write FOnWeight;
     property OnWeightChanged: TWeightEvent read FOnWeightChanged write FOnWeightChanged;
     property OnNextButton: TWeightEvent read FOnNextButton write FOnNextButton;
+    property OnInfoChangled: TNotifyEvent read FOnInfoChanged write FOnInfoChanged;
   end;
 
 const
@@ -249,9 +279,10 @@ const
      ServiceUUID    : '{0000FFE0-0000-1000-8000-00805F9B34FB}';
      ReadUUID       : '{0000FFE1-0000-1000-8000-00805F9B34FB}';
      WriteUUID      : '{0000FFE1-0000-1000-8000-00805F9B34FB}';
-     SendAU         : True;  // Authorize Mode
-     SendTM         : True;  // Transfer Mode
-     SendST         : True;  // 전송시작 명령
+     SendAU         : True;   // Authorize Mode
+     SendTM         : True;   // Transfer Mode
+     SendST         : True;   // 전송시작 명령
+     SendIF         : False;  // 전자저울 최대무게, 최소무게, 무게단위 알아내기
      UseEncryption  : True;
     ),
    ( // 1 - GREENSCALE - Nordic
@@ -262,6 +293,7 @@ const
      SendAU         : True;  // Authorize Mode
      SendTM         : True;  // Transfer Mode
      SendST         : True;  // 전송시작 명령
+     SendIF         : False;  // 전자저울 최대무게, 최소무게, 무게단위 알아내기
      UseEncryption  : True;
    ),
    ( // 2 - DAEPUNG-E - Nordic
@@ -272,6 +304,7 @@ const
      SendAU         : True;  // Authorize Mode
      SendTM         : True;  // Transfer Mode
      SendST         : True;  // 전송시작 명령
+     SendIF         : False;  // 전자저울 최대무게, 최소무게, 무게단위 알아내기
      UseEncryption  : True;
    ),
     ( // 3 - CookPlay - HM10
@@ -282,6 +315,7 @@ const
      SendAU         : True;  // Authorize Mode
      SendTM         : True;  // Transfer Mode
      SendST         : True;  // 전송시작 명령
+     SendIF         : True;  // 전자저울 최대무게, 최소무게, 무게단위 알아내기
      UseEncryption  : True;
     ),
    ( // 4- CookPlayQ1 - Nordic
@@ -292,6 +326,7 @@ const
      SendAU         : False;  // Authorize Mode
      SendTM         : False;  // Transfer Mode
      SendST         : True;  // 전송시작 명령
+     SendIF         : True;  // 전자저울 최대무게, 최소무게, 무게단위 알아내기
      UseEncryption  : False;
    ),
    ( // 5- CookPlayQ2 - Nordic
@@ -302,6 +337,7 @@ const
      SendAU         : False;  // Authorize Mode
      SendTM         : False;  // Transfer Mode
      SendST         : True;  // 전송시작 명령
+     SendIF         : True;  // 전자저울 최대무게, 최소무게, 무게단위 알아내기
      UseEncryption  : False;
    )
   );
@@ -310,6 +346,9 @@ const
   CHANGE_INTERVAL = 200;
   AUTHORITY_INTERVAL = 3000;
   EVENTMODE_INTERVAL = 100;
+
+  WEIGHT_DEFAULT_MAX = 1000; // 1kg = 1000g
+  WEIGHT_DEFAULT_SMALL = 1; // 1g
 var
   _ReceivedWeightStrings: TStringList;
   _ReceivedStrings: TStringList;
@@ -354,6 +393,11 @@ begin
   oAuthorityTimer.Enabled := False;
   oAuthorityTimer.Interval := AUTHORITY_INTERVAL;
   oAuthorityTimer.OnTimer := DoAuthorityTimer;
+
+  oReadIFTimer := TTimer.Create(self);
+  oReadIFTimer.Enabled := False;
+  oReadIFTimer.Interval := AUTHORITY_INTERVAL;
+  oReadIFTimer.OnTimer := DoReadIFTimer;
 end;
 
 procedure TScaleConnection.DisconnectDevice;
@@ -425,6 +469,27 @@ begin
     FOnConnected(self);
 end;
 
+procedure TScaleConnection.DoReadIFTimer(Sender: TObject);
+// 전자저울의 무게관련 정보를 얻어 오는 명령어를 송출한다
+// 이 Timer 는 IF 명령어를 수신하는 곳에서 Disable 한다
+var
+  str: string;
+begin
+  if (not Assigned(oScaleLE)) or (not oScaleLE.IsConnectedCharacteristic) then
+    Exit;
+
+  if oScaleLE.IsGattaScaleInfo or (FReadIFTimerCouter > 10) then
+    oReadIFTimer.Enabled := False
+  else if oScaleLE.FScaleConnectionInfo.SendIF then
+  begin
+    FReadIFTimerCouter := FReadIFTimerCouter + 1;
+
+    str := oScaleLE.SendtoDevice(cmdIF);
+    if (str <> '') and Assigned(FOnWrite) then
+      FOnWrite(str);
+  end;
+end;
+
 procedure TScaleConnection.DoReadTimer(Sender: TObject);
 //------------------------------------------------------------------------------
 //  발생된 읽은값 과 무게값에 대한 Event를 발생한다
@@ -458,6 +523,23 @@ begin
   end;
 end;
 
+function TScaleConnection.GetMaxWeight: Single;
+begin
+  if Assigned(oScaleLE) and Assigned(oScaleLE.oDevice) then
+    result := oScaleLE.FMaxWeight
+  else
+    result := WEIGHT_DEFAULT_MAX; // 1kg = 1000g
+
+end;
+
+function TScaleConnection.GetSmallWeight: Single;
+begin
+  if Assigned(oScaleLE) and Assigned(oScaleLE.oDevice) then
+    result := oScaleLE.FSmallWeight
+  else
+    result := WEIGHT_DEFAULT_SMALL; // 1g
+end;
+
 function TScaleConnection.GetScaleAddress: string;
 begin
   if Assigned(oScaleLE) and Assigned(oScaleLE.oDevice) then
@@ -472,6 +554,14 @@ begin
     result := oScaleLE.oDevice.DeviceName
   else
     result := '';
+end;
+
+function TScaleConnection.GetScaleUnit: TIngredientUnit;//TScaleWeightUnit;
+begin
+  if Assigned(oScaleLE) and Assigned(oScaleLE.oDevice) then
+    result := oScaleLE.FWeightUnit
+  else
+    result := TIngredientUnit.wuG;// TScaleWeightUnit.swtG; // 기본은 'g'으로 한다
 end;
 
 procedure TScaleConnection.GetWeight;
@@ -558,6 +648,7 @@ begin
       oScaleLE.FScaleConnectionInfo.SendAU := BLE[i].SendAU;
       oScaleLE.FScaleConnectionInfo.SendTM := BLE[i].SendTM;
       oScaleLE.FScaleConnectionInfo.SendST := BLE[i].SendST;
+      oScaleLE.FScaleConnectionInfo.SendIF := BLE[i].SendIF;
       oScaleLE.FScaleConnectionInfo.UseEncryption := BLE[i].UseEncryption;
 
       result := True;
@@ -605,6 +696,15 @@ begin
     delay(50);
   end;
 
+  // 전자저울에 정보를 요청한다
+  if oScaleLE.FScaleConnectionInfo.SendIF then
+  begin
+    str := oScaleLE.SendtoDevice(cmdIF);
+    if (str <> '') and Assigned(FOnWrite) then
+      FOnWrite(str);
+    delay(50);
+  end;
+
   // Timer 를 실행한다    // 2016.04.29
   oReadTimer.Enabled := True;
   oWeightChangeTimer.Enabled := True;
@@ -612,6 +712,13 @@ begin
   // 인증이 필요한 경우 타이머를 시행시킨다
   if oScaleLE.FScaleConnectionInfo.SendAU then
     oAuthorityTimer.Enabled := True;
+
+  // 전자저울 정보를 읽어올 필요가 있을 경우 실행시킨다
+  if oScaleLE.FScaleConnectionInfo.SendIF then
+  begin
+    FReadIFTimerCouter := 0; // 10번까지 시도해도 정보가 오지 않으면, Timer를 Disable 시킨다
+    oReadIFTimer.Enabled := True;
+  end;
 end;
 
 procedure TScaleConnection.DoWeightChangeTimer(Sender: TObject);
@@ -626,43 +733,34 @@ begin
   end;
 end;
 
-procedure TScaleConnection.EventsBackup;
+procedure TScaleConnection.EventsBackup(aEvents: TBluetoothLEEvents);
 begin
-  FBluetoothLEEvents.OnResultMessage := FOnResponse;
-  FBluetoothLEEvents.OnConnected := FOnConnected;
-  FBluetoothLEEvents.OnDisconnected := FOnDisconnected;
-  FBluetoothLEEvents.OnAuthorized := FOnAuthorized;
-  FBluetoothLEEvents.OnNotAuthorized := FOnNotAuthorized;
-  FBluetoothLEEvents.OnWrite := FOnWrite;
-  FBluetoothLEEvents.OnRead := FOnRead;
-  FBluetoothLEEvents.OnWeight := FOnWeight;
-  FBluetoothLEEvents.OnWeightChanged := FOnWeightChanged;
-  FBluetoothLEEvents.OnNextButton := FOnNextButton;
-
-  FOnResponse := nil;
-  FOnConnected :=  nil;
-  FOnDisconnected :=  nil;
-  FOnAuthorized :=  nil;
-  FOnNotAuthorized :=  nil;
-  FOnWrite :=  nil;
-  FOnRead :=  nil;
-  FOnWeight :=  nil;
-  FOnWeightChanged :=  nil;
-  FOnNextButton :=  nil;
+  aEvents.OnResultMessage := FOnResponse;
+  aEvents.OnConnected := FOnConnected;
+  aEvents.OnDisconnected := FOnDisconnected;
+  aEvents.OnAuthorized := FOnAuthorized;
+  aEvents.OnNotAuthorized := FOnNotAuthorized;
+  aEvents.OnWrite := FOnWrite;
+  aEvents.OnRead := FOnRead;
+  aEvents.OnWeight := FOnWeight;
+  aEvents.OnWeightChanged := FOnWeightChanged;
+  aEvents.OnNextButton := FOnNextButton;
+  aEvents.OnInfoChanged := FOnInfoChanged;
 end;
 
-procedure TScaleConnection.EventsRestore;
+procedure TScaleConnection.EventsRestore(aEvents: TBluetoothLEEvents);
 begin
-  FOnResponse := FBluetoothLEEvents.OnResultMessage;
-  FOnConnected := FBluetoothLEEvents.OnConnected;
-  FOnDisconnected := FBluetoothLEEvents.OnDisconnected;
-  FOnAuthorized := FBluetoothLEEvents.OnAuthorized;
-  FOnNotAuthorized := FBluetoothLEEvents.OnNotAuthorized;
-  FOnWrite := FBluetoothLEEvents.OnWrite;
-  FOnRead := FBluetoothLEEvents.OnRead;
-  FOnWeight := FBluetoothLEEvents.OnWeight;
-  FOnWeightChanged := FBluetoothLEEvents.OnWeightChanged;
-  FOnNextButton := FBluetoothLEEvents.OnNextButton;
+  FOnResponse := aEvents.OnResultMessage;
+  FOnConnected := aEvents.OnConnected;
+  FOnDisconnected := aEvents.OnDisconnected;
+  FOnAuthorized := aEvents.OnAuthorized;
+  FOnNotAuthorized := aEvents.OnNotAuthorized;
+  FOnWrite := aEvents.OnWrite;
+  FOnRead := aEvents.OnRead;
+  FOnWeight := aEvents.OnWeight;
+  FOnWeightChanged := aEvents.OnWeightChanged;
+  FOnNextButton := aEvents.OnNextButton;
+  FOnInfoChanged := aEvents.OnInfoChanged;
 end;
 
 procedure TScaleConnection.DoDisconnected(Sender: TObject);
@@ -714,7 +812,7 @@ end;
 //      - 중간에 Disconnect 되어 다시 연결 할 때
 //      - 상위에서 중복하여 호출 될 때
 //------------------------------------------------------------------------------
-procedure TScaleConnection.ClearEventHandler;
+procedure TScaleConnection.EventsClear;
 begin
   FOnConnected := nil;
   FOnDisconnected := nil;
@@ -725,6 +823,7 @@ begin
   FOnWeight := nil;
   FOnWeightChanged := nil;
   FOnNextButton := nil;
+  FOnInfoChanged := nil;
 end;
 
 function TScaleConnection.ConnectDevice(SelectedDevice: TBluetoothLEDevice): Boolean;
@@ -758,6 +857,15 @@ begin
   oScaleLE.FOnDisconnected := DoDisconnected;
   oScaleLE.FOnAuthorized := DoAuthorized;
   oScaleLE.FOnNotAuthorized := DoNotAuthorized;
+
+  oScaleLE.FConnectedService := False;
+  oScaleLE.FAuthorized := False;
+  oScaleLE.FEventMode := False;
+  oScaleLE.FGattaScaleInfo := False;
+
+  oScaleLE.FMaxWeight := WEIGHT_DEFAULT_MAX;
+  oScaleLE.FSmallWeight := WEIGHT_DEFAULT_SMALL;
+  oScaleLE.FWeightUnit := TIngredientUnit.wuG;// TScaleWeightUnit.swtG;
 
   // 전자저울 연결정보를 세팅하고, 연결을 시도한다
   if SetConnectionInfo(SelectedDevice) and oScaleLE.SetScale(SelectedDevice) then
@@ -880,6 +988,7 @@ procedure TScaleLE.DoNotAuthorized(Sender: TObject);
 begin
   FAuthorized := False;
   FEventMode := False;
+  FGattaScaleInfo := False;
 
   if Assigned(FOnNotAuthorized) then
     FOnNotAuthorized(self);
@@ -952,7 +1061,12 @@ begin
     else if copy(str, 1, 4) = 'AU,A'  then
       DoAuthorized(self)
     else if copy(str, 1, 4) = 'TM,A' then
-      FEventMode := True;
+      FEventMode := True
+    else if copy(str, 1, 3) = 'IF,' then
+    begin
+      FGattaScaleInfo := True;
+      SetScaleWeightInfo(str);
+    end;
   end;
 end;
 
@@ -998,6 +1112,7 @@ begin
     cmdTR: CmdStr := 'TR,' + KeyString + ',' + CodeStr;  // TR : 전자저울 인식표 내용확인
     cmdTW: CmdStr := 'TW,' + CodeStr + ',' + TagString;  // TW : 전자저울 인식표 내용입력
     cmdST: CmdStr := 'ST,00';
+    cmdIF: CmdStr := 'IF,00';
     else
       CmdStr := '';
   end;
@@ -1087,6 +1202,22 @@ begin
   end
   else
     result := false;
+end;
+
+procedure TScaleLE.SetScaleWeightInfo(str: string);
+var
+  sMaxWeight, sSmallWeight, sWeightUnit: string;
+begin
+  if str.Length = 16 then
+  begin
+    sMaxWeight := Copy(str, 4, 5);
+    sSmallWeight := Copy(str,10, 4);
+    sWeightUnit := Copy(str,15, 2);
+
+    FMaxWeight := StrToFloatDef(sMaxWeight, WEIGHT_DEFAULT_MAX); // 1kg = 1000g
+    FSmallWeight := StrToFloatDef(sSmallWeight, WEIGHT_DEFAULT_SMALL); // 1g
+    FWeightUnit := TIngredientUnit(StrToIntDef(sWeightUnit, Ord(TIngredientUnit.wuG))); //TScaleWeightUnit(StrToIntDef(sWeightUnit, Ord(TScaleWeightUnit.swtG)));
+  end;
 end;
 
 { TScaleInfo }

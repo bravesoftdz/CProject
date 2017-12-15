@@ -1,0 +1,198 @@
+object frameTimer: TframeTimer
+  Size.Width = 695.000000000000000000
+  Size.Height = 586.000000000000000000
+  Size.PlatformDefault = False
+  object Layout1: TLayout
+    Align = Client
+    Size.Width = 695.000000000000000000
+    Size.Height = 541.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+    object ScaleScaledLayout: TScaledLayout
+      Align = Center
+      Padding.Left = 10.000000000000000000
+      Padding.Top = 10.000000000000000000
+      Padding.Right = 10.000000000000000000
+      Padding.Bottom = 10.000000000000000000
+      OriginalWidth = 280.000000000000000000
+      OriginalHeight = 280.000000000000000000
+      Size.Width = 280.000000000000000000
+      Size.Height = 280.000000000000000000
+      Size.PlatformDefault = False
+      object arcBase: TArc
+        Align = Client
+        Opacity = 0.500000000000000000
+        Margins.Left = 10.000000000000000000
+        Margins.Top = 10.000000000000000000
+        Margins.Right = 10.000000000000000000
+        Margins.Bottom = 10.000000000000000000
+        Size.Width = 240.000000000000000000
+        Size.Height = 240.000000000000000000
+        Size.PlatformDefault = False
+        Stroke.Color = claWhite
+        Stroke.Thickness = 5.000000000000000000
+        StartAngle = 90.000000000000000000
+        EndAngle = 360.000000000000000000
+      end
+      object arcPosition: TArc
+        Align = Client
+        Margins.Left = 10.000000000000000000
+        Margins.Top = 10.000000000000000000
+        Margins.Right = 10.000000000000000000
+        Margins.Bottom = 10.000000000000000000
+        Size.Width = 240.000000000000000000
+        Size.Height = 240.000000000000000000
+        Size.PlatformDefault = False
+        Stroke.Color = xFFFF7500
+        Stroke.Thickness = 5.000000000000000000
+        StartAngle = 270.000000000000000000
+        EndAngle = 45.000000000000000000
+        object FloatAnimationArc: TFloatAnimation
+          Duration = 0.150000005960464500
+          PropertyName = 'EndAngle'
+          StartValue = 0.000000000000000000
+          StartFromCurrent = True
+          StopValue = 0.000000000000000000
+        end
+      end
+      object Circle2: TCircle
+        Align = Client
+        Fill.Color = claWhite
+        Opacity = 0.800000011920929000
+        Margins.Left = 32.000000000000000000
+        Margins.Top = 32.000000000000000000
+        Margins.Right = 32.000000000000000000
+        Margins.Bottom = 32.000000000000000000
+        Size.Width = 196.000000000000000000
+        Size.Height = 196.000000000000000000
+        Size.PlatformDefault = False
+        Stroke.Kind = None
+        object txtScaleWeight: TText
+          Align = Center
+          Margins.Top = -20.000000000000000000
+          Size.Width = 150.000000000000000000
+          Size.Height = 49.000000000000000000
+          Size.PlatformDefault = False
+          Text = '00:01:30'
+          TextSettings.Font.Size = 22.000000000000000000
+          TextSettings.FontColor = xFF656565
+          object Text1: TText
+            Align = Center
+            Margins.Top = 115.000000000000000000
+            Size.Width = 91.000000000000000000
+            Size.Height = 36.000000000000000000
+            Size.PlatformDefault = False
+            Text = 'START'
+            TextSettings.Font.Size = 16.000000000000000000
+            TextSettings.FontColor = xFFFF7500
+          end
+        end
+      end
+      object lineMaxPosition: TLine
+        Align = Center
+        LineType = Top
+        Size.Width = 240.000000000000000000
+        Size.Height = 1.000007629394531000
+        Size.PlatformDefault = False
+        Stroke.Thickness = 0.000000000000000000
+      end
+      object linePosition: TLine
+        Align = Center
+        LineType = Top
+        RotationAngle = 135.000000000000000000
+        Size.Width = 240.000000000000000000
+        Size.Height = 1.000007629394531000
+        Size.PlatformDefault = False
+        Stroke.Thickness = 0.000000000000000000
+        object circlePosition: TCircle
+          Fill.Color = xFFFF7500
+          Position.X = -8.000000000000000000
+          Position.Y = -10.000000000000000000
+          Size.Width = 22.000000000000000000
+          Size.Height = 22.000000000000000000
+          Size.PlatformDefault = False
+          Stroke.Kind = None
+        end
+        object FloatAnimationLine: TFloatAnimation
+          Duration = 0.150000005960464500
+          PropertyName = 'RotationAngle'
+          StartValue = 0.000000000000000000
+          StartFromCurrent = True
+          StopValue = 0.000000000000000000
+        end
+      end
+    end
+  end
+  object Layout2: TLayout
+    Align = Top
+    Size.Width = 695.000000000000000000
+    Size.Height = 45.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    object txtIngredientExplain: TText
+      Align = Client
+      Size.Width = 695.000000000000000000
+      Size.Height = 45.000000000000000000
+      Size.PlatformDefault = False
+      Text = #44413#44592
+      TextSettings.Font.Size = 22.000000000000000000
+      TextSettings.FontColor = xFF656565
+      object layoutClose: TLayout
+        Align = Right
+        HitTest = True
+        Padding.Right = 15.000000000000000000
+        Position.X = 635.000000000000000000
+        Size.Width = 60.000000000000000000
+        Size.Height = 45.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        object imgClose: TImage
+          MultiResBitmap.Height = 60
+          MultiResBitmap.Width = 60
+          MultiResBitmap.LoadSize = 2
+          MultiResBitmap = <
+            item
+              Width = 60
+              Height = 60
+              PNG = {
+                89504E470D0A1A0A0000000D494844520000003C0000003C08060000003AFCD9
+                72000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+                028E494441546843ED99BB8E1331148673990205890E091005141B094452F30A
+                746C05B9D46C038F00EF40B345D80241C8048982274054342BD16429E021A851
+                329BF0FF33365A369924F6F8B83A9F64F91C5B4AE69B3D633B3B354551144551
+                14455114650375D33BD3EFF71F65593662DC6C365FA469FA399F10A2D7EB1DAC
+                56AB77F8CEFB4992BC9E4EA7AFCC94130DD33B43D946A3719B0D17F20917F4D4
+                4C0587B2E8BEA23D84EC35F42F87C3E103CEB9E22D7C8926A4C712D256169F7F
+                AB18A986B730CB18DD7991E504972E93457E3C1E8FCF4CEA84B7309FD97ABD3E
+                442822BD45F604CFEF73933AD334BD1767A0D3E9FC427888666F1EFB438E73BE
+                18726387EC33DCE8951972A69230D926DDED767FCE66B31FC5D07E48CA92CAC2
+                A44C1A17E9242D2D4B820893AAD23164493061E22B1D4B9604152694A61C2591
+                EE948E294B820B134AED231D5B96789FA5F701E7ED27CBE5F203C28B37F61CC7
+                D101A4BE238E2A4B4485499934DA6FB4EB796690962522257D91B2F246BB5A84
+                05316489B8302991FE472C59B2F6E552408ACF2CCB780D887E89214BA2FC85ED
+                6A8C76231F58E7F1A62D4B0271E1B2ADE712CEC7505F444BBA4C16E5FB065D1F
+                EDBF9F965CCDB9AA9B5C0431E16DB293C9E4088B54CAFD184351A5454A7A97AC
+                5DA0CAB62CC9F20E2EBCAFAC25B67450E13259E427699AAEC95A624A0713DE26
+                BBCFA122967410E1AAB29618D2958543C95AA4A52B098796B5484A7B0B4BC95A
+                A4A4ED07F9F05E4AD6826DECE3A6C3C97C3E7F3B180C6E9ADC096FE1C56271CF
+                8439A1652D9BA49324B98213D91D933AE12DCC579626A4ECB184ACC54A6759F6
+                C70C7D6BB7DBA72676A2D2BF78EC2B4BDF175BAEB08C7153EFB65AADD3D168B4
+                30C38AA2288AA2288AA228A1A9D5FE025049901DA2E0BFA80000000049454E44
+                AE426082}
+              FileName = 'D:\GitHub\CProject\02.CookPlay\image\rectangle@2x.png'
+            end>
+          Align = Right
+          HitTest = False
+          Position.X = 15.000000000000000000
+          Size.Width = 30.000000000000000000
+          Size.Height = 45.000000000000000000
+          Size.PlatformDefault = False
+        end
+      end
+    end
+  end
+  object Timer: TTimer
+    Left = 66
+    Top = 129
+  end
+end

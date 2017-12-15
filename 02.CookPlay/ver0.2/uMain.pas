@@ -14,7 +14,8 @@ uses
   System.Net.HttpClientComponent, IdBaseComponent, IdComponent, IdTCPConnection,
   IdTCPClient, IdHTTP, System.ImageList, FMX.ImgList, Data.DB, System.Actions,
   FMX.ActnList, FMX.WebBrowser, FMX.StdActns, FMX.MediaLibrary.Actions,
-  FMX.Media, cookplay.S3, FMX.ListBox, uListScroll;
+  FMX.Media, cookplay.S3, FMX.ListBox, uListScroll,System.Bluetooth.Components,
+  cookplay.Scale, System.Bluetooth;
 
 type
   TfrmMain = class(TForm)
@@ -187,6 +188,7 @@ type
     Text13: TText;
     Text14: TText;
     Layout8: TLayout;
+    Button2: TButton;
     procedure MenuRightRectClick(Sender: TObject);
     procedure FormResize(Sender: TObject);
     procedure FormKeyUp(Sender: TObject; var Key: Word; var KeyChar: Char;
@@ -210,20 +212,20 @@ type
     procedure imgAddRecipeClick(Sender: TObject);
     procedure recMyhomeBackgroundMouseDown(Sender: TObject;
       Button: TMouseButton; Shift: TShiftState; X, Y: Single);
-    procedure Image11MouseDown(Sender: TObject; Button: TMouseButton;
-      Shift: TShiftState; X, Y: Single);
     procedure Button1Click(Sender: TObject);
     procedure txtRecipeBestClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure scrollRecipeBodyViewportPositionChange(Sender: TObject;
       const OldViewportPosition, NewViewportPosition: TPointF;
       const ContentSizeChanged: Boolean);
+    procedure Button2Click(Sender: TObject);
   private
     { Private declarations }
     FActiveTab: TTabItem;
     FRecipeList: TRecipeScrollList;
 
     procedure SetRecipeView(aRecipeView: TRecipeViewType);
+    procedure ScaleEndDiscoverDevices(const Sender: TObject; const ADeviceList: TBluetoothLEDeviceList);
   public
     { Public declarations }
     procedure SetMenuLogin(ALogined: Boolean);
@@ -241,7 +243,8 @@ var
   frmMain: TfrmMain;
 
 implementation
-uses cookplay.StatusBar, ClientModuleUnit, uRecipeEditor, uSetup, uWeb;
+uses cookplay.StatusBar, ClientModuleUnit, uRecipeEditor, uSetup, uWeb, uTemp,
+  uTemp2;
 {$R *.fmx}
 
 procedure TfrmMain.actLoginExecute(Sender: TObject);
@@ -277,23 +280,44 @@ end;
 
 procedure TfrmMain.Button1Click(Sender: TObject);
 begin
+  frmtemp.Show;
+
+  exit;
+
   frmRecipeEditor.RecipeSerial := 197;
   frmRecipeEditor.Show;
+end;
+
+procedure TfrmMain.Button2Click(Sender: TObject);
+begin
+  frmtemp2.show;
 end;
 
 procedure TfrmMain.CallLoginForm(menuindex: TBottomMenu);
 var
   url: string;
+  aForm: TfrmWeb;
 begin
   url := URL_LOGIN + '?email=' + _info.login.email + '&autologin=' + _info.login.autoLogin.ToInteger.ToString;
-  frmWeb.goURL(url);
-  frmWeb.Show;
+
+  aForm := TfrmWeb.Create(self);
+  aForm.goURL(url);
+  aForm.Show;
+//
+//  frmWeb.goURL(url);
+//  frmWeb.Show;
 end;
 
 procedure TfrmMain.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   // 설정정보를 저장한다
   _info.login.SaveInfo;
+
+  if Assigned(FRecipeList) then
+  begin
+    FRecipeList.ClearControls;
+    FRecipeList.DisposeOf;
+  end;
 end;
 
 procedure TfrmMain.FormCreate(Sender: TObject);
@@ -357,16 +381,19 @@ begin
   Fill.Color := GetColor(Fill.Color);
   StatusBarSetColor(Fill.Color);
 
+  // 환경정보 가져오기
+  _info := TInfo.Create;
+
   // 아마존 S3 연결을 위한 초기화
   frmS3.init;
+
+  // 블루투스 이벤트 연결
+  BluetoothLE.OnEndDiscoverDevices := ScaleEndDiscoverDevices;
 
   tabcontrolService.TabPosition := TTabPosition.None;
 
   tabcontrolMyhome.TabPosition := TTabPosition.None;
   tabcontrolMyhome.ActiveTab := tabMyhomeStory;
-
-  // 환경을 읽어온다
-  _info := TInfo.Create;
 
   // 메뉴 보기 설정
   tabControlLeftMenu.BringToFront;
@@ -415,12 +442,6 @@ begin
     result := imglistMyhomeMenu.Bitmap(TSizeF.Create(48,48), Ord(index) * 2)
   else
     result := imglistMyhomeMenu.Bitmap(TSizeF.Create(48,48), Ord(index) * 2 + 1)
-end;
-
-procedure TfrmMain.Image11MouseDown(Sender: TObject; Button: TMouseButton;
-  Shift: TShiftState; X, Y: Single);
-begin
-  showmessage('mouse down');
 end;
 
 procedure TfrmMain.imgAddItemMouseDown(Sender: TObject; Button: TMouseButton;
@@ -509,18 +530,53 @@ begin
   SetMyhomeAddItemAction(False);
 end;
 
+procedure TfrmMain.ScaleEndDiscoverDevices(const Sender: TObject;
+  const ADeviceList: TBluetoothLEDeviceList);
+var
+  i, k: integer;
+  bFound: Boolean;
+begin
+  if ADeviceList.Count < 1 then
+  begin
+    if Assigned(_Scale.OnDisconnected) then
+    _Scale.OnDisconnected(self);
+//    ShowMessage( 'Scale - * BLE 장비를 찾을 수 없습니다!');
+//    Exit;
+  end
+  else
+  begin
+    bFound := False;
+    for i:=0 to ADeviceList.Count-1 do
+      for k := 0 to Length(BLE)-1 do
+      begin
+        if Uppercase(ADeviceList.Items[i].DeviceName) = UpperCase(BLE[k].DeviceName) then
+        begin
+          bFound := True;
+          _Scale.ConnectDevice(ADeviceList.Items[i]);
+          Break;
+        end;
+      end;
+
+    if (not bFound) and Assigned(_Scale.OnDisconnected) then
+      _Scale.OnDisconnected(self);
+  end;
+end;
+
 procedure TfrmMain.scrollRecipeBodyViewportPositionChange(Sender: TObject;
   const OldViewportPosition, NewViewportPosition: TPointF;
   const ContentSizeChanged: Boolean);
 var
   ScrollHeight, ViewHeight: Single;
 begin
-  ScrollHeight := scrollRecipeBody.ContentBounds.Bottom;
+  if Assigned(FRecipeList) then
+  begin
+    ScrollHeight := scrollRecipeBody.ContentBounds.Bottom;
 
-  ViewHeight := newViewPortPosition.Y + scrollRecipeBody.Height;
+    ViewHeight := newViewPortPosition.Y + scrollRecipeBody.Height;
 
-  if ViewHeight = ScrollHeight   then
-    FRecipeList.DisplayItems(FRecipeList.DisplayedCount);
+    if ViewHeight = ScrollHeight   then
+      FRecipeList.DisplayItems(FRecipeList.DisplayedCount);
+  end;
 end;
 
 procedure TfrmMain.SetBottomMenu(menuindex: TBottomMenu);

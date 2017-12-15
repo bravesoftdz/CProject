@@ -1,7 +1,7 @@
 object ServerMethods1: TServerMethods1
   OldCreateOrder = False
-  Height = 504
-  Width = 653
+  Height = 701
+  Width = 994
   object FDConnection1: TFDConnection
     Params.Strings = (
       'Password=cookpassword'
@@ -10,7 +10,6 @@ object ServerMethods1: TServerMethods1
       'Database=cookplay'
       'CharacterSet=utf8'
       'DriverID=MySQL')
-    Connected = True
     LoginPrompt = False
     Left = 38
     Top = 24
@@ -121,8 +120,8 @@ object ServerMethods1: TServerMethods1
       
         'SELECT * FROM Recipe WHERE Users_Serial=:UserSerial AND deleted=' +
         '0')
-    Left = 36
-    Top = 440
+    Left = 468
+    Top = 386
     ParamData = <
       item
         Name = 'USERSERIAL'
@@ -132,8 +131,8 @@ object ServerMethods1: TServerMethods1
   end
   object dsMyRecipe: TDataSetProvider
     DataSet = sqlMyRecipe
-    Left = 116
-    Top = 438
+    Left = 548
+    Top = 384
   end
   object sqlQuery: TFDQuery
     Connection = FDConnection1
@@ -146,8 +145,8 @@ object ServerMethods1: TServerMethods1
       
         'SELECT * FROM RecipeMethod WHERE Recipe_Serial=:RecipeSerial Ord' +
         'er by Recipe_Serial, StepSeq')
-    Left = 198
-    Top = 438
+    Left = 630
+    Top = 384
     ParamData = <
       item
         Name = 'RECIPESERIAL'
@@ -156,8 +155,8 @@ object ServerMethods1: TServerMethods1
   end
   object dsMyMethod: TDataSetProvider
     DataSet = sqlMyMethod
-    Left = 278
-    Top = 436
+    Left = 710
+    Top = 382
   end
   object sqlMyIngredient: TFDQuery
     Connection = FDConnection1
@@ -165,8 +164,8 @@ object ServerMethods1: TServerMethods1
       
         'SELECT * FROM RecipeIngredient WHERE Recipe_Serial=:RecipeSerial' +
         ' Order By RecipeMethod_Serial, Seq')
-    Left = 376
-    Top = 438
+    Left = 808
+    Top = 384
     ParamData = <
       item
         Name = 'RECIPESERIAL'
@@ -175,8 +174,8 @@ object ServerMethods1: TServerMethods1
   end
   object dsMyIngredient: TDataSetProvider
     DataSet = sqlMyIngredient
-    Left = 456
-    Top = 438
+    Left = 888
+    Top = 384
   end
   object sqlDeleteQue: TFDQuery
     Connection = FDConnection1
@@ -257,7 +256,7 @@ object ServerMethods1: TServerMethods1
     SQL.Strings = (
       
         'SELECT * FROM vRecipeIngredientGroup WHERE Recipe_Serial=:Recipe' +
-        'Serial')
+        'Serial order by StepSeq, seq')
     Left = 202
     Top = 370
     ParamData = <
@@ -272,5 +271,66 @@ object ServerMethods1: TServerMethods1
     DataSet = sqlvIngredientGroup
     Left = 306
     Top = 372
+  end
+  object sqlvRecipeComment: TFDQuery
+    Connection = FDConnection1
+    SQL.Strings = (
+      'SELECT * FROM vRecipeComment WHERE Recipe_Serial=:RecipeSerial')
+    Left = 204
+    Top = 298
+    ParamData = <
+      item
+        Name = 'RECIPESERIAL'
+        DataType = ftWideString
+        ParamType = ptInput
+        Value = '-1'
+      end>
+  end
+  object dsRecipeComment: TDataSetProvider
+    DataSet = sqlvRecipeComment
+    Left = 308
+    Top = 300
+  end
+  object sqlStep: TFDQuery
+    Connection = FDConnection1
+    SQL.Strings = (
+      
+        'SELECT * FROM RecipeMethod WHERE Recipe_Serial=:RecipeSerial ORD' +
+        'ER BY StepSeq')
+    Left = 32
+    Top = 434
+    ParamData = <
+      item
+        Name = 'RECIPESERIAL'
+        DataType = ftWideString
+        ParamType = ptInput
+        Value = '-1'
+      end>
+  end
+  object dsStep: TDataSetProvider
+    DataSet = sqlStep
+    Left = 112
+    Top = 432
+  end
+  object sqlIngredient: TFDQuery
+    Connection = FDConnection1
+    SQL.Strings = (
+      
+        'SELECT * FROM RecipeIngredient WHERE RecipeMethod_Serial=:StepSe' +
+        'rial Order by Seq')
+    Left = 32
+    Top = 508
+    ParamData = <
+      item
+        Name = 'STEPSERIAL'
+        DataType = ftWideString
+        ParamType = ptInput
+        Value = '-1'
+      end>
+  end
+  object dsIngredient: TDataSetProvider
+    DataSet = sqlIngredient
+    Left = 112
+    Top = 506
   end
 end

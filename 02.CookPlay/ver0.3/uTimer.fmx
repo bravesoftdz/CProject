@@ -1,0 +1,204 @@
+object frmTimer: TfrmTimer
+  Left = 0
+  Top = 0
+  Caption = 'Form2'
+  ClientHeight = 615
+  ClientWidth = 560
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  DesignerMasterStyle = 0
+  object Layout1: TLayout
+    Align = Client
+    Size.Width = 560.000000000000000000
+    Size.Height = 570.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+    object ScaleScaledLayout: TScaledLayout
+      Align = Center
+      Padding.Left = 10.000000000000000000
+      Padding.Top = 10.000000000000000000
+      Padding.Right = 10.000000000000000000
+      Padding.Bottom = 10.000000000000000000
+      OriginalWidth = 280.000000000000000000
+      OriginalHeight = 280.000000000000000000
+      Size.Width = 280.000000000000000000
+      Size.Height = 280.000000000000000000
+      Size.PlatformDefault = False
+      object arcBase: TArc
+        Align = Client
+        Opacity = 0.500000000000000000
+        Margins.Left = 10.000000000000000000
+        Margins.Top = 10.000000000000000000
+        Margins.Right = 10.000000000000000000
+        Margins.Bottom = 10.000000000000000000
+        Size.Width = 240.000000000000000000
+        Size.Height = 240.000000000000000000
+        Size.PlatformDefault = False
+        Stroke.Color = claWhite
+        Stroke.Thickness = 5.000000000000000000
+        StartAngle = 90.000000000000000000
+        EndAngle = 360.000000000000000000
+      end
+      object arcPosition: TArc
+        Align = Client
+        Margins.Left = 10.000000000000000000
+        Margins.Top = 10.000000000000000000
+        Margins.Right = 10.000000000000000000
+        Margins.Bottom = 10.000000000000000000
+        Size.Width = 240.000000000000000000
+        Size.Height = 240.000000000000000000
+        Size.PlatformDefault = False
+        Stroke.Color = xFFFF7500
+        Stroke.Thickness = 5.000000000000000000
+        StartAngle = 270.000000000000000000
+        EndAngle = 45.000000000000000000
+        object FloatAnimationArc: TFloatAnimation
+          Duration = 0.150000005960464500
+          PropertyName = 'EndAngle'
+          StartValue = 0.000000000000000000
+          StartFromCurrent = True
+          StopValue = 0.000000000000000000
+        end
+      end
+      object Circle2: TCircle
+        Align = Client
+        Fill.Color = claWhite
+        Opacity = 0.800000011920929000
+        Margins.Left = 32.000000000000000000
+        Margins.Top = 32.000000000000000000
+        Margins.Right = 32.000000000000000000
+        Margins.Bottom = 32.000000000000000000
+        Size.Width = 196.000000000000000000
+        Size.Height = 196.000000000000000000
+        Size.PlatformDefault = False
+        Stroke.Kind = None
+        object txtScaleWeight: TText
+          Align = Center
+          Margins.Top = -20.000000000000000000
+          Size.Width = 150.000000000000000000
+          Size.Height = 49.000000000000000000
+          Size.PlatformDefault = False
+          Text = '00:01:30'
+          TextSettings.Font.Size = 22.000000000000000000
+          TextSettings.FontColor = xFF656565
+          object Text1: TText
+            Align = Center
+            Margins.Top = 115.000000000000000000
+            Size.Width = 91.000000000000000000
+            Size.Height = 36.000000000000000000
+            Size.PlatformDefault = False
+            Text = 'START'
+            TextSettings.Font.Size = 16.000000000000000000
+            TextSettings.FontColor = xFFFF7500
+          end
+        end
+      end
+      object lineMaxPosition: TLine
+        Align = Center
+        LineType = Top
+        Size.Width = 240.000000000000000000
+        Size.Height = 1.000007629394531000
+        Size.PlatformDefault = False
+        Stroke.Thickness = 0.000000000000000000
+      end
+      object linePosition: TLine
+        Align = Center
+        LineType = Top
+        RotationAngle = 135.000000000000000000
+        Size.Width = 240.000000000000000000
+        Size.Height = 1.000007629394531000
+        Size.PlatformDefault = False
+        Stroke.Thickness = 0.000000000000000000
+        object circlePosition: TCircle
+          Fill.Color = xFFFF7500
+          Position.X = -8.000000000000000000
+          Position.Y = -10.000000000000000000
+          Size.Width = 22.000000000000000000
+          Size.Height = 22.000000000000000000
+          Size.PlatformDefault = False
+          Stroke.Kind = None
+        end
+        object FloatAnimationLine: TFloatAnimation
+          Duration = 0.150000005960464500
+          PropertyName = 'RotationAngle'
+          StartValue = 0.000000000000000000
+          StartFromCurrent = True
+          StopValue = 0.000000000000000000
+        end
+      end
+    end
+  end
+  object Layout2: TLayout
+    Align = Top
+    Size.Width = 560.000000000000000000
+    Size.Height = 45.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    object txtIngredientExplain: TText
+      Align = Client
+      Size.Width = 560.000000000000000000
+      Size.Height = 45.000000000000000000
+      Size.PlatformDefault = False
+      Text = #44413#44592
+      TextSettings.Font.Size = 22.000000000000000000
+      TextSettings.FontColor = xFF656565
+      object layoutClose: TLayout
+        Align = Right
+        HitTest = True
+        Padding.Right = 15.000000000000000000
+        Position.X = 500.000000000000000000
+        Size.Width = 60.000000000000000000
+        Size.Height = 45.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        object imgClose: TImage
+          MultiResBitmap.Height = 60
+          MultiResBitmap.Width = 60
+          MultiResBitmap.LoadSize = 2
+          MultiResBitmap = <
+            item
+              Width = 60
+              Height = 60
+              PNG = {
+                89504E470D0A1A0A0000000D494844520000003C0000003C08060000003AFCD9
+                72000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+                028B494441546843ED99BD8E13311446934C838244870488020A2281486A5E81
+                8EAD203F3534F008F00E345B842D10844C902878024445B3124D96021E821A29
+                3309DF3763A3659349C61E5F57F74896EFB5A564CEEC1DDBD969298AA2288AA2
+                288AA2283B689BDE99D168F430CBB229E324495EA469FAB9981062381CDED96C
+                36EFF23CBF87EF7BBD582C5E9929273AA67786B29D4EE7261B2EE4132EE88999
+                0A0E65D17D457B00D92BE85F4E2693FB9C73C55BF80209A46712D256169F7FA3
+                1C6986B730CB185D5E6605C1A5AB64911FCF66B333933AE12DCC67B6DD6E4F10
+                8A48EF913DC1F3FBDCA4CE24A6F7E20CF4FBFD5F088FD0ECCD637FC471CE9743
+                6E1C907D8A1BBD3143CE341226FBA40783C1CFE572F9A31CAA87A42C692C4CAA
+                A471914ED2D2B2248830692A1D4396041326BED2B1644950614269CA5112E941
+                E998B224B830A1541DE9D8B2C4FB2C5D079CB71FAFD7EB0F08CFDFD81CC7D131
+                A4BE238E2A4B4485499534DA6FB4AB456690962522257D9EAAF246BB5C862531
+                6489B830A990FE472C59B2F5E552408ACF2CCB780B887E89214BA2FC85ED6A8C
+                76AD18D8E6D1AE2D4B0271E1AAADE702CEC7505F444BBA4A16E5FB06DD08EDBF
+                9F965CCDB9AA9B5C0431E17DB2F3F9FC1916A994FB3186A24A8B94F42159BB40
+                556D5992E51D5CB8AEAC25B67450E12A59E427699A6EC95A624A0713DE275BE7
+                50114B3A887053594B0CE9C6C2A1642DD2D28D8443CB5A24A5BD85A5642D52D2
+                F6837C782F256BC136F671D7E164B55ABD1D8FC7D74DEE84B7709665774D5810
+                5AD6B24B3A49924B3891DD32A913DEC27C656942CA1E4BC85AAC749EE77FCCD0
+                B75EAF776A62271AFD8BC7BEB2F47DB1E50ACB1837F576B7DB3D9D4EA72B33AC
+                288AA2288AA2288A129A56EB2F014D901DCC07595C0000000049454E44AE4260
+                82}
+              FileName = 'D:\GitHub\CProject\02.CookPlay\image\rectangle@2x.png'
+            end>
+          Align = Right
+          HitTest = False
+          Position.X = 15.000000000000000000
+          Size.Width = 30.000000000000000000
+          Size.Height = 45.000000000000000000
+          Size.PlatformDefault = False
+        end
+      end
+    end
+  end
+  object Timer: TTimer
+    Left = 66
+    Top = 129
+  end
+end

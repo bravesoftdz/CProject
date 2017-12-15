@@ -6,16 +6,13 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs,
   System.Net.URLClient, System.Net.HttpClient, System.Net.HttpClientComponent,
-  Data.Cloud.CloudAPI, Data.Cloud.AmazonAPI, FMX.Objects, FMX.Surfaces, Data.DB,
-  FMX.Ani;
+  Data.Cloud.CloudAPI, Data.Cloud.AmazonAPI, FMX.Objects, FMX.Surfaces, Data.DB;
 
 type
   TImageType = (itNone, itBMP, itJPEG, itGIF, itPNG);
 
   TfrmS3 = class(TForm)
     AmazonConnectionInfo: TAmazonConnectionInfo;
-    NetHTTPClient: TNetHTTPClient;
-    Image1: TImage;
   private
     { Private declarations }
   public
@@ -26,14 +23,12 @@ type
     function IsValidImage(fname: string): Boolean; overload;
     function IsValidImage(strStream: TStringStream): Boolean; overload;
     function LoadImageFromStream(image: TImage; const strStream: TStringStream): Boolean;
-    function LoadImageFromS3(BucketName, ObjectName: string; image: TImage): Boolean; overload;
+//    function LoadImageFromS3(BucketName, ObjectName: string; image: TImage): Boolean; overload;
     function LoadImageFromS3(BucketName, ObjectName: string; bitmap: TBitmap): Boolean; overload;
     function CalCutSize(w, h: integer; size:TPoint): TPoint;
     function CropImageToJPEG(sorImage, tarImage: TImage; Size: TPoint): Boolean;
     function DeleteImage(bucketname, fname: string): Boolean;
     function GetImageName(Serial: LargeInt; var picture: string; var pictureSquare: string; var pictureRectangle: string): Boolean;
-
-    procedure DoAnimation(aniColor: TColorAnimation);
   end;
 
 const
@@ -132,53 +127,53 @@ begin
             (tempFirstBytes = IH_PNG);
 end;
 
-function TfrmS3.LoadImageFromS3(BucketName, ObjectName: string; image: TImage): Boolean;
-var
-  oThread: TAnonymousThread<TMemoryStream>;
-//  strStream: TStringStream;
-begin
-  result := False;
-
-  try
-    oThread := TAnonymousThread<TMemoryStream>.Create(
-      function: TMemoryStream
-      begin
-        result := TMemoryStream.Create;
-        NetHTTPClient.Get(URL_S3 + Bucketname + '/' + ObjectName, result);
-      end,
-      procedure(AResult: TMemoryStream)
-      begin
-        if aResult.Size > 0 then
-          image.Bitmap.LoadFromStream(aResult);
-
-        aResult.Free;
-      end,
-      procedure(aException: Exception)
-      begin
-      end
-    );
-    result := True;
-  except
-  end;
-
-
+//function TfrmS3.LoadImageFromS3(BucketName, ObjectName: string; image: TImage): Boolean;
+//var
+//  oThread: TAnonymousThread<TMemoryStream>;
+////  strStream: TStringStream;
+//begin
+//  result := False;
+//
 //  try
-//    try
-//      strStream := TStringStream.Create;
-//      NetHTTPClient.Get(URL_S3 + Bucketname + '/' + ObjectName, strStream);
+//    oThread := TAnonymousThread<TMemoryStream>.Create(
+//      function: TMemoryStream
+//      begin
+//        result := TMemoryStream.Create;
+//        NetHTTPClient.Get(URL_S3 + Bucketname + '/' + ObjectName, result);
+//      end,
+//      procedure(AResult: TMemoryStream)
+//      begin
+//        if aResult.Size > 0 then
+//          image.Bitmap.LoadFromStream(aResult);
 //
-//      image.Bitmap.LoadFromStream(strStream);
-////      LoadImageFromStream(image, strStream);
-//
-//      result := True;
-//    except
-//      On E: Exception do
-//        Showmessage(E.Message);
-//    end;
-//  finally
-//    strStream.Free;
+//        aResult.Free;
+//      end,
+//      procedure(aException: Exception)
+//      begin
+//      end
+//    );
+//    result := True;
+//  except
 //  end;
-end;
+//
+//
+////  try
+////    try
+////      strStream := TStringStream.Create;
+////      NetHTTPClient.Get(URL_S3 + Bucketname + '/' + ObjectName, strStream);
+////
+////      image.Bitmap.LoadFromStream(strStream);
+//////      LoadImageFromStream(image, strStream);
+////
+////      result := True;
+////    except
+////      On E: Exception do
+////        Showmessage(E.Message);
+////    end;
+////  finally
+////    strStream.Free;
+////  end;
+//end;
 
 function TfrmS3.LoadImageFromS3(BucketName, ObjectName: string;
   bitmap: TBitmap): Boolean;
@@ -344,29 +339,6 @@ begin
     end;
   finally
     s3.Free;
-  end;
-end;
-
-procedure TfrmS3.DoAnimation(aniColor: TColorAnimation);
-var
-  oThread: TAnonymousThread<Boolean>;
-begin
-  try
-    oThread := TAnonymousThread<Boolean>.Create(
-      function: Boolean
-      begin
-        aniColor.Start;
-
-        result := True;
-      end,
-      procedure(AResult: Boolean)
-      begin
-      end,
-      procedure(aException: Exception)
-      begin
-      end
-    );
-  except
   end;
 end;
 

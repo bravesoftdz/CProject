@@ -8,7 +8,7 @@ uses
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs,
   FMX.Controls.Presentation, FMX.StdCtrls, FMX.Layouts, FMX.Objects, FMX.Edit,
   System.Bluetooth, System.Bluetooth.Components, FMX.ListBox, FMX.ScrollBox,
-  FMX.Memo, uCPScale, System.Math, FMX.Media, System.IOUtils,
+  FMX.Memo, cookplay.Scale, System.Math, FMX.Media, System.IOUtils,
   System.Inifiles, FMX.TabControl, FMX.Platform;
 
 type
@@ -36,6 +36,7 @@ type
     memoScale: TMemo;
     chkViewReceivedString: TCheckBox;
     chkViewSendString: TCheckBox;
+    btnRW: TButton;
     procedure btnScanScaleClick(Sender: TObject);
     procedure btnScaleConnectClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -45,6 +46,7 @@ type
     procedure btnDisconnectScaleClick(Sender: TObject);
     procedure BLE_ScaleEndDiscoverDevices(const Sender: TObject;
       const ADeviceList: TBluetoothLEDeviceList);
+    procedure btnRWClick(Sender: TObject);
   private
     { Private declarations }
     oScale: TScaleConnection;
@@ -137,6 +139,11 @@ begin
     BLE_Scale.Enabled := False;
     BLE_Scale.Enabled := True;
   end;
+end;
+
+procedure TfrmMain.btnRWClick(Sender: TObject);
+begin
+  oScale.SendtoDevice(cmdRW);
 end;
 
 procedure TfrmMain.FormClose(Sender: TObject; var Action: TCloseAction);

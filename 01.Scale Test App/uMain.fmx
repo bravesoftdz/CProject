@@ -10,7 +10,7 @@ object frmMain: TfrmMain
   OnCreate = FormCreate
   OnClose = FormClose
   OnShow = FormShow
-  DesignerMasterStyle = 0
+  DesignerMasterStyle = 3
   object lotBody: TLayout
     Align = Client
     Size.Width = 340.000000000000000000
@@ -24,7 +24,7 @@ object frmMain: TfrmMain
       Size.Width = 80.000000000000000000
       Size.Height = 31.000000000000000000
       Size.PlatformDefault = False
-      TabOrder = 8
+      TabOrder = 9
       Text = 'Scan'
       TextSettings.Font.Family = 'Nirmala UI'
       TextSettings.Font.Size = 14.000000000000000000
@@ -38,7 +38,7 @@ object frmMain: TfrmMain
       Size.Width = 80.000000000000000000
       Size.Height = 31.000000000000000000
       Size.PlatformDefault = False
-      TabOrder = 12
+      TabOrder = 13
       Text = #51200#50872#50672#44208
       TextSettings.Font.Family = 'Nirmala UI'
       TextSettings.Font.Size = 14.000000000000000000
@@ -52,7 +52,7 @@ object frmMain: TfrmMain
       Size.Width = 80.000000000000000000
       Size.Height = 31.000000000000000000
       Size.PlatformDefault = False
-      TabOrder = 6
+      TabOrder = 7
       Text = 'Disconnect'
       TextSettings.Font.Family = 'Nirmala UI'
       TextSettings.Font.Size = 14.000000000000000000
@@ -93,9 +93,9 @@ object frmMain: TfrmMain
       Position.X = 12.000000000000000000
       Position.Y = 70.000000000000000000
       Size.Width = 315.000000000000000000
-      Size.Height = 30.000000000000000000
+      Size.Height = 32.000000000000000000
       Size.PlatformDefault = False
-      TabOrder = 22
+      TabOrder = 23
     end
     object lblStable: TLabel
       StyledSettings = []
@@ -168,7 +168,7 @@ object frmMain: TfrmMain
       Size.Width = 109.000000000000000000
       Size.Height = 19.000000000000000000
       Size.PlatformDefault = False
-      TabOrder = 26
+      TabOrder = 27
       Text = #47924#44172#44050' '#48372#44592
       TextSettings.Font.Family = 'Nirmala UI'
       TextSettings.Font.Size = 14.000000000000000000
@@ -183,9 +183,9 @@ object frmMain: TfrmMain
       Size.Width = 319.000000000000000000
       Size.Height = 463.000000000000000000
       Size.PlatformDefault = False
-      TabOrder = 24
-      Viewport.Width = 315.000000000000000000
-      Viewport.Height = 459.000000000000000000
+      TabOrder = 25
+      Viewport.Width = 311.000000000000000000
+      Viewport.Height = 455.000000000000000000
     end
     object chkViewReceivedString: TCheckBox
       StyledSettings = [Style, FontColor]
@@ -195,7 +195,7 @@ object frmMain: TfrmMain
       Size.Width = 105.000000000000000000
       Size.Height = 19.000000000000000000
       Size.PlatformDefault = False
-      TabOrder = 20
+      TabOrder = 21
       Text = #49688#49888#44050' '#48372#44592
       TextSettings.Font.Family = 'Nirmala UI'
       TextSettings.Font.Size = 14.000000000000000000
@@ -208,10 +208,24 @@ object frmMain: TfrmMain
       Size.Width = 107.000000000000000000
       Size.Height = 19.000000000000000000
       Size.PlatformDefault = False
-      TabOrder = 21
+      TabOrder = 22
       Text = #49569#49888#44050' '#48372#44592
       TextSettings.Font.Family = 'Nirmala UI'
       TextSettings.Font.Size = 14.000000000000000000
+    end
+    object btnRW: TButton
+      StyledSettings = []
+      Position.X = 172.000000000000000000
+      Position.Y = 42.000000000000000000
+      Size.Width = 80.000000000000000000
+      Size.Height = 31.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 6
+      Text = 'RW'
+      TextSettings.Font.Family = 'Nirmala UI'
+      TextSettings.Font.Size = 14.000000000000000000
+      TintColor = claNavy
+      OnClick = btnRWClick
     end
   end
   object BLE_Scale: TBluetoothLE

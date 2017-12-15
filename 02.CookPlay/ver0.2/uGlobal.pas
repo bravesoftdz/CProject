@@ -4,7 +4,8 @@ interface
 
 uses System.UITypes, System.SysUtils, System.IOUtils, iniFiles, FMX.Dialogs,
     System.Classes, Data.DB, FMX.WebBrowser, FMX.Types, FMX.Layouts,
-    FMX.Objects, FMX.Ani;
+    FMX.Objects, FMX.Ani, FMX.Memo, System.Bluetooth, System.Bluetooth.Components,
+    cookplay.Scale;
 
 type
   TCallbackFunc = procedure(AResultList: TStringList=nil) of Object;
@@ -15,10 +16,11 @@ type
   TPicturetype = (ptPicture=0, ptVideo);
   TRecipeState = (rsNone=0, rsNew, rsEdit, rsDeleted);
   TIngredientType = (itIngredient=0, itSeasoning, itTemperature, itTime, itRecipeLink);
-  TIngredientUnit = (wuMg=0, wuG, wuKg, wuPound, wuOunce, wuCentigrade, wuFahrenheit, wuSec, wuMinute, wuHour);
+//  TIngredientUnit = (wuNone=0, wuG, wuKg, wuPound, wuOunce, wuCentigrade, wuFahrenheit, wuSec, wuMinute, wuHour);
   TPictureVisibleState = (pvInvisible=0, pvVisible);
   TRecipeViewType = (rvRecent, rvBest);
   TPictureState = (psNotLoaded, psLoaded);
+  TScaleMeasureType = (smView, smPlay);
 
   TSetupInfo = record
     AlaramOn: Boolean;
@@ -37,6 +39,13 @@ type
     procedure SetInfo(aAlaram, aFollower, aFollow, aRecipe, aCookbook, aNotice, aMyFeed: integer);
   end;
 
+  TScaleMeasureInfo = record
+    MaxWeight: Single;  // 전자저울 최대무게
+    SmallWeight: Single;  // 전자저울 최소무게
+    WeightUnit: TIngredientUnit;  // 전자저울 무게단위
+    UserWeightUnit: TIngredientUnit;  // 사용자가 선택한 전자저울 무게단위, 선택을 안했을 경우 wuNone으로 세팅 = -1
+  end;
+
   TLoginInfo = class
   private
   public
@@ -44,6 +53,8 @@ type
     autoLogin: Boolean;
     email: string;
     password: string;
+
+    scale: TScaleMeasureInfo;
 
     procedure LoadInfo;
     procedure SaveInfo;
@@ -96,12 +107,30 @@ type
     function IngredientItem(aIndex: integer): TRecipeChangeWeightItem;
   end;
 
+  TRecipeCommentInfo = class
+    Serial: LargeInt;
+    Recipe_Serial: LargeInt;
+    Users_Serial: LargeInt;
+    Contents: string;
+    PictureType: integer;
+    Picture: string;
+    UserPicture: string;
+    Nickname: string;
+    CreatedDatetime: string;
+  end;
+
 function IsBackKey(var Key: Word): Boolean;
 function GetColor(color: TAlphaColor): TAlphaColor;
 function GetCountString(cnt: integer): string;
 procedure HideVirtualKeyboard;
 procedure ShowVirtualKeyboard(const AControl: TFmxObject);
 procedure ShowMessage1(msg: string);
+function GetLineCount(text: string): integer;
+function GetTextHeight(aText: TText; aStr: string): Single;
+function GetDateString(aDateTime: string): string;
+
+// 전자저울 DiscoverDevices
+procedure ScaleEndDiscoverDevices(const Sender: TObject; const ADeviceList: TBluetoothLEDeviceList);
 
 const
   DEFAULT_WIDTH = 375;
@@ -134,6 +163,10 @@ const
   COLOR_GREEN_UNSELECTED1 = $FFBDC000;
   COLOR_GREEN_UNSELECTED2 = $FF85AC1B;
 
+  COLOR_SCALE_NORMAL = $FFFF7500;
+  COLOR_SCALE_GOOD = $FF8DC000;
+  COLOR_SCALE_OVER = $FFFF5F00;
+
   TITLE_Login = '로그인';
   TITLE_Registration = '회원가입';
 
@@ -155,6 +188,8 @@ const
 
 var
   _info: TInfo;
+  _Scale: TScaleConnection;
+  BluetoothLE: TBluetoothLE;
 
 implementation
 uses FMX.VirtualKeyboard, FMX.Platform, ClientModuleUnit;
@@ -224,6 +259,10 @@ begin
     password := IniFile.ReadString('Login', 'Password', '');
     setup.ScreenOn := IniFile.ReadBool('Setup', 'ScreenOn', True);
     setup.AlaramOn := IniFile.ReadBool('Setup', 'AlaramOn', True);
+    scale.MaxWeight := IniFile.ReadFloat('Scale', 'MaxWeight', WEIGHT_DEFAULT_MAX); // default = 1kg = 10000g
+    scale.SmallWeight := Inifile.ReadFloat('Scale', 'SmallWeight', WEIGHT_DEFAULT_SMALL); // default = 1g
+    scale.WeightUnit := TIngredientUnit(IniFile.ReadInteger('Scale', 'WeightUnit', Ord(TIngredientUnit.wuG)));
+    scale.UserWeightUnit := TIngredientUnit(IniFile.ReadInteger('Scale', 'UserWeightUnit', Ord(TIngredientUnit.wuNone)));
   finally
     IniFile.Free;
   end;
@@ -241,9 +280,13 @@ begin
     IniFile.WriteBool('Login', 'AutoLogin', autoLogin);
     IniFile.WriteString('Login', 'Email', email);
     IniFile.WriteString('Login', 'Password', password);
-    IniFile.ReadBool('Setup', 'ScreenOn', setup.ScreenOn);
-    IniFile.ReadBool('Setup', 'AlaramOn', setup.AlaramOn);
-  finally
+    IniFile.WriteBool('Setup', 'ScreenOn', setup.ScreenOn);
+    IniFile.WriteBool('Setup', 'AlaramOn', setup.AlaramOn);
+    IniFile.WriteFloat('Scale', 'MaxWeight', scale.MaxWeight);
+    IniFile.WriteFloat('Scale', 'SmallWeight', scale.SmallWeight);
+    IniFile.WriteInteger('Scale', 'WeightUnit', Ord(scale.WeightUnit));
+    IniFile.WriteInteger('Scale', 'UserWeightUnit', Ord(scale.UserWeightUnit));
+finally
     IniFile.Free;
   end;
 
@@ -364,4 +407,86 @@ begin
     result := TRecipeChangeWeightItem(Ingredients.Objects[aIndex]);
 end;
 
+function GetLineCount(text: string): integer;
+var
+  aMemo: TMemo;
+begin
+  try
+    aMemo := TMemo.Create(nil);
+    aMemo.Lines.Text := text;
+    result := aMemo.Lines.Count;
+  finally
+    aMemo.DisposeOf;
+  end;
+end;
+
+function GetTextHeight(aText: TText; aStr: string): Single;
+var
+  linecount: integer;
+begin
+  linecount := GetLineCount(aStr);
+
+  result := aText.Canvas.TextHeight('CookPlay') * linecount;
+end;
+
+function GetDateString(aDateTime: string): string;
+var
+  ShortMonthNames: array[1..12] of string;
+  year, month, day: word;
+  aDate: TDateTime;
+begin
+  ShortMonthNames[ 1] := 'Jan';
+  ShortMonthNames[ 2] := 'Feb';
+  ShortMonthNames[ 3] := 'Mar';
+  ShortMonthNames[ 4] := 'Apr';
+  ShortMonthNames[ 5] := 'May';
+  ShortMonthNames[ 6] := 'Jun';
+  ShortMonthNames[ 7] := 'Jul';
+  ShortMonthNames[ 8] := 'Aug';
+  ShortMonthNames[ 9] := 'Sep';
+  ShortMonthNames[10] := 'Oct';
+  ShortMonthNames[11] := 'Nov';
+  ShortMonthNames[12] := 'Dec';
+
+  try
+    aDate := StrToDatetime(aDateTime);
+    DecodeDate(aDate, year, month, day);
+
+    result := ShortMonthNames[month] + FormatDateTime(' mm, ampm h:mm', aDate);
+  except
+    result := '';
+  end;
+end;
+
+procedure ScaleEndDiscoverDevices(const Sender: TObject; const ADeviceList: TBluetoothLEDeviceList);
+var
+  i, k: integer;
+begin
+  if ADeviceList.Count < 1 then
+  begin
+    ShowMessage( 'Cookplay 전자저울을 찾을 수 없습니다!');
+    Exit;
+  end
+  else
+  begin
+    for i:=0 to ADeviceList.Count-1 do
+      for k := 0 to Length(BLE)-1 do
+      begin
+        if Uppercase(ADeviceList.Items[i].DeviceName) = UpperCase(BLE[k].DeviceName) then
+        begin
+          _Scale.ConnectDevice(ADeviceList.Items[i]);
+          Break;
+        end;
+      end;
+  end;
+end;
+
+
+initialization
+  // 블루투스 초기화
+  BluetoothLE := TBluetoothLE.Create(nil);
+  BluetoothLE.Enabled := True;
+
+  // 전자저울 Object 초기화
+  _Scale := TScaleConnection.Create(nil);
 end.

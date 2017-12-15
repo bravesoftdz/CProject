@@ -1,0 +1,447 @@
+object frameScale: TframeScale
+  Size.Width = 656.000000000000000000
+  Size.Height = 657.000000000000000000
+  Size.PlatformDefault = False
+  object recGradient: TRectangle
+    Align = Client
+    Fill.Kind = Gradient
+    Fill.Gradient.Points = <
+      item
+        Color = xFFF8B35A
+        Offset = 0.000000000000000000
+      end
+      item
+        Color = xFFFFDF77
+        Offset = 1.000000000000000000
+      end>
+    Fill.Gradient.StartPosition.X = 0.500000000000000000
+    Fill.Gradient.StartPosition.Y = 1.000000000000000000
+    Fill.Gradient.StopPosition.X = 0.499999970197677600
+    Fill.Gradient.StopPosition.Y = 0.000000000000000000
+    Size.Width = 656.000000000000000000
+    Size.Height = 657.000000000000000000
+    Size.PlatformDefault = False
+    Stroke.Kind = None
+    object Layout2: TLayout
+      Align = Top
+      Size.Width = 656.000000000000000000
+      Size.Height = 45.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      object layoutClose: TLayout
+        Align = Right
+        HitTest = True
+        Padding.Right = 15.000000000000000000
+        Position.X = 596.000000000000000000
+        Size.Width = 60.000000000000000000
+        Size.Height = 45.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        object imgClose: TImage
+          MultiResBitmap.Height = 60
+          MultiResBitmap.Width = 60
+          MultiResBitmap.LoadSize = 2
+          MultiResBitmap = <
+            item
+              Width = 60
+              Height = 60
+              PNG = {
+                89504E470D0A1A0A0000000D494844520000003C0000003C08060000003AFCD9
+                72000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+                0288494441546843ED993F6F1331188793744141624382AA030C440291CC7C05
+                363A41FECCB0C04780EFD0A543E880DA904B25063E01EAC452892565800FC15C
+                A9BA84DFEFCE46A58993B3CFAFA7F7912CFBB5A5F33D97F76C2769288AA2288A
+                A2288AA2286B689ADA9BC160F03CCFF331DBAD56EB5D96655F8B0121FAFDFEA3
+                E572798CF2A4D96C1ECC66B30F66C88B96A9BDA12C26DE63C14D7CC10DBD3243
+                D1A12CAA33946798EF0EEAF7A3D1E829C77C0916BEC10EA42712D25616D7DF2D
+                7BEA112CCC3446959751417469972CE2C3C9647261422F8285F9CE22BD46688A
+                486F903DC2FBFBD684DEEC983A880BD0ED767FA3B98F621F1EEB7DF673BCECF2
+                638BEC6B3CE8A5E9F2A69630D924DDEBF57ECDE7F39F6557352465496D61E292
+                C64D7A494BCB9228C2A4AE740A59124D98844AA79225518509A5294749845BA5
+                53CA92E8C2845255A453CB92E0B3741570DE7EB9582C3EA379FDC1E638B40C21
+                F503EDA4B2445498B8A451FEA0DC2D2283B42C1149E9EBB8D21BE576D92C4921
+                4BC4858943FA1FA964C9CAE452408AEF2CD37805887E4B214B927CC2763546B9
+                5774ACF262DD962581B8B06BEBB981F7313414D19476C9227D3FA21AA0FCF7D5
+                92AB395775138B2026BC49763A9DBEC12295713F465752699194DE266B1728D7
+                962599DED185ABCA5A524B471576C9223ECAB26C45D692523A9AF026D92A878A
+                54D25184EBCA5A5248D7168E256B9196AE251C5BD622291D2C2C256B9192B617
+                0AE1444AD6826DEC74DDE124CFF34FC3E1F0BE89BD0816C689E8B16916C496B5
+                AC93C61CB730FF03137A112C8C490F4C93B28712B2162B8D792E4DD7F74EA773
+                6EDA5ED4FA89C7FE6519FAC7962F4C633CD487ED76FB7C3C1E5F996E45511445
+                5114455194D8341A7F016C479017A000305E0000000049454E44AE426082}
+              FileName = 'D:\GitHub\CProject\02.CookPlay\image\rectangle@2x.png'
+            end>
+          Align = Right
+          HitTest = False
+          Position.X = 15.000000000000000000
+          Size.Width = 30.000000000000000000
+          Size.Height = 45.000000000000000000
+          Size.PlatformDefault = False
+        end
+      end
+    end
+  end
+  object ScaleScaledLayout: TScaledLayout
+    Align = Center
+    Padding.Left = 10.000000000000000000
+    Padding.Top = 10.000000000000000000
+    Padding.Right = 10.000000000000000000
+    Padding.Bottom = 10.000000000000000000
+    OriginalWidth = 280.000000000000000000
+    OriginalHeight = 280.000000000000000000
+    Size.Width = 280.000000000000000000
+    Size.Height = 280.000000000000000000
+    Size.PlatformDefault = False
+    object arcBase: TArc
+      Align = Client
+      Opacity = 0.500000000000000000
+      Margins.Left = 10.000000000000000000
+      Margins.Top = 10.000000000000000000
+      Margins.Right = 10.000000000000000000
+      Margins.Bottom = 10.000000000000000000
+      Size.Width = 240.000000000000000000
+      Size.Height = 240.000000000000000000
+      Size.PlatformDefault = False
+      Stroke.Color = claWhite
+      Stroke.Thickness = 5.000000000000000000
+      StartAngle = 130.000000000000000000
+      EndAngle = 280.000000000000000000
+    end
+    object arcPosition: TArc
+      Align = Client
+      Margins.Left = 10.000000000000000000
+      Margins.Top = 10.000000000000000000
+      Margins.Right = 10.000000000000000000
+      Margins.Bottom = 10.000000000000000000
+      Size.Width = 240.000000000000000000
+      Size.Height = 240.000000000000000000
+      Size.PlatformDefault = False
+      Stroke.Color = xFFFF7500
+      Stroke.Thickness = 5.000000000000000000
+      StartAngle = 130.000000000000000000
+      EndAngle = 50.000000000000000000
+      object FloatAnimationArc: TFloatAnimation
+        Duration = 0.050000000745058060
+        PropertyName = 'EndAngle'
+        StartValue = 0.000000000000000000
+        StartFromCurrent = True
+        StopValue = 0.000000000000000000
+      end
+    end
+    object Circle2: TCircle
+      Align = Client
+      Fill.Color = claWhite
+      Opacity = 0.800000011920929000
+      Margins.Left = 32.000000000000000000
+      Margins.Top = 32.000000000000000000
+      Margins.Right = 32.000000000000000000
+      Margins.Bottom = 32.000000000000000000
+      Size.Width = 196.000000000000000000
+      Size.Height = 196.000000000000000000
+      Size.PlatformDefault = False
+      Stroke.Kind = None
+      object txtScaleWeight: TText
+        Align = Center
+        Margins.Top = -40.000000000000000000
+        Size.Width = 150.000000000000000000
+        Size.Height = 49.000000000000000000
+        Size.PlatformDefault = False
+        Text = '0'
+        TextSettings.Font.Size = 40.000000000000000000
+        TextSettings.FontColor = xFF656565
+        object txtIngredientWeight: TText
+          Position.Y = 48.000000000000000000
+          Size.Width = 150.000000000000000000
+          Size.Height = 33.000000000000000000
+          Size.PlatformDefault = False
+          Text = '300'
+          TextSettings.Font.Size = 20.000000000000000000
+          TextSettings.FontColor = xFFFF9000
+          object txtUnit: TText
+            Position.X = 50.000000000000000000
+            Position.Y = 32.000000000000000000
+            Size.Width = 50.000000000000000000
+            Size.Height = 37.000000000000000000
+            Size.PlatformDefault = False
+            Text = 'g'
+            TextSettings.Font.Size = 22.000000000000000000
+            TextSettings.FontColor = xFFFF6C00
+            TextSettings.VertAlign = Leading
+            OnClick = txtUnitClick
+            object txtUnit2: TText
+              Position.Y = 27.000000000000000000
+              Size.Width = 50.000000000000000000
+              Size.Height = 20.000000000000000000
+              Size.PlatformDefault = False
+              Text = '0.1'
+              TextSettings.FontColor = xFFFF6C00
+              OnClick = txtUnitClick
+            end
+          end
+        end
+      end
+    end
+    object Layout1: TLayout
+      Anchors = [akLeft, akBottom]
+      Position.Y = 255.000000000000000000
+      Size.Width = 280.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 4
+      object recZero: TRoundRect
+        Align = Center
+        Fill.Color = claWhite
+        Padding.Left = 10.000000000000000000
+        Padding.Right = 10.000000000000000000
+        Opacity = 0.600000023841857900
+        Size.Width = 100.000000000000000000
+        Size.Height = 36.000000000000000000
+        Size.PlatformDefault = False
+        Stroke.Color = xFFFF7500
+        OnClick = recZeroClick
+        object ColorAnimation1: TColorAnimation
+          AutoReverse = True
+          Duration = 0.200000002980232200
+          PropertyName = 'Fill.Color'
+          StartValue = claWhite
+          StopValue = claSilver
+        end
+      end
+      object Text1: TText
+        Align = Center
+        HitTest = False
+        Size.Width = 52.000000000000000000
+        Size.Height = 26.000000000000000000
+        Size.PlatformDefault = False
+        Text = 'ZERO'
+        TextSettings.Font.Size = 18.000000000000000000
+        TextSettings.FontColor = xFFFF7500
+      end
+    end
+    object lineMaxPosition: TLine
+      Align = Center
+      LineType = Top
+      Size.Width = 240.000000000000000000
+      Size.Height = 1.000007629394531000
+      Size.PlatformDefault = False
+      Stroke.Thickness = 0.000000000000000000
+      object circleTarget: TCircle
+        Anchors = [akTop, akRight]
+        Fill.Color = claWhite
+        Position.X = 223.000000000000000000
+        Position.Y = -14.000000000000000000
+        Size.Width = 28.000000000000000000
+        Size.Height = 28.000000000000000000
+        Size.PlatformDefault = False
+        Stroke.Color = xFFFF7500
+        Stroke.Thickness = 2.000000000000000000
+      end
+    end
+    object linePosition: TLine
+      Align = Center
+      LineType = Top
+      Size.Width = 240.000000000000000000
+      Size.Height = 1.000007629394531000
+      Size.PlatformDefault = False
+      Stroke.Thickness = 0.000000000000000000
+      object circlePosition: TCircle
+        Fill.Color = xFFFF7500
+        Position.X = -8.000000000000000000
+        Position.Y = -10.000000000000000000
+        Size.Width = 22.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+        Stroke.Kind = None
+      end
+      object FloatAnimationLine: TFloatAnimation
+        Duration = 0.050000000745058060
+        PropertyName = 'RotationAngle'
+        StartValue = 0.000000000000000000
+        StartFromCurrent = True
+        StopValue = 0.000000000000000000
+      end
+    end
+    object txtIngredientExplain: TText
+      Position.Y = -40.000000000000000000
+      Size.Width = 280.000000000000000000
+      Size.Height = 31.000000000000000000
+      Size.PlatformDefault = False
+      Text = #50577#54028' 1'#44060' 200g'
+      TextSettings.Font.Size = 20.000000000000000000
+      TextSettings.FontColor = xFFFF6322
+    end
+  end
+  object layoutLongConnecting: TLayout
+    Padding.Bottom = 5.000000000000000000
+    Position.X = 12.000000000000000000
+    Position.Y = 48.000000000000000000
+    Size.Width = 335.000000000000000000
+    Size.Height = 85.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+    object recLongConnecting: TRectangle
+      Fill.Color = claWhite
+      Opacity = 0.699999988079071000
+      Position.X = 6.000000000000000000
+      Position.Y = 32.000000000000000000
+      Size.Width = 335.000000000000000000
+      Size.Height = 85.000000000000000000
+      Size.PlatformDefault = False
+      Stroke.Kind = None
+    end
+    object Layout4: TLayout
+      Align = Top
+      Margins.Top = 10.000000000000000000
+      Position.Y = 10.000000000000000000
+      Size.Width = 335.000000000000000000
+      Size.Height = 30.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      object AniIndicatorConnecting: TAniIndicator
+        Align = Center
+        Enabled = True
+        HitTest = False
+        Size.Width = 30.000000000000000000
+        Size.Height = 30.000000000000000000
+        Size.PlatformDefault = False
+      end
+    end
+    object Text2: TText
+      Align = Client
+      Margins.Top = 5.000000000000000000
+      Size.Width = 335.000000000000000000
+      Size.Height = 35.000000000000000000
+      Size.PlatformDefault = False
+      Text = #53216#53433#51200#50872#51012' '#50672#44208#51473#51077#45768#45796
+      TextSettings.Font.Size = 14.000000000000000000
+      TextSettings.FontColor = xFF888888
+    end
+  end
+  object layoutLongDisconnected: TLayout
+    Margins.Bottom = 5.000000000000000000
+    Position.X = 22.000000000000000000
+    Position.Y = 482.000000000000000000
+    Size.Width = 307.000000000000000000
+    Size.Height = 99.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 3
+    object recLongDisconnected: TRectangle
+      Fill.Color = claWhite
+      Opacity = 0.699999988079071000
+      Position.X = 246.000000000000000000
+      Position.Y = 12.000000000000000000
+      Size.Width = 335.000000000000000000
+      Size.Height = 85.000000000000000000
+      Size.PlatformDefault = False
+      Stroke.Kind = None
+    end
+    object Layout6: TLayout
+      Align = Center
+      Padding.Bottom = 5.000000000000000000
+      Size.Width = 205.000000000000000000
+      Size.Height = 80.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      object Layout3: TLayout
+        Align = Top
+        Size.Width = 205.000000000000000000
+        Size.Height = 32.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        object Circle3: TCircle
+          Align = Left
+          Fill.Color = claRed
+          HitTest = False
+          Size.Width = 8.000000000000000000
+          Size.Height = 32.000000000000000000
+          Size.PlatformDefault = False
+          Stroke.Kind = None
+        end
+        object Text4: TText
+          Align = Client
+          HitTest = False
+          Size.Width = 197.000000000000000000
+          Size.Height = 32.000000000000000000
+          Size.PlatformDefault = False
+          Text = #50672#44208#46104#51648' '#50506#50520#49845#45768#45796
+          TextSettings.Font.Size = 14.000000000000000000
+          TextSettings.FontColor = xFF888888
+        end
+      end
+      object Layout7: TLayout
+        Align = Client
+        Size.Width = 205.000000000000000000
+        Size.Height = 43.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        object Button1: TButton
+          Align = Center
+          Margins.Top = 5.000000000000000000
+          Size.Width = 43.000000000000000000
+          Size.Height = 31.000000000000000000
+          Size.PlatformDefault = False
+          StyleLookup = 'refreshtoolbutton'
+          TabOrder = 0
+          Text = '0'
+          OnClick = Button1Click
+        end
+      end
+    end
+  end
+  object layoutLongConnected: TLayout
+    Margins.Bottom = 5.000000000000000000
+    Position.X = 20.000000000000000000
+    Position.Y = 586.000000000000000000
+    Size.Width = 307.000000000000000000
+    Size.Height = 59.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 2
+    object recLongConnected: TRectangle
+      Fill.Color = claWhite
+      Opacity = 0.699999988079071000
+      Position.X = 216.000000000000000000
+      Position.Y = 24.000000000000000000
+      Size.Width = 335.000000000000000000
+      Size.Height = 85.000000000000000000
+      Size.PlatformDefault = False
+      Stroke.Kind = None
+    end
+    object Layout5: TLayout
+      Align = Center
+      Padding.Bottom = 5.000000000000000000
+      Size.Width = 138.000000000000000000
+      Size.Height = 28.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      object Circle1: TCircle
+        Align = Left
+        Fill.Color = xFF8DC000
+        HitTest = False
+        Size.Width = 8.000000000000000000
+        Size.Height = 23.000000000000000000
+        Size.PlatformDefault = False
+        Stroke.Kind = None
+      end
+      object Text3: TText
+        Align = Client
+        HitTest = False
+        Size.Width = 130.000000000000000000
+        Size.Height = 23.000000000000000000
+        Size.PlatformDefault = False
+        Text = #50672#44208#46104#50632#49845#45768#45796
+        TextSettings.Font.Size = 14.000000000000000000
+        TextSettings.FontColor = xFF888888
+      end
+    end
+  end
+  object Button2: TButton
+    Position.X = 6.000000000000000000
+    Position.Y = 174.000000000000000000
+    Size.Width = 39.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 5
+    Text = 'H'
+    OnClick = Button2Click
+  end
+end

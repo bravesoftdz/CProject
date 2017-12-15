@@ -4,7 +4,7 @@ uses
   System.StartUpCopy,
   FMX.Forms,
   uMain in 'uMain.pas' {frmMain},
-  uCPScale in '..\00.Library\uCPScale.pas';
+  cookplay.Scale in '..\00.Library\cookplay.Scale.pas';
 
 {$R *.res}
 

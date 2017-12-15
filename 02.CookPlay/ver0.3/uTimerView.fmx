@@ -1,0 +1,41 @@
+object Form3: TForm3
+  Left = 0
+  Top = 0
+  Caption = 'Form3'
+  ClientHeight = 601
+  ClientWidth = 456
+  Fill.Kind = Solid
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnShow = FormShow
+  DesignerMasterStyle = 0
+  inline frameTimer1: TframeTimer
+    Align = Client
+    Size.Width = 456.000000000000000000
+    Size.Height = 601.000000000000000000
+    Size.PlatformDefault = False
+    inherited layoutTimer: TLayout
+      Size.Width = 456.000000000000000000
+      Size.Height = 601.000000000000000000
+      inherited Layout1: TLayout
+        Size.Width = 456.000000000000000000
+        Size.Height = 556.000000000000000000
+      end
+      inherited layoutTop: TLayout
+        Size.Width = 456.000000000000000000
+        inherited txtIngredientExplain: TText
+          Size.Width = 456.000000000000000000
+          inherited layoutClose: TLayout
+            Position.X = 396.000000000000000000
+            inherited imgClose: TImage
+              MultiResBitmap.Height = 60
+              MultiResBitmap.Width = 60
+              MultiResBitmap.LoadSize = 2
+            end
+          end
+        end
+      end
+    end
+  end
+end
