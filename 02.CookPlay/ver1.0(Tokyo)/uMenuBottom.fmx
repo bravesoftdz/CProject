@@ -1,0 +1,30 @@
+object frmMenuBottom: TfrmMenuBottom
+  Left = 0
+  Top = 0
+  Caption = 'Form2'
+  ClientHeight = 613
+  ClientWidth = 605
+  Transparency = True
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
+  DesignerMasterStyle = 0
+  object Rectangle1: TRectangle
+    Align = Client
+    Fill.Color = claBlack
+    Opacity = 0.500000000000000000
+    Size.Width = 605.000000000000000000
+    Size.Height = 613.000000000000000000
+    Size.PlatformDefault = False
+    Stroke.Kind = None
+    OnMouseUp = Rectangle1MouseUp
+  end
+  object layoutBody: TLayout
+    Align = Client
+    Size.Width = 605.000000000000000000
+    Size.Height = 613.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+  end
+end

@@ -49,6 +49,14 @@ type
     dsStep: TDataSetProvider;
     sqlIngredient: TFDQuery;
     dsIngredient: TDataSetProvider;
+    sqlvStoryList: TFDQuery;
+    dsvStoryList: TDataSetProvider;
+    sqlStoryImages: TFDQuery;
+    dsStoryImages: TDataSetProvider;
+    sqlvStoryComment: TFDQuery;
+    dsvStoryComment: TDataSetProvider;
+    sqlvRecipeList: TFDQuery;
+    dsvRecipeList: TDataSetProvider;
   private
     { Private declarations }
   public

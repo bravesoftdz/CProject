@@ -1,23 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
 	<Transactions>
-    <Transaction>1899-12-30 00:00:00.000.713,=D:\00.dev\02.BI\BI_APP\uMain.pas</Transaction>
-    <Transaction>1899-12-30 00:00:00.000.186,D:\00.dev\02.BI\BI_APP\BI_DeviceComponent.dproj=D:\Documents\Embarcadero\Studio\Projects\Project8.dproj</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.294,=D:\Documents\Embarcadero\Studio\Projects\Unit8.pas</Transaction>
     <Transaction>1899-12-30 00:00:00.000.778,=D:\Documents\Embarcadero\Studio\Projects\Unit8.pas</Transaction>
-    <Transaction>1899-12-30 00:00:00.000.968,D:\00.dev\04.CookPlay\02.CookPlay APP\02.CookPlayTest\CookPlayTest.dproj=D:\00.dev\04.CookPlay\02.CookPlay APP\02.CookPlayTest\CookPlayScaleTest.dproj</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.506,=D:\Documents\Embarcadero\Studio\Projects\Unit8.pas</Transaction>
     <Transaction>1899-12-30 00:00:00.000.311,=D:\00.dev\04.CookPlay\02.CookPlay APP\00.Library\uCPScale.pas</Transaction>
     <Transaction>1899-12-30 00:00:00.000.577,D:\00.dev\04.CookPlay\02.CookPlay APP\02.CookPlayTest\CookPlay_Test.dproj=D:\00.dev\04.CookPlay\02.CookPlay APP\02.CookPlayTest\CookPlayTest.dproj</Transaction>
-    <Transaction>1899-12-30 00:00:00.000.888,=D:\00.dev\02.BI\BI_APP\uBLEDevices.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.131,=D:\GitHub\CProject\00.Library\cookplay.Scale.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.968,D:\00.dev\04.CookPlay\02.CookPlay APP\02.CookPlayTest\CookPlayTest.dproj=D:\00.dev\04.CookPlay\02.CookPlay APP\02.CookPlayTest\CookPlayScaleTest.dproj</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.169,D:\GitHub\CProject\00.Library\uCPScale.pas=</Transaction>
     <Transaction>1899-12-30 00:00:00.000.753,D:\00.dev\04.CookPlay\02.CookPlay APP\02.CookPlayTest\uBLEDevices.pas=</Transaction>
     <Transaction>1899-12-30 00:00:00.000.034,D:\00.dev\04.CookPlay\03.Test APP\CookPlay_Test.dproj=D:\00.dev\04.CookPlay\03.Test APP\BI_DeviceComponent.dproj</Transaction>
-    <Transaction>1899-12-30 00:00:00.000.294,=D:\Documents\Embarcadero\Studio\Projects\Unit8.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.888,=D:\00.dev\02.BI\BI_APP\uBLEDevices.pas</Transaction>
     <Transaction>1899-12-30 00:00:00.000.057,=D:\Documents\Embarcadero\Studio\Projects\Unit8.pas</Transaction>
-    <Transaction>1899-12-30 00:00:00.000.506,=D:\Documents\Embarcadero\Studio\Projects\Unit8.pas</Transaction>
-    <Transaction>2017-11-24 23:05:20.169,D:\GitHub\CProject\00.Library\uCPScale.pas=</Transaction>
-    <Transaction>2017-11-24 23:05:34.131,=D:\GitHub\CProject\00.Library\cookplay.Scale.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.713,=D:\00.dev\02.BI\BI_APP\uMain.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.186,D:\00.dev\02.BI\BI_APP\BI_DeviceComponent.dproj=D:\Documents\Embarcadero\Studio\Projects\Project8.dproj</Transaction>
   </Transactions>
 	<ActiveMobileDevice>
-		<NoProfile iOSSimulator="iPhone5" Android="4100ea7fc8ffc155"/>
+		<NoProfile iOSSimulator="iPhone5" Android="4100efe9c82822ad"/>
 		<PMacBookPro iOSSimulator="iPhone5" iOSDevice64="_iosdevice_87cb4c6ed6310b2fe264111a3ca525ac0346ed5a"/>
 	</ActiveMobileDevice>
 </BorlandProject>

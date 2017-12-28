@@ -24,10 +24,11 @@ object frmMain: TfrmMain
       Size.Width = 80.000000000000000000
       Size.Height = 31.000000000000000000
       Size.PlatformDefault = False
-      TabOrder = 9
+      TabOrder = 10
       Text = 'Scan'
       TextSettings.Font.Family = 'Nirmala UI'
       TextSettings.Font.Size = 14.000000000000000000
+      TextSettings.FontColor = claWhite
       TintColor = claNavy
       OnClick = btnScanScaleClick
     end
@@ -38,10 +39,11 @@ object frmMain: TfrmMain
       Size.Width = 80.000000000000000000
       Size.Height = 31.000000000000000000
       Size.PlatformDefault = False
-      TabOrder = 13
+      TabOrder = 14
       Text = #51200#50872#50672#44208
       TextSettings.Font.Family = 'Nirmala UI'
       TextSettings.Font.Size = 14.000000000000000000
+      TextSettings.FontColor = claWhite
       TintColor = claNavy
       OnClick = btnScaleConnectClick
     end
@@ -52,10 +54,11 @@ object frmMain: TfrmMain
       Size.Width = 80.000000000000000000
       Size.Height = 31.000000000000000000
       Size.PlatformDefault = False
-      TabOrder = 7
+      TabOrder = 8
       Text = 'Disconnect'
       TextSettings.Font.Family = 'Nirmala UI'
       TextSettings.Font.Size = 14.000000000000000000
+      TextSettings.FontColor = claWhite
       TintColor = claNavy
       OnClick = btnDisconnectScaleClick
     end
@@ -95,7 +98,7 @@ object frmMain: TfrmMain
       Size.Width = 315.000000000000000000
       Size.Height = 32.000000000000000000
       Size.PlatformDefault = False
-      TabOrder = 23
+      TabOrder = 24
     end
     object lblStable: TLabel
       StyledSettings = []
@@ -142,7 +145,7 @@ object frmMain: TfrmMain
         TextSettings.Font.Family = 'Nirmala UI'
         TextSettings.Font.Size = 14.000000000000000000
         TextSettings.Font.StyleExt = {00070000000000000004000000}
-        Text = 'kg'
+        Text = 'g'
       end
     end
     object btnClearScale: TButton
@@ -168,7 +171,7 @@ object frmMain: TfrmMain
       Size.Width = 109.000000000000000000
       Size.Height = 19.000000000000000000
       Size.PlatformDefault = False
-      TabOrder = 27
+      TabOrder = 28
       Text = #47924#44172#44050' '#48372#44592
       TextSettings.Font.Family = 'Nirmala UI'
       TextSettings.Font.Size = 14.000000000000000000
@@ -183,7 +186,7 @@ object frmMain: TfrmMain
       Size.Width = 319.000000000000000000
       Size.Height = 463.000000000000000000
       Size.PlatformDefault = False
-      TabOrder = 25
+      TabOrder = 26
       Viewport.Width = 311.000000000000000000
       Viewport.Height = 455.000000000000000000
     end
@@ -195,7 +198,7 @@ object frmMain: TfrmMain
       Size.Width = 105.000000000000000000
       Size.Height = 19.000000000000000000
       Size.PlatformDefault = False
-      TabOrder = 21
+      TabOrder = 22
       Text = #49688#49888#44050' '#48372#44592
       TextSettings.Font.Family = 'Nirmala UI'
       TextSettings.Font.Size = 14.000000000000000000
@@ -208,7 +211,7 @@ object frmMain: TfrmMain
       Size.Width = 107.000000000000000000
       Size.Height = 19.000000000000000000
       Size.PlatformDefault = False
-      TabOrder = 22
+      TabOrder = 23
       Text = #49569#49888#44050' '#48372#44592
       TextSettings.Font.Family = 'Nirmala UI'
       TextSettings.Font.Size = 14.000000000000000000
@@ -220,10 +223,27 @@ object frmMain: TfrmMain
       Size.Width = 80.000000000000000000
       Size.Height = 31.000000000000000000
       Size.PlatformDefault = False
-      TabOrder = 6
+      TabOrder = 7
       Text = 'RW'
       TextSettings.Font.Family = 'Nirmala UI'
       TextSettings.Font.Size = 14.000000000000000000
+      TextSettings.FontColor = claWhite
+      TintColor = claNavy
+      OnClick = btnRWClick
+    end
+    object Button1: TButton
+      Anchors = [akTop, akRight]
+      StyledSettings = []
+      Position.X = 246.000000000000000000
+      Position.Y = 180.000000000000000000
+      Size.Width = 80.000000000000000000
+      Size.Height = 31.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 6
+      Text = 'email'
+      TextSettings.Font.Family = 'Nirmala UI'
+      TextSettings.Font.Size = 14.000000000000000000
+      TextSettings.FontColor = claWhite
       TintColor = claNavy
       OnClick = btnRWClick
     end
@@ -233,5 +253,46 @@ object frmMain: TfrmMain
     OnEndDiscoverDevices = BLE_ScaleEndDiscoverDevices
     Left = 70
     Top = 426
+  end
+  object IdSMTP1: TIdSMTP
+    Host = 'mail.cookplay.net'
+    Password = '@nikki6344'
+    SASLMechanisms = <>
+    Username = 'nikkiji@cookplay.net'
+    Left = 118
+    Top = 268
+  end
+  object IdMessage1: TIdMessage
+    AttachmentEncoding = 'UUE'
+    Body.Strings = (
+      #51221#47049#54252#51109' '#45236#50669#51077#45768#45796)
+    BccList = <>
+    CharSet = 'utf-8'
+    CCList = <>
+    Encoding = meDefault
+    FromList = <
+      item
+        Address = 'sendmail@greenscale.net'
+        Name = 'GreenScale'
+        Text = 'GreenScale <sendmail@greenscale.net>'
+        Domain = 'greenscale.net'
+        User = 'sendmail'
+      end>
+    From.Address = 'sendmail@greenscale.net'
+    From.Name = 'GreenScale'
+    From.Text = 'GreenScale <sendmail@greenscale.net>'
+    From.Domain = 'greenscale.net'
+    From.User = 'sendmail'
+    Recipients = <>
+    ReplyTo = <>
+    Subject = #51221#47049#54252#51109' '#45236#50669#51077#45768#45796
+    Sender.Address = 'sendmail@greenscale.net'
+    Sender.Name = 'GreenScale'
+    Sender.Text = 'GreenScale <sendmail@greenscale.net>'
+    Sender.Domain = 'greenscale.net'
+    Sender.User = 'sendmail'
+    ConvertPreamble = True
+    Left = 202
+    Top = 270
   end
 end

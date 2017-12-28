@@ -1,0 +1,105 @@
+object frmViewStepImage: TfrmViewStepImage
+  Left = 0
+  Top = 0
+  BorderStyle = None
+  Caption = 'Form2'
+  ClientHeight = 652
+  ClientWidth = 640
+  Fill.Color = claBlack
+  Fill.Kind = Solid
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  FullScreen = True
+  OnClose = FormClose
+  OnKeyUp = FormKeyUp
+  OnGesture = FormGesture
+  DesignerMasterStyle = 0
+  object Rectangle1: TRectangle
+    Align = Top
+    Fill.Kind = None
+    Size.Width = 640.000000000000000000
+    Size.Height = 45.000000000000000000
+    Size.PlatformDefault = False
+    Stroke.Kind = None
+    object layoutBackButton: TLayout
+      Align = Left
+      HitTest = True
+      Size.Width = 54.000000000000000000
+      Size.Height = 45.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      OnClick = layoutBackButtonClick
+      object ImageBack: TImage
+        MultiResBitmap.Height = 72
+        MultiResBitmap.Width = 72
+        MultiResBitmap.LoadSize = 2
+        MultiResBitmap = <
+          item
+            Width = 48
+            Height = 48
+            PNG = {
+              89504E470D0A1A0A0000000D49484452000000300000003008060000005702F9
+              87000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+              00C4494441546843EDD8CB0AC2301484E1E033797934375D882FAC2E4257499C
+              CA4484D28DA027E7301F886843F9477463121111F995D6DA6579F0A52F8C7F29
+              A55CF9B60F687EC777B5D68997C786D6557CCEF98101271E19175A156F02AD8A
+              378156C59B40ABE24DA055F126D0BA8AFF17267C0FF7308B5F3063D38ECFB1E1
+              83F0FB15EA702FBF3FE20ECD3147C03DCA88238F8C0FC11A3104046F8D38F0C8
+              F8101C73C43CCFB72823F63C323E34C71C8101675EF601CD9F235CFF43ED335E
+              44441C48E909BA5E14FE00BABED00000000049454E44AE426082}
+            FileName = 'D:\GitHub\CProject\02.CookPlay\image\icBack@2x.png'
+          end>
+        Align = Center
+        HitTest = False
+        Size.Width = 24.000000000000000000
+        Size.Height = 24.000000000000000000
+        Size.PlatformDefault = False
+      end
+    end
+    object btnShare: TButton
+      Align = Right
+      StyledSettings = [Family, Style]
+      Position.X = 567.000000000000000000
+      Size.Width = 73.000000000000000000
+      Size.Height = 45.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'toolbutton'
+      TabOrder = 1
+      TextSettings.Font.Size = 18.000000000000000000
+      TextSettings.FontColor = claWhite
+    end
+  end
+  object ScrollBox: TScrollBox
+    Align = Client
+    Size.Width = 640.000000000000000000
+    Size.Height = 607.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+    Viewport.Width = 640.000000000000000000
+    Viewport.Height = 607.000000000000000000
+    object imgView: TImage
+      Touch.GestureManager = GestureManager1
+      Touch.InteractiveGestures = [Zoom, DoubleTap]
+      MultiResBitmap = <
+        item
+        end>
+      Align = Center
+      Size.Width = 630.000000000000000000
+      Size.Height = 545.000000000000000000
+      Size.PlatformDefault = False
+    end
+    object Timer1: TTimer
+      Enabled = False
+      Interval = 100
+      OnTimer = Timer1Timer
+      Left = 376
+      Top = 12
+    end
+  end
+  object GestureManager1: TGestureManager
+    Sensitivity = 80.000000000000000000
+    Left = 144
+    Top = 6
+  end
+end

@@ -287,7 +287,7 @@ begin
   layoutLongDisconnected.Width := recGradient.Width;
 
   // Play 시의 Action Button 의 위치를 세팅한다
-  layoutPlayAction.Margins.Top := (ScaleScaledLayout.OriginalHeight + 110) * aRatio;
+  layoutPlayAction.Margins.Top := (ScaleScaledLayout.OriginalHeight + 85) * aRatio;
 end;
 
 procedure TframeScale.timerRWTimer(Sender: TObject);

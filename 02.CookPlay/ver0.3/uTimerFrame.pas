@@ -9,7 +9,6 @@ uses
 
 type
   TframeTimer = class(TFrame)
-    Layout1: TLayout;
     ScaleScaledLayout: TScaledLayout;
     arcBase: TArc;
     arcPosition: TArc;
@@ -22,10 +21,10 @@ type
     circlePosition: TCircle;
     FloatAnimationLine: TFloatAnimation;
     layoutTop: TLayout;
-    txtIngredientExplain: TText;
+    txtHeader: TText;
     layoutClose: TLayout;
     imgClose: TImage;
-    txtTitle: TText;
+    txtIngredientTitle: TText;
     layoutViewAction: TLayout;
     RoundRect1: TRoundRect;
     RoundRect2: TRoundRect;
@@ -35,6 +34,8 @@ type
     layoutPlayAction: TLayout;
     imgPlayActionNormal: TImage;
     FloatAnimationPlayAction: TFloatAnimation;
+    recPlayIngredientExplain: TRectangle;
+    txtPlayIngredientExplain: TText;
     procedure imgPlayActionNormalClick(Sender: TObject);
   private
     { Private declarations }
@@ -74,7 +75,9 @@ end;
 
 procedure TframeTimer.Clear;
 begin
-  txtTitle.Text := '';
+  txtIngredientTitle.Text := '';
+  txtPlayIngredientExplain.Text := '';
+  recPlayIngredientExplain.Visible := False;
   txtTime.Text := INIT_TIME_STR;
   txtPlayStartPause.Visible := False;
   layoutViewAction.Visible := False;
@@ -122,8 +125,11 @@ begin
 
   txtTime.Text := aSignal + FormatFloat('00', aHour) + ':' + FormatFloat('00', aMin) + ':' + FormatFloat('00', aSec);
 
-  if aTitle <> txtTitle.Text then
-    txtTitle.Text := aTitle;
+  if aTitle <> txtIngredientTitle.Text then
+  begin
+    txtIngredientTitle.Text := aTitle;
+    txtPlayIngredientExplain.Text := aTitle;
+  end;
 
   ActionStart(aStart);
 end;
@@ -148,10 +154,11 @@ begin
   layoutViewAction.Visible := (aMeasureType = smViewMeasure);
   layoutPlayAction.Visible := (aMeasureType = smPlay);
   layoutTop.Visible := (aMeasureType = smViewMeasure);
-  txtTitle.Visible := True;
+  txtIngredientTitle.Visible := (aMeasuretype <> smPlay);
+  recPlayIngredientExplain.Visible := (aMeasureType = smPlay);
 
   // Play 시의 Action Button 의 위치를 세팅한다
-  layoutPlayAction.Margins.Top := (ScaleScaledLayout.OriginalHeight + 110) * aRatio;
+  layoutPlayAction.Margins.Top := (ScaleScaledLayout.OriginalHeight + 85) * aRatio;
 end;
 
 procedure TframeTimer.TimerClose;

@@ -6,7 +6,8 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs,
   System.Net.URLClient, System.Net.HttpClient, System.Net.HttpClientComponent,
-  Data.Cloud.CloudAPI, Data.Cloud.AmazonAPI, FMX.Objects, FMX.Surfaces, Data.DB;
+  Data.Cloud.CloudAPI, Data.Cloud.AmazonAPI, FMX.Objects, FMX.Surfaces, Data.DB,
+  uGlobal;
 
 type
   TImageType = (itNone, itBMP, itJPEG, itGIF, itPNG);
@@ -25,6 +26,7 @@ type
     function LoadImageFromStream(image: TImage; const strStream: TStringStream): Boolean;
 //    function LoadImageFromS3(BucketName, ObjectName: string; image: TImage): Boolean; overload;
     function LoadImageFromS3(BucketName, ObjectName: string; bitmap: TBitmap): Boolean; overload;
+    function LoadImageFromS3Ref(BucketName, ObjectName: string; bitmap: TBitmap; aCallBack: TCallbackRefNotify ): Boolean; overload;
     function CalCutSize(w, h: integer; size:TPoint): TPoint;
     function CropImageToJPEG(sorImage, tarImage: TImage; Size: TPoint): Boolean;
     function DeleteImage(bucketname, fname: string): Boolean;
@@ -39,6 +41,7 @@ const
 
   BUCKET_USER = 'cookplay-users';
   BUCKET_RECIPE = 'cookplay-recipe';
+  BUCKET_STORY = 'cookplay-story';
 
   URL_S3 = 'https://s3.ap-northeast-2.amazonaws.com/';
 
@@ -204,6 +207,46 @@ begin
           Bitmap.LoadFromStream(aResult);
 
         aResult.Free;
+      end,
+      procedure(aException: Exception)
+      begin
+      end
+    );
+    result := True;
+  except
+  end;
+end;
+
+function TfrmS3.LoadImageFromS3Ref(BucketName, ObjectName: string;
+  bitmap: TBitmap; aCallBack: TCallbackRefNotify): Boolean;
+var
+  oThread: TAnonymousThread<TMemoryStream>;
+//  strStream: TStringStream;
+begin
+  result := False;
+
+  try
+    oThread := TAnonymousThread<TMemoryStream>.Create(
+      function: TMemoryStream
+      var
+        s3: TAmazonStorageService;
+      begin
+        s3 := TAmazonStorageService.Create(frmS3.AmazonConnectionInfo);
+
+        result := TMemoryStream.Create;
+
+        if not s3.GetObject(BucketName, ObjectName, result) then
+          result.DisposeOf;
+
+        s3.Free;
+      end,
+      procedure(aResult: TMemoryStream)
+      begin
+        if Assigned(aResult) and (aResult.Size > 0) then
+          Bitmap.LoadFromStream(aResult);
+
+        aResult.Free;
+        aCallBack;
       end,
       procedure(aException: Exception)
       begin

@@ -31,6 +31,8 @@ type
     cxLabel8: TcxLabel;
     cxTime: TcxTimeEdit;
     cxDBSpinEdit1: TcxDBSpinEdit;
+    cxLabel1: TcxLabel;
+    cxTitle: TcxTextEdit;
     procedure btnSaveClick(Sender: TObject);
     procedure btnCancelClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -57,6 +59,8 @@ procedure TfrmAddTime.btnSaveClick(Sender: TObject);
 begin
   if cxTime.EditText = '00:00:00' then
     ShowMessage('시간을 입력하세요!')
+  else if Trim(cxTitle.Text) = '' then
+    ShowMessage('설명을 입력하세요!')
   else
   begin
     frmRecipe.memIngredientItemTimeValue.AsString := cxTime.EditText;
@@ -67,6 +71,7 @@ end;
 procedure TfrmAddTime.FormShow(Sender: TObject);
 begin
   cxTime.Text := frmRecipe.memIngredientItemTimeValue.AsString;
+  cxTitle.Text := frmRecipe.memIngredientTitle.AsString;
 end;
 
 end.

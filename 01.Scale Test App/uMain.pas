@@ -9,7 +9,9 @@ uses
   FMX.Controls.Presentation, FMX.StdCtrls, FMX.Layouts, FMX.Objects, FMX.Edit,
   System.Bluetooth, System.Bluetooth.Components, FMX.ListBox, FMX.ScrollBox,
   FMX.Memo, cookplay.Scale, System.Math, FMX.Media, System.IOUtils,
-  System.Inifiles, FMX.TabControl, FMX.Platform;
+  System.Inifiles, FMX.TabControl, FMX.Platform, IdMessage, IdBaseComponent,
+  IdComponent, IdTCPConnection, IdTCPClient, IdExplicitTLSClientServerBase,
+  IdMessageClient, IdSMTPBase, IdSMTP;
 
 type
   TBox = record
@@ -37,6 +39,9 @@ type
     chkViewReceivedString: TCheckBox;
     chkViewSendString: TCheckBox;
     btnRW: TButton;
+    IdSMTP1: TIdSMTP;
+    IdMessage1: TIdMessage;
+    Button1: TButton;
     procedure btnScanScaleClick(Sender: TObject);
     procedure btnScaleConnectClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -50,6 +55,8 @@ type
   private
     { Private declarations }
     oScale: TScaleConnection;
+
+    procedure SendMail(AMemo: TMemo; ATitle: string);
 
     procedure DoScaleConnected(Sender: TObject);
     procedure DoScaleDisconnected(Sender: TObject);
@@ -176,6 +183,82 @@ begin
   BLE_Scale.Enabled := True;
 end;
 
+function TestEmailIsValid(EmailAddress: String): Boolean;
+var
+  AtSymbolIndex : Integer;
+  PeriodIndex   : Integer;
+begin
+  AtSymbolIndex := EmailAddress.IndexOf('@');
+  PeriodIndex   := EmailAddress.IndexOf('.', AtSymbolIndex);
+  Result := (AtSymbolIndex > 0) and
+            (PeriodIndex > AtSymbolIndex) and
+            (PeriodIndex < (EmailAddress.Length-1));
+end;
+
+procedure TfrmMain.SendMail(AMemo: TMemo; ATitle: string);
+var
+  ASyncService : IFMXDialogServiceASync;
+  aEmail: string;
+begin
+  if not Assigned(AMemo) then
+    Exit;
+
+  if TPlatformServices.Current.SupportsPlatformService (IFMXDialogServiceAsync, IInterface (ASyncService)) then
+  begin
+    ASyncService.InputQueryAsync( '이메일주소', ['이메일 주소를 입력하세요'], aEmail,
+      procedure (const AResult : TModalResult; const AValues : array of string)
+      begin
+        case AResult of
+           mrOk:
+              begin
+                if not TestEmailIsValid(AValues[0]) then
+                begin
+                  ShowMessage('잘못된 이메일 주소입니다!');
+                  Exit;
+                end;
+
+                aEmail := AValues[0];
+
+                MessageDlg('전송 하겠습니까?', TMsgDlgType.mtConfirmation, [TMsgDlgBtn.mbYes, TMsgDlgBtn.mbNo], 0,
+                   procedure(const AResult: TModalResult)
+                   var
+                    SL: TStringList;
+                   begin
+                      case AResult of
+                        mrYES : begin
+                                  try
+                                    if IdSMTP1.Connected then IdSMTP1.Disconnect;
+
+                                    IdMessage1.Recipients.Clear;
+                                    IdMessage1.Recipients.Add.Address := aEmail;
+                                    IdMessage1.Subject := ATitle;
+                                    IdMessage1.MessageParts.Clear;
+                                    IdMessage1.Body.Text := AMemo.Lines.Text;
+                                    IdSMTP1.Connect;
+
+                                    if IdSMTP1.Authenticate then
+                                    begin
+                                      IdSMTP1.Send(IdMessage1);
+                                      Showmessage('메일로 전송하였습니다!');
+                                    end
+                                    else
+                                      showmessage('메일서버와 연결되지 못하였습니다!' + #13 + #10 + '다시 시도해 주십시오!');
+                                  except
+                                      showmessage('메일서버와 연결되지 못하였습니다!' + #13 + #10 + '다시 시도해 주십시오!');
+                                  end;
+
+                                  if IdSMTP1.Connected then
+                                    IdSMTP1.Disconnect;
+                              end;
+                   end;
+                   SL.Free;
+                end);
+                end;
+           mrCancel: Exit;
+        end;
+      end );
+  end;end;
+
 procedure TfrmMain.DoScaleAuthorized(Sender: TObject);
 begin
   lblScaleAuthorized.FontColor := TAlphaColorRec.Red;
@@ -214,7 +297,10 @@ begin
     if memoScale.Lines.Count > 100 then
       memoScale.Lines.Clear;
 
-    lblKg.Text := Format('%3.03f', [AMessage.Weight]);
+    // 표준 Kg
+//    lblKg.Text := Format('%3.03f', [AMessage.Weight]);
+    // 0.1g 짜리
+    lblKg.Text := Format('%4.01f', [AMessage.Weight * 100]);
 
     memoScale.Lines.Insert(0, lblKg.Text + ' - ' + FormatDateTime('hh:nn:ss.zzz', Now));
 

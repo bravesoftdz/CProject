@@ -256,9 +256,11 @@ const
   RESULT_SUCCESS = '1';
   RESULT_FAIL = '0';
 
-  URL_LOGIN = 'http://test.cookplay.net/test/login.php';
-  URL_RECIPE = 'http://test.cookplay.net/test/recipe.php';
-  URL_RECIPE_VIEW = 'http://test.cookplay.net/test/recipe_view.php';
+  URL_DOMAIN = 'http://test.cookplay.net';
+  URL_LOGIN = URL_DOMAIN + '/test/login.php';
+  URL_RECIPE = URL_DOMAIN + '/test/recipe.php';
+  URL_RECIPE_VIEW = URL_DOMAIN + '/test/recipe_view.php';
+  URL_RECIPE_VIEW_SIMPLE = URL_DOMAIN + '/test/ScaleRecipe.html';
 
   DELIMETER_CATEGORY = ';';
 

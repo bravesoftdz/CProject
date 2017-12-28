@@ -276,8 +276,8 @@ object ServerMethods1: TServerMethods1
     Connection = FDConnection1
     SQL.Strings = (
       'SELECT * FROM vRecipeComment WHERE Recipe_Serial=:RecipeSerial')
-    Left = 204
-    Top = 298
+    Left = 660
+    Top = 474
     ParamData = <
       item
         Name = 'RECIPESERIAL'
@@ -288,8 +288,8 @@ object ServerMethods1: TServerMethods1
   end
   object dsRecipeComment: TDataSetProvider
     DataSet = sqlvRecipeComment
-    Left = 308
-    Top = 300
+    Left = 754
+    Top = 472
   end
   object sqlStep: TFDQuery
     Connection = FDConnection1
@@ -332,5 +332,85 @@ object ServerMethods1: TServerMethods1
     DataSet = sqlIngredient
     Left = 112
     Top = 506
+  end
+  object sqlvStoryList: TFDQuery
+    Connection = FDConnection1
+    SQL.Strings = (
+      
+        'SELECT * FROM vStoryList WHERE Users_Serial=:UserSerial Order by' +
+        ' CreatedDate DESC')
+    Left = 466
+    Top = 552
+    ParamData = <
+      item
+        Name = 'USERSERIAL'
+        DataType = ftWideString
+        ParamType = ptInput
+        Value = '-1'
+      end>
+  end
+  object dsvStoryList: TDataSetProvider
+    DataSet = sqlvStoryList
+    Left = 546
+    Top = 550
+  end
+  object sqlStoryImages: TFDQuery
+    Connection = FDConnection1
+    SQL.Strings = (
+      
+        'SELECT * FROM StoryContents WHERE Story_Serial=:StorySerial AND ' +
+        'ValueType=12 Order by Seq')
+    Left = 466
+    Top = 616
+    ParamData = <
+      item
+        Name = 'STORYSERIAL'
+        ParamType = ptInput
+      end>
+  end
+  object dsStoryImages: TDataSetProvider
+    DataSet = sqlStoryImages
+    Left = 548
+    Top = 610
+  end
+  object sqlvStoryComment: TFDQuery
+    Connection = FDConnection1
+    SQL.Strings = (
+      'SELECT * FROM vStoryComment WHERE Story_Serial=:StorySerial')
+    Left = 658
+    Top = 552
+    ParamData = <
+      item
+        Name = 'STORYSERIAL'
+        DataType = ftWideString
+        ParamType = ptInput
+        Value = '-1'
+      end>
+  end
+  object dsvStoryComment: TDataSetProvider
+    DataSet = sqlvStoryComment
+    Left = 758
+    Top = 554
+  end
+  object sqlvRecipeList: TFDQuery
+    Connection = FDConnection1
+    SQL.Strings = (
+      
+        'SELECT * FROM vRecipeList WHERE Users_Serial=:UserSerial Order b' +
+        'y CreatedDate DESC')
+    Left = 464
+    Top = 476
+    ParamData = <
+      item
+        Name = 'USERSERIAL'
+        DataType = ftWideString
+        ParamType = ptInput
+        Value = '-1'
+      end>
+  end
+  object dsvRecipeList: TDataSetProvider
+    DataSet = sqlvRecipeList
+    Left = 544
+    Top = 474
   end
 end
