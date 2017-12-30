@@ -1,35 +1,31 @@
 ﻿[Closed Files]
-File_0=TSourceModule,'c:\program files (x86)\embarcadero\studio\18.0\SOURCE\RTL\SYS\System.pas',0,1,36657,1,36684,0,0,,
-File_1=TSourceModule,'c:\program files (x86)\embarcadero\studio\18.0\source\fmx\FMX.ListBox.pas',0,1,4098,1,4119,0,0,,
-File_2=TSourceModule,'c:\program files (x86)\embarcadero\studio\18.0\source\fmx\FMX.ScrollBox.Style.pas',0,1,1330,53,1355,0,0,,
-File_3=TSourceModule,'c:\program files (x86)\embarcadero\studio\18.0\source\rtl\net\System.Bluetooth.Components.pas',0,1,327,1,348,0,0,,
-File_4=TSourceModule,'c:\program files (x86)\embarcadero\studio\18.0\source\rtl\net\System.Android.Bluetooth.pas',0,1,3104,1,3147,0,0,,
-File_5=TSourceModule,'c:\program files (x86)\embarcadero\studio\18.0\SOURCE\RTL\SYS\System.Internal.ExcUtils.pas',0,1,371,1,390,0,0,,
-File_6=TSourceModule,'c:\program files (x86)\embarcadero\studio\18.0\source\fmx\FMX.Controls.pas',0,1,4086,1,4105,0,0,{{6849,0}
-File_7=TSourceModule,'c:\program files (x86)\embarcadero\studio\18.0\source\fmx\FMX.StdCtrls.pas',0,1,499,1,520,0,0,,
-File_8=TSourceModule,'c:\program files (x86)\embarcadero\studio\18.0\source\rtl\common\System.Classes.pas',0,1,15274,31,15291,0,0,,
-File_9=TSourceModule,'c:\program files (x86)\embarcadero\studio\18.0\source\fmx\FMX.Forms.pas',0,1,2135,33,2152,0,0,,
-File_10=TSourceModule,'D:\00.dev\02.BI\SystemMgr\uSystemAdmin.pas',0,1,1,52,27,0,0,,
-File_11=TSourceModule,'D:\00.dev\02.BI\SystemMgr\uDB.pas',0,1,13,11,30,0,0,,{1
-File_12=TSourceModule,'D:\00.dev\02.BI\SystemMgr\uMain.pas',0,1,96,32,111,0,0,,{1
+File_0=TSourceModule,'c:\program files (x86)\embarcadero\studio\18.0\source\rtl\net\System.Bluetooth.pas',0,1,2887,38,2908,0,0,,
+File_1=TSourceModule,'c:\program files (x86)\embarcadero\studio\18.0\SOURCE\RTL\SYS\System.pas',0,1,36657,1,36684,0,0,,
+File_2=TSourceModule,'c:\program files (x86)\embarcadero\studio\18.0\source\fmx\FMX.ListBox.pas',0,1,4098,1,4119,0,0,,
+File_3=TSourceModule,'c:\program files (x86)\embarcadero\studio\18.0\source\fmx\FMX.ScrollBox.Style.pas',0,1,1330,53,1355,0,0,,
+File_4=TSourceModule,'c:\program files (x86)\embarcadero\studio\18.0\source\rtl\net\System.Bluetooth.Components.pas',0,1,327,1,348,0,0,,
+File_5=TSourceModule,'c:\program files (x86)\embarcadero\studio\18.0\source\rtl\net\System.Android.Bluetooth.pas',0,1,3104,1,3147,0,0,,
+File_6=TSourceModule,'c:\program files (x86)\embarcadero\studio\18.0\SOURCE\RTL\SYS\System.Internal.ExcUtils.pas',0,1,371,1,390,0,0,,
+File_7=TSourceModule,'c:\program files (x86)\embarcadero\studio\18.0\source\fmx\FMX.Controls.pas',0,1,4086,1,4105,0,0,{{6849,0}
+File_8=TSourceModule,'c:\program files (x86)\embarcadero\studio\18.0\source\fmx\FMX.StdCtrls.pas',0,1,499,1,520,0,0,,
+File_9=TSourceModule,'c:\program files (x86)\embarcadero\studio\18.0\source\rtl\common\System.Classes.pas',0,1,15274,31,15291,0,0,,
+File_10=TSourceModule,'c:\program files (x86)\embarcadero\studio\18.0\source\fmx\FMX.Forms.pas',0,1,2135,33,2152,0,0,,
+File_11=TSourceModule,'D:\00.dev\02.BI\SystemMgr\uSystemAdmin.pas',0,1,1,52,27,0,0,,
+File_12=TSourceModule,'D:\00.dev\02.BI\SystemMgr\uDB.pas',0,1,13,11,30,0,0,,{1
+File_13=TSourceModule,'D:\00.dev\02.BI\SystemMgr\uMain.pas',0,1,96,32,111,0,0,,{1
 
 [Modules]
-Module0=c:\program files (x86)\embarcadero\studio\18.0\source\rtl\net\System.Bluetooth.pas
-Module1=D:\GitHub\CProject\01.Scale Test App\uMain.pas
-Count=2
+Module0=D:\GitHub\CProject\01.Scale Test App\uMain.pas
+Count=1
 EditWindowCount=1
-
-[c:\program files (x86)\embarcadero\studio\18.0\source\rtl\net\System.Bluetooth.pas]
-ModuleType=TSourceModule
 
 [D:\GitHub\CProject\01.Scale Test App\uMain.pas]
 ModuleType=TSourceModule
 
 [EditWindow0]
-ViewCount=2
-CurrentEditView=c:\program files (x86)\embarcadero\studio\18.0\source\rtl\net\System.Bluetooth.pas
+ViewCount=1
+CurrentEditView=D:\GitHub\CProject\01.Scale Test App\uMain.pas
 View0=0
-View1=1
 PercentageSizes=1
 Create=1
 Visible=1
@@ -62,24 +58,13 @@ BottomMiddelPanelData=0000080001020200000009000000446F636B5369746530100000004772
 [View0]
 CustomEditViewType=TEditView
 Module=D:\GitHub\CProject\01.Scale Test App\uMain.pas
-CursorX=55
-CursorY=217
-TopLine=186
+CursorX=59
+CursorY=240
+TopLine=239
 LeftCol=1
 Elisions=
 Bookmarks=
-EditViewName=D:\GitHub\CProject\01.Scale Test App\uMain.pas
-
-[View1]
-CustomEditViewType=TEditView
-Module=c:\program files (x86)\embarcadero\studio\18.0\source\rtl\net\System.Bluetooth.pas
-CursorX=49
-CursorY=2906
-TopLine=2887
-LeftCol=1
-Elisions=
-Bookmarks=
-EditViewName=c:\program files (x86)\embarcadero\studio\18.0\source\rtl\net\System.Bluetooth.pas
+EditViewName=Borland.FormDesignerView
 
 [UndockedDesigner]
 Count=0
@@ -132,8 +117,8 @@ Create=1
 Visible=1
 Docked=0
 State=2
-Left=10964
-Top=-192
+Left=146
+Top=269
 Width=8932
 Height=8519
 MaxLeft=-5
@@ -260,6 +245,11 @@ LRDockWidth=5807
 Dockable=1
 StayOnTop=0
 SplitPos=151
+
+[PropInspDesignerSelection]
+ArrangeBy=Name
+SelectedItem=Action,
+ExpandedItems=Border=0,BorderIcons=0,Fill=0,FormFactor=0,"LiveBindings Designer=0",Padding=0,Touch=0
 
 [frmDesignPreview]
 PercentageSizes=1

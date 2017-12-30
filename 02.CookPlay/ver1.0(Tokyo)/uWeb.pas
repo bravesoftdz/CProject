@@ -11,9 +11,9 @@ uses
   System.Actions, FMX.ActnList, FMX.StdActns, FMX.MediaLibrary.Actions;
 
 type
-  TRecipeViewInfo = class
+  TContentViewInfo = class
     UserSerial: LargeInt;
-    RecipeSerial: LargeInt;
+    TargetSerial: LargeInt;
     Servings: Single;
     Ratio: Single;
     BodyRectangle: TRectangle;
@@ -24,9 +24,6 @@ type
     CommentText: TText;
     BookmarkImage: TImage;
     PlayRecipeImage: TImage;
-
-    Recommended: Boolean;
-    Bookmarked: Boolean;
   end;
 
   TfrmWeb = class(TForm)
@@ -50,10 +47,11 @@ type
     procedure ShowShareSheetAction1BeforeExecute(Sender: TObject);
   private
     { Private declarations }
-    FRecipeBarList: TStringList;
+    FMenuBarList: TStringList;
 
     FCallbackRefFunc: TCallbackRefFunc;
 
+    FContentType: TContentType;
     FMenuVisible: Boolean;
 
     procedure CloseLastWebbrowser;
@@ -62,10 +60,10 @@ type
     function CallMethod(AMethodName: string; AParameters: TArray<TValue>): TValue;
     function ProcessMethodUrlParse(AUrl: string; var MethodName: string; var Parameters: TArray<TValue>): Boolean;
     procedure AddTab(ATabControl: TTabControl);
-    procedure SetRecipeView(aIndex: integer);
+    procedure SetContentView(aIndex: integer);
     procedure CreateRecipeViewControls(aTab: TTabItem);
-    function RecipeMenuBar(aIndex: integer): TRecipeViewInfo;
-    function RecipeMenuBarCount: integer;
+    function ContentMenuBar(aIndex: integer): TContentViewInfo;
+    function GetMenuBarCount: integer;
     procedure SetRecommendationImage(aIndex: integer; aActive: Boolean);
     procedure SetBookmarkImage(aIndex: integer; aActive: Boolean);
     procedure SetRecommendationText(aIndex: integer; aText: string);
@@ -115,7 +113,7 @@ end;
 procedure TfrmWeb.CallbackUpdateComment(aResult: Boolean);
 begin
   if aResult then
-    SetRecipeView(RecipeMenuBarCount - 1);
+    SetContentView(GetMenuBarCount - 1);
 end;
 
 function TfrmWeb.CallMethod(AMethodName: string;
@@ -125,9 +123,11 @@ var
   web: TWebBrowser;
   index: integer;
   LoginResult: TLoginResult;
-  rv: TRecipeViewInfo;
+  rv: TContentViewInfo;
   aRecipeSerial, aServings, aRatio: string;
 begin
+  showmessage(AMethodName);
+
   if AMethodName = 'login' then
   begin
     LoginResult := CM.Login(AParameters[0].AsString, AParameters[1].AsString, Msg);
@@ -250,7 +250,7 @@ begin
   end
   else if AMethodName = 'recipe_play' then
   begin
-    frmRecipePlay.RecipeSerial := RecipeMenuBar(RecipeMenuBarCount - 1).RecipeSerial;
+    frmRecipePlay.RecipeSerial := ContentMenuBar(GetMenuBarCount - 1).TargetSerial;
     frmRecipePlay.Persons := StrToIntDef(AParameters[0].AsString, 1);
     frmRecipePlay.Ratio := StrToFloatDef(AParameters[1].AsString, 1);
     frmRecipePlay.Show;
@@ -275,10 +275,10 @@ end;
 
 procedure TfrmWeb.CreateRecipeViewControls(aTab: TTabItem);
 var
-  rv: TRecipeViewInfo;
+  rv: TContentViewInfo;
   aLine: TLine;
 begin
-  rv := TrecipeViewInfo.Create;;
+  rv := TContentViewInfo.Create;;
 
   rv.BodyRectangle := TRectangle.Create(aTab);
   rv.BodyRectangle.Parent := aTab;
@@ -344,28 +344,49 @@ begin
       rv.BookmarkImage.OnClick := OnBookmarkImageclick;
       rv.BookmarkImage.Visible := _info.Logined;
 
-      rv.PlayRecipeImage := TImage.Create(rv.Layout);
-      rv.PlayRecipeImage.Parent := rv.Layout;
-      rv.PlayRecipeImage.Position.X := 191;
-      rv.PlayRecipeImage.Width := 30;
-      rv.PlayRecipeImage.Align := TAlignLayout.Right;
-      rv.PlayRecipeImage.Bitmap := ImageList1.Bitmap(TSizeF.Create(60,60), 5);
-      rv.PlayRecipeImage.OnClick := OnPlayRecipeImageClick;
+      if FContentType = ctRecipe then
+      begin
+        rv.PlayRecipeImage := TImage.Create(rv.Layout);
+        rv.PlayRecipeImage.Parent := rv.Layout;
+        rv.PlayRecipeImage.Position.X := 191;
+        rv.PlayRecipeImage.Width := 30;
+        rv.PlayRecipeImage.Align := TAlignLayout.Right;
+        rv.PlayRecipeImage.Bitmap := ImageList1.Bitmap(TSizeF.Create(60,60), 5);
+        rv.PlayRecipeImage.OnClick := OnPlayRecipeImageClick;
+      end;
     end;
   end;
 
-  FRecipeBarList.AddObject('', rv);
+  FMenuBarList.AddObject('', rv);
 end;
 
 procedure TfrmWeb.FormClose(Sender: TObject; var Action: TCloseAction);
+var
+  aList: TStringList;
+  aIndex: integer;
 begin
-//  timerClose.Enabled := False;
+  // 이 WebPage 를 Call 한 List 에 변한 값을 보낸다(추천, Comment)
+  if Assigned(FCallbackRefFunc) then
+    try
+      aIndex := GetMenuBarCount - 1;
+
+      aList := TStringList.Create;
+      aList.Add(ContentMenuBar(aIndex).RecommendationText.Text); // RecommendationCount
+      aList.Add(ContentMenuBar(aIndex).CommentText.Text); // CommentCount
+      aList.Add(ContentMenuBar(aIndex).RecommendationImage.Tag.ToString); // 사용자가 추천 했는지 표시
+      aList.Add(ContentMenubar(aIndex).BookmarkImage.Tag.ToString); // 북마크 하였는지 알림
+      FCallbackRefFunc(aList);
+    finally
+      aList.DisposeOf;
+    end;
+
   Action := TCloseAction.caFree;
 end;
 
 procedure TfrmWeb.FormCreate(Sender: TObject);
 begin
-  FRecipeBarList := TStringList.Create;
+  FMenuBarList := TStringList.Create;
+  FContentType := ctRecipe;
 end;
 
 procedure TfrmWeb.FormKeyUp(Sender: TObject; var Key: Word; var KeyChar: Char;
@@ -391,17 +412,25 @@ procedure TfrmWeb.goURL(url: string;  aCallbackRefFunc: TCallbackRefFunc);
 var
   wb: TWebBrowser;
   wbname: string;
-  sRecipeSerial: string;
+  sTargetSerial: string;
   p: integer;
   p2: integer;
-  rv: TRecipeViewInfo;
+  rv: TContentViewInfo;
   aIndex: integer;
 begin
-  FMenuVisible := (URL.IndexOf('recipe_view.php') > 0);
-
+  // 추천, Comment 업데이트 시에 호출한 List의 값을 변경하기 위한 Callback
   FCallbackRefFunc := aCallbackRefFunc;
 
   aIndex := tabWeb.TabCount;
+
+  if URL.IndexOf('recipe_view.php') > 0 then
+    FContentType := ctRecipe
+  else if URL.IndexOf('story_view.php') > 0 then
+    FContentType := ctStory
+  else
+    FContentType := ctNone;
+
+  FMenuVisible := (FContentType in [ctRecipe, ctStory, ctCookbook]);
 
   AddTab(tabWeb);
 
@@ -414,10 +443,8 @@ begin
 
   wb.SetFocus;
 
-  if URL.IndexOf('recipe_view.php') > 0 then
+  if FMenuVisible then
   begin
-    FMenuVisible := True;
-
     try
       p := URL.IndexOf('=');
       p2 := URL.IndexOf('&');
@@ -425,20 +452,20 @@ begin
       if p > -1 then
       begin
         if p2 = -1 then
-          sRecipeSerial := copy(URL, p+2, URL.Length - p + 1)
+          sTargetSerial := copy(URL, p+2, URL.Length - p + 1)
         else
-          sRecipeSerial := copy(URL, p+2, (p2-p-1));
+          sTargetSerial := copy(URL, p+2, (p2-p-1));
 
-        aIndex := RecipeMenuBarCount - 1;
+        aIndex := GetMenuBarCount - 1;
 
-        rv := RecipeMenuBar(aIndex);
+        rv := ContentMenuBar(aIndex);
 
-        rv.RecipeSerial := sRecipeSerial.ToInt64;
+        rv.TargetSerial := sTargetSerial.ToInt64;
 
         rv.UserSerial := _info.UserSerial;
 
         if rv.UserSerial > -1 then
-          SetRecipeView(aIndex);
+          SetContentView(aIndex);
       end;
     except
       ShowMessage('일부 레시피 정보를 가져올 수 없습니다!' + #13#10 + url);
@@ -457,20 +484,25 @@ end;
 
 procedure TfrmWeb.OnBookmarkImageClick(Sender: TObject);
 var
+  aList: TStringList;
   aIndex: integer;
-  rv: TRecipeViewInfo;
+  rv: TContentViewInfo;
 begin
   if CM.memUser.IsEmpty then
     ShowMessage('로그인 하셔야 북마크를 사용하실 수 있습니다!')
   else
   begin
-    aIndex := RecipeMenuBarCount - 1;
-    rv := RecipeMenuBar(aIndex);
+    aIndex := GetMenuBarCount - 1;
+    rv := ContentMenuBar(aIndex);
 
-    CM.UpdateRecipeBookmark(rv.RecipeSerial, rv.UserSerial, (TImage(Sender).Tag = 0));
+    if FContentType = ctRecipe then
+      CM.UpdateRecipeBookmark(rv.TargetSerial, rv.UserSerial, (TImage(Sender).Tag = 0))
+    else
+      CM.UpdateStoryBookmark(rv.TargetSerial, rv.UserSerial, (TImage(Sender).Tag = 0));
+
     SetBookmarkImage(aIndex, TImage(Sender).Tag = 0);
 
-    SetRecipeView(aIndex);
+    SetContentView(aIndex);
   end;
 end;
 
@@ -483,26 +515,14 @@ begin
   else
   begin
     // Comment 화면을 Display 한다
-    aIndex := RecipeMenuBarCount - 1;
+    aIndex := GetMenuBarCount - 1;
 
-    frmComment.Init(TCommentType.ctRecipe, RecipeMenuBar(aIndex).RecipeSerial,
+    frmComment.Init(FContentType, ContentMenuBar(aIndex).TargetSerial,
       procedure(const aResult: Boolean)
-      var
-        aList: TStringList;
       begin
         if aResult then
         begin
-          SetRecipeView(RecipeMenuBarCount - 1);
-
-          if Assigned(FCallbackRefFunc) then
-            try
-              aList := TStringList.Create;
-              aList.Add(RecipeMenuBar(aIndex).RecommendationText.Text); // RecommendationCount
-              aList.Add(RecipeMenuBar(aIndex).CommentText.Text); // CommentCount
-              FCallbackRefFunc(aList);
-            finally
-              aList.DisposeOf;
-            end;
+          SetContentView(GetMenuBarCount - 1);
         end;
       end
     );
@@ -513,17 +533,17 @@ end;
 procedure TfrmWeb.OnPlayRecipeImageClick(Sender: TObject);
 var
   aIndex: integer;
-  rv: TRecipeViewInfo;
+  rv: TContentViewInfo;
   web: TWebBrowser;
   index: integer;
 begin
   // Recipe를 Play 한다
 
-  aIndex := RecipeMenuBarCount - 1;
+  aIndex := GetMenuBarCount - 1;
 
-  rv := RecipeMenuBar(aIndex);
+  rv := ContentMenuBar(aIndex);
 
-  if rv.RecipeSerial > NEW_RECIPE_SERIAL then
+  if rv.TargetSerial > NEW_RECIPE_SERIAL then
   begin
     index := tabWeb.TabCount - 1;
 
@@ -536,30 +556,24 @@ end;
 procedure TfrmWeb.OnRecommendationImageClick(Sender: TObject);
 var
   aIndex: integer;
-  rv: TRecipeViewInfo;
+  rv: TContentViewInfo;
   aList: TStringList;
 begin
   if CM.memUser.IsEmpty then
     ShowMessage('로그인 하셔야 추천하실 수 있습니다!')
   else
   begin
-    aIndex := RecipeMenuBarCount - 1;
-    rv := RecipeMenuBar(aIndex);
+    aIndex := GetMenuBarCount - 1;
+    rv := ContentMenuBar(aIndex);
 
-    CM.UpdateRecipeRecommendation(rv.RecipeSerial, rv.UserSerial, (TImage(Sender).Tag = 0));
+    if FContentType = ctRecipe then
+      CM.UpdateRecipeRecommendation(rv.TargetSerial, rv.UserSerial, (TImage(Sender).Tag = 0))
+    else
+      CM.UpdateStoryRecommendation(rv.TargetSerial, rv.UserSerial, (TImage(Sender).Tag = 0));
+
     SetRecommendationImage(aIndex, TImage(Sender).Tag = 0);
 
-    SetRecipeView(aIndex);
-
-    if Assigned(FCallbackRefFunc) then
-      try
-        aList := TStringList.Create;
-        aList.Add(RecipeMenuBar(aIndex).RecommendationText.Text); // RecommendationCount
-        aList.Add(RecipeMenuBar(aIndex).CommentText.Text); // CommentCount
-        FCallbackRefFunc(aList);
-      finally
-        aList.DisposeOf;
-      end;
+    SetContentView(aIndex);
   end;
 end;
 
@@ -607,48 +621,52 @@ begin
   Result := not MethodName.IsEmpty;
 end;
 
-function TfrmWeb.RecipeMenuBar(aIndex: integer): TRecipeViewInfo;
+function TfrmWeb.ContentMenuBar(aIndex: integer): TContentViewInfo;
 begin
   result := nil;
 
-  if aIndex < FRecipeBarList.Count then
-    result := TRecipeViewInfo(FRecipeBarList.Objects[aIndex]);
+  if aIndex < FMenuBarList.Count then
+    result := TContentViewInfo(FMenuBarList.Objects[aIndex]);
 end;
 
-function TfrmWeb.RecipeMenuBarCount: integer;
+function TfrmWeb.GetMenuBarCount: integer;
 begin
-  result := FRecipeBarList.Count;
+  result := FMenuBarList.Count;
 end;
 
 procedure TfrmWeb.SetBookmarkImage(aIndex: integer; aActive: Boolean);
 begin
   if aActive then
   begin
-    RecipeMenuBar(aIndex).BookmarkImage.Bitmap := ImageList1.Bitmap(TSizeF.Create(60,60), 2);
-    RecipeMenuBar(aIndex).BookmarkImage.Tag := 1;
+    ContentMenuBar(aIndex).BookmarkImage.Bitmap := ImageList1.Bitmap(TSizeF.Create(60,60), 2);
+    ContentMenuBar(aIndex).BookmarkImage.Tag := 1;
   end
   else
   begin
-    RecipeMenuBar(aIndex).BookmarkImage.Bitmap := ImageList1.Bitmap(TSizeF.Create(60,60), 3);
-    RecipeMenuBar(aIndex).BookmarkImage.Tag := 0;
+    ContentMenuBar(aIndex).BookmarkImage.Bitmap := ImageList1.Bitmap(TSizeF.Create(60,60), 3);
+    ContentMenuBar(aIndex).BookmarkImage.Tag := 0;
   end;
 end;
 
 procedure TfrmWeb.SetCommentText(aIndex: integer; aText: string);
 begin
-  RecipeMenuBar(aIndex).CommentText.Text := aText;
+  ContentMenuBar(aIndex).CommentText.Text := aText;
 end;
 
-procedure TfrmWeb.SetRecipeView(aIndex: integer);
+procedure TfrmWeb.SetContentView(aIndex: integer);
 var
   aRecommended, aBookmarked, aRecommendationCount, aCommentCount: integer;
 begin
   if _info.Logined then
   begin
-    CM.GetRecipeViewCount(RecipeMenuBar(aIndex).RecipeSerial, RecipeMenuBar(aIndex).UserSerial,
-      aRecommended, aBookmarked, aRecommendationCount, aCommentCount);
+    if FContentType = ctRecipe then
+      CM.GetRecipeViewCount(ContentMenuBar(aIndex).TargetSerial, ContentMenuBar(aIndex).UserSerial,
+        aRecommended, aBookmarked, aRecommendationCount, aCommentCount)
+    else if FContentType = ctStory then
+      CM.GetStoryViewCount(ContentMenuBar(aIndex).TargetSerial, ContentMenuBar(aIndex).UserSerial,
+        aRecommended, aBookmarked, aRecommendationCount, aCommentCount);
 
-    // 해당 레시피에 대하여 추천을 했는지 표시
+    // 추천을 했는지 표시
     SetRecommendationImage(aIndex, (aRecommended > 0));
     // 해당 레시피에 대하여 북마크 했는지 표시
     SetBookmarkImage(aIndex, (aBookmarked > 0));
@@ -656,34 +674,42 @@ begin
     SetRecommendationText(aIndex, aRecommendationCount.ToString);
     // 댓글 개수 표시
     SetCommentText(aIndex, aCommentCount.ToString);
-  end;
 
-//  RecipeMenuBar(aIndex).BodyRectangle.Visible := True;
+//    ContentMenuBar(aIndex).BodyRectangle.Visible := True;
+  end;
 end;
 
 procedure TfrmWeb.SetRecommendationImage(aIndex: integer; aActive: Boolean);
 begin
   if aActive then
   begin
-    RecipeMenuBar(aIndex).RecommendationImage.Bitmap := ImageList1.Bitmap(TSizeF.Create(60,60), 0);
-    RecipeMenuBar(aIndex).RecommendationImage.Tag := 1;
+    ContentMenuBar(aIndex).RecommendationImage.Bitmap := ImageList1.Bitmap(TSizeF.Create(60,60), 0);
+    ContentMenuBar(aIndex).RecommendationImage.Tag := 1;
   end
   else
   begin
-    RecipeMenuBar(aIndex).RecommendationImage.Bitmap := ImageList1.Bitmap(TSizeF.Create(60,60), 1);
-    RecipeMenuBar(aIndex).RecommendationImage.Tag := 0;
+    ContentMenuBar(aIndex).RecommendationImage.Bitmap := ImageList1.Bitmap(TSizeF.Create(60,60), 1);
+    ContentMenuBar(aIndex).RecommendationImage.Tag := 0;
   end;
 end;
 
 procedure TfrmWeb.SetRecommendationText(aIndex: integer; aText: string);
 begin
-  RecipeMenuBar(aIndex).RecommendationText.Text := aText;
+  ContentMenuBar(aIndex).RecommendationText.Text := aText;
 end;
 
 procedure TfrmWeb.ShowShareSheetAction1BeforeExecute(Sender: TObject);
 begin
-  ShowShareSheetAction1.TextMessage
-    := URL_RECIPE_VIEW + '?recipeserial=' + RecipeMenuBar(RecipeMenuBarCount - 1).RecipeSerial.ToString + '&userserial=-1';
+  case FContentType of
+    ctStory:
+      ShowShareSheetAction1.TextMessage
+        := URL_STORY_VIEW + '?StorySerial=' + ContentMenuBar(GetMenuBarCount - 1).TargetSerial.ToString;
+    ctRecipe:
+      ShowShareSheetAction1.TextMessage
+        := URL_RECIPE_VIEW + '?recipeserial=' + ContentMenuBar(GetMenuBarCount - 1).TargetSerial.ToString + '&userserial=-1';
+    ctCookbook: ;
+    else ;
+  end;
 end;
 
 procedure TfrmWeb.timerCloseTimer(Sender: TObject);

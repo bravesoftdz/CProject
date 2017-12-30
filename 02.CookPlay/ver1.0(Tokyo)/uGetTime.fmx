@@ -1,0 +1,180 @@
+object frmGetTime: TfrmGetTime
+  Left = 0
+  Top = 0
+  Caption = 'Form2'
+  ClientHeight = 480
+  ClientWidth = 640
+  Transparency = True
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  DesignerMasterStyle = 3
+  object recBackground: TRectangle
+    Align = Client
+    Fill.Color = claBlack
+    Opacity = 0.200000002980232200
+    Size.Width = 640.000000000000000000
+    Size.Height = 480.000000000000000000
+    Size.PlatformDefault = False
+    Stroke.Kind = None
+    OnMouseUp = recBackgroundMouseUp
+  end
+  object recTimer: TRectangle
+    Align = Center
+    Fill.Color = claWhite
+    Margins.Top = -80.000000000000000000
+    Size.Width = 275.000000000000000000
+    Size.Height = 172.000000000000000000
+    Size.PlatformDefault = False
+    Stroke.Color = xFFD8D8D8
+    XRadius = 15.000000000000000000
+    YRadius = 15.000000000000000000
+    object Rectangle22: TRectangle
+      Fill.Color = claWhitesmoke
+      HitTest = False
+      Padding.Left = 3.000000000000000000
+      Padding.Right = 3.000000000000000000
+      Margins.Right = 10.000000000000000000
+      Position.X = 30.000000000000000000
+      Position.Y = 48.000000000000000000
+      Size.Width = 60.000000000000000000
+      Size.Height = 50.000000000000000000
+      Size.PlatformDefault = False
+      Stroke.Color = xFFD8D8D8
+      object numHour: TNumberBox
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        Align = VertCenter
+        StyleLookup = 'numHourStyle1'
+        TabOrder = 0
+        Cursor = crIBeam
+        Max = 24.000000000000000000
+        TextSettings.HorzAlign = Center
+        Position.X = 3.000000000000000000
+        Position.Y = 9.000000000000000000
+        HorzIncrement = 0.000000000000000000
+        VertIncrement = 0.000000000000000000
+        Size.Width = 54.000000000000000000
+        Size.Height = 32.000000000000000000
+        Size.PlatformDefault = False
+      end
+    end
+    object Rectangle23: TRectangle
+      Fill.Color = claWhitesmoke
+      HitTest = False
+      Padding.Left = 3.000000000000000000
+      Padding.Right = 3.000000000000000000
+      Margins.Right = 10.000000000000000000
+      Position.X = 108.000000000000000000
+      Position.Y = 48.000000000000000000
+      Size.Width = 59.000000000000000000
+      Size.Height = 50.000000000000000000
+      Size.PlatformDefault = False
+      Stroke.Color = xFFD8D8D8
+      object numMin: TNumberBox
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        Align = VertCenter
+        StyleLookup = 'numHourStyle1'
+        TabOrder = 0
+        Cursor = crIBeam
+        Max = 60.000000000000000000
+        TextSettings.HorzAlign = Center
+        Position.X = 3.000000000000000000
+        Position.Y = 9.000000000000000000
+        HorzIncrement = 0.000000000000000000
+        VertIncrement = 0.000000000000000000
+        Size.Width = 53.000000000000000000
+        Size.Height = 32.000000000000000000
+        Size.PlatformDefault = False
+      end
+    end
+    object Rectangle24: TRectangle
+      Fill.Color = claWhitesmoke
+      HitTest = False
+      Padding.Left = 3.000000000000000000
+      Padding.Right = 3.000000000000000000
+      Margins.Right = 10.000000000000000000
+      Position.X = 184.000000000000000000
+      Position.Y = 48.000000000000000000
+      Size.Width = 60.000000000000000000
+      Size.Height = 50.000000000000000000
+      Size.PlatformDefault = False
+      Stroke.Color = xFFD8D8D8
+      object numSec: TNumberBox
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        Align = VertCenter
+        StyleLookup = 'numHourStyle1'
+        TabOrder = 0
+        Cursor = crIBeam
+        Max = 60.000000000000000000
+        TextSettings.HorzAlign = Center
+        Position.X = 3.000000000000000000
+        Position.Y = 9.000000000000000000
+        HorzIncrement = 0.000000000000000000
+        VertIncrement = 0.000000000000000000
+        Size.Width = 54.000000000000000000
+        Size.Height = 32.000000000000000000
+        Size.PlatformDefault = False
+      end
+    end
+    object Text15: TText
+      HitTest = False
+      Position.X = 94.000000000000000000
+      Position.Y = 48.000000000000000000
+      Size.Width = 10.000000000000000000
+      Size.Height = 50.000000000000000000
+      Size.PlatformDefault = False
+      Text = ':'
+      TextSettings.Font.Size = 18.000000000000000000
+    end
+    object Text16: TText
+      HitTest = False
+      Position.X = 170.000000000000000000
+      Position.Y = 48.000000000000000000
+      Size.Width = 10.000000000000000000
+      Size.Height = 50.000000000000000000
+      Size.PlatformDefault = False
+      Text = ':'
+      TextSettings.Font.Size = 18.000000000000000000
+    end
+    object Text17: TText
+      HitTest = False
+      Position.X = 30.000000000000000000
+      Position.Y = 24.000000000000000000
+      Size.Width = 60.000000000000000000
+      Size.Height = 24.000000000000000000
+      Size.PlatformDefault = False
+      Text = #49884
+    end
+    object Text18: TText
+      HitTest = False
+      Position.X = 108.000000000000000000
+      Position.Y = 24.000000000000000000
+      Size.Width = 60.000000000000000000
+      Size.Height = 24.000000000000000000
+      Size.PlatformDefault = False
+      Text = #48516
+    end
+    object Text19: TText
+      HitTest = False
+      Position.X = 184.000000000000000000
+      Position.Y = 24.000000000000000000
+      Size.Width = 60.000000000000000000
+      Size.Height = 24.000000000000000000
+      Size.PlatformDefault = False
+      Text = #52488
+    end
+    object btnTimerOK: TSpeedButton
+      CanFocus = True
+      StyledSettings = [Family, Style]
+      Position.X = 110.000000000000000000
+      Position.Y = 116.000000000000000000
+      Size.Width = 55.000000000000000000
+      Size.Height = 48.000000000000000000
+      Size.PlatformDefault = False
+      Text = #54869#51064
+      TextSettings.Font.Size = 16.000000000000000000
+      TextSettings.FontColor = xFFFF7500
+      OnClick = btnTimerOKClick
+    end
+  end
+end

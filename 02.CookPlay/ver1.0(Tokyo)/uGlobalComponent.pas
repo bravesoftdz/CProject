@@ -17,7 +17,7 @@ type
     { Private declarations }
   public
     { Public declarations }
-    function GetString(aStr: string; aLength: integer): string;
+    function GetString(aStr: string; aLine, aMaxLength: integer): string;
   end;
 
 var
@@ -29,23 +29,37 @@ implementation
 
 { TfrmGlobalComponent }
 
-function TfrmGlobalComponent.GetString(aStr: string; aLength: integer): string;
+function TfrmGlobalComponent.GetString(aStr: string; aLine, aMaxLength: integer): string;
 var
-  s: string;
-  i, nLen: integer;
+  rstr: string;
+  i, cnt, nLen: integer;
+  nLineCount: integer;
 begin
   memoTemp.Lines.Clear;
   memoTemp.Lines.Text := aStr.Trim;
 
+  cnt := 0;
+  while (cnt < memotemp.Lines.Count) do
+  begin
+    if memoTemp.Lines[cnt].Trim = '' then
+      memoTemp.Lines.Delete(cnt)
+    else
+      cnt := cnt + 1;
+  end;
+
+  nLineCount := 0;
   nLen := 0;
   for i := 0 to memotemp.Lines.Count-1 do
-    if i < 3 then
+    if i < aLine then
+    begin
       nLen := nLen + memoTemp.Lines[i].Length;
+      nLineCount := nLineCount + 1;
+    end;
 
-  if nLen < aLength then
-    result := copy(aStr, 1, nLen)
+  if nLen < aMaxLength then
+    result := copy(memoTemp.Text, 1, nLen + nLineCount - 1) + '...'
   else
-    result := copy(aStr, 1, aLength);
+    result := copy(memoTemp.Text, 1, aMaxLength) + '...';
 end;
 
 end.

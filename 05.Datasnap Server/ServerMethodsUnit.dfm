@@ -10,6 +10,7 @@ object ServerMethods1: TServerMethods1
       'Database=cookplay'
       'CharacterSet=utf8'
       'DriverID=MySQL')
+    Connected = True
     LoginPrompt = False
     Left = 38
     Top = 24
@@ -186,7 +187,7 @@ object ServerMethods1: TServerMethods1
   end
   object dsDeleteQue: TDataSetProvider
     DataSet = sqlDeleteQue
-    Left = 432
+    Left = 434
     Top = 24
   end
   object sqlRecipeBest: TFDQuery
@@ -412,5 +413,45 @@ object ServerMethods1: TServerMethods1
     DataSet = sqlvRecipeList
     Left = 544
     Top = 474
+  end
+  object sqlvBookmarkList: TFDQuery
+    Connection = FDConnection1
+    SQL.Strings = (
+      
+        'SELECT * FROM vBookmarkList WHERE Users_Serial=:UserSerial Order' +
+        ' by CreatedDate DESC')
+    Left = 286
+    Top = 554
+    ParamData = <
+      item
+        Name = 'USERSERIAL'
+        DataType = ftWideString
+        ParamType = ptInput
+        Value = '-1'
+      end>
+  end
+  object dsvBookmarkList: TDataSetProvider
+    DataSet = sqlvBookmarkList
+    Left = 374
+    Top = 552
+  end
+  object sqlStoryCount: TFDQuery
+    Connection = FDConnection1
+    SQL.Strings = (
+      'select * from vStoryCount Where Story_Serial=:StorySerial')
+    Left = 210
+    Top = 282
+    ParamData = <
+      item
+        Name = 'STORYSERIAL'
+        DataType = ftWideString
+        ParamType = ptInput
+        Value = '-1'
+      end>
+  end
+  object DsStoryCount: TDataSetProvider
+    DataSet = sqlStoryCount
+    Left = 288
+    Top = 282
   end
 end

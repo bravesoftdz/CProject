@@ -57,6 +57,10 @@ type
     dsvStoryComment: TDataSetProvider;
     sqlvRecipeList: TFDQuery;
     dsvRecipeList: TDataSetProvider;
+    sqlvBookmarkList: TFDQuery;
+    dsvBookmarkList: TDataSetProvider;
+    sqlStoryCount: TFDQuery;
+    DsStoryCount: TDataSetProvider;
   private
     { Private declarations }
   public

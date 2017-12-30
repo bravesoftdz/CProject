@@ -19,8 +19,8 @@ uses
 
 type
   TfrmMain = class(TForm)
-    layoutHitMenuButton: TLayout;
-    Image3: TImage;
+    layoutLeftMenu: TLayout;
+    imgLeftMenu: TImage;
     txtMainTitle: TText;
     layoutHitSearchButton: TLayout;
     imgSearch: TImage;
@@ -73,11 +73,11 @@ type
     tabCookbook: TTabItem;
     tabMyhome: TTabItem;
     imglistBottomMenu: TImageList;
-    GridPanelLayout2: TGridPanelLayout;
-    layoutNewsfeed: TLayout;
-    imgNewsfeed: TImage;
+    gridpanelMainMenu: TGridPanelLayout;
     layoutRecipe: TLayout;
     imgRecipe: TImage;
+    layoutNewsfeed: TLayout;
+    imgNewsfeed: TImage;
     layoutCookbook: TLayout;
     imgCookbook: TImage;
     layoutMyhome: TLayout;
@@ -152,7 +152,7 @@ type
     procedure layoutLeftmenuSetupClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormShow(Sender: TObject);
-    procedure layoutHitMenuButtonMouseDown(Sender: TObject;
+    procedure layoutLeftMenuMouseDown(Sender: TObject;
       Button: TMouseButton; Shift: TShiftState; X, Y: Single);
     procedure ShowShareSheetAction1BeforeExecute(Sender: TObject);
     procedure imgAddItemMouseDown(Sender: TObject; Button: TMouseButton;
@@ -222,7 +222,8 @@ begin
 
   CM.CloseMemTable;
 
-  SetBottomMenu(bmHome);
+  SetBottomMenu(bmRecipe);
+//  SetBottomMenu(bmHome);
 end;
 
 procedure TfrmMain.Button1Click(Sender: TObject);
@@ -333,6 +334,13 @@ begin
   tabControlLeftMenu.TabIndex := 0;
   tabControlLeftMenu.TabPosition := TTabPosition.None;
 
+  // Home Menu를 가린다
+  gridPanelMainMenu.ColumnCollection.Items[0].Value := 0;
+  gridPanelMainMenu.ColumnCollection.Items[1].Value := 25;
+  gridPanelMainMenu.ColumnCollection.Items[2].Value := 25;
+  gridPanelMainMenu.ColumnCollection.Items[3].Value := 25;
+  gridPanelMainMenu.ColumnCollection.Items[4].Value := 25;
+
   // Myhome Frame 세팅
   frameMyhome1.Align := TAlignLayout.Client;
 
@@ -373,6 +381,12 @@ end;
 
 procedure TfrmMain.imgAddRecipeClick(Sender: TObject);
 begin
+  frmRecipeEditor.Init(
+    procedure (const aResultList: TStringList)
+    begin
+      frameMyhome1.RefreshRecipeList;
+    end
+  );
   frmRecipeEditor.Show;
   SetMyhomeAddItemAction(False);
 end;
@@ -394,7 +408,7 @@ begin
   LeftMenuOpen(False);
 end;
 
-procedure TfrmMain.layoutHitMenuButtonMouseDown(Sender: TObject;
+procedure TfrmMain.layoutLeftMenuMouseDown(Sender: TObject;
   Button: TMouseButton; Shift: TShiftState; X, Y: Single);
 begin
   LeftMenuOpen(True);
@@ -526,11 +540,20 @@ begin
   begin
     size := TSizeF.Create(30,30);
 
+    if menuindex = bmCookbook then
+    begin
+      ShowMessage('준비중 입니다!');
+      Exit;
+    end;
+
     imgHome.Bitmap := GetBottomMenuImage(bmHome, False);
     imgNewsfeed.Bitmap := GetBottomMenuImage(bmNewsfeed, False);
     imgRecipe.Bitmap := GetBottomMenuImage(bmRecipe, False);
     imgCookbook.Bitmap := GetBottomMenuImage(bmCookbook, False);
     imgMyhome.Bitmap := GetBottomMenuImage(bmMyhome, False);
+
+    imgLeftMenu.Visible := (menuindex = bmRecipe);
+    layoutLeftMenu.HitTest := (menuindex = bmRecipe);
 
     case menuindex of
       bmHome:
@@ -566,6 +589,16 @@ begin
         imgMyhome.Bitmap := GetBottomMenuImage(bmMyhome, True);
         tabcontrolService.ActiveTab := tabMyhome;
         txtMainTitle.Text := '마이홈';
+
+        frameMyhome1.Init(_info.UserSerial, True,
+          procedure(const AResultList: TStringList)
+          begin
+            if Assigned(AResultList) and (AResultList.Count > 0) then
+              txtMainTitle.Text := AResultList[0]
+            else
+              txtMainTitle.Text := '마이홈';
+          end
+        );
       end;
     end;
   end;
@@ -625,16 +658,6 @@ begin
   if tabcontrolService.ActiveTab = tabMyhome then
   begin
     layoutMyhomeAddItem.Visible := True;
-
-    frameMyhome1.Init(_info.UserSerial, True,
-      procedure(const AResultList: TStringList)
-      begin
-        if Assigned(AResultList) and (AResultList.Count > 0) then
-          txtMainTitle.Text := AResultList[0]
-        else
-          txtMainTitle.Text := '마이홈';
-      end
-    );
 
     if aActive then
     begin

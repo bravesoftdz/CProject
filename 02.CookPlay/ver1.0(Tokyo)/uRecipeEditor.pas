@@ -12,7 +12,8 @@ uses
   FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf,
   FireDAC.DApt.Intf, FireDAC.Comp.DataSet, FireDAC.Comp.Client,
   FMX.DateTimeCtrls, FMX.Gestures, System.ImageList, FMX.ImgList, FMX.Ani,
-  FMX.EditBox, FMX.NumberBox, uGlobal, FMX.Effects, cookplay.scale;
+  FMX.EditBox, FMX.NumberBox, uGlobal, FMX.Effects, cookplay.scale,
+  System.Math.Vectors, FMX.Controls3D, FMX.Layers3D;
 
 type
   TPictureInfo = record
@@ -162,46 +163,19 @@ type
     cboTime: TComboBox;
     txtTime: TText;
     layoutStepBody: TLayout;
-    layoutStepTemp: TLayout;
-    Memo2: TMemo;
-    Rectangle2: TRectangle;
-    Image2: TImage;
-    Image6: TImage;
-    Text9: TText;
     recBody: TRectangle;
     layoutBottom: TLayout;
     imgAddStep: TImage;
     Image3: TImage;
     imgMoveStep: TImage;
     Line1: TLine;
-    Text5: TText;
-    imgDeleteStep: TImage;
-    Layout6: TLayout;
-    txtEditIngredient: TText;
-    Layout7: TLayout;
     memDescription: TMemo;
-    Layout8: TLayout;
-    Rectangle14: TRectangle;
     imgDeleteRecipeImage: TImage;
-    Image13: TImage;
     ImageList: TImageList;
-    txtTimer1: TText;
-    Layout11: TLayout;
-    Layout16: TLayout;
-    Rectangle16: TRectangle;
-    Edit5: TEdit;
-    Rectangle17: TRectangle;
-    Edit6: TEdit;
-    Layout19: TLayout;
-    imgAddIngredient2: TImage;
     recHeader: TRectangle;
     layoutBackButton: TLayout;
     imgBack: TImage;
     Text8: TText;
-    cboUnit: TComboBox;
-    Rectangle1: TRectangle;
-    edtUnit: TEdit;
-    recBackground: TRectangle;
     layoutMenu: TLayout;
     Rectangle6: TRectangle;
     Image19: TImage;
@@ -215,48 +189,7 @@ type
     Rectangle20: TRectangle;
     Image22: TImage;
     txtMenuAddSeasoning: TText;
-    recTimer: TRectangle;
-    Rectangle22: TRectangle;
-    Rectangle23: TRectangle;
-    Rectangle24: TRectangle;
-    Text15: TText;
-    Text16: TText;
-    Text17: TText;
-    Text18: TText;
-    Text19: TText;
-    numHour: TNumberBox;
-    numMin: TNumberBox;
-    numSec: TNumberBox;
-    btnTimerOK: TSpeedButton;
-    Layout21: TLayout;
-    Rectangle21: TRectangle;
-    Edit7: TEdit;
-    Rectangle25: TRectangle;
-    Edit8: TEdit;
-    Rectangle19: TRectangle;
-    Image16: TImage;
-    Image17: TImage;
-    Text7: TText;
-    Layout17: TLayout;
-    Rectangle26: TRectangle;
-    Edit9: TEdit;
-    Rectangle27: TRectangle;
-    Edit10: TEdit;
-    Rectangle28: TRectangle;
-    ComboBox1: TComboBox;
-    Edit11: TEdit;
-    Image8: TImage;
-    Text6: TText;
-    Image7: TImage;
-    Image10: TImage;
-    Image14: TImage;
-    Layout1: TLayout;
-    Rectangle15: TRectangle;
-    Edit4: TEdit;
-    Image18: TImage;
-    Text11: TText;
     btnAddStep: TSpeedButton;
-    Image1: TImage;
     layoutTop: TLayout;
     txtDone: TText;
     recPicture: TRectangle;
@@ -272,10 +205,10 @@ type
     GlowEffect1: TGlowEffect;
     layoutScrollBottom: TLayout;
     imgRecipeRectangle: TImage;
-    Rectangle8: TRectangle;
-    Edit1: TEdit;
     Circle1: TCircle;
     Circle2: TCircle;
+    Layout3D1: TLayout3D;
+    recBackground: TRectangle;
     procedure FormShow(Sender: TObject);
     procedure layoutBackButtonClick(Sender: TObject);
     procedure cboPersonChange(Sender: TObject);
@@ -287,17 +220,11 @@ type
       KeyboardVisible: Boolean; const Bounds: TRect);
     procedure FormVirtualKeyboardShown(Sender: TObject;
       KeyboardVisible: Boolean; const Bounds: TRect);
-    procedure cboUnitChange(Sender: TObject);
-    procedure edtUnitExit(Sender: TObject);
-    procedure cboUnitClosePopup(Sender: TObject);
     procedure FormResize(Sender: TObject);
-    procedure recBackgroundClick(Sender: TObject);
-    procedure btnTimerOKClick(Sender: TObject);
     procedure btnAddStepClick(Sender: TObject);
     procedure ReAlignLayoutStepBody;
 
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
-    procedure txtTimer1Click(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; var KeyChar: Char;
       Shift: TShiftState);
     procedure TakePhotoFromCameraAction1DidFinishTaking(Image: TBitmap);
@@ -312,8 +239,11 @@ type
     procedure imgRecipePaint(Sender: TObject; Canvas: TCanvas;
       const ARect: TRectF);
     procedure imgMoveStepClick(Sender: TObject);
+    procedure recBackgroundClick(Sender: TObject);
   private
     { Private declarations }
+    FCallback: TCallbackRefFunc;
+
     FRecipe: TRecipeInfo;
 
     FSelectedStepNo: integer; // 선택된 Step Number를 기록한다
@@ -336,7 +266,6 @@ type
     procedure RestorePosition;
     procedure UpdateKBBounds;
     procedure ShowAddIngredientMenu(aVisible: Boolean);
-    procedure ShowTimerInput(aVisible: Boolean);
     procedure ShowPictureInput(aVisible: Boolean; R: TRectF);
     procedure CallbackMyRecipeListResult(const aResultList: TStringList);
     procedure ClearControls;
@@ -375,6 +304,7 @@ type
     procedure SetRecipeSerial(const Value: LargeInt);
   public
     { Public declarations }
+    procedure Init(aCallback: TCallbackRefFunc);
     procedure UpdateCategory;
   published
     property RecipeSerial: LargeInt read GetRecipeSerial write SetRecipeSerial;
@@ -387,7 +317,7 @@ var
 
 implementation
 uses cookplay.statusBar, uRecipeCategory, ClientModuleUnit,
-  System.Math, uList, cookplay.S3, uListDragNDrop, uScaleView;
+  System.Math, uList, cookplay.S3, uListDragNDrop, uScaleView, uGetTime;
 {$R *.fmx}
 
 procedure TfrmRecipeEditor.GetPicture(bmp: TBitmap);
@@ -529,26 +459,6 @@ begin
   txtDifficult.Visible := (cboDifficult.ItemIndex = -1);
 end;
 
-procedure TfrmRecipeEditor.cboUnitChange(Sender: TObject);
-begin
-  edtUnit.HitTest := False;
-
-  if cboUnit.ItemIndex = -1 then
-    edtUnit.Text := ''
-  else if cboUnit.ItemIndex <> cboUnit.Items.Count-1 then
-    edtUnit.Text := GetUnitString(cboUnit.Selected.Text);
-end;
-
-procedure TfrmRecipeEditor.cboUnitClosePopup(Sender: TObject);
-begin
-  if cboUnit.ItemIndex = cboUnit.Items.Count-1 then
-  begin
-    edtUnit.HitTest := True;
-    edtUnit.SetFocus;
-    self.FormFocusChanged(self);
-  end;
-end;
-
 function TfrmRecipeEditor.CheckInputValid: Boolean;
   procedure ErrMessage(msg: string; aControl: TControl; KeyboardShown: Boolean; var RetVal: Boolean);
   begin
@@ -687,7 +597,6 @@ begin
   edtTitle.Text := '';
 
   ShowAddIngredientMenu(False);
-  ShowTimerInput(False);
   ShowPictureInput(False, TRectF.Create(0,0,0,0));
 
   memDescription.Lines.Clear;
@@ -722,11 +631,6 @@ begin
   TControl(Sender).Canfocus := False;
 end;
 
-procedure TfrmRecipeEditor.edtUnitExit(Sender: TObject);
-begin
-  edtUnit.HitTest := False;
-end;
-
 procedure TfrmRecipeEditor.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   ShowAddIngredientMenu(False);
@@ -748,8 +652,6 @@ begin
   FOldViewPosition := TPointF.Create(0,0); // Scroll Position to 0
   FKeyboardShown := False;
 
-  layoutStepTemp.DisposeOf;
-
   scrollRecipe.OnCalcContentBounds := CalcContentBoundsProc;
 end;
 
@@ -770,9 +672,8 @@ begin
   begin
     if layoutMenu.Position.Y < ClientHeight then
       ShowAddIngredientMenu(False)
-    else if recTimer.Opacity = 1 then
-      ShowTimerInput(False)
-    else if recPicture.Opacity = 1 then
+//    else if recPicture.Opacity = 1 then
+    else if recPicture.Visible then
       ShowPictureInput(False, TRectF.Create(0,0,0,0))
     else
       layoutBackButton.OnClick(layoutBackButton);
@@ -785,7 +686,8 @@ begin
   recBackground.Position.Y := 0;
   recBackground.Width := ClientWidth;
   recBackground.Height := ClientHeight;
-  recBackground.Opacity := 0;
+//  recBackground.Opacity := 0;
+  recBackground.Visible := False;
   recBackground.HitTest := False;
 
   layoutMenu.Width := ClientWidth+2;
@@ -795,8 +697,8 @@ begin
   layoutMenu.Position.Y := ClientHeight;
 
   FSelectedTimerText := nil;
-  recTimer.Opacity := 0;
-  recPicture.Opacity := 0;
+//  recPicture.Opacity := 0;
+  recPicture.Visible := False;
 end;
 
 procedure TfrmRecipeEditor.FormShow(Sender: TObject);
@@ -804,7 +706,7 @@ var
   i: integer;
 begin
   // 재료 단위를 가져온다
-  CM.GetIngredientUnit(cboUnit);
+//  CM.GetIngredientUnit(cboUnit);
 
   FSelectedStepNo := -1;
 
@@ -814,9 +716,6 @@ begin
   // Status Bar 색을 바꾼다
   Fill.Color := GetColor(COLOR_BACKGROUND);
   StatusBarSetColor(Fill.Color);
-
-  recTimer.Align := TAlignLayout.Center;
-  recTimer.Margins.Top := -65; // 가상 키보드에 가리지 않게 하기 위하여
 
   // drag & drop을 위한 control 세팅
   recWhite.Visible := False;
@@ -927,6 +826,11 @@ begin
     FSelectedImage := image;
     ShowPictureInput(True, image.AbsoluteRect);
   end;
+end;
+
+procedure TfrmRecipeEditor.Init(aCallback: TCallbackRefFunc);
+begin
+  FCallback := aCallback;
 end;
 
 procedure TfrmRecipeEditor.layoutBackButtonClick(Sender: TObject);
@@ -1191,9 +1095,19 @@ begin
 end;
 
 procedure TfrmRecipeEditor.OnTimerClick(Sender: TObject);
+var
+  aText: TText;
 begin
-  FSelectedTimerText := TText(Sender);
-  ShowTimerInput(True);
+  aText := TText(Sender);
+
+  frmGetTime.init(aText.Text,
+    procedure (const aResultList: TStringList)
+    begin
+      aText.Text := aResultList[0];
+    end
+  );
+
+  frmGetTime.Show;
 end;
 
 procedure TfrmRecipeEditor.OnUnitComboChange(Sender: TObject);
@@ -1271,6 +1185,12 @@ begin
   scrollRecipe.RealignContent;  
 end;
 
+procedure TfrmRecipeEditor.recBackgroundClick(Sender: TObject);
+begin
+  ShowAddIngredientMenu(False);
+  ShowPictureInput(False, TRectF.Create(0,0,0,0));
+end;
+
 //------------------------------------------------------------------------------
 // 레시피 리스트 가져오기 위한 List Form 을 Call 할 때 같이 보낸
 // Callback 함수이다.
@@ -1306,78 +1226,12 @@ begin
   ShowAddIngredientMenu(False);    
 end;
 
-procedure TfrmRecipeEditor.recBackgroundClick(Sender: TObject);
-begin
-  ShowAddIngredientMenu(False);
-  ShowTimerInput(False);
-  ShowPictureInput(False, TRectF.Create(0,0,0,0));
-end;
-
 procedure TfrmRecipeEditor.RestorePosition;
 begin
 //  scrollRecipe.ViewportPosition:= FOldViewPosition;
 //  scrollRecipe.RealignContent;
 
 //  FOldControl := nil;
-end;
-
-procedure TfrmRecipeEditor.ShowTimerInput(aVisible: Boolean);
-  procedure GetHourMinSec(str: string; var h, m, s: integer);
-  begin
-    try
-      if (not str.IsEmpty) and (Length(str)=8) then
-      begin
-        h := strtoint(copy(str, 1, 2));
-        m := strtoint(copy(str, 4, 2));
-        s := strtoint(copy(str, 7, 2));
-      end;
-    except
-      h := 0; m := 0; s := 0;
-    end;
-  end;
-
-var
-  h, m, s: integer;
-begin
-  HideVirtualKeyboard;
-
-  h := 0;
-  m := 0;
-  s := 0;
-
-  if Assigned(FSelectedTimerText) then
-    GetHourMinSec(FSelectedTimerText.Text, h, m, s);
-
-  numHour.Value := h;
-  numMin.Value := m;
-  numSec.Value := s;
-
-  if aVisible then
-  begin
-//    if recTimer.Opacity = 0 then
-//    begin
-      TAnimator.Create.AnimateFloat(recBackground, 'Opacity', 0.3, 0.15);
-      recBackground.HitTest := True;
-
-      TAnimator.Create.AnimateFloat(recTimer, 'Opacity', 1, 0);
-//    end;
-  end
-  else
-  begin
-//    if recTimer.Opacity = 1 then
-//    begin
-      TAnimator.Create.AnimateFloat(recBackground, 'Opacity', 0, 0.15);
-      recBackground.HitTest := False;
-
-      TAnimator.Create.AnimateFloat(recTimer, 'Opacity', 0, 0);
-//    end;
-  end;
-
-  recTimer.HitTest := aVisible;
-  btnTimerOK.HitTest := aVisible;
-  numHour.HitTest := aVisible;
-  numMin.HitTest := aVisible;
-  numSec.HitTest := aVisible;
 end;
 
 procedure TfrmRecipeEditor.AddIngredient (step: TStepInfo; it: TIngredientType;
@@ -1984,17 +1838,6 @@ begin
   AddStep(layoutStepBody, NEW_STEP_SERIAL);
 end;
 
-procedure TfrmRecipeEditor.btnTimerOKClick(Sender: TObject);
-begin
-  if Assigned(FSelectedTimerText) then
-  begin
-    FSelectedTimerText.Text := Format('%.2d:%.2d:%.2d', [round(numHour.Value), round(numMin.Value), round(numSec.Value)]);
-    FSelectedTimerText := nil;
-  end;
-
-  ShowTimerInput(False);
-end;
-
 procedure TfrmRecipeEditor.SaveRecipe(isPublished: Boolean);
   procedure CopyRecipe;
   var
@@ -2003,6 +1846,7 @@ procedure TfrmRecipeEditor.SaveRecipe(isPublished: Boolean);
   begin
     RecipeSerial := CM.DSMyRecipe.FieldByName('Serial').AsLargeInt;
 
+    CM.DSMyRecipe.FieldByName('Title').AsWideString := edtTitle.Text.Trim;
     CM.DSMyRecipe.FieldByName('Description').AsWideString := memDescription.Lines.Text.Trim;
     CM.DSMyRecipe.FieldByName('PictureType').AsString := inttostr(Ord(TPicturetype.ptPicture));
 
@@ -2012,14 +1856,14 @@ procedure TfrmRecipeEditor.SaveRecipe(isPublished: Boolean);
     // 현재 이미지가 새로운 입력되었으면
     if (not imgRecipe.Bitmap.IsEmpty) and (imgRecipe.TagString.Trim = NEW_PICTURE) then
     begin
+      // S3에 저장한다
+      frmS3.SaveImageToS3(BUCKET_RECIPE, picture, imgRecipeOrigin);
+      frmS3.SaveImageToS3(BUCKET_RECIPE, pictureSquare, imgRecipe);
+      frmS3.SaveImageToS3(BUCKET_RECIPE, pictureRectangle, imgRecipeRectangle);
+
       // 원래 레시피 레코드에 사진이름이 없으면
       if CM.DSMyRecipe.FieldByName('Picture').AsWideString = '' then
       begin
-        // S3에 저장한다
-        frmS3.SaveImageToS3(BUCKET_RECIPE, picture, imgRecipeOrigin);
-        frmS3.SaveImageToS3(BUCKET_RECIPE, pictureSquare, imgRecipe);
-        frmS3.SaveImageToS3(BUCKET_RECIPE, pictureRectangle, imgRecipeRectangle);
-
         // Add Que 에 저장한다. 실해하면 Rollback 하기 위해
         FRecipe.AddedImageQue.Add(picture);
         FRecipe.AddedImageQue.Add(pictureSquare);
@@ -2065,14 +1909,14 @@ procedure TfrmRecipeEditor.SaveRecipe(isPublished: Boolean);
     // 현재 이미지가 새로운 입력되었으면
     if (not aStep.imgStep.Bitmap.IsEmpty) and (aStep.imgStep.TagString.Trim = NEW_PICTURE) then
     begin
+      // S3에 저장한다
+      frmS3.SaveImageToS3(BUCKET_RECIPE, picture, aStep.imgStepImageOrigin);
+      frmS3.SaveImageToS3(BUCKET_RECIPE, pictureSquare, aStep.imgStep);
+      frmS3.SaveImageToS3(BUCKET_RECIPE, pictureRectangle, aStep.imgStepImageRectangle);
+
       // 원래 Method record에 사진이름이 없으면
       if CM.DSMyMethod.FieldByName('Picture').AsWideString = '' then
       begin
-        // S3에 저장한다
-        frmS3.SaveImageToS3(BUCKET_RECIPE, picture, aStep.imgStepImageOrigin);
-        frmS3.SaveImageToS3(BUCKET_RECIPE, pictureSquare, aStep.imgStep);
-        frmS3.SaveImageToS3(BUCKET_RECIPE, pictureRectangle, aStep.imgStepImageRectangle);
-
         // Add Que 에 저장한다. 실해하면 Rollback 하기 위해
         FRecipe.AddedImageQue.Add(picture);
         FRecipe.AddedImageQue.Add(pictureSquare);
@@ -2090,6 +1934,18 @@ procedure TfrmRecipeEditor.SaveRecipe(isPublished: Boolean);
       CM.DSMyMethod.FieldByName('Picture').AsWideString := picture;
       CM.DSMyMethod.FieldByName('PictureSquare').AsWideString := pictureSquare;
       CM.DSMyMethod.FieldByName('PictureRectangle').AsWideString := pictureRectangle;
+    end
+    // 기존 이지지가 삭제되었으면
+    else if aStep.imgStep.Bitmap.IsEmpty and (CM.DSMyMethod.FieldByName('Picture').AsWideString <> '') then
+    begin
+      FRecipe.DeletedImageQue.Add(CM.DSMyMethod.FieldByName('Picture').AsWideString);
+      FRecipe.DeletedImageQue.Add(CM.DSMyMethod.FieldByName('PictureSquare').AsWideString);
+      FRecipe.DeletedImageQue.Add(CM.DSMyMethod.FieldByName('PictureRectangle').AsWideString);
+
+      // Method 의 이미지 이름을 초기화 환다
+      CM.DSMyMethod.FieldByName('Picture').AsWideString := '';
+      CM.DSMyMethod.FieldByName('PictureSquare').AsWideString := '';
+      CM.DSMyMethod.FieldByName('PictureRectangle').AsWideString := '';
     end;
 
     CM.DSMyMethod.FieldByName('Description').AsString := aStep.memoDescription.Lines.Text.Trim;
@@ -2183,14 +2039,19 @@ begin
     // 새로운 레시피 이면
     if FRecipe.Serial = NEW_RECIPE_SERIAL then
     begin
-      CM.DSMyRecipe.Append;
+      CM.DSMyRecipe.Insert;
       CM.DSMyRecipe.FieldByName('Users_Serial').AsLargeInt := CM.memUserSerial.AsLargeInt;
       CM.DSMyRecipe.FieldByName('Title').AsWideString := edtTitle.Text.Trim;
       // 임시저장인지 아닌지 세팅한다
       CM.DSMyRecipe.FieldByName('Published').AsBoolean := isPublished;
       CM.DSMyRecipe.Post;
-//      CM.DSMyRecipe.ApplyUpdates(0);
-//      CM.DSMyRecipe.Refresh;
+
+      if CM.DSMyRecipe.ApplyUpdates(0) = 0 then
+        CM.DSMyRecipe.Refresh
+      else
+        raise Exception.Create('레시피를 저장할 수 없습니다!');
+
+      CM.DSMyRecipe.Last;
 
       nRecipeSerial := CM.DSMyRecipe.FieldByName('Serial').AsLargeInt;
     end
@@ -2225,9 +2086,16 @@ begin
       begin
         CM.DSMyMethod.Insert;
         CM.DSMyMethod.FieldByName('Recipe_Serial').AsLargeInt := nRecipeSerial;
+        CM.DSMyMethod.FieldByName('StepSeq').AsLargeInt := 32767;
         CM.DSMyMethod.Post;
 //        CM.DSMyMethod.ApplyUpdates(0);
-//        CM.DSMyMethod.Refresh;
+
+        if CM.DSMyMethod.ApplyUpdates(0) = 0 then
+          CM.DSMyMethod.Refresh
+        else
+          raise Exception.Create('레시피를 저장할 수 없습니다!');
+
+        CM.DSMyMethod.Last;
 
         nStepSerial := CM.DSMyMethod.FieldByName('Serial').AsLargeInt;
       end
@@ -2316,9 +2184,11 @@ begin
 
     // DeleteQue 에 저장된 삭제된 Image를 DB에 저장한다
     for i := 0 to FRecipe.DeletedImageQue.Count-1 do
-      CM.AddtoDeleteImageQue(BUCKET_RECIPE, FRecipe.DeletedImageQue[i]);
-
-    CM.DSDeleteQue.ApplyUpdates(0);
+    begin
+      if not CM.AddtoDeleteImageQue(BUCKET_RECIPE, FRecipe.DeletedImageQue[i]) then
+        raise Exception.Create('이전 이미지를 삭제하지 못하였습니다!');
+//      CM.DSDeleteQue.ApplyUpdates(0);
+    end;
 
     CM.SQLConnection.Commit;
 
@@ -2330,6 +2200,9 @@ begin
     FRecipe.AddedImageQue.Clear;
 
     ShowMessage('저장하였습니다!');
+
+    if Assigned(FCallback) then
+      FCallback;
 
     Close;
   except
@@ -2372,7 +2245,8 @@ begin
   begin
 //    if layoutMenu.Position.Y > (ClientHeight - layoutMenu.Height) then
 //    begin
-      TAnimator.Create.AnimateFloat(recBackground, 'Opacity', 0.3, 0.15);
+//      TAnimator.Create.AnimateFloat(recBackground, 'Opacity', 0.3, 0.15);
+      recBackground.Visible := True;
       recBackground.HitTest := True;
 
       TAnimator.Create.AnimateFloat(layoutMenu, 'Position.Y', ClientHeight - layoutMenu.Height, 0.25, TAnimationType.Out, TInterpolationType.Exponential);
@@ -2382,7 +2256,8 @@ begin
   begin
 //    if layoutMenu.Position.Y <> ClientHeight then
 //    begin
-      TAnimator.Create.AnimateFloat(recBackground, 'Opacity', 0, 0.15);
+//      TAnimator.Create.AnimateFloat(recBackground, 'Opacity', 0, 0.15);
+      recBackground.Visible := False;
       recBackground.HitTest := False;
 
       TAnimator.Create.AnimateFloat(layoutMenu, 'Position.Y', ClientHeight, 0.25, TAnimationType.Out, TInterpolationType.Exponential);
@@ -2399,17 +2274,22 @@ begin
 
   if aVisible then
   begin
-    TAnimator.Create.AnimateFloat(recBackground, 'Opacity', 0.3, 0.15);
+//    TAnimator.Create.AnimateFloat(recBackground, 'Opacity', 0.3, 0.15);
+    recBackground.Visible := True;
     recBackground.HitTest := True;
 
-    TAnimator.Create.AnimateFloat(recPicture, 'Opacity', 1, 0);
+    recPicture.Visible := True;
+
+//    TAnimator.Create.AnimateFloat(recPicture, 'Opacity', 1, 0);
   end
   else
   begin
-    TAnimator.Create.AnimateFloat(recBackground, 'Opacity', 0, 0.15);
+//    TAnimator.Create.AnimateFloat(recBackground, 'Opacity', 0, 0.15);
+    recBackground.Visible := False;
     recBackground.HitTest := False;
 
-    TAnimator.Create.AnimateFloat(recPicture, 'Opacity', 0, 0);
+    recPicture.Visible := False;
+//    TAnimator.Create.AnimateFloat(recPicture, 'Opacity', 0, 0);
   end;
 
   recPicture.HitTest := aVisible;
@@ -2455,12 +2335,6 @@ begin
         SaveRecipe(True);
     end;
   end);
-end;
-
-procedure TfrmRecipeEditor.txtTimer1Click(Sender: TObject);
-begin
-  FSelectedTimerText := txtTimer1;
-  ShowTimerInput(True);
 end;
 
 procedure TfrmRecipeEditor.txtMenuAddIngredientClick(Sender: TObject);

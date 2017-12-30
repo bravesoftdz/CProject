@@ -27,7 +27,8 @@ type
   TScaleMeasureType = (smViewSetup, smViewRatio, smViewMeasure, smPlay);
   TTimerMeasureType = (tmView, tmPlay);
   TMyhomeListType = (mhltStory, mhltRecipe, mhltCookbook, mhltBookmark);
-  TCommentType = (ctStory, ctRecipe, ctCookbook);
+  TBookmarkType = (btRecipe=1, btCookbook, btStory);
+  TContentType = (ctNone, ctStory, ctRecipe, ctCookbook);
 
   TSetupInfo = record
     AlaramOn: Boolean;
@@ -266,6 +267,7 @@ const
   URL_RECIPE = URL_DOMAIN + '/test/recipe.php';
   URL_RECIPE_VIEW = URL_DOMAIN + '/test/recipe_view.php';
   URL_RECIPE_VIEW_SIMPLE = URL_DOMAIN + '/test/ScaleRecipe.html';
+  URL_STORY_VIEW = URL_DOMAIN + '/test/story_view.php';
 
   DELIMETER_CATEGORY = ';';
 
@@ -285,7 +287,7 @@ var
   BluetoothLE: TBluetoothLE;
 
 implementation
-uses FMX.VirtualKeyboard, FMX.Platform, ClientModuleUnit;
+uses FMX.VirtualKeyboard, FMX.Platform, ClientModuleUnit, FMX.Controls;
 
 procedure HideVirtualKeyboard;
 var
@@ -495,8 +497,6 @@ end;
 { TRecipeChangeWeight }
 
 procedure TRecipeChangeWeight.Clear;
-var
-  i: integer;
 begin
   RecipeSerial := NEW_RECIPE_SERIAL;
   sorServings := 1;

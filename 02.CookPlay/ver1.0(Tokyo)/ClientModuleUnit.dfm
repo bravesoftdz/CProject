@@ -16,6 +16,7 @@ object CM: TCM
       'CommunicationProtocol=tcp/ip'
       'DatasnapContext=datasnap/'
       'Filters={}')
+    Connected = True
     Left = 42
     Top = 20
     UniqueId = '{99462119-7BE3-4DD0-A3CB-465C8878F7FC}'
@@ -40,6 +41,7 @@ object CM: TCM
   end
   object DSProviderConnection: TDSProviderConnection
     ServerClassName = 'TServerMethods1'
+    Connected = True
     SQLConnection = SQLConnection
     Left = 150
     Top = 18
@@ -486,7 +488,7 @@ object CM: TCM
     Left = 532
     Top = 232
     Content = {
-      414442530F00B725C5040000FF00010001FF02FF030400160000006D0065006D
+      414442530F00DA25C5040000FF00010001FF02FF030400160000006D0065006D
       004D0079004D006500740068006F00640005000A0000005400610062006C0065
       00060000000000070000080032000000090000FF0AFF0B04000C000000530065
       007200690061006C0005000C000000530065007200690061006C000C00010000
@@ -662,7 +664,7 @@ object CM: TCM
     Left = 534
     Top = 296
     Content = {
-      414442530F00B72568060000FF00010001FF02FF0304001E0000006D0065006D
+      414442530F00DA2568060000FF00010001FF02FF0304001E0000006D0065006D
       004D00790049006E006700720065006400690065006E00740005000A00000054
       00610062006C006500060000000000070000080032000000090000FF0AFF0B04
       000C000000530065007200690061006C0005000C000000530065007200690061
@@ -791,8 +793,8 @@ object CM: TCM
     Params = <>
     ProviderName = 'dsDeleteQue'
     RemoteServer = DSProviderConnection
-    Left = 256
-    Top = 130
+    Left = 266
+    Top = 74
   end
   object DSRecipeBest: TClientDataSet
     Aggregates = <>
@@ -933,5 +935,32 @@ object CM: TCM
     RemoteServer = DSProviderConnection
     Left = 396
     Top = 580
+  end
+  object DSvMyBookmarkList: TClientDataSet
+    Aggregates = <>
+    Params = <
+      item
+        DataType = ftWideString
+        Name = 'UserSerial'
+        ParamType = ptUnknown
+        Value = '-1'
+      end>
+    ProviderName = 'dsvBookmarkList'
+    RemoteServer = DSProviderConnection
+    Left = 276
+    Top = 582
+  end
+  object DSStoryCount: TClientDataSet
+    Aggregates = <>
+    Params = <
+      item
+        DataType = ftLargeint
+        Name = 'StorySerial'
+        ParamType = ptUnknown
+      end>
+    ProviderName = 'DsStoryCount'
+    RemoteServer = DSProviderConnection
+    Left = 242
+    Top = 158
   end
 end

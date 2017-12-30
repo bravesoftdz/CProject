@@ -72,25 +72,6 @@ type
     scrollRecipe: TVertScrollBox;
     scrollCookbook: TVertScrollBox;
     scrollBookmark: TVertScrollBox;
-    layoutStoryTemp: TLayout;
-    Layout1: TLayout;
-    Circle1: TCircle;
-    Text1: TText;
-    Image1: TImage;
-    Image2: TImage;
-    Layout2: TLayout;
-    Text2: TText;
-    Layout3: TLayout;
-    Layout6: TLayout;
-    Text4: TText;
-    Layout7: TLayout;
-    RoundRect1: TRoundRect;
-    Text5: TText;
-    Layout8: TLayout;
-    Text7: TText;
-    Image4: TImage;
-    Text6: TText;
-    Image3: TImage;
     Line1: TLine;
     layoutStoryTemp2: TLayout;
     Layout10: TLayout;
@@ -118,11 +99,30 @@ type
     TabControl1: TTabControl;
     TabItem1: TTabItem;
     TabItem2: TTabItem;
+    layoutStoryTemp3: TLayout;
+    Rectangle1: TRectangle;
+    Layout1: TLayout;
+    Image1: TImage;
+    Layout2: TLayout;
+    Layout3: TLayout;
+    Text1: TText;
+    Layout5: TLayout;
+    Image2: TImage;
+    Text2: TText;
+    Layout6: TLayout;
+    Image3: TImage;
+    Layout7: TLayout;
+    Text3: TText;
+    Layout8: TLayout;
+    Text4: TText;
     Image5: TImage;
+    Text5: TText;
     Image6: TImage;
+    Circle1: TCircle;
     procedure layoutMyhomeBodyResize(Sender: TObject);
     procedure layoutMyhomeStoryMouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Single);
+    procedure Image12Click(Sender: TObject);
   private
     { Private declarations }
     FMyHome: Boolean;
@@ -140,6 +140,8 @@ type
   public
     { Public declarations }
     procedure Init(aUserSerial: LargeInt; aIsMyhome: Boolean; aCallback: TCallbackRefFunc = nil);
+
+    procedure RefreshRecipeList;
   end;
 
 implementation
@@ -155,14 +157,23 @@ begin
     result := imglistMyhomeMenu.Bitmap(TSizeF.Create(48,48), Ord(index) * 2 + 1)
 end;
 
+procedure TframeMyhome.Image12Click(Sender: TObject);
+begin
+  RefreshRecipeList;
+end;
+
 procedure TframeMyhome.Init(aUserSerial: LargeInt; aIsMyhome: Boolean; aCallback: TCallbackRefFunc = nil);
 var
   UserSerial: LargeInt;
   Follow, Follower, Recipe, Story, Cookbook, Notice, MyFeed: integer;
 begin
+  // 중복 호출을 방지한다
+  if aUserSerial = FUserSerial then
+    Exit;
+
   // 디자인 작업한 것을 없앤다
-  layoutStoryTemp.DisposeOf;
   layoutStoryTemp2.DisposeOf;
+  layoutStoryTemp3.DisposeOf;
 
   FMyHome := aIsMyhome;
   FUserSerial := aUserSerial;
@@ -182,6 +193,21 @@ begin
   Cookbook := 0;
   Notice := 0;
   MyFeed := 0;
+
+  if aIsMyhome then
+  begin
+    gridPanelMyhome.ColumnCollection.Items[0].Value := 25;
+    gridPanelMyhome.ColumnCollection.Items[1].Value := 25;
+    gridPanelMyhome.ColumnCollection.Items[2].Value := 25;
+    gridPanelMyhome.ColumnCollection.Items[3].Value := 25;
+  end
+  else
+  begin
+    gridPanelMyhome.ColumnCollection.Items[0].Value := 33.3;
+    gridPanelMyhome.ColumnCollection.Items[1].Value := 33.3;
+    gridPanelMyhome.ColumnCollection.Items[2].Value := 33.4;
+    gridPanelMyhome.ColumnCollection.Items[3].Value := 0;
+  end;
 
   if FMyHome and _info.Logined then
   begin
@@ -238,8 +264,29 @@ procedure TframeMyhome.layoutMyhomeStoryMouseDown(Sender: TObject;
 begin
   if (Sender = layoutMyhomeStory) then SetMyhomeMenu(mhStory)
   else if (Sender = layoutMyhomeRecipe) then SetMyhomeMenu(mhRecipe)
-  else if (Sender = layoutMyhomeCookbook) then SetMyhomeMenu(mhCookbook)
+  else if (Sender = layoutMyhomeCookbook) then
+  begin
+    ShowMessage('준비중 입니다!');
+//   SetMyhomeMenu(mhCookbook);
+  end
   else if (Sender = layoutMyhomeBookmark) then SetMyhomeMenu(mhBookmark);
+end;
+
+procedure TframeMyhome.RefreshRecipeList;
+var
+  aUserSerial: LargeInt;
+begin
+  if Assigned(FRecipes) then
+  begin
+    aUserSerial := FRecipes.FUserSerial;
+    FUserSerial := -1;
+
+    FRecipes.FScrollBox.ViewportPosition := PointF(0,0);
+
+    FRecipes.Init(aUserSerial, FRecipes.FNickname, FRecipes.FListType, FRecipes.FBaseLayout,
+      FRecipes.FScrollLayout, FRecipes.FScrollBox, FRecipes.FTopHeight,
+      FRecipes.FCallbackRef);
+  end;
 end;
 
 procedure TframeMyhome.SetMyhomeMenu(menuindex: TMyhomeMenu);
@@ -311,6 +358,11 @@ begin
       begin
         FRecipes := TMyhomeList.Create;
         FRecipes.Init(FUserSerial, FNickname, mhltRecipe, layoutMyhomeBody, layoutMyhomeScroll, scrollRecipe, 0, FCallbackRef);
+      end
+      else
+      begin
+        layoutMyhomeBody.OnMouseMove := FRecipes.DoLayoutMouseMove;
+        layoutMyhomeBody.OnMouseUp := FRecipes.DoLayoutMouseUp;
       end;
     end;
     mhCookbook:
@@ -333,6 +385,11 @@ begin
       begin
         FBookmarks := TMyhomeList.Create;
         FBookmarks.Init(FUserSerial, FNickname, mhltBookmark, layoutMyhomeBody, layoutMyhomeScroll, scrollBookmark, 0, FCallbackRef);
+      end
+      else
+      begin
+        layoutMyhomeBody.OnMouseMove := FBookmarks.DoLayoutMouseMove;
+        layoutMyhomeBody.OnMouseUp := FBookmarks.DoLayoutMouseUp;
       end;
     end;
   end;

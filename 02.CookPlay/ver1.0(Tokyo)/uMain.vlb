@@ -1,9 +1,6 @@
 ﻿[Text3]
 Coordinates=850,10,47,58
 
-[layoutHitMenuButton]
-Coordinates=413,610,134,36
-
 [layoutHitSearchButton]
 Coordinates=260,610,143,36
 
@@ -51,9 +48,6 @@ Coordinates=439,564,46,36
 
 [Layout11]
 Coordinates=362,564,67,36
-
-[Image3]
-Coordinates=1098,10,57,58
 
 [Text5]
 Coordinates=1041,10,47,58
@@ -158,14 +152,8 @@ Coordinates=1245,221,72,36
 [imgAddItem]
 Coordinates=533,270,83,58
 
-[imgRecipe]
-Coordinates=563,347,75,58
-
 [imgMyhome]
 Coordinates=729,366,84,58
-
-[GridPanelLayout2]
-Coordinates=1245,496,118,36
 
 [Text8]
 Coordinates=279,269,47,58
@@ -242,9 +230,6 @@ Coordinates=1688,1,195,36
 [imgAddCookbook]
 Coordinates=444,366,116,58
 
-[layoutRecipe]
-Coordinates=313,684,89,36
-
 [ShowShareSheetAction1]
 Coordinates=1688,111,157,36
 
@@ -277,12 +262,6 @@ Coordinates=209,155,64,58
 
 [imgCookbook]
 Coordinates=78,1,93,58
-
-[imgNewsfeed]
-Coordinates=1007,241,92,58
-
-[layoutNewsfeed]
-Coordinates=1688,606,106,36
 
 [layoutCookbook]
 Coordinates=1688,661,107,36
@@ -334,4 +313,25 @@ Coordinates=736,1210,113,432
 
 [txtMainTitle]
 Coordinates=535,10,47,58
+
+[imgNewsfeed]
+Coordinates=563,347,75,58
+
+[layoutNewsfeed]
+Coordinates=313,684,89,36
+
+[imgRecipe]
+Coordinates=1007,241,92,58
+
+[layoutRecipe]
+Coordinates=1688,606,106,36
+
+[gridpanelMainMenu]
+Coordinates=1245,496,118,36
+
+[imgLeftMenu]
+Coordinates=1098,10,57,58
+
+[layoutLeftMenu]
+Coordinates=413,610,134,36
 

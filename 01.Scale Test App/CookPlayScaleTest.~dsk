@@ -1,35 +1,31 @@
 ﻿[Closed Files]
-File_0=TSourceModule,'c:\program files (x86)\embarcadero\studio\18.0\SOURCE\RTL\SYS\System.pas',0,1,36657,1,36684,0,0,,
-File_1=TSourceModule,'c:\program files (x86)\embarcadero\studio\18.0\source\fmx\FMX.ListBox.pas',0,1,4098,1,4119,0,0,,
-File_2=TSourceModule,'c:\program files (x86)\embarcadero\studio\18.0\source\fmx\FMX.ScrollBox.Style.pas',0,1,1330,53,1355,0,0,,
-File_3=TSourceModule,'c:\program files (x86)\embarcadero\studio\18.0\source\rtl\net\System.Bluetooth.Components.pas',0,1,327,1,348,0,0,,
-File_4=TSourceModule,'c:\program files (x86)\embarcadero\studio\18.0\source\rtl\net\System.Android.Bluetooth.pas',0,1,3104,1,3147,0,0,,
-File_5=TSourceModule,'c:\program files (x86)\embarcadero\studio\18.0\SOURCE\RTL\SYS\System.Internal.ExcUtils.pas',0,1,371,1,390,0,0,,
-File_6=TSourceModule,'c:\program files (x86)\embarcadero\studio\18.0\source\fmx\FMX.Controls.pas',0,1,4086,1,4105,0,0,{{6849,0}
-File_7=TSourceModule,'c:\program files (x86)\embarcadero\studio\18.0\source\fmx\FMX.StdCtrls.pas',0,1,499,1,520,0,0,,
-File_8=TSourceModule,'c:\program files (x86)\embarcadero\studio\18.0\source\rtl\common\System.Classes.pas',0,1,15274,31,15291,0,0,,
-File_9=TSourceModule,'c:\program files (x86)\embarcadero\studio\18.0\source\fmx\FMX.Forms.pas',0,1,2135,33,2152,0,0,,
-File_10=TSourceModule,'D:\00.dev\02.BI\SystemMgr\uSystemAdmin.pas',0,1,1,52,27,0,0,,
-File_11=TSourceModule,'D:\00.dev\02.BI\SystemMgr\uDB.pas',0,1,13,11,30,0,0,,{1
-File_12=TSourceModule,'D:\00.dev\02.BI\SystemMgr\uMain.pas',0,1,96,32,111,0,0,,{1
+File_0=TSourceModule,'c:\program files (x86)\embarcadero\studio\18.0\source\rtl\net\System.Bluetooth.pas',0,1,2887,38,2908,0,0,,
+File_1=TSourceModule,'c:\program files (x86)\embarcadero\studio\18.0\SOURCE\RTL\SYS\System.pas',0,1,36657,1,36684,0,0,,
+File_2=TSourceModule,'c:\program files (x86)\embarcadero\studio\18.0\source\fmx\FMX.ListBox.pas',0,1,4098,1,4119,0,0,,
+File_3=TSourceModule,'c:\program files (x86)\embarcadero\studio\18.0\source\fmx\FMX.ScrollBox.Style.pas',0,1,1330,53,1355,0,0,,
+File_4=TSourceModule,'c:\program files (x86)\embarcadero\studio\18.0\source\rtl\net\System.Bluetooth.Components.pas',0,1,327,1,348,0,0,,
+File_5=TSourceModule,'c:\program files (x86)\embarcadero\studio\18.0\source\rtl\net\System.Android.Bluetooth.pas',0,1,3104,1,3147,0,0,,
+File_6=TSourceModule,'c:\program files (x86)\embarcadero\studio\18.0\SOURCE\RTL\SYS\System.Internal.ExcUtils.pas',0,1,371,1,390,0,0,,
+File_7=TSourceModule,'c:\program files (x86)\embarcadero\studio\18.0\source\fmx\FMX.Controls.pas',0,1,4086,1,4105,0,0,{{6849,0}
+File_8=TSourceModule,'c:\program files (x86)\embarcadero\studio\18.0\source\fmx\FMX.StdCtrls.pas',0,1,499,1,520,0,0,,
+File_9=TSourceModule,'c:\program files (x86)\embarcadero\studio\18.0\source\rtl\common\System.Classes.pas',0,1,15274,31,15291,0,0,,
+File_10=TSourceModule,'c:\program files (x86)\embarcadero\studio\18.0\source\fmx\FMX.Forms.pas',0,1,2135,33,2152,0,0,,
+File_11=TSourceModule,'D:\00.dev\02.BI\SystemMgr\uSystemAdmin.pas',0,1,1,52,27,0,0,,
+File_12=TSourceModule,'D:\00.dev\02.BI\SystemMgr\uDB.pas',0,1,13,11,30,0,0,,{1
+File_13=TSourceModule,'D:\00.dev\02.BI\SystemMgr\uMain.pas',0,1,96,32,111,0,0,,{1
 
 [Modules]
-Module0=c:\program files (x86)\embarcadero\studio\18.0\source\rtl\net\System.Bluetooth.pas
-Module1=D:\GitHub\CProject\01.Scale Test App\uMain.pas
-Count=2
+Module0=D:\GitHub\CProject\01.Scale Test App\uMain.pas
+Count=1
 EditWindowCount=1
-
-[c:\program files (x86)\embarcadero\studio\18.0\source\rtl\net\System.Bluetooth.pas]
-ModuleType=TSourceModule
 
 [D:\GitHub\CProject\01.Scale Test App\uMain.pas]
 ModuleType=TSourceModule
 
 [EditWindow0]
-ViewCount=2
-CurrentEditView=c:\program files (x86)\embarcadero\studio\18.0\source\rtl\net\System.Bluetooth.pas
+ViewCount=1
+CurrentEditView=D:\GitHub\CProject\01.Scale Test App\uMain.pas
 View0=0
-View1=1
 PercentageSizes=1
 Create=1
 Visible=1
@@ -48,13 +44,13 @@ BorlandEditorCodeExplorer=BorlandEditorCodeExplorer@EditWindow0
 TopPanelSize=0
 LeftPanelSize=1906
 LeftPanelClients=DockSite3
-LeftPanelData=000008000102000000003D0D000000000000029D2200000000000001000000003D0D000009000000446F636B5369746533FFFFFFFF
+LeftPanelData=000008000102000000003D0D00000000000002771C00000000000001000000003D0D000009000000446F636B5369746533FFFFFFFF
 RightPanelSize=2000
 RightPanelClients=DockSite2
-RightPanelData=00000800010100000000781300000000000001D00700000000000001000000009D22000009000000446F636B5369746532FFFFFFFF
-BottomPanelSize=0
+RightPanelData=00000800010100000000031000000000000001D0070000000000000100000000771C000009000000446F636B5369746532FFFFFFFF
+BottomPanelSize=1519
 BottomPanelClients=DockSite1,MessageView
-BottomPanelData=0000080001020200000009000000446F636B53697465310F0000004D65737361676556696577466F726D1534000000000000022606000000000000FFFFFFFF
+BottomPanelData=0000080001020100000009000000446F636B5369746531724500000000000002EF050000000000000100000000724500000F0000004D65737361676556696577466F726DFFFFFFFF
 BottomMiddlePanelSize=0
 BottomMiddlePanelClients=DockSite0,GraphDrawingModel
 BottomMiddelPanelData=0000080001020200000009000000446F636B536974653010000000477261706844726177696E67566965779F1D00000000000002F206000000000000FFFFFFFF
@@ -62,24 +58,13 @@ BottomMiddelPanelData=0000080001020200000009000000446F636B5369746530100000004772
 [View0]
 CustomEditViewType=TEditView
 Module=D:\GitHub\CProject\01.Scale Test App\uMain.pas
-CursorX=55
-CursorY=217
-TopLine=186
+CursorX=59
+CursorY=240
+TopLine=239
 LeftCol=1
 Elisions=
 Bookmarks=
-EditViewName=D:\GitHub\CProject\01.Scale Test App\uMain.pas
-
-[View1]
-CustomEditViewType=TEditView
-Module=c:\program files (x86)\embarcadero\studio\18.0\source\rtl\net\System.Bluetooth.pas
-CursorX=70
-CursorY=2901
-TopLine=2887
-LeftCol=1
-Elisions=
-Bookmarks=
-EditViewName=c:\program files (x86)\embarcadero\studio\18.0\source\rtl\net\System.Bluetooth.pas
+EditViewName=Borland.FormDesignerView
 
 [UndockedDesigner]
 Count=0
@@ -132,7 +117,7 @@ Create=1
 Visible=1
 Docked=0
 State=2
-Left=9823
+Left=12318
 Top=0
 Width=8932
 Height=8519
@@ -155,11 +140,11 @@ State=0
 Left=0
 Top=0
 Width=2000
-Height=8788
+Height=7154
 MaxLeft=-1
 MaxTop=-1
 ClientWidth=2000
-ClientHeight=8788
+ClientHeight=7154
 TBDockHeight=5904
 LRDockWidth=2349
 Dockable=1
@@ -168,18 +153,18 @@ StayOnTop=0
 [MessageView]
 PercentageSizes=1
 Create=1
-Visible=0
+Visible=1
 Docked=1
 State=0
 Left=0
-Top=0
-Width=2771
-Height=1423
+Top=18
+Width=10000
+Height=1404
 MaxLeft=-1
 MaxTop=-1
-ClientWidth=2771
-ClientHeight=1423
-TBDockHeight=1423
+ClientWidth=10000
+ClientHeight=1404
+TBDockHeight=1404
 LRDockWidth=2771
 Dockable=1
 StayOnTop=0
@@ -250,16 +235,21 @@ State=0
 Left=0
 Top=0
 Width=1906
-Height=8788
+Height=7154
 MaxLeft=-1
 MaxTop=-1
 ClientWidth=1906
-ClientHeight=8788
+ClientHeight=7154
 TBDockHeight=8788
 LRDockWidth=5807
 Dockable=1
 StayOnTop=0
 SplitPos=151
+
+[PropInspDesignerSelection]
+ArrangeBy=Name
+SelectedItem=Name,OnClick
+ExpandedItems=Anchors=0,LiveBindings=0,"LiveBindings Designer=0",Margins=0,Padding=0,Position=0,RotationCenter=0,Scale=0,Size=0,StyledSettings=0,TextSettings=0,Touch=0,TouchTargetExpansion=0,From=1,ReceiptRecipient=0,Sender=0,Caret=0,DataDetectorTypes=0
 
 [frmDesignPreview]
 PercentageSizes=1
@@ -529,8 +519,8 @@ Create=1
 Visible=0
 Docked=1
 State=0
-Left=-28
-Top=-124
+Left=-3852
+Top=-98
 Width=1849
 Height=3144
 MaxLeft=-1
@@ -725,18 +715,18 @@ State=0
 Left=0
 Top=18
 Width=2000
-Height=9029
+Height=7394
 MaxLeft=-1
 MaxTop=-1
 ClientWidth=2000
-ClientHeight=9029
+ClientHeight=7394
 TBDockHeight=9010
 LRDockWidth=2000
 Dockable=1
 StayOnTop=0
 TabPosition=1
 ActiveTabID=ProjectManager
-TabDockClients=ProjectManager,ToolForm,ModelViewTool,DataExplorerContainer,frmDesignPreview,TFileExplorerForm,TemplateView
+TabDockClients=ProjectManager,ToolForm,ModelViewTool,DataExplorerContainer,frmDesignPreview,TemplateView,TFileExplorerForm
 
 [DockSite3]
 HostDockSite=DockLeftPanel
@@ -749,12 +739,12 @@ State=0
 Left=0
 Top=18
 Width=1906
-Height=9029
+Height=7394
 MaxLeft=-1
 MaxTop=-1
 ClientWidth=1906
-ClientHeight=9029
-TBDockHeight=9029
+ClientHeight=7394
+TBDockHeight=7394
 LRDockWidth=1906
 Dockable=1
 StayOnTop=0

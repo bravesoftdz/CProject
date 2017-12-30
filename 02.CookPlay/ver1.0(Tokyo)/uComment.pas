@@ -76,7 +76,7 @@ type
     FCommentTextList: TStringList;
     FCommentMenuImageList: TStringList;
 
-    FCommentType: TCommentType;
+    FCommentType: TContentType;
     FSerial: LargeInt;
     FSelectedComment: integer;
 
@@ -105,7 +105,7 @@ type
     procedure RemoveComment(aIndex: integer);
   public
     { Public declarations }
-    procedure Init(aCommentType: TCommentType; aSerial: LargeInt; ACallbackBoolRefFunc: TCallbackBoolRefFunc);
+    procedure Init(aCommentType: TContentType; aSerial: LargeInt; ACallbackBoolRefFunc: TCallbackBoolRefFunc);
     procedure LoadComment;
     function Comments(aIndex: integer): TCommentInfo;
     function CommentControls(aIndex: integer): TLayout;
@@ -122,7 +122,7 @@ uses cookplay.StatusBar, ClientModuleUnit, cookplay.S3, uMenuBottom;
 
 {$R *.fmx}
 
-procedure TfrmComment.Init(aCommentType: TCommentType; aSerial: LargeInt; aCallbackBoolRefFunc: TCallbackBoolRefFunc);
+procedure TfrmComment.Init(aCommentType: TContentType; aSerial: LargeInt; aCallbackBoolRefFunc: TCallbackBoolRefFunc);
 begin
   FCallbackBoolRefFunc := aCallbackBoolRefFunc;
 

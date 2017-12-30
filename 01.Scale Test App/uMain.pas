@@ -41,7 +41,7 @@ type
     btnRW: TButton;
     IdSMTP1: TIdSMTP;
     IdMessage1: TIdMessage;
-    Button1: TButton;
+    btnSendmail: TButton;
     procedure btnScanScaleClick(Sender: TObject);
     procedure btnScaleConnectClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -52,6 +52,7 @@ type
     procedure BLE_ScaleEndDiscoverDevices(const Sender: TObject;
       const ADeviceList: TBluetoothLEDeviceList);
     procedure btnRWClick(Sender: TObject);
+    procedure btnSendmailClick(Sender: TObject);
   private
     { Private declarations }
     oScale: TScaleConnection;
@@ -135,6 +136,11 @@ begin
     ShowMessage('연결된 전자저울을 해제 하신 후 시도하십시오!')
   else
     BLE_Scale.DiscoverDevices(TIME_Discover);
+end;
+
+procedure TfrmMain.btnSendmailClick(Sender: TObject);
+begin
+  SendMail(memoScale, 'Cookplay - Scale Data');
 end;
 
 procedure TfrmMain.btnDisconnectScaleClick(Sender: TObject);

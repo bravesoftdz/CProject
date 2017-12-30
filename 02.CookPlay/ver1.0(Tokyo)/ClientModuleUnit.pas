@@ -124,6 +124,8 @@ type
     DSStoryImages: TClientDataSet;
     DSvStoryComment: TClientDataSet;
     DSvMyRecipeList: TClientDataSet;
+    DSvMyBookmarkList: TClientDataSet;
+    DSStoryCount: TClientDataSet;
   private
     FInstanceOwner: Boolean;
     FServerMethods1Client: TServerMethods1Client;
@@ -149,13 +151,14 @@ type
     function GetRecipeInfoCode(sCategoryType, sValue: string): integer;
     function GetRecipeInfoName(sCategoryType: string; nValue: integer): string;
 
-    procedure AddtoDeleteImageQue(bucketname, objectname: string);
+    function AddtoDeleteImageQue(bucketname, objectname: string): Boolean;
 
     procedure GetRecipeListBest(aList: TStringList);
     procedure GetRecipeListRecent(aList: TStringList);
 
     procedure GetMyhomeStoryList(aUserSerial: Largeint; aList: TStringList);
     procedure GetMyhomeRecipeList(aUserSerial: Largeint; aList: TStringList);
+    procedure GetMyhomeBookmarkList(aUserSerial: LargeInt; aList: TStringList);
 
     function UpdateRecipeRecommendation(aRecipeSerial, aUserSerial: LargeInt;
       aActive: Boolean): Boolean;
@@ -164,20 +167,29 @@ type
 
     function UpdateStoryRecommendation(aStorySerial, aUserSerial: LargeInt;
       aActive: Boolean): Boolean;
+    function UpdateStoryBookmark(aRecipeSerial, aUserSerial: LargeInt;
+      aActive: Boolean): Boolean;
 
     procedure GetRecipeViewCount(aRecipeSerial, aUserSerial: LargeInt;
+      var aRecommended, aBookmarked, aRecommendationCount, aCommentCount: integer);
+
+    procedure GetStoryViewCount(aStorySerial, aUserSerial: LargeInt;
       var aRecommended, aBookmarked, aRecommendationCount, aCommentCount: integer);
 
     function GetIngredientGroup(aRecipeSerial: LargeInt; var aSorServings: integer;
       aTarServings: integer; aTarWeightRatio: Single): TStringList;
 
-    function GetComment(aCommentType: TCommentType; aTargetSerial: LargeInt): TStringList;
+    function GetComment(aCommentType: TContentType; aTargetSerial: LargeInt): TStringList;
 
-    function InsertComment(aCommentType: TCommentType; aTargetSerial, aUserSerial: LargeInt; aComment: string): Boolean;
-    function UpdateComment(aCommentType: TCommentType; aSerial: LargeInt; aComment: string): Boolean;
-    function DeleteComment(aCommentType: TCommentType; aSerial: LargeInt): Boolean;
+    function InsertComment(aCommentType: TContentType; aTargetSerial, aUserSerial: LargeInt; aComment: string): Boolean;
+    function UpdateComment(aCommentType: TContentType; aSerial: LargeInt; aComment: string): Boolean;
+    function DeleteComment(aCommentType: TContentType; aSerial: LargeInt): Boolean;
 
     function DeleteStory(aStorySerial: LargeInt): Boolean;
+    function DeleteRecipe(aRecipeSerial: LargeInt): Boolean;
+    function DeleteBookmark(aBookmarkSerial: LargeInt): Boolean;
+
+    procedure UpdateMyhomeRecipeInfo(Sender: TObject);
 
     function GetLastSerial: LargeInt;
 
@@ -198,16 +210,28 @@ uses System.Math, uListMyhome;
 
 {$R *.dfm}
 
-procedure TCM.AddtoDeleteImageQue(bucketname, objectname: string);
+function TCM.AddtoDeleteImageQue(bucketname, objectname: string): Boolean;
+var
+  sql: string;
 begin
-  if not dsDeleteQue.Active then
-    dsDeleteQue.Open;
+  sql := 'Insert into DeleteImageQue' +
+         '       (BucketName, ImageName, CreatedDate)' +
+         '        VALUES' +
+         '        (''' + bucketname + ''',''' + objectname + ''', ''' + FormatDatetime('YYYY-MM-DD HH:NN:SS', now) + ''')';
 
-  dsDeleteQue.Insert;
-  dsDeleteQue.FieldByName('BucketName').AsString := bucketname;
-  dsDeleteQue.FieldByName('ImageName').AsString := objectname;
-  dsDeleteQue.FieldByName('CreatedDate').AsDateTime := now;
-  dsDeleteQue.Post;
+  result := ServerMethods1Client.UpdateQuery(sql);
+
+//  if not dsDeleteQue.Active then
+//    dsDeleteQue.Open;
+//
+//  if ObjectName.Trim <> ''  then
+//  begin
+//    dsDeleteQue.Insert;
+//    dsDeleteQue.FieldByName('BucketName').AsString := bucketname;
+//    dsDeleteQue.FieldByName('ImageName').AsString := objectname;
+//    dsDeleteQue.FieldByName('CreatedDate').AsDateTime := now;
+//    dsDeleteQue.Post;
+//  end;
 end;
 
 procedure TCM.CloseMemTable;
@@ -250,11 +274,36 @@ begin
   FInstanceOwner := True;
 end;
 
-function TCM.DeleteComment(aCommentType: TCommentType; aSerial: LargeInt): Boolean;
+function TCM.DeleteBookmark(aBookmarkSerial: LargeInt): Boolean;
+var
+  sql: string;
+begin
+  result := False;
+  try
+    SQLConnection.Open;
+
+    try
+      sql := 'Delete from Bookmark' +
+             ' Where Serial = ' + aBookmarkSerial.ToString;
+
+      result := ServerMethods1Client.UpdateQuery(sql);
+    except
+      on E:Exception do
+        Showmessage(E.Message);
+    end;
+  finally
+    CM.GetRecipeTablesToMem;
+    SQLConnection.Close;
+  end;
+end;
+
+function TCM.DeleteComment(aCommentType: TContentType; aSerial: LargeInt): Boolean;
 var
   sql: string;
 begin
   try
+    SQLConnection.Open;
+
     case aCommentType of
       ctStory:
         sql := 'Delete from StoryComment' +
@@ -271,12 +320,39 @@ begin
   end;
 end;
 
+function TCM.DeleteRecipe(aRecipeSerial: LargeInt): Boolean;
+var
+  sql: string;
+begin
+  result := False;
+  try
+    SQLConnection.Open;
+
+    try
+      sql := 'Update Recipe Set Deleted=1 Where Serial=' + aRecipeSerial.ToString;
+
+      if memMyRecipe.Locate('Serial', aRecipeSerial) then
+        memMyRecipe.Delete;
+
+      result := ServerMethods1Client.UpdateQuery(sql);
+    except
+      on E:Exception do
+        Showmessage(E.Message);
+    end;
+  finally
+    CM.GetRecipeTablesToMem;
+    SQLConnection.Close;
+  end;
+end;
+
 function TCM.DeleteStory(aStorySerial: LargeInt): Boolean;
 var
   sql: string;
 begin
   result := False;
   try
+    SQLConnection.Open;
+
     try
       sql := 'Update Story Set Deleted=1 Where Serial=' + aStorySerial.ToString;
 
@@ -422,11 +498,66 @@ begin
   result := ServerMethods1Client.LastInsertID;
 end;
 
+procedure TCM.GetMyhomeBookmarkList(aUserSerial: LargeInt; aList: TStringList);
+var
+  aBookMarkItem: TMyhomeBookmarkItem;
+  aBeforeState: Boolean;
+begin
+  if not Assigned(aList) then
+    Exit;
+
+  while aList.Count > 0 do
+  begin
+    aList.Objects[0].DisposeOf;
+    aList.Delete(0);
+  end;
+
+  aBeforeState := SQLConnection.Connected;
+  try
+    if not SQLConnection.Connected then
+      SQLConnection.Open;
+
+    DSvMyBookmarkList.Close;
+    DSvMyBookmarkList.ParamByName('UserSerial').AsLargeInt := aUserSerial;
+    DSvMyBookmarkList.Open;
+
+    if not DSvMyBookmarkList.IsEmpty then
+    begin
+      DSvMyBookmarkList.First;
+
+      while not DSvMyBookmarkList.Eof do
+      begin
+        aBookMarkItem := TMyhomeBookmarkItem.Create;
+
+        aBookMarkItem.FTargetSerial := DSvMyBookmarkList.FieldByName('Serial').AsLargeInt;
+        aBookMarkItem.FContentType := TBookmarkType(DSvMyBookmarkList.FieldByName('ContentType').AsInteger);
+        aBookMarkItem.FContentSerial := DSvMyBookmarkList.FieldByName('ContentSerial').AsInteger;
+        aBookMarkItem.FUserPicture := DSvMyBookmarkList.FieldByName('UserPicture').AsWideString;
+        aBookMarkItem.FUserNicname := DSvMyBookmarkList.FieldByName('UserNickname').AsWideString;
+        aBookMarkItem.FTitle := DSvMyBookmarkList.FieldByName('Title').AsWideString;
+        aBookMarkItem.FDescription := DSvMyBookmarkList.FieldByName('Description').AsWideString;
+        aBookMarkItem.FRecommendationCount := DSvMyBookmarkList.FieldByName('RecommendationCount').AsInteger;
+        aBookMarkItem.FCommentCount := DSvMyBookmarkList.FieldByName('CommentCount').AsInteger;
+        aBookMarkItem.FCreatedDate := DSvMyBookmarkList.FieldByName('CreatedDate').AsWideString;
+        aBookMarkItem.FImageName := DSvMyBookmarkList.FieldByName('ImageName').AsWideString;
+
+        aList.AddObject('', aBookmarkItem);
+
+        DSvMyBookmarkList.Next;
+      end;
+    end;
+  finally
+    DSvMyBookmarkList.Close;
+
+    SQLConnection.Connected := aBeforeState;
+  end;
+end;
+
 procedure TCM.GetMyhomeRecipeList(aUserSerial: Largeint; aList: TStringList);
 var
   aRecipeItem: TMyhomeRecipeStoryItem;
   aBeforeState: Boolean;
-  i, nCategory: integer;
+  i, nImageCount: integer;
   query: string;
 begin
   if not Assigned(aList) then
@@ -469,14 +600,21 @@ begin
         DSMyMethod.ParamByName('RecipeSerial').AsLargeInt := aRecipeItem.FTargetSerial;
         DSMyMethod.Open;
 
-        SetLength(aRecipeItem.FImageNames, DSMyMethod.RecordCount+1);
-        aRecipeItem.FImageNames[0] := DSvMyRecipeList.FieldByName('PictureRectangle').AsWideString;
+        nImageCount := 1;
+
+        SetLength(aRecipeItem.FImageNames, nImageCount);
+        aRecipeItem.FImageNames[nImageCount-1] := DSvMyRecipeList.FieldByName('PictureRectangle').AsWideString;
 
         DSMyMethod.First;
         for i:=1 to DSMyMethod.RecordCount do
         begin
-          aRecipeItem.FImageNames[i] := DSMyMethod.FieldByName('PictureRectangle').AsWideString;
-          DSMyMethod.Next;
+          if DSMyMethod.FieldByName('PictureRectangle').AsWideString.Trim <> '' then
+          begin
+            nImageCount := nImageCount + 1;
+            SetLength(aRecipeItem.FImageNames, nImageCount);
+            aRecipeItem.FImageNames[nImageCount-1] := DSMyMethod.FieldByName('PictureRectangle').AsWideString;
+            DSMyMethod.Next;
+          end;
         end;
 
         // 해당 레시피에 대하여 추천을 했는지 확인
@@ -499,11 +637,12 @@ begin
     SQLConnection.Connected := aBeforeState;
   end;
 end;
+
 procedure TCM.GetMyhomeStoryList(aUserSerial: LargeInt; aList: TStringList);
 var
   aStoryItem: TMyhomeRecipeStoryItem;
   aBeforeState: Boolean;
-  i, nCategory: integer;
+  i: integer;
   query: string;
 begin
   if not Assigned(aList) then
@@ -626,7 +765,57 @@ begin
   end;
 end;
 
-function TCM.InsertComment(aCommentType: TCommentType; aTargetSerial,
+procedure TCM.GetStoryViewCount(aStorySerial, aUserSerial: LargeInt;
+  var aRecommended, aBookmarked, aRecommendationCount, aCommentCount: integer);
+var
+  query: string;
+begin
+  if not SQLConnection.Connected then
+    SQLConnection.Open;
+
+  aRecommended := 0;
+  aBookmarked := 0;
+  aRecommendationCount := 0;
+  aCommentCount := 0;
+
+  try
+    try
+      // 해당 스토리에 대하여 추천을 했는지 확인
+      query := 'Select Story_Serial' +
+               '  From StoryRecommendation' +
+               ' Where Story_Serial=' + aStorySerial.ToString +
+               '   And Users_Serial=' + aUserSerial.ToString;
+
+      aRecommended := CM.ServerMethods1Client.GetCount(query);
+
+      // 해당 스토리에 대하여 북마크를 했는지 확인
+      query := 'Select Serial' +
+               '  From Bookmark' +
+               ' Where Users_Serial=' + aUserSerial.ToString +
+               '   And ContentType=3' +
+               '   And ContentSerial=' + aStorySerial.ToString;
+
+      aBookmarked := CM.ServerMethods1Client.GetCount(query);
+
+      // 레시피의 추천 및 댓글의 개수를 가져온다
+      DsStoryCount.Close;
+      DsStoryCount.ParamByName('StorySerial').Value := aStorySerial;
+      DsStoryCount.Open;
+
+      if not DsStoryCount.IsEmpty then
+      begin
+        aRecommendationCount := DsStoryCount.FieldByName('RecommendationCount').AsInteger;
+        aCommentCount := DsStoryCount.FieldByName('CommentCount').AsInteger;
+      end;
+    except
+    end;
+  finally
+    DsStoryCount.Close;
+    SQLConnection.Close;
+  end;
+end;
+
+function TCM.InsertComment(aCommentType: TContentType; aTargetSerial,
   aUserSerial: LargeInt; aComment: string): Boolean;
 var
   sql: string;
@@ -924,7 +1113,7 @@ begin
   end;
 end;
 
-function TCM.GetComment(aCommentType: TCommentType;
+function TCM.GetComment(aCommentType: TContentType;
   aTargetSerial: LargeInt): TStringList;
 // 레시피의 댓글을 찾아서 보낸다
 var
@@ -1127,8 +1316,8 @@ begin
       query := 'Select Serial' +
                '  From Bookmark' +
                ' Where Users_Serial=' + aUserSerial.ToString +
-               '   And ContentsType=1' +
-               '   And ContentsSerial=' + aRecipeSerial.ToString;
+               '   And ContentType=1' +
+               '   And ContentSerial=' + aRecipeSerial.ToString;
 
       aBookmarked := CM.ServerMethods1Client.GetCount(query);
 
@@ -1177,6 +1366,51 @@ begin
   end;
 end;
 
+procedure TCM.UpdateMyhomeRecipeInfo(Sender: TObject);
+var
+  aRecipeItem: TMyhomeRecipeStoryItem;
+  nImageCount: integer;
+  i: integer;
+begin
+  if not(Sender is TMyhomeRecipeStoryItem) then
+    Exit;
+
+  aRecipeItem := TMyhomeRecipeStoryItem(Sender);
+
+  try
+    if memMyRecipe.Locate('Serial', aRecipeItem.FTargetSerial) then
+    begin
+      aRecipeItem.FCategory := ConvertCategoryToSharpCode(memMyRecipe.FieldByName('Category').AsWideString);
+      aRecipeItem.FTitle := memMyRecipe.FieldByName('Title').AsWideString;
+      aRecipeItem.FDescription := memMyRecipe.FieldByName('Description').AsWideString;
+
+      memMyMethod.Filtered := False;
+      memMyMethod.Filter := 'Recipe_Serial=' + aRecipeItem.FTargetSerial.ToString;
+      memMyMethod.Filtered := True;
+
+      nImageCount := 1;
+
+      SetLength(aRecipeItem.FImageNames, nImageCount);
+      aRecipeItem.FImageNames[nImageCount-1] := memMyRecipe.FieldByName('PictureRectangle').AsWideString;
+
+      memMyMethod.First;
+      for i:=1 to memMyMethod.RecordCount do
+      begin
+        if memMyMethod.FieldByName('PictureRectangle').AsWideString.Trim <> '' then
+        begin
+          nImageCount := nImageCount + 1;
+          SetLength(aRecipeItem.FImageNames, nImageCount);
+
+          aRecipeItem.FImageNames[nImageCount-1] := memMyMethod.FieldByName('PictureRectangle').AsWideString;
+          memMyMethod.Next;
+        end;
+      end;
+    end;
+  finally
+    memMyMethod.Filtered := False;
+  end;
+end;
+
 function TCM.UpdateRecipeBookmark(aRecipeSerial, aUserSerial: LargeInt;
   aActive: Boolean): Boolean;
 var
@@ -1191,8 +1425,8 @@ begin
       // 해당 레시피가 북마크 되어 있는지 확인한다
       sQuery := 'Select * From Bookmark ' +
                 ' Where Users_Serial=' + aUserSerial.ToString +
-                '   And ContentsSerial = ' + aRecipeSerial.ToString +
-                '   And ContentsType=1';
+                '   And ContentSerial = ' + aRecipeSerial.ToString +
+                '   And ContentType=1';
       nFindBookmarkSerial := ServerMethods1Client.GetQueryLargeInt(sQuery, 'Serial');
 
       result := True;
@@ -1203,7 +1437,7 @@ begin
         // 이전에 북마크 한 것이 없으면, 북마크를 추가한다
         if nFindBookmarkSerial = -1 then
           sQuery := 'Insert Into Bookmark ' +
-                    '(Users_Serial, ContentsType, ContentsSerial, CreatedDate) ' +
+                    '(Users_Serial, ContentType, ContentSerial, CreatedDate) ' +
                     'VALUES ' +
                     '(' + aUserSerial.ToString + ', 1, ' + aRecipeSerial.ToString + ', ''' + FormatDatetime('YYYY-MM-DD HH:NN:SS', now) + ''')';
       end
@@ -1214,8 +1448,8 @@ begin
         if nFindBookmarkSerial > -1 then
           sQuery := 'Delete from Bookmark ' +
                     ' Where Users_Serial=' + aUserSerial.ToString +
-                    '   AND ContentsType=1' +
-                    '   AND ContentsSerial=' + aRecipeSerial.ToString;
+                    '   AND ContentType=1' +
+                    '   AND ContentSerial=' + aRecipeSerial.ToString;
       end;
 
       if sQuery.Trim <> '' then
@@ -1228,7 +1462,7 @@ begin
   end;
 end;
 
-function TCM.UpdateComment(aCommentType: TCommentType; aSerial: LargeInt;
+function TCM.UpdateComment(aCommentType: TContentType; aSerial: LargeInt;
   aComment: string): Boolean;
 var
   sql: string;
@@ -1306,6 +1540,57 @@ begin
   end;
 end;
 
+function TCM.UpdateStoryBookmark(aRecipeSerial, aUserSerial: LargeInt;
+  aActive: Boolean): Boolean;
+var
+  sQuery: string;
+  nFindBookmarkSerial: LargeInt;
+begin
+  if not SQLConnection.Connected then
+    SQLConnection.Open;
+
+  try
+    try
+      // 해당 스토리가 북마크 되어 있는지 확인한다
+      sQuery := 'Select * From Bookmark ' +
+                ' Where Users_Serial=' + aUserSerial.ToString +
+                '   And ContentSerial = ' + aRecipeSerial.ToString +
+                '   And ContentType=3';
+      nFindBookmarkSerial := ServerMethods1Client.GetQueryLargeInt(sQuery, 'Serial');
+
+      result := True;
+      sQuery := '';
+      // Bookmark 해야 할 경우
+      if aActive then
+      begin
+        // 이전에 북마크 한 것이 없으면, 북마크를 추가한다
+        if nFindBookmarkSerial = -1 then
+          sQuery := 'Insert Into Bookmark ' +
+                    '(Users_Serial, ContentType, ContentSerial, CreatedDate) ' +
+                    'VALUES ' +
+                    '(' + aUserSerial.ToString + ', 3, ' + aRecipeSerial.ToString + ', ''' + FormatDatetime('YYYY-MM-DD HH:NN:SS', now) + ''')';
+      end
+      // Bookmark 에서 없애야 할 경우
+      else
+      begin
+        // 이전 Bookmark가 있으면, 테이블에서 Bookmark를 삭제한다
+        if nFindBookmarkSerial > -1 then
+          sQuery := 'Delete from Bookmark ' +
+                    ' Where Users_Serial=' + aUserSerial.ToString +
+                    '   AND ContentType=3' +
+                    '   AND ContentSerial=' + aRecipeSerial.ToString;
+      end;
+
+      if sQuery.Trim <> '' then
+        result := ServerMethods1Client.UpdateQuery(sQuery);
+    except
+      result := False;
+    end;
+  finally
+    SQLConnection.Close;
+  end;
+end;
+
 function TCM.UpdateStoryRecommendation(aStorySerial, aUserSerial: LargeInt;
   aActive: Boolean): Boolean;
 var
@@ -1340,7 +1625,7 @@ begin
       begin
         // 이전체 추천한 것이 있으면, 추천 테이블에서 사용자를 삭제한다
         if nFindSerial > -1 then
-          sQuery := 'Delete From RecipeRecommendation' +
+          sQuery := 'Delete From StoryRecommendation' +
                     ' Where Users_Serial=' + aUserSerial.ToString +
                     '   And Story_Serial=' + aStorySerial.ToString;
       end;

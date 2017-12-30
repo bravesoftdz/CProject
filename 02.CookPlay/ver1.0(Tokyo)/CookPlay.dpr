@@ -29,7 +29,8 @@ uses
   uMyhomeFrame in 'uMyhomeFrame.pas' {frameMyhome: TFrame},
   uListMyhome in 'uListMyhome.pas',
   uGlobalComponent in 'uGlobalComponent.pas' {frmGlobalComponent},
-  uMenuBottom in 'uMenuBottom.pas' {frmMenuBottom};
+  uMenuBottom in 'uMenuBottom.pas' {frmMenuBottom},
+  uGetTime in 'uGetTime.pas' {frmGetTime};
 
 {$R *.res}
 
@@ -52,6 +53,7 @@ begin
   Application.CreateForm(TfrmViewStepImage, frmViewStepImage);
   Application.CreateForm(TfrmGlobalComponent, frmGlobalComponent);
   Application.CreateForm(TfrmMenuBottom, frmMenuBottom);
+  Application.CreateForm(TfrmGetTime, frmGetTime);
   Application.Run;
 end.
 

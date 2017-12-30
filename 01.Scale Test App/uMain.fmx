@@ -231,7 +231,7 @@ object frmMain: TfrmMain
       TintColor = claNavy
       OnClick = btnRWClick
     end
-    object Button1: TButton
+    object btnSendmail: TButton
       Anchors = [akTop, akRight]
       StyledSettings = []
       Position.X = 246.000000000000000000
@@ -245,7 +245,7 @@ object frmMain: TfrmMain
       TextSettings.Font.Size = 14.000000000000000000
       TextSettings.FontColor = claWhite
       TintColor = claNavy
-      OnClick = btnRWClick
+      OnClick = btnSendmailClick
     end
   end
   object BLE_Scale: TBluetoothLE
@@ -272,16 +272,16 @@ object frmMain: TfrmMain
     Encoding = meDefault
     FromList = <
       item
-        Address = 'sendmail@greenscale.net'
-        Name = 'GreenScale'
-        Text = 'GreenScale <sendmail@greenscale.net>'
-        Domain = 'greenscale.net'
+        Address = 'sendmail@cookplay.net'
+        Name = 'Cookplay'
+        Text = 'Cookplay <sendmail@cookplay.net>'
+        Domain = 'cookplay.net'
         User = 'sendmail'
       end>
-    From.Address = 'sendmail@greenscale.net'
-    From.Name = 'GreenScale'
-    From.Text = 'GreenScale <sendmail@greenscale.net>'
-    From.Domain = 'greenscale.net'
+    From.Address = 'sendmail@cookplay.net'
+    From.Name = 'Cookplay'
+    From.Text = 'Cookplay <sendmail@cookplay.net>'
+    From.Domain = 'cookplay.net'
     From.User = 'sendmail'
     Recipients = <>
     ReplyTo = <>
